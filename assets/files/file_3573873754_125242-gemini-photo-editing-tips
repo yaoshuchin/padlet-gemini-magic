@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="zh-tw"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta property="fb:pages" content="161676900673">
+  <title>Gemini 2.5 Flash Image 提示詞怎麼下？官方 5 大訣竅澈底解析，教你打造角色一致且創意十足的圖像 | T客邦</title>
+  <meta name="description" content="Gemini 應用程式最新推出的圖像生成與編輯功能，在角色一致性、對話式編輯等方面都有所進展。本篇提供幾個使用 Gemini 進行圖片編修時的訣竅，幫助你充分利用這些功能。" />
+  <meta name="keywords" content="教學,Google,gemini,ai,人工智慧,ai繪圖,提示詞技巧,教學,圖像生成,圖像編輯,修圖,局部編輯,風格轉換" />
+  <meta name="robots" content="max-image-preview:large">
+  <link rel="canonical" href="https://www.techbang.com/posts/125242-gemini-photo-editing-tips" />
+  <link rel="alternate" type="application/rss+xml" title="T客邦 - 全站文章 RSS" href="https://feeds.feedburner.com/techbang/daily" />
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/techbang-ip.png" rel="apple-touch-icon" />
+  <link href="/techbang-ip4.png" rel="apple-touch-icon" />
+  <link href="/techbang-ipad.png" rel="apple-touch-icon" />
+
+  <meta name="application-name" content="T客邦 techbang"/>
+  <meta name="msapplication-TileColor" content="#00adef"/>
+  <meta name="msapplication-TileImage" content="https://cdn0.techbang.com/assets/65b0c3c6-c701-45ed-bca3-1976fc849678-7ee2e27d00e5fe3c83082ef37e4c077359c62e6e17eff72283a8c48cd4af4488.png"/>
+
+  <link rel="stylesheet" media="screen" href="https://cdn0.techbang.com/assets/application-2cd319453557348152bf2c8ebffdef538883b9a94d086f34c42bf7fc4dff23cc.css" />
+  
+
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="1jr2YgFiQ4G8opdiPW0Cn67LL2cXJc7KK/aEDKHVDJo/OH9Pol+vYDYi95efFotAb3fqBco9c/UenCgy1Kb+kw==" />
+
+  <meta property="og:title" content="Gemini 2.5 Flash Image 提示詞怎麼下？官方 5 大訣竅澈底解析，教你打造角色一致且創意十足的圖像"><meta property="og:description" content="Gemini 應用程式最新推出的圖像生成與編輯功能，在角色一致性、對話式編輯等方面都有所進展。本篇提供幾個使用 Gemini 進行圖片編修時的訣竅，幫助你充分利用這些功能。"><meta property="og:type" content="article"><meta property="og:image" content="https://cdn1.techbang.com/system/excerpt_images/125242/original/372413fd55f63cd3c5dcfb0ddfc1a588.jpg?1756804404"><meta property="og:url" content="https://www.techbang.com/posts/125242-gemini-photo-editing-tips"><meta property="article:publisher" content="https://www.facebook.com/TKbang" />
+<meta property="article:author" content="https://www.facebook.com/TKbang" />
+<meta property="article:published_time" content="2025-09-03T06:30:00Z">
+
+  <meta property="dable:image" content="https://cdn1.techbang.com/system/excerpt_images/125242/special_headline/372413fd55f63cd3c5dcfb0ddfc1a588.jpg?1756804404">  <meta property="dable:item_id" content="125242">
+    <meta name="popIn_certification" content=non_adult>
+
+  
+  
+
+  
+
+  
+
+  <meta property="og:site_name" content="T客邦">
+<meta property="fb:app_id" content="258434103148">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@techbang" />
+
+  <script type="application/javascript" src="//anymind360.com/js/6237/ats.js"></script>
+
+
+  <script src="https://s.techbang.com/login?_=1792866032&amp;gateway=1&amp;service=https%3A%2F%2Fwww.techbang.com%2Fsession%2Fsync.js%3Flogin%3D" async="async"></script>
+  <!--[if lt IE 9]><script src="https://cdn2.techbang.com/assets/shims/html5shiv-db0cbab303cdcc0326e74a0de2ac38f51830d73090b0874423d5ac082cc671ec.js"></script><![endif]-->
+
+  <script>
+  (function() {
+    var plugin_src = '//static.dable.io/dist/plugin.min.js';
+
+    function load_dable_plugin() {
+      if (document.querySelector('script[src="' + plugin_src + '"]')) { return; }
+
+      (function(d,a,b,l,e,r) {
+      d[b]=d[b]||function(){(d[b].q=d[b].q||[]).push(arguments)};e=a.createElement(l);
+      e.async=1;e.charset='utf-8';e.src=plugin_src;
+      r=a.getElementsByTagName(l)[0];r.parentNode.insertBefore(e,r);
+      })(window,document,'dable','script');
+      dable('setService', 'techbang.com');
+    }
+
+    load_dable_plugin();
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var dable_widgets = window.dable_lazy_widgets || [];
+
+      if (dable_widgets.length) {
+        var dable_slots = $($.map(dable_widgets, function(widget) { return '#' + widget[1]; }).join(', ')),
+            dable_section_height = dable_slots.first().offset().top,
+            enable_scroll_load = true;
+
+        $(window).scroll(function(){
+          if (enable_scroll_load && dable_section_height - $(window).scrollTop() < 1300) {
+            enable_scroll_load = false;
+            load_dable_plugin();
+            $.each(dable_widgets, function(i, widget) { dable(widget[0], widget[1]); });
+            dable('sendLogOnce');
+          }
+        });
+      }
+    })
+  })();
+</script>
+
+      <script>
+//<![CDATA[
+function load_gpt(){var e=document.createElement("script");e.async=!0,e.type="text/Javascript",e.src="https://www.googletagservices.com/tag/js/gpt.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}var googletag=googletag||{};googletag.cmd=googletag.cmd||[];var enable_scroll_load=!0;/Mobi/.test(navigator.userAgent)?document.addEventListener("scroll",function(){enable_scroll_load&&(load_gpt(),enable_scroll_load=!1)}):load_gpt();var create_cookie=function(e,t,n){var o,l=new Date;n=n||1,l.setTime(l.getTime()+24*n*60*60*1e3),o="; expires="+l.toGMTString(),document.cookie=escape(e)+"="+escape(t)+o+"; path=/"},read_cookie=function(e){e=escape(e)+"=";for(var t=document.cookie.split(";"),n=0;n<t.length;n++){for(var o=t[n];" "===o.charAt(0);)o=o.substring(1,o.length);if(0===o.indexOf(e))return unescape(o.substring(e.length,o.length))}return null},dfp_crazy_ads_render=function(e){var t,n=!1,o=0,l=function(){var e=document.querySelectorAll("#crazy_ad_big > div")[0];if(void 0!==e||null!=e){var n=document.createElement("a");n.id="crazyad_close_button",n.innerHTML="\u95dc\u9589\u5ee3\u544a",n.style.position="absolute",n.style.zIndex="3",n.style.right="5px",n.style.marginTop="5px",n.style.color="#fff",n.style.fontSize="14px",n.style.cursor="pointer",n.style.backgroundColor="rgba(0,0,0,0.7)",n.style.padding="5px",n.addEventListener("click",function(){var e=document.getElementById("crazy_ad_big"),n=document.getElementById("crazyad_open_button");e.style.display="none",n.style.display="block",this.style.display="none",this.dataset.settimeout="Y",null!=t&&clearInterval(t)}),e.insertBefore(n,e.firstChild)}},a=function(){var e=document.querySelectorAll("#crazy_ad_small > div")[0];if(void 0!==e||null!=e){var t=document.createElement("a");t.id="crazyad_open_button",t.innerHTML="\u5c55\u958b\u5ee3\u544a",t.style.position="absolute",t.style.zIndex="3",t.style.right="315px",t.style.marginTop="5px",t.style.color="#fff",t.style.fontSize="14px",t.style.cursor="pointer",t.style.backgroundColor="rgba(0,0,0,0.7)",t.style.padding="5px",t.addEventListener("click",function(){var e=document.getElementById("crazy_ad_big"),t=document.getElementById("crazyad_close_button");e.style.display="block",t.style.display="block",this.style.display="none"}),e.insertBefore(t,e.firstChild)}};if(0==o&&e.classList.contains("crazy-ads")){o=1,l(),a();new Date;var s=e.dataset.resource,i=e.dataset.type,r="";r=null==s?window.location.hostname.replace(".","_")+"_"+i:s+"_"+i,null==read_cookie(r)&&(create_cookie(r,!0),n=!0);var c=document.getElementById("crazy_ad_big"),d=(c=document.getElementById("crazy_ad_big"),document.getElementById("crazyad_close_button")),u=document.getElementById("crazyad_open_button");if(1==n){if(c.style.display="block",d.style.display="block",u.style.display="none","Y"!=d.dataset.settimeout){var m=0;t=setInterval(function(){m+=1,c.style.display="none",d.style.display="none",u.style.display="block",1==m&&clearInterval(t)},12e3)}}else c.style.display="none",d.style.display="none"}},dfp_mobile_full_render=function(e,t){var n=!1,o=function(e,t=null){n=!0,e.addEventListener("click",function(){this.parentNode.remove(),t&&t.click()})},l=function(n=null){var l=(document.documentElement.clientWidth-t.size[0])/2,a=document.getElementsByClassName("mobile_full_ads_close")[0];a.style.right=l+"px",a.style.backgroundPositionX="right",e.parentNode.style.display="block",a.style.display="block",o(a,n)};let a=function(t=null){let n=function(e){e&&e.click()};if(!s.contentDocument)return n(t),!1;let o=s.contentDocument.getElementsByClassName("adsbyfalcon").length>0,a=e.getElementsByClassName("scupioadslot").length>0,r=s.contentDocument.getElementById("nextAD"),c=s.contentDocument.getElementById("vm5ad-js-sdk"),d=s.contentDocument.getElementsByTagName("img").length>0;if(a||o){var u=document.createElement("div"),m=s.contentDocument.body.childNodes;for(i=0;i<m.length;i++)if("SCRIPT"==m[i].nodeName){if(m[i].src.length>0){var y=document.createElement("script");y.type="text/javascript",y.src=m[i].src,u.appendChild(y)}}else if("A"==m[i].nodeName&&0!=m[i].getAttribute("src")){var g=document.createElement("script");g.setAttribute("async",""),g.src=m[i].getAttribute("src"),u.appendChild(g)}else{var f=m[i].cloneNode(!0);u.appendChild(f)}document.body.appendChild(u)}else if(r){$(s.contentDocument).on("DOMNodeInserted",ad2Listener=function(e){p(e)}),s.contentWindow.addEventListener("message",clickforceListener=function(e){_(e)});function p(e){e.target.querySelector("img[src='https://content.ad2iction.com/mediascroll/logo.jpg']")&&(l(t),b(),v())}function _(e){"pop_ads=0"===e.data?(v(),b()):"pop_ads=1"===e.data&&(l(t),v(),b())}function v(){s.contentWindow.removeEventListener("message",clickforceListener)}function b(){$(s.contentDocument).off("DOMNodeInserted",ad2Listener)}}else if(c){var h=new MutationObserver(function(e){e.forEach(function(){l(t),k(),h.disconnect()})});s.contentDocument.addEventListener("DOMNodeInserted",vmfiveListener=function(e){E(e)});function E(){var e=s.contentDocument.getElementsByClassName("vmadsdk-ad-remote")[0];e&&h.observe(e,{attributes:!0,attributeFilter:["style"]})}function k(){s.contentDocument.removeEventListener("DOMNodeInserted",vmfiveListener)}}else if(d){var x=function(e){var t=$.Deferred(),n=new Image;return n.onload=function(){t.resolve()},n.src=e,t.promise()};t&&s.contentDocument.getElementsByTagName("img")[0].addEventListener("click",function(){history.pushState({url:t.href},"","")});var B=x(s.contentDocument.getElementsByTagName("img")[0].src);$.when.apply(null,B).done(function(){l(t)})}else{I();function I(){s.contentDocument.querySelector("iframe[id^='frame-innity']")||L()}function L(){l(t)}}(document.querySelectorAll(".mobile_full_ads_close").length<=0||document.querySelectorAll(".mobile_full_ads_close")[0].style.length<=0)&&n(t)};if(e.classList.contains("mobile-full")){var s=document.getElementById("google_ads_iframe_"+e.dataset.unit+"_0");history.state&&history.state.url&&window.location.replace(history.state.url),document.querySelectorAll(".article a").forEach(function(e){e.addEventListener("click",function(e){e.preventDefault();let t=document.createElement("a");t.href=this.href,"_blank"===this.getAttribute("target")&&(t.target="_blank"),document.body.appendChild(t),n?t.click():a(t)},!1)})}},dfp_gold_text_render=function(e){if(e.classList.contains("gold-text")){var t=e.dataset.color,n=e.dataset.unit,o=document.getElementById("google_ads_iframe_"+n+"_0").contentDocument;o.getElementsByTagName("body")[0].style.cssText="text-align: center; line-height: 30px;",0!=o.getElementsByTagName("a").length&&(o.getElementsByTagName("a")[0].style.cssText="text-decoration: none;"),0!=o.getElementsByTagName("span").length&&(o.getElementsByTagName("span")[0].style.cssText="color: "+t+";")}},dfp_close_btn_render=function(e){if(e.classList.contains("close-btn")&&document.getElementById("google_ads_iframe_"+e.dataset.unit+"_0").src.length>0){var t=document.getElementById(e.id);t.style.display="none",window.addEventListener("message",ytIframeListener=function(e){n(e)});function n(e){"yt_iframe=1"===e.data&&($(t).slideToggle(700),o(),l())}function o(){var e=a(),n=t.querySelector("iframe");t.insertBefore(e,t.firstChild),e.addEventListener("click",function(){function e(){"none"==t.style.display&&(n.remove(),clearInterval(o))}$(t).slideToggle(700),this.style.display="none";var o=setInterval(function(){e()},1e3)})}function l(){window.removeEventListener("message",ytIframeListener)}function a(){var e=document.createElement("a");return e.id="dfp_close_button",e.innerHTML="\u95dc\u9589\u5ee3\u544a",e.style.position="absolute",e.style.height="30px",e.style.lineHeight="30px",e.style.right="-5px",e.style.top="-5px",e.style.margin="5px",e.style.padding="0 5px",e.style.cursor="pointer",e.style.background="rgba(6, 6, 6, 0.3)",e.style.color="#fff",e.style.textAlign="center",e.style.border="1px solid",e}}};googletag.cmd.push(function(){googletag.pubads().addEventListener("slotRenderEnded",function(e){var t=e.slot.getSlotElementId(),n=document.getElementById(t);void 0!==n&&null!=n&&0==e.isEmpty&&(dfp_gold_text_render(n,e),dfp_mobile_full_render(n,e),dfp_close_btn_render(n,e),dfp_crazy_ads_render(n,e))})}),window.closeFullAD=function(){$(".mobile_full_ads").remove()};
+//]]>
+</script>
+
+    <script type='text/javascript'> googletag.cmd.push(function() { googletag.defineSlot("/1067003/techbang_i_p_970x90", [[970, 100], [970, 90]], "dfp-middle_techbang_desktop_2") .setCollapseEmptyDiv(true) .addService(googletag.pubads()); googletag.defineSlot("/1067003/techbang_i_r_300x100_1", [[300, 100]], "dfp-sidebar_techbang_desktop_4") .setCollapseEmptyDiv(true) .addService(googletag.pubads()); googletag.defineSlot("/1067003/techbang_i_r_300x250_1", [[300, 250]], "dfp-sidebar_techbang_desktop_5") .setCollapseEmptyDiv(true) .addService(googletag.pubads()); googletag.defineSlot("/1067003/techbang_r_300x250", [[1, 1], [300, 170], [300, 250]], "dfp-sidebar_techbang_r_300x250") .setCollapseEmptyDiv(true) .addService(googletag.pubads()); googletag.defineSlot("/1067003/techbang_i_r_300x100_2", [[300, 100]], "dfp-sidebar_techbang_desktop_6") .setCollapseEmptyDiv(true) .addService(googletag.pubads()); googletag.defineSlot("/1067003/techbang_i_r_300x100_3", [[300, 100]], "dfp-sidebar_techbang_desktop_7") .setCollapseEmptyDiv(true) .addService(googletag.pubads()); googletag.defineSlot("/1067003/techbang_i_r_300x250_2", [[300, 250]], "dfp-sidebar_techbang_desktop_8") .setCollapseEmptyDiv(true) .addService(googletag.pubads()); googletag.defineSlot("/1067003/techbang_i_r_300x600_1", [[300, 600]], "dfp-sidebar_techbang_desktop_9") .setCollapseEmptyDiv(true) .addService(googletag.pubads()); googletag.defineSlot("/1067003/techbang_content_stickyAD", [[300, 600]], "dfp-sidebar_techbang_desktop_11") .setCollapseEmptyDiv(true) .addService(googletag.pubads()); googletag.defineSlot("/1067003/techbang_all_pushdown_970x250", [[970, 250]], "dfp-techbang_all_pushdown_970x250") .setCollapseEmptyDiv(true,true) .addService(googletag.pubads()); googletag.defineSlot("/1067003/techbang_idle_970x250", [[970, 250]], "dfp-techbang_idle_970x250") .setCollapseEmptyDiv(true) .addService(googletag.pubads()); googletag.defineSlot("/1067003/techbang_i_m_970x250_1", [[970, 250], [970, 90], [728, 90]], "dfp-techbang_i_m_970x250_1") .setCollapseEmptyDiv(true) .addService(googletag.pubads()); googletag.defineSlot("/1067003/techbang_i_m_970x250_2", [[970, 250], [970, 90], [728, 90]], "dfp-techbang_i_m_970x250_2") .setCollapseEmptyDiv(true) .addService(googletag.pubads()); googletag.defineSlot("/1067003/techbang_Desktop_posts_inline_video", [[1, 1], [357, 200]], "dfp-techbang_Desktop_posts_inline_video") .setCollapseEmptyDiv(true) .addService(googletag.pubads()); googletag.defineSlot("/1067003/techbang_desktop_mega_bottom_anchor", [[1, 1], [970, 90], [728, 90]], "dfp-techbang_desktop_mega_bottom_anchor") .setCollapseEmptyDiv(true) .addService(googletag.pubads()); googletag.defineSlot("/1067003/techbang_i_d_970x250", [[970, 250], [970, 90], [728, 90]], "dfp-techbang_i_d_970x250") .setCollapseEmptyDiv(true) .addService(googletag.pubads()); if(localStorage.getItem('_itg_segments') !== null && localStorage.getItem('_itg_segments') !== undefined){ googletag.pubads().setTargeting('itg_segments_0', JSON.parse(localStorage.getItem('_itg_segments'))['pr0']); googletag.pubads().setTargeting('itg_segments_20', JSON.parse(localStorage.getItem('_itg_segments'))['pr20']); googletag.pubads().setTargeting('itg_segments_50', JSON.parse(localStorage.getItem('_itg_segments'))['pr50']); googletag.pubads().setTargeting('itg_segments_80', JSON.parse(localStorage.getItem('_itg_segments'))['pr80']); } googletag.pubads().enableAsyncRendering(); googletag.pubads().enableSingleRequest(); googletag.pubads().enableLazyLoad({ fetchMarginPercent: 200, renderMarginPercent: 100, mobileScaling: 2.0 }); googletag.enableServices(); }); </script>
+
+  <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var popin_slots = $("#_popIn_recommend_word, #_popIn_recommend");
+
+    if (popin_slots.length) {
+      var popin_section_height = popin_slots.first().offset().top,
+          enable_scroll_load = true,
+          load_popin_js = function() {
+                            var pa = document.createElement('script');
+                            pa.type = 'text/javascript';
+                            pa.charset = "utf-8";
+                            pa.async = true;
+                            pa.src = window.location.protocol + "//api.popin.cc/searchbox/techbang.js";
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(pa, s);
+                          };
+
+      $(window).scroll(function(){
+        if (enable_scroll_load && popin_section_height - $(window).scrollTop() < 1300) {
+          load_popin_js();
+          enable_scroll_load = false;
+        }
+      });
+    }
+  })
+</script>
+
+  <script type="application/ld+json">
+  [{"@context":"https://schema.org","@type":"NewsArticle","mainEntityOfPage":"https://www.techbang.com/posts/125242-gemini-photo-editing-tips","headline":"Gemini 2.5 Flash Image 提示詞怎麼下？官方 5 大訣竅澈底解析，教你打造角色一致且創意十足的圖像","image":{"@type":"ImageObject","url":"https://cdn1.techbang.com/system/excerpt_images/125242/original/372413fd55f63cd3c5dcfb0ddfc1a588.jpg?1756804404","width":1200,"height":630},"datePublished":"2025-09-03T14:30:00+0800","dateModified":"2025-09-11T15:27:56+0800","author":{"@type":"Person","name":"ycr","url":"https://www.techbang.com/users/chiehruyen"},"publisher":{"@type":"Organization","name":"T客邦","logo":{"@type":"ImageObject","url":"/site-logo.png","width":200},"url":"https://www.techbang.com"},"description":"Gemini 應用程式最新推出的圖像生成與編輯功能，在角色一致性、對話式編輯等方面都有所進展。本篇提供幾個使用 Gemini 進行圖片編修時的訣竅，幫助你充分利用這些功能。","url":"https://www.techbang.com/posts/125242-gemini-photo-editing-tips","thumbnailUrl":"https://cdn1.techbang.com/system/excerpt_images/125242/original/372413fd55f63cd3c5dcfb0ddfc1a588.jpg?1756804404","articleSection":"教學","keywords":"Google,gemini,ai,人工智慧,ai繪圖,提示詞技巧,教學,圖像生成,圖像編輯,修圖,局部編輯,風格轉換","articleBody":"Google 先前宣布，Gemini 圖片編輯功能全面升級為 Gemini 2.5 Flash Image。新版本模型在角色一致性、精準的對話式編輯，以及將多張照片組合創造新圖像等方面，都有顯著進步，甚至在盲測階段就已經在網路上引發熱烈討論。為了讓使用者能更好發揮這次升級的優勢，Google 官方也整理了一些撰寫有效提示的技巧。 在正式開始之前，我們先來了解一下最新的 Gemini 模型的改進之處，以便思考可以嘗試哪些應用：雖然輸入簡單描述，如「一隻在草原上奔跑的狗」，Gemini 仍能生成不錯的結果，但若希望更貼近想像畫面，或想控制更多細節，建議在提示中包含以下六個要素：不同的提示策略可以解鎖從寫實編輯到奇幻新世界的一切可能。以下是 Google 提供 5 個可以嘗試的技巧，每個技巧也都附帶了一個範例。Gemini 能在不同姿勢、光線與場景下，維持角色的核心特徵，甚至能為同一角色套用新風格：透過在第一個提示中，用具體的細節建立一個清晰的角色，就可以在後續的提示中，將同一個角色放置在全新的情境中。在這裡，Gemini 會保留角色的關鍵特徵，如臉部特徵、獨特的外觀和服裝。更新後的編輯功能能快速且準確地修改圖片中的特定元素，適用於產品展示或個人照片優化等情境：這展示了 Gemini 在局部編輯方面的實力。透過使用直接、對話式的指令，就可以修改圖像中的特定元素，而無需複雜的軟體或重新生成整個場景。Gemini 能將多個概念整合為單一圖像，創造出獨特視覺效果：透過風格轉換，Gemini 能保留主體形態，同時為圖像重新渲染不同的藝術氛圍：透過「風格轉換」，Gemini 能理解核心主體（摩托車）及其形態，然後以所要求的藝術風格完全重新渲染它。這種方法非常適合用於設計靈感、藝術創作或視覺探索。Gemini 能理解現實世界邏輯，並根據上下文預測後續情節：模型會根據第一張圖像的狀態，模擬蛋糕掉落的合理結果，生成動態且連貫的新畫面。雖然 Gemini 2.5 被許多人稱為「修圖神器」，甚至有人認為未來可能取代 Photoshop 等專業軟體，但 Google 也提醒，這項技術目前仍存在一些限制。角色一致性雖然比過去進步許多，但多次編修後仍有可能出現角色外觀逐漸失真的情況。此外，模型在文字渲染方面仍不算完美，偶爾會拼錯單字，或在面對複雜排版時出現錯誤。風格生成方面，由於 AI 本身具有隨機性，有時可能會產生與預期不符的結果，而在長寬比控制上，即使輸入了明確的尺寸要求，最終生成的結果也未必總能精準符合設定。"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://www.techbang.com","name":"T客邦"}},{"@type":"ListItem","position":2,"item":{"@id":"https://www.techbang.com/categories/18","name":"教學"}},{"@type":"ListItem","position":3,"item":{"@id":"https://www.techbang.com/posts/125242-gemini-photo-editing-tips","name":"Gemini 2.5 Flash Image 提示詞怎麼下？官方 5 大訣竅澈底解析，教你打造角色一致且創意十足的圖像"}}]},null,{"@context":"https://schema.org","@type":"VideoObject","name":"Gemini 2.5 Flash Image vs. GPT vs. Grok｜3D公仔、商品攝影、角色一致性超硬對決！Nano Banana 真有那麼神？","description":"「Nano Banana」神秘改圖神器真身大公開？也就是 Google 最新推出的 Gemini 2.5 Flash Image！\n玩過你會發現AI修圖從未這麼簡單！\n不過，其它家大模型真的不能打？那也未必。\n這支影片完整比較 Gemini vs GPT vs Grok 三大模型，從角色一致性、角度轉換、商品攝影，到超熱門的 3D 公仔生成，一看就知道誰才是真正的 AI 改圖之王！\n\n✅ 完整實測亮點：\n\n一句話修圖、換臉、改表情\n\n合照合圖不跑臉\n\n商品攝影應用實例\n\n世界知識與物理邏輯處理\n\n多模態輸入解鎖創作邊界\n\n\n📥 所有提示詞與教學連結都在下方👇 歡迎留言互動！\nGemini Web版入口：https://gemini.google.com/\nGoogle AI Studio入口：https://aistudio.google.com/\nLM Arena入口：https://lmarena.ai/\n\n（本影片中較長的提示詞內容在此）\n3D公仔\n一張電腦桌，上面有一台電腦螢幕，螢幕中顯示 CAD/3D 建模軟體界面，畫面展示這張照片主角3D架構模型與建模視窗。桌面上整齊擺放著這個角色的高仿真實體模型，細節極度精緻，材質如真實雕像般逼真。旁邊還有相同角色放在透明展示盒中的版本，盒子帶有光澤與真實包裝細節，如同收藏級周邊商品。\n\n辣椒醬倒翻\nProduct photography of an opened glass bottle of chili sauce tilted on a dining table, vibrant red chili sauce flowing out and spreading naturally across the tabletop with glossy texture, minimal clean tabletop, soft blurred light background, evenly diffused studio lighting, professional commercial style with dynamic freshness\n\n老照片修復\nretouch the picture as a professional photographer （請像專業攝影師一樣修飾照片）\n\n\n\n00:00 Nano Banana 是什麼？神秘 AI 改圖神器登場\n01:26 如何免費開始用 Gemini？Google 官方入口說明\n03:30  Gemini 與 GPT / Grok ：人物換裝一致性測試\n04:55 Gemini 與 GPT / Grok ：人物拍攝角度轉換實測\n05:55 讓你一秒飛去印度：加入國外少女合照：誰家生成效果最自然？\n07:25 什麼是「世界知識」？\n07:52 3D 公仔＋建模畫面生成測試\n09:22 角色更換手中物體測試：他知道怎麼拿嗎？\n09:53 商品攝影：商品翻轉角度、品牌印刷文字是否能維持？\n11:16 物理世界理解力：鏡子與刷牙挑戰\n13:00 修復老照片：能取代Photoshop嗎？\n14:10 多圖融合：讓兩個世界的角色在此相會！\n15:30 加入多張服裝照，模特兒換裝商品展示\n16:40 多模態輸入：讓粉紅戰士參考你的姿勢圖擺拍\n17:23 多模態輸入：精準擺放道具位置\n18:00 總結：Gemini 是否真的超越其他模型？\n\n#GeminiFlashImage #NanoBanana #AI改圖神器 #GPT對比 #Grok實測 #商品攝影AI #3D公仔生成 #角色一致性 #世界知識AI #AI圖像編輯 #GoogleAI工具 #多模態AI #生成式AI #AI修圖 #Photoshop替代方案","thumbnailUrl":"https://i.ytimg.com/vi/8LeKNaBzM-k/maxresdefault.jpg","uploadDate":"2025-09-01T03:42:42Z","duration":"PT18M53S","embedUrl":"https://www.youtube.com/embed/8LeKNaBzM-k"}]
+</script>
+
+  <meta name='dailymotion-domain-verification' content='dmc241bx16fyimkj9' />
+  <script>
+//<![CDATA[
+
+  var all_cookie = document.cookie.split(';');
+  var google_id = '';
+  all_cookie.forEach(function(e){
+    if(e.match(/\s_ga=GA\d\.\d\./)) {
+      google_id = e.replace(/\s_ga=GA\d\.\d\./, '');
+    }
+  });
+
+  var str = document.querySelector('meta[property="og:site_name"]').content
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    'google_id' : google_id,
+
+    'post_id' : '125242',
+    'category' : '教學'.split(','),
+    'tag' : 'Google,gemini,ai,人工智慧,ai繪圖,提示詞技巧,教學,圖像生成,圖像編輯,修圖,局部編輯,風格轉換'.split(','),
+    'publication_date' : '2025-09-03 14:30',
+    'author_login_name' : 'chiehruyen',
+    'author_nickname' : 'ycr',
+    'words' : '2521'
+  });
+
+//]]>
+</script>
+  <!-- Google Tag Manager -->
+<script>
+  setTimeout(function(){
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PKCDSH');
+  }, 2000);
+</script>
+<!-- End Google Tag Manager -->
+
+  <script>
+  let first_link_place = document.getElementsByTagName('link')[0],
+      link = document.createElement('link'),
+      first_script_place = document.getElementsByTagName('script')[0],
+      xpush_script = document.createElement('script')
+
+  link.rel = 'serviceworker'
+  link.href = "https://www.techbang.com/ucf_sw.js"
+  xpush_script.type = 'text/javascript'
+  xpush_script.src = 'https://cdn.aralego.net/xpush/sdk.js'
+
+  setTimeout(function () {
+    first_link_place.parentNode.insertBefore(link, first_link_place)
+    first_script_place.parentNode.insertBefore(xpush_script, first_script_place)
+  }, 3000)
+
+  setTimeout(function () {
+    window.xpush.registerPush('par-772798A8BBB2AE640BB4A3EA6D64E47B', 'pub-9A2A7969DDD268B304423A93BDB2926E')
+  }, 5000)
+</script>
+
+</head>
+
+<!--[if lte IE 6]><body id="doc" class="ie6"><![endif]-->
+<!--[if IE 7]><body id="doc" class="ie7"><![endif]-->
+<!--[if IE 8]><body id="doc" class="ie8"><![endif]-->
+<!--[if gte IE 9]><body id="doc" class="ie9"><![endif]-->
+<!--[if !IE]>--><body id="doc" class=""><!--<![endif]-->
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PKCDSH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+  <div id="stickies">
+        <div class="notify_stickie" id="stickie_121793640">
+          <div class="notify_container">
+            <div class="notify-wrapper">
+              <span class="notify-icon"></span>
+              T客邦為提供您更多優質的內容，採用網站分析技術，若您點選「我同意」或繼續瀏覽本網站，即表示您同意我們的<a target="_blank" href="https://www.techbang.com/pages/privacy">隱私權政策</a>。
+            </div>
+            <div class="btn-wrapper">
+              <div class="cookie_policy_close_btn agree-btn">
+                <a href="#">我同意</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <header class="nav-menu">
+  <div class="nav-header-wrapper">
+    <div class="nav-header-holder container">
+
+      <div class="site-logo">
+        <a href="/"><img alt="T客邦" src="https://cdn1.techbang.com/assets/imgs/techbang-logo-32a6fc4dbc0fa4166bf794994fb01d56d2149d26a149d71a406e8d8aed754f4a.svg" /></a>
+      </div>
+
+      <div class="ads-holder-tmp">
+        <div class="google-dfp"></div>
+      </div>
+
+      <div class="social-wrapper">
+        <a target="_blank" href="https://www.facebook.com/TKbang">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 16.9288 5.56576 21.0247 10.2583 21.8489V15.0583H7.71429V12.2358H10.2583V10.0846C10.2583 7.63781 11.7535 6.28571 14.043 6.28571C15.1389 6.28571 16.2857 6.47642 16.2857 6.47642V8.87933H15.0215C13.7769 8.87933 13.3894 9.63264 13.3894 10.405V12.2358H16.1683L15.7241 15.0583H13.3894V21.8818C12.9072 21.9556 12.4144 21.9954 11.9128 21.9996C11.9418 21.9999 11.9709 22 12 22Z" fill="#176CF0"/>
+          </svg>
+</a>
+        <a target="_blank" href="https://line.me/R/ti/p/%40mmx9155h">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 21 22" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.7407 9.51696C20.7407 4.82068 16.0888 1 10.3703 1C4.65255 1 0 4.82068 0 9.51696C0 13.7272 3.68936 17.2531 8.67291 17.9198C9.01067 17.9935 9.4703 18.1452 9.5866 18.4373C9.69117 18.7027 9.65499 19.1184 9.62 19.3863C9.62 19.3863 9.49833 20.1269 9.47209 20.2847L9.46807 20.308C9.41884 20.5922 9.29462 21.3093 10.3703 20.8504C11.4772 20.3784 16.3427 17.2915 18.5183 14.7571C20.0213 13.0892 20.7407 11.3965 20.7407 9.51696ZM8.26327 7.24026H7.53586C7.42433 7.24026 7.33368 7.3317 7.33368 7.44403V12.0118C7.33368 12.1244 7.42433 12.2156 7.53586 12.2156H8.26327C8.3748 12.2156 8.46526 12.1244 8.46526 12.0118V7.44403C8.46526 7.3317 8.3748 7.24026 8.26327 7.24026ZM12.5427 7.24026H13.2701C13.3818 7.24026 13.4721 7.3317 13.4721 7.44403V12.0118C13.4721 12.1244 13.3818 12.2156 13.2701 12.2156H12.5427C12.4777 12.2156 12.4145 12.1827 12.3773 12.1294L10.304 9.29889V12.0118C10.304 12.1244 10.2135 12.2156 10.1018 12.2156H9.37458C9.26305 12.2156 9.1724 12.1244 9.1724 12.0118V7.44403C9.1724 7.3317 9.26305 7.24026 9.37458 7.24026H10.1018C10.1696 7.24407 10.2317 7.27283 10.27 7.33089L12.3407 10.1578V7.44403C12.3407 7.3317 12.4311 7.24026 12.5427 7.24026ZM6.50986 11.072H4.53338V7.44446C4.53338 7.33172 4.44292 7.24028 4.33159 7.24028H3.60398C3.49245 7.24028 3.402 7.33172 3.402 7.44446V12.0115C3.402 12.1223 3.49205 12.2158 3.60378 12.2158H6.50986C6.62139 12.2158 6.71144 12.1242 6.71144 12.0115V11.2762C6.71144 11.1634 6.62139 11.072 6.50986 11.072ZM17.4887 8.17997C17.4887 8.29291 17.3986 8.38414 17.2871 8.38414H15.3108V9.15603H17.2871C17.3986 9.15603 17.4887 9.24767 17.4887 9.36041V10.0957C17.4887 10.2085 17.3986 10.2999 17.2871 10.2999H15.3108V11.072H17.2871C17.3986 11.072 17.4887 11.1636 17.4887 11.2762V12.0117C17.4887 12.1242 17.3986 12.2158 17.2871 12.2158H14.3808C14.2694 12.2158 14.1792 12.1222 14.1792 12.0117V7.44446C14.1792 7.33362 14.2696 7.24028 14.3812 7.24028H17.2871C17.3986 7.24028 17.4887 7.33192 17.4887 7.44466V8.17997Z" fill="#06C755"/>
+          </svg>
+</a>
+        <a target="_blank" href="https://www.youtube.com/@techbang3c">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.81748 5.22389C3.40282 5.29398 2.26645 6.40166 2.17465 7.81508C2.08669 9.16923 2 10.8355 2 12.1429C2 13.4502 2.08669 15.1165 2.17465 16.4706C2.26645 17.884 3.40282 18.9917 4.81748 19.0618C6.86599 19.1633 9.79391 19.2857 12 19.2857C14.2061 19.2857 17.134 19.1633 19.1825 19.0618C20.5972 18.9917 21.7335 17.8841 21.8254 16.4706C21.9133 15.1165 22 13.4502 22 12.1429C22 10.8355 21.9133 9.16923 21.8254 7.81508C21.7335 6.40167 20.5972 5.29398 19.1825 5.22389C17.134 5.1224 14.2061 5 12 5C9.79391 5 6.86599 5.1224 4.81748 5.22389ZM15.5714 12.1429L9.85714 15V9.28571L15.5714 12.1429Z" fill="#FF0000"/>
+          </svg>
+</a>
+        <a target="_blank" href="https://www.instagram.com/techbang3c">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19 6.5C19 7.32843 18.3284 8 17.5 8C16.6716 8 16 7.32843 16 6.5C16 5.67157 16.6716 5 17.5 5C18.3284 5 19 5.67157 19 6.5Z" fill="#E1306C"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17ZM12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" fill="#E1306C"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M2 11.6C2 8.23969 2 6.55953 2.65396 5.27606C3.2292 4.14708 4.14708 3.2292 5.27606 2.65396C6.55953 2 8.23969 2 11.6 2H12.4C15.7603 2 17.4405 2 18.7239 2.65396C19.8529 3.2292 20.7708 4.14708 21.346 5.27606C22 6.55953 22 8.23969 22 11.6V12.4C22 15.7603 22 17.4405 21.346 18.7239C20.7708 19.8529 19.8529 20.7708 18.7239 21.346C17.4405 22 15.7603 22 12.4 22H11.6C8.23969 22 6.55953 22 5.27606 21.346C4.14708 20.7708 3.2292 19.8529 2.65396 18.7239C2 17.4405 2 15.7603 2 12.4V11.6ZM11.6 4H12.4C14.1132 4 15.2777 4.00156 16.1779 4.0751C17.0548 4.14674 17.5032 4.27659 17.816 4.43597C18.5686 4.81947 19.1805 5.43139 19.564 6.18404C19.7234 6.49684 19.8533 6.94524 19.9249 7.82208C19.9984 8.72225 20 9.88684 20 11.6V12.4C20 14.1132 19.9984 15.2777 19.9249 16.1779C19.8533 17.0548 19.7234 17.5032 19.564 17.816C19.1805 18.5686 18.5686 19.1805 17.816 19.564C17.5032 19.7234 17.0548 19.8533 16.1779 19.9249C15.2777 19.9984 14.1132 20 12.4 20H11.6C9.88684 20 8.72225 19.9984 7.82208 19.9249C6.94524 19.8533 6.49684 19.7234 6.18404 19.564C5.43139 19.1805 4.81947 18.5686 4.43597 17.816C4.27659 17.5032 4.14674 17.0548 4.0751 16.1779C4.00156 15.2777 4 14.1132 4 12.4V11.6C4 9.88684 4.00156 8.72225 4.0751 7.82208C4.14674 6.94524 4.27659 6.49684 4.43597 6.18404C4.81947 5.43139 5.43139 4.81947 6.18404 4.43597C6.49684 4.27659 6.94524 4.14674 7.82208 4.0751C8.72225 4.00156 9.88684 4 11.6 4Z" fill="#E1306C"/>
+          </svg>
+</a>
+        <a target="_blank" href="https://t.me/TechbangNEWS">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM16.0209 7.05857C16.5324 6.83397 17.0795 7.28808 16.9904 7.86342L15.6727 16.3758C15.5926 16.8933 15.0418 17.163 14.6135 16.8945L10.7957 14.5003C10.3978 14.2508 10.3321 13.6729 10.6629 13.3319L14.0729 9.81616C14.195 9.69033 14.0393 9.48721 13.8964 9.58591L9.15913 12.8588C8.80895 13.1007 8.3747 13.1668 7.97368 13.0391L5.87248 12.3699C5.492 12.2488 5.46516 11.6931 5.83201 11.532L16.0209 7.05857Z" fill="#239DE5"/>
+          </svg>
+</a>      </div>
+
+      <!-- 搜尋功能，加上 active 後開啟搜尋框 -->
+      <div class="search-wrapper">
+        <div class="search-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M15.7549 14.255H14.9649L14.6849 13.985C15.6649 12.845 16.2549 11.365 16.2549 9.755C16.2549 6.165 13.3449 3.255 9.75488 3.255C6.16488 3.255 3.25488 6.165 3.25488 9.755C3.25488 13.345 6.16488 16.255 9.75488 16.255C11.3649 16.255 12.8449 15.665 13.9849 14.685L14.2549 14.965V15.755L19.2549 20.745L20.7449 19.255L15.7549 14.255ZM9.75488 14.255C7.26488 14.255 5.25488 12.245 5.25488 9.755C5.25488 7.26501 7.26488 5.255 9.75488 5.255C12.2449 5.255 14.2549 7.26501 14.2549 9.755C14.2549 12.245 12.2449 14.255 9.75488 14.255Z" fill="#353535"/>
+          </svg>
+        </div>
+        <div class="search-panel">
+          <form class="search-form" action="https://www.techbang.com/search" accept-charset="UTF-8" method="get">
+            <input type="search" name="q" id="search-keyword" value="" class="search-input" placeholder="請輸入關鍵字" autocomplete="on" size="31" />
+            <input name="utf8" type="hidden" value="✓">
+
+            <button name="button" type="submit" id="searchActionBtn" class="btn submit-btn">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 50 50">
+                <path class="st0" d="M34.8,34L31,30.1c3.1-3.5,3-8.9-0.4-12.3c-1.7-1.7-4-2.6-6.4-2.6c-2.4,0-4.7,0.9-6.4,2.6c-1.7,1.7-2.6,4-2.6,6.4c0,2.4,0.9,4.7,2.6,6.4c1.7,1.7,4,2.6,6.4,2.6c2.2,0,4.3-0.8,5.9-2.2l3.8,3.8L34.8,34z M24.2,32c-2.1,0-4-0.8-5.5-2.3c-1.5-1.5-2.3-3.4-2.3-5.5c0-2.1,0.8-4,2.3-5.5c1.5-1.5,3.4-2.3,5.5-2.3c2.1,0,4,0.8,5.5,2.3c3,3,3,8,0,11C28.2,31.2,26.3,32,24.2,32z"/>
+              </svg>
+</button>
+            <button id="searchCloseBtn" class="btn close-btn" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 50 50">
+                <polygon fill="#333" points="34.8,17 33,15.2 25,23.2 17,15.2 15.2,17 23.2,25 15.2,33 17,34.8 25,26.8 33,34.8 34.8,33 26.8,25 "></polygon>
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- 登入 / 登出 / 使用者ID / 設定 / 登出 -->
+      <div class="user-panel-wrapper">
+          <!-- 未登入狀態 -->
+          <a href="/users/sign_in.user">登入</a>
+          <a href="https://i.techbang.com/signup?return_to=https%3A%2F%2Fwww.techbang.com%2Fposts%2F125242-gemini-photo-editing-tips%3Futm_source%3DLine%26utm_medium%3Dpost">註冊</a>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    var openBtn = document.querySelector('.search-btn');
+    var closeBtn = document.querySelector('#searchCloseBtn');
+    var searchBar = document.querySelector('.search-wrapper');
+    openBtn.addEventListener('click', function(){
+      searchBar.classList.add('active');
+    })
+
+    closeBtn.addEventListener('click', function(){
+      searchBar.classList.remove('active');
+    })
+  })
+</script>
+
+  <div class="nav-wrapper">
+  <div class="nav-holder container">
+          <div class="nav-items"><a href="#">新聞<i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><path fill="#353535" d="M8.3,4.15l-2.3,2.29-2.29-2.29-.71,.7,3,3,3-3-.7-.7Z"/></svg></i></a><div class="subnav-wrapper"><div class="items-wrapper"><a href="https://www.techbang.com/categories/67">半導體/電子產業</a><a href="https://www.techbang.com/categories/68">5G/網路</a><a href="https://www.techbang.com/categories/69">AI/大數據</a><a href="https://www.techbang.com/categories/70">電動車/交通</a></div><div class="items-wrapper"><a href="https://www.techbang.com/categories/71">加密貨幣/區塊鏈</a><a href="https://www.techbang.com/categories/44">遊戲/電競</a><a href="https://www.techbang.com/categories/72">雲端/資訊安全</a><a href="https://www.techbang.com/categories/73">商業/金融</a></div><div class="items-wrapper"><a href="https://www.techbang.com/categories/74">尖端科技</a><a href="https://www.techbang.com/categories/75">3C新品</a><a href="https://www.techbang.com/categories/76">趨勢</a></div></div></div>          <div class="nav-items"><a href="#">產品<i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><path fill="#353535" d="M8.3,4.15l-2.3,2.29-2.29-2.29-.71,.7,3,3,3-3-.7-.7Z"/></svg></i></a><div class="subnav-wrapper"><div class="items-wrapper"><a href="https://www.techbang.com/tags/19333">手機/平板</a><a href="https://www.techbang.com/tags/22623">行動周邊</a><a href="https://www.techbang.com/tags/27983">電信服務</a><a href="https://www.techbang.com/tags/27981">手錶/手環</a></div><div class="items-wrapper"><a href="https://www.techbang.com/tags/104">筆電</a><a href="https://www.techbang.com/tags/136">桌機</a><a href="https://www.techbang.com/tags/163">印表機</a><a href="https://www.techbang.com/tags/16310">顯示器</a><a href="https://www.techbang.com/tags/14156">鍵鼠</a></div><div class="items-wrapper"><a href="https://www.techbang.com/tags/3028">電視</a><a href="https://www.techbang.com/tags/192">投影機</a><a href="https://www.techbang.com/tags/19330">耳機/音響</a></div><div class="items-wrapper"><a href="https://www.techbang.com/tags/108">相機</a><a href="https://www.techbang.com/tags/27984">攝影器材</a><a href="https://www.techbang.com/tags/27985">空拍機/無人機</a></div><div class="items-wrapper"><a href="https://www.techbang.com/tags/1548">處理器</a><a href="https://www.techbang.com/tags/63">主機板</a><a href="https://www.techbang.com/tags/29">顯示卡</a><a href="https://www.techbang.com/tags/27986">記憶體/儲存裝置</a><a href="https://www.techbang.com/tags/19331">機殼/電源/散熱</a></div><div class="items-wrapper"><a href="https://www.techbang.com/tags/27987">網通/網路</a><a href="https://www.techbang.com/tags/1340">NAS</a><a href="https://www.techbang.com/tags/19297">智慧家居</a><a href="https://www.techbang.com/tags/6149">家電</a></div><div class="items-wrapper"><a href="https://www.techbang.com/tags/27867">汽機車</a><a href="https://www.techbang.com/tags/11428">電動車</a><a href="https://www.techbang.com/tags/18745">車用科技</a></div><div class="items-wrapper"><a href="https://www.techbang.com/tags/19346">遊戲/電競</a><a href="https://www.techbang.com/tags/27988">軟體/APP</a><a href="https://www.techbang.com/tags/19342">商業應用</a></div></div></div>          <div class="nav-items"><a href="https://www.techbang.com/tags/236">手機</a></div>          <div class="nav-items"><a href="https://www.techbang.com/tags/19346">遊戲/電競</a></div>          <div class="nav-items"><a href="https://www.techbang.com/categories/17">評測</a></div>          <div class="nav-items"><a href="https://www.techbang.com/categories/18">教學</a></div>          <div class="nav-items"><a href="https://www.techbang.com/videos">影片</a></div>          <div class="nav-items"><a href="#">活動<i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><path fill="#353535" d="M8.3,4.15l-2.3,2.29-2.29-2.29-.71,.7,3,3,3-3-.7-.7Z"/></svg></i></a><div class="subnav-wrapper"><div class="items-wrapper"><a href="https://www.techbang.com/tags/6509">抽獎/得獎公告</a><a href="https://www.techbang.com/tags/27742">體驗試玩活動</a><a href="https://www.techbang.com/tags/19419">課程</a><a href="https://www.techbang.com/tags/19378">講座</a></div></div></div>          <div class="nav-items"><a href="https://t17.techbang.com/categories/12">討論區</a></div>          <div class="nav-items"><a href="https://www.cite.tw/">課程</a></div>          <div class="nav-items events-nav"><a href="https://www.techbang.com/tags/35972">#AI ChatGPT</a></div>          <div class="nav-items"><a href="#">深度有料<i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><path fill="#353535" d="M8.3,4.15l-2.3,2.29-2.29-2.29-.71,.7,3,3,3-3-.7-.7Z"/></svg></i></a><div class="subnav-wrapper"><div class="items-wrapper"><a href="https://www.techbang.com/posts/121264-how-to-buy-the-full-range-of-ipads-in-2025">iPad 全系列：iPad Pro、Air、mini、入門款怎麼選？</a><a href="https://www.techbang.com/posts/112636-2024-e-book-reader-recommendationhow-to-choose-an-e-book-reader">電子書閱讀器推薦</a><a href="https://www.techbang.com/posts/131387-chatgpt-5-6-sol-terra-luna-models-guide">ChatGPT怎麼用？GPT 5.6 桌面版下載與完整教學</a><a href="https://www.techbang.com/posts/119335-explain-the-next-generation-of-intel-ai-pc-platforms">解析Intel AI PC 新一代平台</a><a href="https://www.techbang.com/posts/115359-qd-oled">QD-OLED電競螢幕推薦</a></div><div class="items-wrapper"><a href="https://www.techbang.com/posts/111856-with-a-budget-of-50000-yuan-can-you-pick-a-good-tv">5萬元預算買好電視挑選攻略</a><a href="https://www.techbang.com/posts/130817-2026-summer-pc-build-guide">2026電腦零組件趨勢分析，為什麼記憶體、處理器漲價漲不停</a><a href="https://www.techbang.com/posts/113079-6-types-of-camera-buyers">今年最值得購買的16部相機</a><a href="https://www.techbang.com/posts/97430-bluetooth-sports-headphones-procurement-method-sweat-without">運動藍牙耳機該選耳掛式？入耳式？</a><a href="https://www.techbang.com/posts/110950-the-big-picture-is-even-better-home-projector-buyers-guide">家用投影機4大類型怎麼挑？</a></div><div class="items-wrapper"><a href="https://www.techbang.com/posts/125948-wireless-microphone-buying-guide">無線麥克風採購攻略</a><a href="https://www.techbang.com/posts/124414-best-over-ear-noise-cancelling-headphones">降噪耳機採購建議</a><a href="https://www.techbang.com/posts/120995-6-types-of-body-worn-camera-buyers-guide">口袋的攝影神器，隨身相機復興</a><a href="https://www.techbang.com/posts/123674-6-open-ear-clip-earbuds-buying-tips">開放式耳夾耳機選購指南</a><a href="https://www.techbang.com/posts/122517-ai-recording-device-qa">AI錄音裝置採購5款評比</a></div><div class="items-wrapper"><a href="https://www.techbang.com/posts/118965-how-to-choose-an-ai-massage-chair">AI 按摩椅 VS 傳統按摩椅</a><a href="https://www.techbang.com/posts/117448-how-to-choose-a-2-in-1-cool-breeze-purifier">二合一空氣清淨機推薦</a><a href="https://www.techbang.com/posts/116662-there-are-two-major-types-of-air-conditioners-fixed-frequency">變頻冷氣推薦</a><a href="https://www.techbang.com/posts/114511-qa-for-energy-storage-mobile-power-supply-procurement">超大容量戶外行動電源推薦</a><a href="https://www.techbang.com/posts/110992-buy-a-height-adjustable-desk-that-suits-you">電動升降桌選購推薦</a></div></div></div>          <div class="nav-items events-nav"><a href="https://www.techbang.com/albums/264">COMPUTEX 2026</a></div>      </div>
+</div>
+
+
+  <div class="main-container inner" id="content">
+
+      <div class="ad-section" id="all_p_970x250">
+        <div id="close-btn-ad">
+          <div class="top_big_ad">
+            <div id="dfp-techbang_all_pushdown_970x250" class="google-dfp close-btn" style="{}" data-size="[[970,250]]" data-unit="/1067003/techbang_all_pushdown_970x250" data-type="close-btn"><script type='text/javascript'> googletag.cmd.push(function() { googletag.display('dfp-techbang_all_pushdown_970x250'); }); </script></div>
+          </div>
+        </div>
+      </div>
+
+    <div class="main-wrapper">
+      <div class="main-content">
+        <div class="float-top">
+  <div class="float-top-share">
+  <div class="share-wrapper">
+    <div class="techbang-logo">
+      <a href="https://www.techbang.com"><span class="float-top-logo"></span></a>
+    </div>
+    <span class="share-divider"></span>
+
+    <ul class="share-container">
+      <li class="fb-share">
+        <a class="share-btn color-fb" target="_blank" href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.techbang.com%2Fposts%2F125242-gemini-photo-editing-tips&s=">          <div class="share-facebook-icon"></div>
+        </a>      </li>
+      <li class="line-share">
+        <a class="share-btn color-line" target="_blank" href="https://lineit.line.me/share/ui?url=https%3A%2F%2Fwww.techbang.com%2Fposts%2F125242-gemini-photo-editing-tips">          <div class="share-line-icon"></div>
+        </a>      </li>
+      <li class="twitter-share">
+        <a class="share-btn color-twitter" target="_blank" href="https://twitter.com/intent/tweet?text=Gemini%202.5%20Flash%20Image%20%E6%8F%90%E7%A4%BA%E8%A9%9E%E6%80%8E%E9%BA%BC%E4%B8%8B%EF%BC%9F%E5%AE%98%E6%96%B9%205%20%E5%A4%A7%E8%A8%A3%E7%AB%85%E6%BE%88%E5%BA%95%E8%A7%A3%E6%9E%90%EF%BC%8C%E6%95%99%E4%BD%A0%E6%89%93%E9%80%A0%E8%A7%92%E8%89%B2%E4%B8%80%E8%87%B4%E4%B8%94%E5%89%B5%E6%84%8F%E5%8D%81%E8%B6%B3%E7%9A%84%E5%9C%96%E5%83%8F%0Ahttps%3A%2F%2Fwww.techbang.com%2Fposts%2F125242-gemini-photo-editing-tips">          <div class="share-twitter-icon"></div>
+        </a>      </li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+<div class="newsletter2in1" style="display:none; padding: 15px 0;">
+    <div class="techbang_Desktop_posts_inline_video">
+      <div id="dfp-techbang_Desktop_posts_inline_video" class="google-dfp" style="min-width: 1px; min-height: 1px; " data-size="[[1,1],[357,200]]" data-unit="/1067003/techbang_Desktop_posts_inline_video"><script type='text/javascript'> googletag.cmd.push(function() { googletag.display('dfp-techbang_Desktop_posts_inline_video'); }); </script></div>
+    </div>
+
+  <div class="newsletter-subscribe">
+    <div id="submain">
+      <span class="main">訂閱Ｔ客邦電子日報</span>
+      <span class="second">掌握最熱門的科技話題、網路動態，升級你的科技原力！</span>
+      <input type="text" class="form-control" id="newsletter_input" placeholder="請輸入您的Email">
+      <button id="subscribebtn">立即訂閱</button>
+
+      <span id="correct">訂閱成功，科技原力傳輸中！</span>
+      <span id="wrong">您已訂閱，科技原力與您同在！</span>
+    </div>
+  </div>
+</div>
+
+
+<dialog id="fbPostsDialog">
+  <div class="dialog-content">
+    <h3>FB 建議貼文</h3>
+    <div id="fb-posts-content"></div>
+    <button onclick="document.getElementById('fbPostsDialog').close()">關閉</button>
+    <div class="copy-use-only">選取貼文複製成功（包含文章連結）！</div>
+  </div>
+</dialog>
+
+<script>
+  function generateFbPosts(post, url, index) {
+    return `
+      <li class="fb-post-item" onclick="copyFbPost(this.querySelector('.post-content').textContent, '${url}')">
+        <span class="post-number">${index + 1}.</span>
+        <span class="post-content">${post}</span>
+      </li>
+    `;
+  }
+
+  function copyFbPost(text, url) {
+    const msg = document.querySelector('.copy-use-only');
+    const content = `${text}\n\n${url}`;
+
+    navigator.clipboard.writeText(content)
+    .then(() => {
+      setTimeout(() => {
+        msg.classList.add('active');
+      }, 200)
+
+      setTimeout(() => {
+        msg.classList.remove('active');
+      }, 1500)
+    })
+    .catch(err => {
+      console.error('複製失敗：', err);
+      alert('複製失敗');
+    });
+  }
+
+  function fetchFbPosts(event) {
+    event.preventDefault();
+    const link = event.currentTarget;
+    const url = link.href;
+
+    link.classList.add('disabled');
+
+    $.ajax({
+      url: url,
+      type: 'GET',
+      dataType: 'json',
+      headers: {
+        'Accept': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      success: function(data) {
+        const postsHtml = `
+          <ul class="fb-posts-list">
+            ${data.posts.map((post, index) => generateFbPosts(post, data.url, index)).join('')}
+          </ul>
+        `;
+        $('#fb-posts-content').html(postsHtml);
+        $('#fbPostsDialog')[0].showModal();
+      },
+      error: function(xhr, status, error) {
+        console.error('錯誤：', error);
+      },
+      complete: function() {
+        link.classList.remove('disabled');
+      }
+    });
+  }
+</script>
+
+
+<div id="main" class="post-main">
+  <article class="article">
+    
+
+
+    <div class="header">
+      <div class="post-header">
+  <div class="breadcrumbs">
+    <ul>
+      <li> <a href="/">首頁</a> </li>
+      <li> <a href="/categories/18">教學</a> </li>
+    </ul>
+  </div>
+  <header>
+    <h1 class="post-title">
+      <strong><!-- compassfit_title_begin -->Gemini 2.5 Flash Image 提示詞怎麼下？官方 5 大訣竅澈底解析，教你打造角色一致且創意十足的圖像<!-- compassfit_title_end --></strong>    </h1>
+  </header>
+  <div class="post-header-additional">
+    <p class="post-meta-info">
+      <span class="author-img"><img class="avatar" alt="ycr" title="ycr" src="https://cdn0-i.techbang.com/system/avatars/chiehruyen/small/6fde3316b08cedaa0343b1dc2ebfc005.jpg" /></span>
+      <span><a class="nickname" title="chiehruyen" href="https://www.techbang.com/users/chiehruyen">ycr</a></span>
+      <span>發表於 2025年9月03日 14:30</span>
+      <span class="post-favorite" id="favorite-button-for-resource">
+  <a class="favorite-button need-login" href="/users/sign_in.user">收藏此文</a></span>
+    </p>
+
+    <div class="share-wrapper top-share ">
+    <ul class="share">
+  <li class="twitter"><a class="twitter-small-hoverable" target="_blank" href="https://twitter.com/intent/tweet?text=Gemini%202.5%20Flash%20Image%20%E6%8F%90%E7%A4%BA%E8%A9%9E%E6%80%8E%E9%BA%BC%E4%B8%8B%EF%BC%9F%E5%AE%98%E6%96%B9%205%20%E5%A4%A7%E8%A8%A3%E7%AB%85%E6%BE%88%E5%BA%95%E8%A7%A3%E6%9E%90%EF%BC%8C%E6%95%99%E4%BD%A0%E6%89%93%E9%80%A0%E8%A7%92%E8%89%B2%E4%B8%80%E8%87%B4%E4%B8%94%E5%89%B5%E6%84%8F%E5%8D%81%E8%B6%B3%E7%9A%84%E5%9C%96%E5%83%8F%0Ahttps%3A%2F%2Fwww.techbang.com%2Fposts%2F125242-gemini-photo-editing-tips"></a></li>
+  <li class="plurk"><a class="plurk-small-hoverable" target="_blank" href="https://plurk.com/?status=https%3A%2F%2Fwww.techbang.com%2Fposts%2F125242-gemini-photo-editing-tips%20%28Gemini%202.5%20Flash%20Image%20%E6%8F%90%E7%A4%BA%E8%A9%9E%E6%80%8E%E9%BA%BC%E4%B8%8B%EF%BC%9F%E5%AE%98%E6%96%B9%205%20%E5%A4%A7%E8%A8%A3%E7%AB%85%E6%BE%88%E5%BA%95%E8%A7%A3%E6%9E%90%EF%BC%8C%E6%95%99%E4%BD%A0%E6%89%93%E9%80%A0%E8%A7%92%E8%89%B2%E4%B8%80%E8%87%B4%E4%B8%94%E5%89%B5%E6%84%8F%E5%8D%81%E8%B6%B3%E7%9A%84%E5%9C%96%E5%83%8F%29&qualifier=shares">Plurk</a></li>
+
+</ul>
+</div>
+  </div>
+</div>
+
+    </div>
+
+    <div class="content-top">
+      <div class="ad-banner"><div id="dfp-middle_techbang_desktop_2" class="google-dfp" style="min-width: 970px; min-height: 90px; " data-size="[[970,100],[970,90]]" data-unit="/1067003/techbang_i_p_970x90"><script type='text/javascript'> googletag.cmd.push(function() { googletag.display('dfp-middle_techbang_desktop_2'); }); </script></div></div>
+    </div>
+
+    
+
+    <section class="content" itemprop="articleBody">
+      <div class="intro">
+              <img alt="Gemini 2.5 Flash Image 提示詞怎麼下？官方 5 大訣竅澈底解析，教你打造角色一致且創意十足的圖像" src="https://cdn1.techbang.com/system/excerpt_images/125242/original/372413fd55f63cd3c5dcfb0ddfc1a588.jpg?1756804404" />          </div>
+    <div class="article-content" id="article-content">
+        <p>Google 先前宣布，Gemini 圖片編輯功能全面升級為 Gemini 2.5 Flash Image。新版本模型在角色一致性、精準的對話式編輯，以及將多張照片組合創造新圖像等方面，都有顯著進步，甚至在盲測階段就已經在網路上引發熱烈討論。為了讓使用者能更好發揮這次升級的優勢，<a href="https://blog.google/intl/zh-tw/products/explore-get-answers/gemini-updated-image-editing-model/">Google 官方</a>也整理了一些撰寫有效提示的技巧。</p>
+<p><lite-youtube videoid="8LeKNaBzM-k" width="700" height="394"></lite-youtube></p>
+<section class="mce-tableofcontent">
+<h3><strong>文章目錄</strong></h3>
+<ul class="mce-tableofcontent__list">
+<li><a href="#mceTableOfContent_1j44qsmo91">1. Gemini 圖像生成的核心能力</a></li>
+<li><a href="#mceTableOfContent_1j44t0dja5">2. 撰寫有效提示的 6 個要素</a></li>
+<li>
+<a href="#mceTableOfContent_1j44qsmo93">3. 5 大提示策略與範例參考</a>
+<ul>
+<li><a href="#mceTableOfContent_1j44sm2890">1. 保持角色外觀一致</a></li>
+<li><a href="#mceTableOfContent_1j44t91kd6">2. 精確地進行局部轉換</a></li>
+<li><a href="#mceTableOfContent_1j44sn0e31">3. 透過創意構圖融合概念</a></li>
+<li><a href="#mceTableOfContent_1j44sn3f42">4. 應用和適應新風格</a></li>
+<li><a href="#mceTableOfContent_1j44sn5rf3">5. 利用邏輯和推理進行複雜生成</a></li>
+</ul>
+</li>
+<li><a href="#mceTableOfContent_1j44qsmo94">4. 現階段仍存在使用限制</a></li>
+</ul>
+</section>
+<h2 id="mceTableOfContent_1j44qsmo91">Gemini 圖像生成的核心能力</h2>
+<p>在正式開始之前，我們先來了解一下最新的 Gemini 模型的改進之處，以便思考可以嘗試哪些應用：</p>
+<ul>
+<li>角色設計一致性：在多輪生成與編輯中，保持角色或物件外觀一致。</li>
+<li>創意構圖：能將不同元素、主體和風格融合成統一的圖像。</li>
+<li>局部編輯：可用簡單的語言，對圖像特定區域進行精準修改。</li>
+<li>設計與外觀應用：能將某個概念的風格、紋理或設計套用到另一個概念上。</li>
+<li>邏輯與推理：具備理解現實世界關係的能力，可生成複雜場景或預測下一步發展。</li>
+</ul>
+<p id="mceTableOfContent_1j44uplcd7" data-start="501" data-end="517"><img src="https://cdn0.techbang.com/images/lazyload/loading.gif" alt="Gemini 2.5 Flash Image 提示詞怎麼下？官方 5 大訣竅澈底解析，教你打造角色一致且創意十足的圖像" width="600" height="395" style="aspect-ratio: 600 / 395;" data-original="https://cdn0.techbang.com/system/images/758257/original/8ce86d669b8c0533e7039ad6278a81bc.jpg?1756808156" class="lazy"></p>
+<p data-start="501" data-end="517"><img src="https://cdn0.techbang.com/images/lazyload/loading.gif" alt="Gemini 2.5 Flash Image 提示詞怎麼下？官方 5 大訣竅澈底解析，教你打造角色一致且創意十足的圖像" width="720" height="326" style="aspect-ratio: 720 / 326;" data-original="https://cdn2.techbang.com/system/images/758258/original/e3eb1ca44435d1915915371fb61b1810.jpg?1756808172" class="lazy"></p>
+<h2 id="mceTableOfContent_1j44t0dja5" data-start="501" data-end="517">撰寫有效提示的 6 個要素</h2>
+<p data-start="518" data-end="594">雖然輸入簡單描述，如「一隻在草原上奔跑的狗」，Gemini 仍能生成不錯的結果，但若希望更貼近想像畫面，或想控制更多細節，建議在提示中包含以下六個要素：</p>
+<ol>
+<li data-start="518" data-end="594">主體：圖像中的核心角色或物件是誰？例：一個有發光藍色光學眼的冷面機器人咖啡師；一隻戴著小巫師帽的毛茸茸三花貓。</li>
+<li data-start="518" data-end="594">構圖：鏡頭取景角度與視覺呈現方式。例：特寫、廣角、低角度拍攝、肖像。</li>
+<li data-start="518" data-end="594">動作：場景中正在發生什麼事？例：沖咖啡、施展魔法、在田野中奔跑。</li>
+<li data-start="518" data-end="594">地點：情境發生的環境與背景例：火星上的未來咖啡館、雜亂的煉金術士圖書館、黃金時段陽光灑落的草地。</li>
+<li data-start="518" data-end="594">風格：整體美學與視覺風格。例：3D 動畫、黑色電影、水彩畫、寫實攝影、1990 年代產品攝影。</li>
+<li data-start="518" data-end="594">編輯指示：若修改現有圖像，需直接且明確描述。例：把男人的領帶換成綠色、移除背景中的汽車。</li>
+</ol>
+<h2 id="mceTableOfContent_1j44qsmo93">5 大提示策略與範例參考</h2>
+<p>不同的提示策略可以解鎖從寫實編輯到奇幻新世界的一切可能。以下是 Google 提供 5 個可以嘗試的技巧，每個技巧也都附帶了一個範例。</p>
+<h3 id="mceTableOfContent_1j44sm2890">1. 保持角色外觀一致</h3>
+<p>Gemini 能在不同姿勢、光線與場景下，維持角色的核心特徵，甚至能為同一角色套用新風格：</p>
+<ul>
+<li>提示 1：一幅古靈精怪的插畫，描繪一個發光的小蘑菇精靈。精靈頭戴一個巨大的生物發光蘑菇帽，有著大而好奇的眼睛，身體由編織的藤蔓構成。</li>
+<li>提示 2（在同一個對話中）：現在，讓同一個精靈騎在一隻友善、長滿青苔的蝸牛背上，穿過一個充滿五顏六色野花的陽光草地。</li>
+</ul>
+<p>透過在第一個提示中，用具體的細節建立一個清晰的角色，就可以在後續的提示中，將同一個角色放置在全新的情境中。在這裡，Gemini 會保留角色的關鍵特徵，如臉部特徵、獨特的外觀和服裝。</p>
+<p><img src="https://cdn0.techbang.com/images/lazyload/loading.gif" alt="Gemini 2.5 Flash Image 提示詞怎麼下？官方 5 大訣竅澈底解析，教你打造角色一致且創意十足的圖像" width="720" height="360" style="aspect-ratio: 720 / 360;" data-original="https://cdn2.techbang.com/system/images/758252/original/dbf38f447a52d46be3fd51a7cb1667cd.jpg?1756807685" class="lazy"></p>
+<h3 id="mceTableOfContent_1j44t91kd6">2. 精確地進行局部轉換</h3>
+<p>更新後的編輯功能能快速且準確地修改圖片中的特定元素，適用於產品展示或個人照片優化等情境：</p>
+<ul>
+<li>提示 1：一張高品質照片，描繪一個現代、簡約的客廳，配有灰色沙發、淺色木質咖啡桌和一盆大型盆栽。</li>
+<li>提示 2（編輯）：將沙發的顏色改成深海軍藍。</li>
+<li>提示 3（編輯）：現在，在咖啡桌上疊放三本書。</li>
+</ul>
+<p>這展示了 Gemini 在局部編輯方面的實力。透過使用直接、對話式的指令，就可以修改圖像中的特定元素，而無需複雜的軟體或重新生成整個場景。</p>
+<p><img src="https://cdn0.techbang.com/images/lazyload/loading.gif" alt="Gemini 2.5 Flash Image 提示詞怎麼下？官方 5 大訣竅澈底解析，教你打造角色一致且創意十足的圖像" width="720" height="238" style="aspect-ratio: 720 / 238;" data-original="https://cdn0.techbang.com/system/images/758253/original/e7bdcdc118b89c430ea8b4ba9f3478fa.jpg?1756807721" class="lazy"></p>
+<h3 id="mceTableOfContent_1j44sn0e31">3. 透過創意構圖融合概念</h3>
+<p>Gemini 能將多個概念整合為單一圖像，創造出獨特視覺效果：</p>
+<ul>
+<li>提示 1：生成一張戴著頭盔並穿著全套太空服的太空人的寫實照片。</li>
+<li>提示 2：一張長滿植物的熱帶雨林籃球場照片。</li>
+<li>提示 3（上傳兩張並結合）：讓太空人在這個籃球場上灌籃。</li>
+</ul>
+<p><img src="https://cdn0.techbang.com/images/lazyload/loading.gif" alt="Gemini 2.5 Flash Image 提示詞怎麼下？官方 5 大訣竅澈底解析，教你打造角色一致且創意十足的圖像" width="720" height="238" style="aspect-ratio: 720 / 238;" data-original="https://cdn2.techbang.com/system/images/758254/original/84dbb6ac528e41a27519b3695f8813e4.jpg?1756807739" class="lazy"></p>
+<h3 id="mceTableOfContent_1j44sn3f42">4. 應用和適應新風格</h3>
+<p id="mceTableOfContent_1j44sn8nr4">透過風格轉換，Gemini 能保留主體形態，同時為圖像重新渲染不同的藝術氛圍：</p>
+<ul>
+<li>提示 1：一張停在城市街道上的經典摩托車寫實圖像。</li>
+<li>提示 2（編輯）：將這張圖像套用建築繪圖的風格。</li>
+</ul>
+<p>透過「風格轉換」，Gemini 能理解核心主體（摩托車）及其形態，然後以所要求的藝術風格完全重新渲染它。這種方法非常適合用於設計靈感、藝術創作或視覺探索。</p>
+<p><img src="https://cdn0.techbang.com/images/lazyload/loading.gif" alt="Gemini 2.5 Flash Image 提示詞怎麼下？官方 5 大訣竅澈底解析，教你打造角色一致且創意十足的圖像" width="720" height="360" style="aspect-ratio: 720 / 360;" data-original="https://cdn2.techbang.com/system/images/758255/original/54b990136dca4a4d07d2f7624ce7ee5c.jpg?1756807763" class="lazy"></p>
+<h3 id="mceTableOfContent_1j44sn5rf3">5. 利用邏輯和推理進行複雜生成</h3>
+<p>Gemini 能理解現實世界邏輯，並根據上下文預測後續情節：</p>
+<ul>
+<li>提示 1：生成一張一個人站著，手裡拿著一個三層蛋糕的圖像。</li>
+<li>提示 2（在同一個對話中）：生成一張他絆倒後會發生什麼事的圖像。</li>
+</ul>
+<p>模型會根據第一張圖像的狀態，模擬蛋糕掉落的合理結果，生成動態且連貫的新畫面。</p>
+<p><img src="https://cdn0.techbang.com/images/lazyload/loading.gif" alt="Gemini 2.5 Flash Image 提示詞怎麼下？官方 5 大訣竅澈底解析，教你打造角色一致且創意十足的圖像" width="720" height="360" style="aspect-ratio: 720 / 360;" data-original="https://cdn2.techbang.com/system/images/758256/original/f22eb6b5ab9d856347924c8b12ad896b.jpg?1756807792" class="lazy"></p>
+<h2 id="mceTableOfContent_1j44qsmo94">現階段仍存在使用限制</h2>
+<p>雖然 Gemini 2.5 被許多人稱為「修圖神器」，甚至有人認為未來可能取代 Photoshop 等專業軟體，但 Google 也提醒，這項技術目前仍存在一些限制。角色一致性雖然比過去進步許多，但多次編修後仍有可能出現角色外觀逐漸失真的情況。</p>
+<p>此外，模型在文字渲染方面仍不算完美，偶爾會拼錯單字，或在面對複雜排版時出現錯誤。風格生成方面，由於 AI 本身具有隨機性，有時可能會產生與預期不符的結果，而在長寬比控制上，即使輸入了明確的尺寸要求，最終生成的結果也未必總能精準符合設定。</p>
+<ul>
+<li><strong>延伸閱讀：<a href="https://www.techbang.com/posts/125353-google-ai-image-editor-nano-banana" target="_blank" rel="noopener">Nano Banana 是什麼？從角色一致性到多圖融合，它會是AI生圖大模型的終結者嗎？</a></strong></li>
+<li><strong>延伸閱讀：<a href="https://www.techbang.com/posts/125135-google-gemini-nano-banana-image-editor" target="_blank" rel="noopener">Google Gemini最強圖像編輯模型「Nano banana」上線，人物一致性以及多圖合圖功能更提升</a></strong></li>
+<li><strong>延伸閱讀：<a href="https://www.techbang.com/posts/125138-gemini-new-image-editing-model-tested" target="_blank" rel="noopener">Gemini 2.5 Flash Image 圖像編輯模型實測：人物一致性、去除雜物、圖片合成效果是否真有那麼神？</a></strong></li>
+<li><strong>延伸閱讀：<a href="https://www.techbang.com/posts/125306-google-ai-nano-banana-viral-gemini-server-load" target="_blank" rel="noopener">Google AI 修圖神器「Nano Banana」爆紅，Google工程師自曝Gemini 伺服器差點被撐爆</a></strong></li>
+<li><strong>延伸閱讀：<a href="https://www.techbang.com/posts/124893-chatgpt-gemini-grok-ai-image-comparison" target="_blank" rel="noopener">AI 繪圖大比拼：ChatGPT、Gemini、Grok 三大平台圖像生成能力全面評測</a></strong></li>
+<li><strong>延伸閱讀：<a href="https://www.techbang.com/posts/125328-google-gemini-free-tier-limits" target="_blank" rel="noopener">Google 終於公布 Gemini 用量限制：免費版生圖一天可生成 100 張，每月 5 份深度研究報告</a></strong></li>
+</ul>  </div>
+
+    <div id="topShare" class="header-sharing">
+  <a class="social-share facebook" target="_blank" href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.techbang.com%2Fposts%2F125242-gemini-photo-editing-tips&s=">Facebook</a>  <a class="social-share line" target="_blank" href="https://lineit.line.me/share/ui?url=Gemini+2.5+Flash+Image+%E6%8F%90%E7%A4%BA%E8%A9%9E%E6%80%8E%E9%BA%BC%E4%B8%8B%EF%BC%9F%E5%AE%98%E6%96%B9+5+%E5%A4%A7%E8%A8%A3%E7%AB%85%E6%BE%88%E5%BA%95%E8%A7%A3%E6%9E%90%EF%BC%8C%E6%95%99%E4%BD%A0%E6%89%93%E9%80%A0%E8%A7%92%E8%89%B2%E4%B8%80%E8%87%B4%E4%B8%94%E5%89%B5%E6%84%8F%E5%8D%81%E8%B6%B3%E7%9A%84%E5%9C%96%E5%83%8F%0A%0Ahttps%3A%2F%2Fwww.techbang.com%2Fposts%2F125242-gemini-photo-editing-tips">LINE</a>  <a class="social-share twitter" target="_blank" href="https://twitter.com/intent/tweet?text=Gemini%202.5%20Flash%20Image%20%E6%8F%90%E7%A4%BA%E8%A9%9E%E6%80%8E%E9%BA%BC%E4%B8%8B%EF%BC%9F%E5%AE%98%E6%96%B9%205%20%E5%A4%A7%E8%A8%A3%E7%AB%85%E6%BE%88%E5%BA%95%E8%A7%A3%E6%9E%90%EF%BC%8C%E6%95%99%E4%BD%A0%E6%89%93%E9%80%A0%E8%A7%92%E8%89%B2%E4%B8%80%E8%87%B4%E4%B8%94%E5%89%B5%E6%84%8F%E5%8D%81%E8%B6%B3%E7%9A%84%E5%9C%96%E5%83%8F%0Ahttps%3A%2F%2Fwww.techbang.com%2Fposts%2F125242-gemini-photo-editing-tips"></a></div>
+</section>
+
+
+    
+
+
+    <!-- 開啟 Dable responsive 延伸閱讀 / 請洽 http://dable.io -->
+<div style="margin: 1rem 0px;">
+  <div id="dablewidget_JXdqa5ob_BoxWjGX8" data-widget_id-pc="JXdqa5ob" data-widget_id-mo="BoxWjGX8">
+    <script>
+      (window.dable_lazy_widgets = window.dable_lazy_widgets || []).push(['renderWidgetByWidth', 'dablewidget_JXdqa5ob_BoxWjGX8']);
+    </script>
+  </div>
+</div>
+<!-- 結束 Dable responsive 延伸閱讀 / 請洽 http://dable.io -->
+
+
+    <div id="instag-mod-related-content" style="display: none;"></div>
+
+    <p class="article-tags">
+      <a href="/tags/89">#Google</a><a href="/tags/1146">#修圖</a><a href="/tags/1253">#教學</a><a href="/tags/8735">#人工智慧</a><a href="/tags/8742">#ai</a><a href="/tags/21177">#gemini</a><a href="/tags/35301">#ai繪圖</a><a href="/tags/41697">#圖像生成</a><a href="/tags/45941">#圖像編輯</a><a href="/tags/54448">#風格轉換</a><a href="/tags/54577">#提示詞技巧</a><a href="/tags/54578">#局部編輯</a>
+    </p>
+
+    <section class="profile-summary">
+      <img class="avatar" alt="ycr" title="ycr" src="https://cdn0-i.techbang.com/system/avatars/chiehruyen/medium/6fde3316b08cedaa0343b1dc2ebfc005.jpg" />
+
+      <div class="profile-summary-content">
+        <header class="header">
+          <span>作者</span>
+          <div class="social-info">
+            <div><a class="nickname" title="chiehruyen" href="https://www.techbang.com/users/chiehruyen">ycr</a></div>
+
+            <ul class="links">
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+          <p>
+            T 客邦網站、PChome 雜誌編輯，同時負責 T 客邦影新聞 YouTube 頻道及 FB、IG 等社群平台短影音製作。專注於 AI 應用、產業趨勢與軟體教學等科技內容報導。（大頭貼為 AI 生成）
+          </p>
+        </header>
+      </div>
+    </section>
+
+    <div class="line-link-wrapper">
+      <a class="line-fd-here" target="_blank" href="https://lin.ee/7m0Thwg">
+        送【10個ChatGPT的好工具】電子書
+        <img src="https://cdn2.techbang.com/assets/imgs/line_brand_icon-13bdbbc3495798600163c4c4075095775bccc61fde624ea34cce90ee06806e34.png" alt="Line brand icon" />
+</a>    </div>
+
+    <div class="techbang_i_m_970x250_2">
+      <div id="dfp-techbang_i_m_970x250_2" class="google-dfp" style="min-width: 728px; min-height: 90px; " data-size="[[970,250],[970,90],[728,90]]" data-unit="/1067003/techbang_i_m_970x250_2"><script type='text/javascript'> googletag.cmd.push(function() { googletag.display('dfp-techbang_i_m_970x250_2'); }); </script></div>
+    </div>
+
+    <aside id="post-additional" class="additional">
+      <div class="social-box">
+  <div class="description"><span>關注T客邦</span></div>
+  <ul class="social-box-wrapper">
+    <li><a class="follow-facebook" href="https://www.facebook.com/TKbang" target="_blank"><img src="https://cdn0.techbang.com/assets/icons/follow-fb-96490a0bec5c199ff742a0eeb1dc6709933a6726f823a828b5a30290a77e98b6.svg" alt="Follow fb" />粉絲專頁</a></li>
+    <li><a class="follow-line" href="https://line.me/R/ti/p/%40mmx9155h" target="_blank"><img src="https://cdn1.techbang.com/assets/icons/follow-line-9011ca95292003e67ee992c9554cbef51065cc260c351025a6d7fde8073fbfb6.svg" alt="Follow line" />官方帳號</a></li>
+    <li><a class="follow-telegram" target="_blank" href="https://t.me/TechbangNEWS"><img alt="Follow telegram" src="https://cdn0.techbang.com/assets/icons/follow-telegram-7a83cd93d7495051727a52098a534e18502ea36a2433b751cd98f49b3036fa57.svg" />官方頻道</a></li>    <li><a class="follow-youtube" href="https://www.youtube.com/@techbang3c" target="_blank"><img src="https://cdn0.techbang.com/assets/icons/follow-youtube-f6072b04ff2b8687592c34a203ac1f733871efa6ccc50cde2094f7a6f372f8ad.svg" alt="Follow youtube" />影音頻道</a></li>
+    <li><a class="follow-instagram" target="_blank" href="https://www.instagram.com/techbang3c"><img alt="Follow instagram" src="https://cdn0.techbang.com/assets/icons/follow-ig-4e52f303039134c55a00a2f172dc6bea7a92db54df90855ab20b3d94e288e144.svg" />IG帳號</a></li>  </ul>
+</div>
+
+
+      <!-- 開啟 Dable bottom widget / 請洽 http://dable.io -->
+<div id="dablewidget_BoxPzro8" data-widget_id="BoxPzro8">
+  <script>
+    (window.dable_lazy_widgets = window.dable_lazy_widgets || []).push(['renderWidget', 'dablewidget_BoxPzro8']);
+  </script>
+</div>
+<!-- 結束 Dable bottom widget / 請洽 http://dable.io -->
+
+
+      <div class="techbang_i_d_970x250"><div id="dfp-techbang_i_d_970x250" class="google-dfp" style="min-width: 728px; min-height: 90px; " data-size="[[970,250],[970,90],[728,90]]" data-unit="/1067003/techbang_i_d_970x250"><script type='text/javascript'> googletag.cmd.push(function() { googletag.display('dfp-techbang_i_d_970x250'); }); </script></div></div>
+    </aside>
+
+
+    <div class="comments">
+  <section id="comments" class="local-comments">
+
+    <div id="new-comment" class="new-comment">
+  <div class="header">
+    <div>發表回應</div>
+      <span class="auto-fill-if-login-message">
+          （請先<a href="/users/sign_in.user">登入會員</a>方可留言。)
+      </span>
+  </div>
+
+  <div class="comment-rules">
+
+  <div class="short-rules" id="short-rules">謹慎發言，尊重彼此。<a href="#full-rules" class="switch open" id="expand-rules">按此展開留言規則</a></div>
+
+  <div class="full-rules hidden" id="full-rules">
+    <div>留言板發文規則：</div>
+    <p>請注意！留言要自負法律責任，相關案例層出不窮，請慎重發文！</p>
+    <ol class="statements">
+      <li>請勿一文多貼灌水洗板或發表無意義字串，違者直接刪除留言。</li>
+      <li>請勿張貼廣告，不允許任何形式的商業廣告行為，包含頭像、簽名檔等。</li>
+      <li>禁止發表非官方所舉辦的團購性質活動，違者直接刪除留言。</li>
+      <li>發言時請勿涉及人身攻擊、侮辱、色情或其他有違社會善良風俗之內容，違者直接刪除留言。</li>
+      <li>嚴禁發表討論破解軟體、註冊碼、音樂、影片、軟體複製等違反智慧財產權之留言。</li>
+      <li>請尊重他人之文章著作權，轉載者請標明來源。</li>
+    </ol>
+  </div>
+</div>
+
+
+</div>
+
+</section>
+
+</div>
+
+  </article>
+</div>
+
+
+      </div>
+
+        <aside id="sidebar" class="sidebar">
+          <div class="top-content">
+    <div id="dfp-sidebar_techbang_desktop_4" class="google-dfp" style="min-width: 300px; min-height: 100px; " data-size="[[300,100]]" data-unit="/1067003/techbang_i_r_300x100_1"><script type='text/javascript'> googletag.cmd.push(function() { googletag.display('dfp-sidebar_techbang_desktop_4'); }); </script></div>
+    <div id="dfp-sidebar_techbang_desktop_5" class="google-dfp" style="min-width: 300px; min-height: 250px; " data-size="[[300,250]]" data-unit="/1067003/techbang_i_r_300x250_1"><script type='text/javascript'> googletag.cmd.push(function() { googletag.display('dfp-sidebar_techbang_desktop_5'); }); </script></div>
+    <div id="dfp-sidebar_techbang_desktop_6" class="google-dfp" style="min-width: 300px; min-height: 100px; " data-size="[[300,100]]" data-unit="/1067003/techbang_i_r_300x100_2"><script type='text/javascript'> googletag.cmd.push(function() { googletag.display('dfp-sidebar_techbang_desktop_6'); }); </script></div>
+  <section class="hot-posts-wrapper">
+  <div class="hot-posts">
+    <div class="section-title">
+      <h2>熱門文章</h2>
+    </div>
+
+          <div class="article-items">
+        <div class="text-holder">
+          <div class="ranking-badge">
+            <span>1</span>
+          </div>
+
+          <h3 class="title">
+            <a title="索尼PS6新掌機Project Canis規格流出！黑科技螢幕亮度破千尼特、續航力狂省25%" href="/posts/133539-sony-project-canis-next-gen-handheld-tandem-oled-pssr-3">索尼PS6新掌機Project Canis規格流出！黑科技螢幕亮度破千尼特、續航力狂省25%</a>          </h3>
+        </div>
+      </div>
+          <div class="article-items">
+        <div class="text-holder">
+          <div class="ranking-badge">
+            <span>2</span>
+          </div>
+
+          <h3 class="title">
+            <a title="神人把任天堂 NES 變身「8 位元航空雷達」，免改機就能即時監控全球班機動態" href="/posts/133052-nes-radar-nintendo-flight-tracker">神人把任天堂 NES 變身「8 位元航空雷達」，免改機就能即時監控全球班機動態</a>          </h3>
+        </div>
+      </div>
+          <div class="article-items">
+        <div class="text-holder">
+          <div class="ranking-badge">
+            <span>3</span>
+          </div>
+
+          <h3 class="title">
+            <a title="彩色電子紙迎來重大升級！元太科技發表 E Ink Kaleido 4，色彩表現翻倍、還能播影片" href="/posts/134239-e-ink-kaleido-4-upgrade-color-video">彩色電子紙迎來重大升級！元太科技發表 E Ink Kaleido 4，色彩表現翻倍、還能播影片</a>          </h3>
+        </div>
+      </div>
+          <div class="article-items">
+        <div class="text-holder">
+          <div class="ranking-badge">
+            <span>4</span>
+          </div>
+
+          <h3 class="title">
+            <a title="Acer Swift Blade 14 輕薄筆電上市：960 公克、13.35mm 機身，搭載 OLED 螢幕，售價 35,900 元" href="/posts/134358-acer-swift-blade-14-lightweight-oled-laptop-launch">Acer Swift Blade 14 輕薄筆電上市：960 公克、13.35mm 機身，搭載 OLED 螢幕，售價 35,900 元</a>          </h3>
+        </div>
+      </div>
+          <div class="article-items">
+        <div class="text-holder">
+          <div class="ranking-badge">
+            <span>5</span>
+          </div>
+
+          <h3 class="title">
+            <a title="我就想當好人！為何RPG遊戲反派路線沒人玩？網友點出這項致命傷：當壞人真的太寂寞了" href="/posts/134181-why-rpg-players-choose-good-path-stardew-valley">我就想當好人！為何RPG遊戲反派路線沒人玩？網友點出這項致命傷：當壞人真的太寂寞了</a>          </h3>
+        </div>
+      </div>
+          <div class="article-items">
+        <div class="text-holder">
+          <div class="ranking-badge">
+            <span>6</span>
+          </div>
+
+          <h3 class="title">
+            <a title="告別情懷濾鏡：近 40 年前的紅白機老卡匣，為何這 10 款神作到今天依然讓人想通關？" href="/posts/133164-10-best-nes-games-worth-playing-40-years-later">告別情懷濾鏡：近 40 年前的紅白機老卡匣，為何這 10 款神作到今天依然讓人想通關？</a>          </h3>
+        </div>
+      </div>
+          <div class="article-items">
+        <div class="text-holder">
+          <div class="ranking-badge">
+            <span>7</span>
+          </div>
+
+          <h3 class="title">
+            <a title="比智慧手錶更方便？Natura推出AI智慧戒指，主打個人化助理，能學習你的生活習慣" href="/posts/134006-natura-smart-ring-ai-health-monitoring">比智慧手錶更方便？Natura推出AI智慧戒指，主打個人化助理，能學習你的生活習慣</a>          </h3>
+        </div>
+      </div>
+          <div class="article-items">
+        <div class="text-holder">
+          <div class="ranking-badge">
+            <span>8</span>
+          </div>
+
+          <h3 class="title">
+            <a title="強迫症救星！DDR5 插槽空空的太難看？v-color 推出「0GB 假記憶體」千元搞定電競光效" href="/posts/133149-v-color-0gb-rgb-dummy-ram-filler">強迫症救星！DDR5 插槽空空的太難看？v-color 推出「0GB 假記憶體」千元搞定電競光效</a>          </h3>
+        </div>
+      </div>
+          <div class="article-items">
+        <div class="text-holder">
+          <div class="ranking-badge">
+            <span>9</span>
+          </div>
+
+          <h3 class="title">
+            <a title="三鏡頭全上 2 億畫素！OPPO Find X10 Pro Max、Find X10 正式發表" href="/posts/134238-oppo-find-x10-pro-max-200mp-triple-camera">三鏡頭全上 2 億畫素！OPPO Find X10 Pro Max、Find X10 正式發表</a>          </h3>
+        </div>
+      </div>
+          <div class="article-items">
+        <div class="text-holder">
+          <div class="ranking-badge">
+            <span>10</span>
+          </div>
+
+          <h3 class="title">
+            <a title="Google創辦人坦言Gemini 4已開始自己開發自己，研發進度快到不可思議" href="/posts/134192-sergey-brin-rsi-google-gemini-4-argon-self-training">Google創辦人坦言Gemini 4已開始自己開發自己，研發進度快到不可思議</a>          </h3>
+        </div>
+      </div>
+      </div>
+</section>
+
+  <div id="dfp-sidebar_techbang_desktop_7" class="google-dfp" style="min-width: 300px; min-height: 100px; " data-size="[[300,100]]" data-unit="/1067003/techbang_i_r_300x100_3"><script type='text/javascript'> googletag.cmd.push(function() { googletag.display('dfp-sidebar_techbang_desktop_7'); }); </script></div>
+  <div id="dfp-sidebar_techbang_desktop_8" class="google-dfp" style="min-width: 300px; min-height: 250px; " data-size="[[300,250]]" data-unit="/1067003/techbang_i_r_300x250_2"><script type='text/javascript'> googletag.cmd.push(function() { googletag.display('dfp-sidebar_techbang_desktop_8'); }); </script></div>
+  <div id="dfp-sidebar_techbang_r_300x250" class="google-dfp" style="min-width: 1px; min-height: 1px; " data-size="[[1,1],[300,170],[300,250]]" data-unit="/1067003/techbang_r_300x250"><script type='text/javascript'> googletag.cmd.push(function() { googletag.display('dfp-sidebar_techbang_r_300x250'); }); </script></div>
+  
+  
+  
+  
+  
+  <section class="events-wrapper">
+  <div class="events">
+    <div class="section-title">
+      <h2>活動課程</h2>
+    </div>
+
+      <div class="events-slider">
+                  <div class="article-items">
+            <div class="img-holder">
+              <a href="/posts/133028-epson-4k-ai-laser-home-theater-trial"><img src="https://cdn2.techbang.com/system/excerpt_images/133028/medium/3fec719bc344a520a17c3a1d32b6ae85.jpg?1790738036" alt="3fec719bc344a520a17c3a1d32b6ae85" /></a>            </div>
+
+            <div class="text-holder">
+              <h3 class="title">
+                <a href="/posts/133028-epson-4k-ai-laser-home-theater-trial">【入選公告】看球、追劇、打電動全面升級，Epson 4K AI 雷射家庭劇院「睛彩機」，在家就能享受到清晰、流暢的大畫面！</a>              </h3>
+            </div>
+          </div>
+              </div>
+
+    <div class="slider-controller">
+      <div class="arrow prev-arrow">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path fill="#fff" d="M19.63,20.74l-5.72-5.74,5.72-5.74-1.76-1.76-7.5,7.5,7.5,7.5,1.76-1.76Z"/></svg>
+      </div>
+
+      <div class="indicators-wrapper"></div>
+
+
+      <div class="arrow next-arrow">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path fill="#fff" d="M10.37,9.26l5.73,5.74-5.73,5.74,1.76,1.76,7.5-7.5-7.5-7.5-1.76,1.76Z"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section class="side-sticky-ads" style="top: 55px"><div id="dfp-sidebar_techbang_desktop_9" class="google-dfp" style="min-width: 300px; min-height: 600px; " data-size="[[300,600]]" data-unit="/1067003/techbang_i_r_300x600_1"><script type='text/javascript'> googletag.cmd.push(function() { googletag.display('dfp-sidebar_techbang_desktop_9'); }); </script></div></section>
+</div>
+
+<div class="bottom-content">
+  <section class="side-sticky-ads" style="top: 55px"><div id="dfp-sidebar_techbang_desktop_11" class="google-dfp" style="min-width: 300px; min-height: 600px; " data-size="[[300,600]]" data-unit="/1067003/techbang_content_stickyAD"><script type='text/javascript'> googletag.cmd.push(function() { googletag.display('dfp-sidebar_techbang_desktop_11'); }); </script></div></section>
+</div>
+
+        </aside>
+    </div>
+
+    <div id="float-navigation" class="float-navigation closed">
+  <a class="header" href="#top">header</a>
+</div>
+
+  </div>
+
+  <footer>
+  <div class="container">
+    <div class="info-wrapper">
+      <div class="main-info">
+        <div class="site-logo">
+          <a href="/"><img alt="T客邦" src="https://cdn1.techbang.com/assets/imgs/techbang-logo-32a6fc4dbc0fa4166bf794994fb01d56d2149d26a149d71a406e8d8aed754f4a.svg" /></a>        </div>
+
+        <p class="info-text">T客邦由台灣最大的出版集團「城邦媒體控股集團 / PChome電腦家庭集團」所經營，致力提供好懂、容易理解的科技資訊，幫助讀者掌握複雜的科技動向。</p>
+
+        <!-- 社群 -->
+        <div class="social-wrapper">
+          <a target="_blank" href="https://www.facebook.com/TKbang">            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 16.9288 5.56576 21.0247 10.2583 21.8489V15.0583H7.71429V12.2358H10.2583V10.0846C10.2583 7.63781 11.7535 6.28571 14.043 6.28571C15.1389 6.28571 16.2857 6.47642 16.2857 6.47642V8.87933H15.0215C13.7769 8.87933 13.3894 9.63264 13.3894 10.405V12.2358H16.1683L15.7241 15.0583H13.3894V21.8818C12.9072 21.9556 12.4144 21.9954 11.9128 21.9996C11.9418 21.9999 11.9709 22 12 22Z" fill="#176CF0"/>
+            </svg>
+          </a>          <a target="_blank" href="https://line.me/R/ti/p/%40mmx9155h">            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 21 22" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M20.7407 9.51696C20.7407 4.82068 16.0888 1 10.3703 1C4.65255 1 0 4.82068 0 9.51696C0 13.7272 3.68936 17.2531 8.67291 17.9198C9.01067 17.9935 9.4703 18.1452 9.5866 18.4373C9.69117 18.7027 9.65499 19.1184 9.62 19.3863C9.62 19.3863 9.49833 20.1269 9.47209 20.2847L9.46807 20.308C9.41884 20.5922 9.29462 21.3093 10.3703 20.8504C11.4772 20.3784 16.3427 17.2915 18.5183 14.7571C20.0213 13.0892 20.7407 11.3965 20.7407 9.51696ZM8.26327 7.24026H7.53586C7.42433 7.24026 7.33368 7.3317 7.33368 7.44403V12.0118C7.33368 12.1244 7.42433 12.2156 7.53586 12.2156H8.26327C8.3748 12.2156 8.46526 12.1244 8.46526 12.0118V7.44403C8.46526 7.3317 8.3748 7.24026 8.26327 7.24026ZM12.5427 7.24026H13.2701C13.3818 7.24026 13.4721 7.3317 13.4721 7.44403V12.0118C13.4721 12.1244 13.3818 12.2156 13.2701 12.2156H12.5427C12.4777 12.2156 12.4145 12.1827 12.3773 12.1294L10.304 9.29889V12.0118C10.304 12.1244 10.2135 12.2156 10.1018 12.2156H9.37458C9.26305 12.2156 9.1724 12.1244 9.1724 12.0118V7.44403C9.1724 7.3317 9.26305 7.24026 9.37458 7.24026H10.1018C10.1696 7.24407 10.2317 7.27283 10.27 7.33089L12.3407 10.1578V7.44403C12.3407 7.3317 12.4311 7.24026 12.5427 7.24026ZM6.50986 11.072H4.53338V7.44446C4.53338 7.33172 4.44292 7.24028 4.33159 7.24028H3.60398C3.49245 7.24028 3.402 7.33172 3.402 7.44446V12.0115C3.402 12.1223 3.49205 12.2158 3.60378 12.2158H6.50986C6.62139 12.2158 6.71144 12.1242 6.71144 12.0115V11.2762C6.71144 11.1634 6.62139 11.072 6.50986 11.072ZM17.4887 8.17997C17.4887 8.29291 17.3986 8.38414 17.2871 8.38414H15.3108V9.15603H17.2871C17.3986 9.15603 17.4887 9.24767 17.4887 9.36041V10.0957C17.4887 10.2085 17.3986 10.2999 17.2871 10.2999H15.3108V11.072H17.2871C17.3986 11.072 17.4887 11.1636 17.4887 11.2762V12.0117C17.4887 12.1242 17.3986 12.2158 17.2871 12.2158H14.3808C14.2694 12.2158 14.1792 12.1222 14.1792 12.0117V7.44446C14.1792 7.33362 14.2696 7.24028 14.3812 7.24028H17.2871C17.3986 7.24028 17.4887 7.33192 17.4887 7.44466V8.17997Z" fill="#06C755"/>
+            </svg>
+          </a>          <a target="_blank" href="https://www.youtube.com/@techbang3c">            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M4.81748 5.22389C3.40282 5.29398 2.26645 6.40166 2.17465 7.81508C2.08669 9.16923 2 10.8355 2 12.1429C2 13.4502 2.08669 15.1165 2.17465 16.4706C2.26645 17.884 3.40282 18.9917 4.81748 19.0618C6.86599 19.1633 9.79391 19.2857 12 19.2857C14.2061 19.2857 17.134 19.1633 19.1825 19.0618C20.5972 18.9917 21.7335 17.8841 21.8254 16.4706C21.9133 15.1165 22 13.4502 22 12.1429C22 10.8355 21.9133 9.16923 21.8254 7.81508C21.7335 6.40167 20.5972 5.29398 19.1825 5.22389C17.134 5.1224 14.2061 5 12 5C9.79391 5 6.86599 5.1224 4.81748 5.22389ZM15.5714 12.1429L9.85714 15V9.28571L15.5714 12.1429Z" fill="#FF0000"/>
+            </svg>
+          </a>          <a target="_blank" href="https://www.instagram.com/techbang3c">            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M19 6.5C19 7.32843 18.3284 8 17.5 8C16.6716 8 16 7.32843 16 6.5C16 5.67157 16.6716 5 17.5 5C18.3284 5 19 5.67157 19 6.5Z" fill="#E1306C"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17ZM12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" fill="#E1306C"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M2 11.6C2 8.23969 2 6.55953 2.65396 5.27606C3.2292 4.14708 4.14708 3.2292 5.27606 2.65396C6.55953 2 8.23969 2 11.6 2H12.4C15.7603 2 17.4405 2 18.7239 2.65396C19.8529 3.2292 20.7708 4.14708 21.346 5.27606C22 6.55953 22 8.23969 22 11.6V12.4C22 15.7603 22 17.4405 21.346 18.7239C20.7708 19.8529 19.8529 20.7708 18.7239 21.346C17.4405 22 15.7603 22 12.4 22H11.6C8.23969 22 6.55953 22 5.27606 21.346C4.14708 20.7708 3.2292 19.8529 2.65396 18.7239C2 17.4405 2 15.7603 2 12.4V11.6ZM11.6 4H12.4C14.1132 4 15.2777 4.00156 16.1779 4.0751C17.0548 4.14674 17.5032 4.27659 17.816 4.43597C18.5686 4.81947 19.1805 5.43139 19.564 6.18404C19.7234 6.49684 19.8533 6.94524 19.9249 7.82208C19.9984 8.72225 20 9.88684 20 11.6V12.4C20 14.1132 19.9984 15.2777 19.9249 16.1779C19.8533 17.0548 19.7234 17.5032 19.564 17.816C19.1805 18.5686 18.5686 19.1805 17.816 19.564C17.5032 19.7234 17.0548 19.8533 16.1779 19.9249C15.2777 19.9984 14.1132 20 12.4 20H11.6C9.88684 20 8.72225 19.9984 7.82208 19.9249C6.94524 19.8533 6.49684 19.7234 6.18404 19.564C5.43139 19.1805 4.81947 18.5686 4.43597 17.816C4.27659 17.5032 4.14674 17.0548 4.0751 16.1779C4.00156 15.2777 4 14.1132 4 12.4V11.6C4 9.88684 4.00156 8.72225 4.0751 7.82208C4.14674 6.94524 4.27659 6.49684 4.43597 6.18404C4.81947 5.43139 5.43139 4.81947 6.18404 4.43597C6.49684 4.27659 6.94524 4.14674 7.82208 4.0751C8.72225 4.00156 9.88684 4 11.6 4Z" fill="#E1306C"/>
+            </svg>
+          </a>          <a target="_blank" href="https://t.me/TechbangNEWS">            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM16.0209 7.05857C16.5324 6.83397 17.0795 7.28808 16.9904 7.86342L15.6727 16.3758C15.5926 16.8933 15.0418 17.163 14.6135 16.8945L10.7957 14.5003C10.3978 14.2508 10.3321 13.6729 10.6629 13.3319L14.0729 9.81616C14.195 9.69033 14.0393 9.48721 13.8964 9.58591L9.15913 12.8588C8.80895 13.1007 8.3747 13.1668 7.97368 13.0391L5.87248 12.3699C5.492 12.2488 5.46516 11.6931 5.83201 11.532L16.0209 7.05857Z" fill="#239DE5"/>
+            </svg>
+          </a>        </div>
+      </div>
+
+      <div class="info-holder">
+        <div class="info-header">
+          <strong>關於我們</strong>
+        </div>
+        <div class="info-content">
+          <a class="info-items" href="/pages/about">集團介紹</a>          <a class="info-items" href="/mediakit">廣告合作</a>          <a class="info-items" href="/pages/contact">聯絡方式</a>        </div>
+
+      </div>
+      <div class="info-holder">
+        <div class="info-header">
+          <strong>條款與政策</strong>
+        </div>
+        <div class="info-content">
+          <a class="info-items" href="/pages/privacy">隱私權聲明與服務條款</a>          <a class="info-items" href="/pages/copyright">著作權聲明</a>        </div>
+      </div>
+
+      <div class="info-holder">
+        <div class="info-header">
+          <strong>旗下媒體與品牌</strong>
+        </div>
+        <div class="info-content">
+          <a class="info-items" href="https://www.techbang.com/">T客邦</a>          <a class="info-items" href="https://mf.techbang.com/">Man’s Fashion</a>          <a class="info-items" href="https://digiphoto.techbang.com/">Digiphoto</a>          <a class="info-items" href="https://pcadv.techbang.com/">電腦王</a>        </div>
+      </div>
+
+      <div class="info-holder">
+        <div class="info-header">
+          <strong>聯絡我們</strong>
+        </div>
+        <div class="info-content">
+          <a class="info-items" href="mailto:janus@hmg.com.tw">網站內容勘誤</a>          <a class="info-items" href="mailto:jessica_chen@hmg.com.tw">課程內容詢問</a>          <a class="info-items" href="mailto:techbang1@gmail.com">網路活動詢問</a>          <a class="info-items" href="/pages/offer">網友投稿</a>        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!--[if IE 9]><object style="display: block; position: fixed; left: 0; bottom: 0;" width="1" height="1" type="application/x-shockwave-flash" data="https://cdn0.techbang.com/assets/1px-6695dc7c609d5290ef61b58ac9942c4bf841446b70ed8c44baa2dc9e4ea6698b.swf"><param name="wmode" value="transparent" /><param name="movie" value="https://cdn0.techbang.com/assets/1px-6695dc7c609d5290ef61b58ac9942c4bf841446b70ed8c44baa2dc9e4ea6698b.swf" /></object><![endif]-->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script><script>window.jQuery || document.write('<scr'+'ipt src="https://cdn2.techbang.com/assets/jquery.min-1cf6658c89e17f16d20781930997de7d88cf312203ded8c5afce765e0e1ae20a.js"></scr'+'ipt>')</script>
+  <script src="https://cdn0.techbang.com/assets/application-7b58a635dbcb4300156c3fc4d1e2f146f6db4cf6e361b947c8ad6ae0b167fe55.js"></script>
+  <!--[if IE 6]><script src="https://cdn0.techbang.com/assets/ie6fix-d12c7c05d22ad878f16e18991062ebd05229c7a8f6eea551a193805449f09e98.js"></script><![endif]-->
+
+    <script type="text/javascript">
+    $(function() {
+      var insert_subscribe = function() {
+        var firstParagraph = document.querySelector('.main-content #article-content > p');
+        var newDiv = document.querySelector('.newsletter2in1');
+        firstParagraph.insertAdjacentElement('afterend',newDiv);
+        newDiv.style.display = 'flex';
+      };
+
+      lazyloadImage.setCallback(insert_subscribe);
+    });
+  </script>
+  <script type="text/javascript">
+    $(window).one('scroll', function() {
+      var insert_ads = function() {
+        var intro = $(".intro");
+        var target_height = (intro.height() + intro.offset().top);
+        var dfp = '<div class="techbang_i_m_970x250_1 ads-reserve"><div id="dfp-techbang_i_m_970x250_1" class="google-dfp" style="min-width: 728px; min-height: 90px; " data-size="[[970,250],[970,90],[728,90]]" data-unit="/1067003/techbang_i_m_970x250_1"><script type="text/javascript"> googletag.cmd.push(function() { googletag.display("dfp-techbang_i_m_970x250_1"); }); <\/script></div></div>';
+
+        $(".main-content #article-content > *").each(function(i, v) {
+          if ($(v).offset().top - target_height > 1500 && dfp) {
+            $(v).before(dfp);
+            return false;
+          }
+        });
+      };
+
+      lazyloadImage.setCallback(insert_ads);
+    });
+  </script>
+  <script src="https://cdn2.techbang.com/assets/post-2d249d4ccef0c56e81dd4c8c04178692a57ac7fd3469b417328babfb60acf7e9.js"></script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    let links = document.querySelectorAll('#article-content a')
+
+    links.forEach(function(link) {
+      let href = link.getAttribute('href')
+
+      if (href.includes('https://www.techbang.com/events/')) {
+        link.addEventListener('click', function(event) {
+          event.preventDefault()
+
+          alert('請先登入或註冊後，才可以報名 T客邦活動，謝謝。')
+        })
+      }
+    })
+  })
+</script>
+
+
+  <script type="text/javascript">
+    $('.comment-abuse').magnificPopup({
+      type: 'ajax',
+      mainClass: 'abuse-report-form',
+      closeOnContentClick: false,
+      closeOnBgClick: false,
+      showCloseBtn: true,
+      closeBtnInside: true,
+    });
+  </script>
+
+
+      <script>
+//<![CDATA[
+$(function(){function e(){return $('script[src="//static.dable.io/dist/plugin.min.js"]').length>0}function n(){180==(o+=1)?t():175==o&&i()}function t(){0==c?(c=!0,$.ajax({url:a,success:function(e){$(document.body).append(e)}})):$("#idle-container").fadeIn()}function i(){e()||(!function(e,n,t,i,o,c){e[t]=e[t]||function(){(e[t].q=e[t].q||[]).push(arguments)},(o=n.createElement(i)).async=1,o.charset="utf-8",o.src="//static.dable.io/dist/plugin.min.js",(c=n.getElementsByTagName(i)[0]).parentNode.insertBefore(o,c)}(window,document,"dable","script"),dable("setService","techbang.com")),dable("sendLogOnce")}var o=0,c=!1,a="adult"==document.body.dataset.layout?"/pages/idle_popup?adult=true":"/pages/idle_popup";$(document).ready(function(){location.href.indexOf("idlepop=1")>0&&t(),setInterval(n,1e3),$(this).mousemove(function(){o=0}),$(window).keydown(function(){o=0})})});
+//]]>
+</script>
+
+
+    <script type="text/javascript">
+  _atrk_opts = { atrk_acct:"7vzXh1aUXR00oX", domain:"techbang.com",dynamic: true };
+  (function() {
+    var as = document.createElement('script');
+    as.type = 'text/javascript';
+    as.async = true;
+    as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js";
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(as, s);
+  })();
+</script>
+
+<noscript>
+  <img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=7vzXh1aUXR00oX" style="display:none" height="1" width="1" alt="" />
+</noscript>
+
+</body>
+<!-- ** 註解掉網頁推播訂閱功能 t19942 ** -->
+</html>

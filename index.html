@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini就是神奇 - Google AI 雙刀流全方位功能實戰看板</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="https://padlet.net/favicon.svg">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans TC"', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.28);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.48);
+    }
+    
+    body {
+      font-family: 'Noto Sans TC', Inter, sans-serif;
+      background-color: #0f172a;
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.75) 0%, rgba(8, 12, 24, 0.94) 100%),
+        url("assets/images/wallpaper.png");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+
+    html:not(.dark) body {
+      background-color: #f8fafc;
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.88) 0%, rgba(241, 245, 249, 0.96) 100%),
+        url("assets/images/wallpaper.png");
+    }
+
+    mark {
+      background-color: #fde047;
+      color: #0f172a;
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-weight: 700;
+    }
+
+    .card-transition {
+      transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.18s ease;
+    }
+    .card-transition:hover {
+      transform: translateY(-3px);
+    }
+
+    .line-clamp-4 {
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  </style>
+
+  <!-- Load Board Data directly for 100% Offline / file:// Support -->
+  <script src="data.js"></script>
+</head>
+<body class="text-slate-100 flex flex-col h-screen overflow-hidden antialiased select-none">
+
+  <!-- ================= TOP HEADER ================= -->
+  <header class="flex-none bg-slate-900/90 dark:bg-slate-950/85 backdrop-blur-md border-b border-white/10 px-4 md:px-6 py-2.5 flex flex-col md:flex-row items-center justify-between gap-3 z-30 shadow-lg">
+    
+    <!-- Title & Legend -->
+    <div class="flex items-center gap-3 w-full md:w-auto justify-between md:justify-start">
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-500 to-sky-400 flex items-center justify-center shadow-md shadow-indigo-500/20 text-white font-black text-lg">
+          <i data-lucide="sparkles" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 id="boardTitle" class="text-base sm:text-lg font-bold text-white tracking-tight flex items-center gap-2">
+              Gemini就是神奇
+            </h1>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              100% 離線就緒
+            </span>
+          </div>
+          <div class="text-[11px] text-indigo-200/80 flex items-center gap-2 flex-wrap mt-0.5">
+            <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-purple-400"></span>紫標是資料</span>
+            <span class="text-slate-500">•</span>
+            <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-400"></span>紅標有範例</span>
+            <span class="text-slate-500">•</span>
+            <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-sky-400"></span>藍標歸工具</span>
+            <span class="text-slate-500">•</span>
+            <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>綠標要實作</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions & Toolbar -->
+    <div class="flex items-center gap-2 flex-wrap self-end md:self-auto w-full md:w-auto justify-end">
+      
+      <!-- Search Input -->
+      <div class="relative flex-1 sm:flex-initial">
+        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+        <input 
+          id="searchInput" 
+          type="text" 
+          placeholder="搜尋卡片、Prompt、分欄... (/)" 
+          class="pl-9 pr-8 py-1.5 bg-black/40 border border-white/15 rounded-lg text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 w-full sm:w-56 transition-all"
+        >
+        <button id="clearSearchBtn" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+      <!-- Color Filter Tabs (Desktop) -->
+      <div class="hidden xl:flex items-center bg-black/40 p-1 rounded-lg border border-white/10 text-xs">
+        <button data-filter="all" class="filter-btn active px-2.5 py-1 rounded-md font-medium transition-colors bg-white/20 text-white">全部 (<span id="count-all">85</span>)</button>
+        <button data-filter="purple" class="filter-btn px-2.5 py-1 rounded-md font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-purple-400"></span>資料 (<span id="count-purple">24</span>)</button>
+        <button data-filter="red" class="filter-btn px-2.5 py-1 rounded-md font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-400"></span>範例 (<span id="count-red">21</span>)</button>
+        <button data-filter="blue" class="filter-btn px-2.5 py-1 rounded-md font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-sky-400"></span>工具 (<span id="count-blue">26</span>)</button>
+        <button data-filter="green" class="filter-btn px-2.5 py-1 rounded-md font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>實作 (<span id="count-green">11</span>)</button>
+      </div>
+
+      <!-- View Switcher -->
+      <div class="flex items-center bg-black/40 p-1 rounded-lg border border-white/10">
+        <button id="viewBoardBtn" title="分欄看板視圖" class="view-btn p-1.5 rounded-md bg-white/20 text-white transition-colors">
+          <i data-lucide="columns-3" class="w-4 h-4"></i>
+        </button>
+        <button id="viewGridBtn" title="瀑布網格視圖" class="view-btn p-1.5 rounded-md text-slate-400 hover:text-white transition-colors">
+          <i data-lucide="grid-2x2" class="w-4 h-4"></i>
+        </button>
+        <button id="viewListBtn" title="清單視圖" class="view-btn p-1.5 rounded-md text-slate-400 hover:text-white transition-colors">
+          <i data-lucide="list" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Jump to Column Dropdown -->
+      <select id="columnJumpSelect" class="bg-black/40 border border-white/15 rounded-lg text-xs text-slate-200 py-1.5 px-2.5 focus:outline-none focus:border-indigo-400 cursor-pointer hidden md:block">
+        <option value="">跳轉分欄 (19)...</option>
+      </select>
+
+      <!-- Random Draw Button -->
+      <button id="randomDrawBtn" title="隨機探索一張卡片" class="flex items-center gap-1 px-2.5 py-1.5 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/40 text-purple-200 rounded-lg text-xs font-semibold shadow transition-all">
+        <i data-lucide="dice-5" class="w-3.5 h-3.5 text-purple-300"></i>
+        <span>隨機抽籤</span>
+      </button>
+
+      <!-- Downloads Modal Button -->
+      <button id="openDownloadsBtn" class="flex items-center gap-1 px-2.5 py-1.5 bg-sky-500/20 hover:bg-sky-500/30 border border-sky-500/40 text-sky-200 rounded-lg text-xs font-semibold shadow transition-all">
+        <i data-lucide="download" class="w-3.5 h-3.5 text-sky-300"></i>
+        <span>素材庫 (<span id="downloadsCount">56</span>)</span>
+      </button>
+
+      <!-- CSV Export Button -->
+      <button id="exportCsvBtn" title="匯出 CSV 報表 (Excel 相容)" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors">
+        <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
+      </button>
+
+      <!-- Theme Switcher -->
+      <button id="themeToggleBtn" title="切換明暗主題" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors">
+        <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+        <i data-lucide="sun" class="w-4 h-4 block dark:hidden text-amber-400"></i>
+      </button>
+
+      <!-- Original Padlet Link -->
+      <a href="https://padlet.com/inforissuescounseling/gemini-jlkd6q3f4kuet6gh" target="_blank" rel="noopener noreferrer" title="前往原版 Padlet 看板" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors">
+        <i data-lucide="external-link" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- MOBILE FILTER BAR -->
+  <div class="xl:hidden flex items-center justify-between px-4 py-2 bg-black/60 border-b border-white/10 text-xs overflow-x-auto gap-2 z-20">
+    <div class="flex items-center gap-1.5 flex-none">
+      <button data-filter="all" class="filter-btn active px-2 py-0.5 rounded-md bg-white/20 text-white">全部 (85)</button>
+      <button data-filter="purple" class="filter-btn px-2 py-0.5 rounded-md text-slate-300">🟣 資料 (24)</button>
+      <button data-filter="red" class="filter-btn px-2 py-0.5 rounded-md text-slate-300">🔴 範例 (21)</button>
+      <button data-filter="blue" class="filter-btn px-2 py-0.5 rounded-md text-slate-300">🔵 工具 (26)</button>
+      <button data-filter="green" class="filter-btn px-2 py-0.5 rounded-md text-slate-300">🟢 實作 (11)</button>
+    </div>
+  </div>
+
+  <!-- ================= MAIN VIEWS CONTAINER ================= -->
+  <main class="flex-1 relative overflow-hidden">
+    
+    <!-- VIEW 1: BOARD / SHELF HORIZONTAL SCROLL -->
+    <div id="boardView" class="h-full flex overflow-x-auto overflow-y-hidden px-4 md:px-6 py-4 gap-4 scroll-smooth">
+      <!-- Injected dynamically via JS -->
+    </div>
+
+    <!-- VIEW 2: MASONRY GRID VIEW (VERTICAL SCROLL) -->
+    <div id="gridView" class="hidden h-full overflow-y-auto px-4 md:px-8 py-6">
+      <div id="gridCardsContainer" class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-4 space-y-4">
+        <!-- Injected dynamically via JS -->
+      </div>
+    </div>
+
+    <!-- VIEW 3: COMPACT LIST VIEW -->
+    <div id="listView" class="hidden h-full overflow-y-auto px-4 md:px-8 py-6 max-w-5xl mx-auto">
+      <div id="listCardsContainer" class="space-y-3">
+        <!-- Injected dynamically via JS -->
+      </div>
+    </div>
+  </main>
+
+  <!-- ================= CARD DETAIL MODAL ================= -->
+  <div id="cardDetailModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-200">
+    <div class="relative w-full max-w-3xl max-h-[92vh] bg-slate-900 border border-white/20 rounded-2xl shadow-2xl overflow-hidden flex flex-col scale-95 transition-transform duration-200" id="cardModalContent">
+      
+      <!-- Modal Header -->
+      <div class="p-4 sm:p-5 border-b border-white/10 flex items-start justify-between gap-3 bg-slate-950/70">
+        <div class="space-y-1.5 flex-1 pr-4">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span id="modalSectionName" class="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-slate-800 text-indigo-300 border border-slate-700">分欄</span>
+            <span id="modalColorBadge" class="px-2.5 py-0.5 rounded-md text-xs font-semibold border">分類</span>
+            <span id="modalLinkTypeBadge" class="px-2.5 py-0.5 rounded-md text-xs font-medium bg-white/10 text-slate-300 border border-white/10 hidden">類型</span>
+          </div>
+          <h2 id="modalTitle" class="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug">卡片標題</h2>
+        </div>
+        <div class="flex items-center gap-2 flex-none">
+          <button id="modalPrevBtn" title="上一張 (←)" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          </button>
+          <button id="modalNextBtn" title="下一張 (→)" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors">
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+          <button id="modalCloseBtn" title="關閉 (Esc)" class="p-1.5 rounded-lg bg-white/10 hover:bg-rose-500/80 text-slate-300 hover:text-white transition-colors ml-1">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5">
+        
+        <!-- Media Preview Area (Video or Image) -->
+        <div id="modalMediaContainer" class="rounded-xl overflow-hidden bg-black/40 border border-white/10 flex items-center justify-center max-h-96 hidden">
+          <!-- Video or img injected dynamically -->
+        </div>
+
+        <!-- Body / Content -->
+        <div id="modalBodyContainer" class="text-sm sm:text-base text-slate-200 leading-relaxed space-y-3 font-normal whitespace-pre-line">
+          <!-- Body text injected -->
+        </div>
+
+        <!-- Comments & Prompts Section -->
+        <div id="modalCommentsContainer" class="p-4 rounded-xl bg-purple-500/10 border border-purple-500/30 space-y-3 hidden">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-purple-300 flex items-center gap-1.5 uppercase tracking-wide">
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+              自訂提示詞與專家指引 (Prompt Instructions)
+            </span>
+          </div>
+          <div id="modalCommentsList" class="space-y-2.5">
+            <!-- Comments injected -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 border-t border-white/10 bg-slate-950/70 flex items-center justify-between flex-wrap gap-2">
+        <div class="flex items-center gap-2">
+          <button id="copyPromptBtn" class="px-3 py-1.5 bg-purple-600 hover:bg-purple-500 text-white font-semibold rounded-lg text-xs flex items-center gap-1.5 transition-all shadow">
+            <i data-lucide="copy" class="w-4 h-4"></i>
+            <span>複製本文內容</span>
+          </button>
+          <button id="downloadFileBtn" class="hidden px-3 py-1.5 bg-sky-600 hover:bg-sky-500 text-white font-semibold rounded-lg text-xs items-center gap-1.5 transition-all shadow">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span>下載本機附件</span>
+          </button>
+        </div>
+        <div class="flex items-center gap-2">
+          <a id="externalLinkBtn" href="#" target="_blank" rel="noopener noreferrer" class="hidden px-3 py-1.5 bg-white/10 hover:bg-white/20 text-slate-200 hover:text-white font-medium rounded-lg text-xs items-center gap-1.5 transition-all">
+            <i data-lucide="external-link" class="w-4 h-4"></i>
+            <span id="externalLinkText">前往外部連結</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= DOWNLOADS MODAL ================= -->
+  <div id="downloadsModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-200">
+    <div class="relative w-full max-w-2xl max-h-[85vh] bg-slate-900 border border-white/20 rounded-2xl shadow-2xl overflow-hidden flex flex-col scale-95 transition-transform duration-200">
+      <div class="p-4 border-b border-white/10 flex items-center justify-between bg-slate-950/70">
+        <div class="flex items-center gap-2">
+          <i data-lucide="folder-down" class="w-5 h-5 text-sky-400"></i>
+          <h3 class="text-base font-bold text-white">本機素材與附件庫</h3>
+        </div>
+        <button id="closeDownloadsModalBtn" class="p-1.5 rounded-lg bg-white/10 hover:bg-rose-500/80 text-slate-300 hover:text-white transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="p-4 flex-1 overflow-y-auto space-y-2 text-xs" id="downloadsListContainer">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TOAST NOTIFICATION ================= -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 px-4 py-2.5 bg-emerald-600 text-white text-xs font-semibold rounded-xl shadow-xl border border-emerald-400/40 flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <i data-lucide="check-circle" class="w-4 h-4"></i>
+    <span id="toastMsg">提示詞已成功複製至剪貼簿！</span>
+  </div>
+
+  <!-- ================= APPLICATION LOGIC ================= -->
+  <script>
+    const data = window.BOARD_DATA || { sections: [], cards: [] };
+    const cards = data.cards || [];
+    const sections = data.sections || [];
+
+    let currentFilter = 'all';
+    let searchQuery = '';
+    let currentView = 'board'; // 'board' | 'grid' | 'list'
+    let currentModalCardIndex = 0;
+    let visibleCards = [...cards];
+
+    // DOM Elements
+    const boardView = document.getElementById('boardView');
+    const gridView = document.getElementById('gridView');
+    const listView = document.getElementById('listView');
+    const gridCardsContainer = document.getElementById('gridCardsContainer');
+    const listCardsContainer = document.getElementById('listCardsContainer');
+    const searchInput = document.getElementById('searchInput');
+    const clearSearchBtn = document.getElementById('clearSearchBtn');
+    const columnJumpSelect = document.getElementById('columnJumpSelect');
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toastMsg');
+
+    // Filter Buttons
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    // View Buttons
+    const viewBoardBtn = document.getElementById('viewBoardBtn');
+    const viewGridBtn = document.getElementById('viewGridBtn');
+    const viewListBtn = document.getElementById('viewListBtn');
+
+    // Modal Elements
+    const cardDetailModal = document.getElementById('cardDetailModal');
+    const cardModalContent = document.getElementById('cardModalContent');
+    const modalSectionName = document.getElementById('modalSectionName');
+    const modalColorBadge = document.getElementById('modalColorBadge');
+    const modalLinkTypeBadge = document.getElementById('modalLinkTypeBadge');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalMediaContainer = document.getElementById('modalMediaContainer');
+    const modalBodyContainer = document.getElementById('modalBodyContainer');
+    const modalCommentsContainer = document.getElementById('modalCommentsContainer');
+    const modalCommentsList = document.getElementById('modalCommentsList');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const modalPrevBtn = document.getElementById('modalPrevBtn');
+    const modalNextBtn = document.getElementById('modalNextBtn');
+    const copyPromptBtn = document.getElementById('copyPromptBtn');
+    const downloadFileBtn = document.getElementById('downloadFileBtn');
+    const externalLinkBtn = document.getElementById('externalLinkBtn');
+    const externalLinkText = document.getElementById('externalLinkText');
+
+    // Downloads Modal Elements
+    const downloadsModal = document.getElementById('downloadsModal');
+    const openDownloadsBtn = document.getElementById('openDownloadsBtn');
+    const closeDownloadsModalBtn = document.getElementById('closeDownloadsModalBtn');
+    const downloadsListContainer = document.getElementById('downloadsListContainer');
+    const randomDrawBtn = document.getElementById('randomDrawBtn');
+    const exportCsvBtn = document.getElementById('exportCsvBtn');
+
+    // Initialize Counts
+    function initStats() {
+      const counts = { all: cards.length, purple: 0, red: 0, blue: 0, green: 0 };
+      cards.forEach(c => {
+        if (c.color === 'purple' || c.color === 'plum') counts.purple++;
+        else if (c.color === 'red' || c.color === 'orange' || c.color === 'coral') counts.red++;
+        else if (c.color === 'blue' || c.color === 'oceanic') counts.blue++;
+        else if (c.color === 'green' || c.color === 'lime') counts.green++;
+      });
+      document.getElementById('count-all').textContent = counts.all;
+      document.getElementById('count-purple').textContent = counts.purple;
+      document.getElementById('count-red').textContent = counts.red;
+      document.getElementById('count-blue').textContent = counts.blue;
+      document.getElementById('count-green').textContent = counts.green;
+
+      // Populate Column Jump
+      sections.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.id;
+        opt.textContent = `${s.title} (${s.cards_count})`;
+        columnJumpSelect.appendChild(opt);
+      });
+    }
+
+    // Filter Logic
+    function matchesFilter(card) {
+      if (currentFilter === 'all') return true;
+      if (currentFilter === 'purple') return card.color === 'purple' || card.color === 'plum';
+      if (currentFilter === 'red') return card.color === 'red' || card.color === 'orange' || card.color === 'coral';
+      if (currentFilter === 'blue') return card.color === 'blue' || card.color === 'oceanic';
+      if (currentFilter === 'green') return card.color === 'green' || card.color === 'lime';
+      return true;
+    }
+
+    function matchesSearch(card) {
+      if (!searchQuery) return true;
+      const q = searchQuery.toLowerCase();
+      const inTitle = (card.title || '').toLowerCase().includes(q);
+      const inBody = (card.body || '').toLowerCase().includes(q);
+      const inSection = (card.section_title || '').toLowerCase().includes(q);
+      const inComments = (card.comments || []).some(c => (c.body || '').toLowerCase().includes(q));
+      return inTitle || inBody || inSection || inComments;
+    }
+
+    function highlightText(text) {
+      if (!searchQuery || !text) return text;
+      const regex = new RegExp(`(${searchQuery.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'gi');
+      return text.replace(regex, '<mark>$1</mark>');
+    }
+
+    // Show Toast
+    function showToast(msg) {
+      toastMsg.textContent = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2500);
+    }
+
+    // Copy to clipboard
+    function copyText(str, msg = '提示詞已成功複製至剪貼簿！') {
+      navigator.clipboard.writeText(str).then(() => {
+        showToast(msg);
+      }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = str;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast(msg);
+      });
+    }
+
+    // Render Card Element
+    function createCardElement(card, index) {
+      const cardEl = document.createElement('div');
+      cardEl.className = 'card-transition bg-slate-900/85 dark:bg-slate-900/90 border border-white/10 hover:border-indigo-400/50 rounded-xl p-3.5 shadow-md flex flex-col gap-2.5 cursor-pointer backdrop-blur-sm';
+      cardEl.dataset.id = card.id;
+
+      // Color badge
+      let badgeColor = 'bg-slate-800 text-slate-300 border-slate-700';
+      if (card.color === 'purple' || card.color === 'plum') badgeColor = 'bg-purple-900/40 text-purple-300 border-purple-500/30';
+      else if (card.color === 'red' || card.color === 'orange' || card.color === 'coral') badgeColor = 'bg-rose-900/40 text-rose-300 border-rose-500/30';
+      else if (card.color === 'blue' || card.color === 'oceanic') badgeColor = 'bg-sky-900/40 text-sky-300 border-sky-500/30';
+      else if (card.color === 'green' || card.color === 'lime') badgeColor = 'bg-emerald-900/40 text-emerald-300 border-emerald-500/30';
+
+      // Header row
+      const headerRow = `
+        <div class="flex items-center justify-between gap-2">
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold border ${badgeColor}">
+            ${card.color_label || '一般'}
+          </span>
+          ${card.is_video ? '<span class="px-1.5 py-0.5 rounded text-[10px] bg-red-500/20 text-red-300 border border-red-500/30 font-medium flex items-center gap-1"><i data-lucide="video" class="w-3 h-3"></i> 影片</span>' : ''}
+          ${card.is_pdf ? '<span class="px-1.5 py-0.5 rounded text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 font-medium flex items-center gap-1"><i data-lucide="file-text" class="w-3 h-3"></i> PDF</span>' : ''}
+          ${card.link_type === 'gem' ? '<span class="px-1.5 py-0.5 rounded text-[10px] bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-medium flex items-center gap-1"><i data-lucide="bot" class="w-3 h-3"></i> Gem</span>' : ''}
+        </div>
+      `;
+
+      // Media
+      let mediaHtml = '';
+      if (card.is_video && card.local_file) {
+        mediaHtml = `
+          <div class="rounded-lg overflow-hidden bg-black/60 aspect-video relative flex items-center justify-center">
+            <video src="${card.local_file}" preload="metadata" class="w-full h-full object-cover" onclick="event.stopPropagation()"></video>
+            <div class="absolute inset-0 bg-black/30 flex items-center justify-center pointer-events-none">
+              <i data-lucide="play-circle" class="w-10 h-10 text-white/90"></i>
+            </div>
+          </div>
+        `;
+      } else if (card.local_image) {
+        mediaHtml = `
+          <div class="rounded-lg overflow-hidden bg-black/40 aspect-video relative flex items-center justify-center border border-white/5">
+            <img src="${card.local_image}" alt="${card.title}" loading="lazy" class="w-full h-full object-cover">
+          </div>
+        `;
+      }
+
+      // Title & snippet
+      const titleHtml = `<h4 class="text-sm font-bold text-white tracking-tight leading-snug">${highlightText(card.title)}</h4>`;
+      
+      let bodySnippet = '';
+      if (card.body) {
+        bodySnippet = `<p class="text-xs text-slate-300 line-clamp-4 leading-relaxed">${highlightText(card.body)}</p>`;
+      }
+
+      // Comments / Prompts badge
+      let commentsBadge = '';
+      if (card.comments && card.comments.length > 0) {
+        commentsBadge = `
+          <div class="pt-1 border-t border-white/5 flex items-center justify-between text-[11px] text-purple-300">
+            <span class="flex items-center gap-1"><i data-lucide="message-square-code" class="w-3.5 h-3.5"></i> ${card.comments.length} 則提示詞/指引</span>
+            <span class="text-[10px] text-slate-400">點擊查看</span>
+          </div>
+        `;
+      }
+
+      cardEl.innerHTML = headerRow + mediaHtml + titleHtml + bodySnippet + commentsBadge;
+
+      cardEl.addEventListener('click', () => {
+        openModal(card);
+      });
+
+      return cardEl;
+    }
+
+    // Render Board View (Shelves)
+    function renderBoardView() {
+      boardView.innerHTML = '';
+      
+      sections.forEach(sec => {
+        const secCards = sec.cards.filter(c => matchesFilter(c) && matchesSearch(c));
+        
+        // Shelf Column
+        const shelf = document.createElement('div');
+        shelf.id = sec.id;
+        shelf.className = 'w-72 sm:w-80 flex-none flex flex-col bg-slate-950/70 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-md max-h-full shadow-xl';
+
+        // Shelf Header
+        const header = document.createElement('div');
+        header.className = 'p-3.5 border-b border-white/10 bg-slate-900/80 flex items-center justify-between sticky top-0 z-10';
+        header.innerHTML = `
+          <div class="flex items-center gap-2">
+            <h3 class="font-bold text-sm text-white tracking-tight">${sec.title}</h3>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/10 text-slate-300">${secCards.length}</span>
+          </div>
+        `;
+        shelf.appendChild(header);
+
+        // Cards Scroll Area
+        const cardsList = document.createElement('div');
+        cardsList.className = 'p-3 overflow-y-auto flex-1 space-y-3';
+
+        if (secCards.length === 0) {
+          cardsList.innerHTML = `<div class="p-6 text-center text-xs text-slate-500">無符合條件卡片</div>`;
+        } else {
+          secCards.forEach(c => {
+            cardsList.appendChild(createCardElement(c));
+          });
+        }
+
+        shelf.appendChild(cardsList);
+        boardView.appendChild(shelf);
+      });
+      lucide.createIcons();
+    }
+
+    // Render Grid View
+    function renderGridView() {
+      gridCardsContainer.innerHTML = '';
+      const filtered = cards.filter(c => matchesFilter(c) && matchesSearch(c));
+      if (filtered.length === 0) {
+        gridCardsContainer.innerHTML = `<div class="col-span-full py-12 text-center text-slate-400 text-sm">無符合搜尋或篩選條件的卡片</div>`;
+        return;
+      }
+      filtered.forEach(c => {
+        gridCardsContainer.appendChild(createCardElement(c));
+      });
+      lucide.createIcons();
+    }
+
+    // Render List View
+    function renderListView() {
+      listCardsContainer.innerHTML = '';
+      const filtered = cards.filter(c => matchesFilter(c) && matchesSearch(c));
+      if (filtered.length === 0) {
+        listCardsContainer.innerHTML = `<div class="py-12 text-center text-slate-400 text-sm">無符合條件項目</div>`;
+        return;
+      }
+
+      filtered.forEach(c => {
+        const row = document.createElement('div');
+        row.className = 'card-transition p-3.5 bg-slate-900/80 border border-white/10 rounded-xl hover:border-indigo-400/50 flex items-center justify-between gap-4 cursor-pointer backdrop-blur-sm';
+        
+        let badgeColor = 'bg-slate-800 text-slate-300 border-slate-700';
+        if (c.color === 'purple' || c.color === 'plum') badgeColor = 'bg-purple-900/40 text-purple-300 border-purple-500/30';
+        else if (c.color === 'red' || c.color === 'orange' || c.color === 'coral') badgeColor = 'bg-rose-900/40 text-rose-300 border-rose-500/30';
+        else if (c.color === 'blue' || c.color === 'oceanic') badgeColor = 'bg-sky-900/40 text-sky-300 border-sky-500/30';
+        else if (c.color === 'green' || c.color === 'lime') badgeColor = 'bg-emerald-900/40 text-emerald-300 border-emerald-500/30';
+
+        row.innerHTML = `
+          <div class="flex items-center gap-3 min-w-0">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold border flex-none ${badgeColor}">${c.color_label || '一般'}</span>
+            <div class="min-w-0">
+              <h4 class="text-sm font-bold text-white truncate">${highlightText(c.title)}</h4>
+              <p class="text-xs text-slate-400 truncate">${highlightText(c.section_title)}</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 flex-none">
+            ${c.comments && c.comments.length > 0 ? `<span class="text-xs text-purple-300 font-semibold flex items-center gap-1"><i data-lucide="sparkles" class="w-3.5 h-3.5"></i> ${c.comments.length}</span>` : ''}
+            <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500"></i>
+          </div>
+        `;
+        row.addEventListener('click', () => openModal(c));
+        listCardsContainer.appendChild(row);
+      });
+      lucide.createIcons();
+    }
+
+    // Refresh Current View
+    function refreshView() {
+      visibleCards = cards.filter(c => matchesFilter(c) && matchesSearch(c));
+      if (currentView === 'board') renderBoardView();
+      else if (currentView === 'grid') renderGridView();
+      else if (currentView === 'list') renderListView();
+    }
+
+    // Switch View
+    function setView(view) {
+      currentView = view;
+      boardView.classList.toggle('hidden', view !== 'board');
+      gridView.classList.toggle('hidden', view !== 'grid');
+      listView.classList.toggle('hidden', view !== 'list');
+
+      viewBoardBtn.classList.toggle('bg-white/20', view === 'board');
+      viewBoardBtn.classList.toggle('text-white', view === 'board');
+      viewBoardBtn.classList.toggle('text-slate-400', view !== 'board');
+
+      viewGridBtn.classList.toggle('bg-white/20', view === 'grid');
+      viewGridBtn.classList.toggle('text-white', view === 'grid');
+      viewGridBtn.classList.toggle('text-slate-400', view !== 'grid');
+
+      viewListBtn.classList.toggle('bg-white/20', view === 'list');
+      viewListBtn.classList.toggle('text-white', view === 'list');
+      viewListBtn.classList.toggle('text-slate-400', view !== 'list');
+
+      refreshView();
+    }
+
+    // Open Card Detail Modal
+    function openModal(card) {
+      currentModalCardIndex = visibleCards.findIndex(c => c.id === card.id);
+      if (currentModalCardIndex === -1) currentModalCardIndex = 0;
+
+      modalSectionName.textContent = card.section_title;
+      modalColorBadge.textContent = card.color_label || '一般';
+      
+      let badgeColor = 'bg-slate-800 text-slate-300 border-slate-700';
+      if (card.color === 'purple' || card.color === 'plum') badgeColor = 'bg-purple-900/40 text-purple-300 border-purple-500/30';
+      else if (card.color === 'red' || card.color === 'orange' || card.color === 'coral') badgeColor = 'bg-rose-900/40 text-rose-300 border-rose-500/30';
+      else if (card.color === 'blue' || card.color === 'oceanic') badgeColor = 'bg-sky-900/40 text-sky-300 border-sky-500/30';
+      else if (card.color === 'green' || card.color === 'lime') badgeColor = 'bg-emerald-900/40 text-emerald-300 border-emerald-500/30';
+      modalColorBadge.className = `px-2.5 py-0.5 rounded-md text-xs font-semibold border ${badgeColor}`;
+
+      if (card.link_type && card.link_label) {
+        modalLinkTypeBadge.textContent = card.link_label;
+        modalLinkTypeBadge.classList.remove('hidden');
+      } else {
+        modalLinkTypeBadge.classList.add('hidden');
+      }
+
+      modalTitle.textContent = card.title;
+      modalBodyContainer.textContent = card.body || '（本卡片無額外文字說明）';
+
+      // Media Preview
+      if (card.is_video && card.local_file) {
+        modalMediaContainer.innerHTML = `<video src="${card.local_file}" controls autoplay class="w-full max-h-96 object-contain"></video>`;
+        modalMediaContainer.classList.remove('hidden');
+      } else if (card.local_image) {
+        modalMediaContainer.innerHTML = `<img src="${card.local_image}" alt="${card.title}" class="w-full max-h-96 object-contain">`;
+        modalMediaContainer.classList.remove('hidden');
+      } else {
+        modalMediaContainer.classList.add('hidden');
+      }
+
+      // Comments & Prompts
+      if (card.comments && card.comments.length > 0) {
+        modalCommentsList.innerHTML = '';
+        card.comments.forEach((c, i) => {
+          const item = document.createElement('div');
+          item.className = 'p-3 bg-black/40 rounded-lg border border-purple-500/20 flex flex-col gap-2';
+          item.innerHTML = `
+            <div class="text-xs text-purple-200 leading-relaxed font-mono whitespace-pre-wrap">${c.body}</div>
+            <div class="flex justify-end">
+              <button class="px-2.5 py-1 bg-purple-600 hover:bg-purple-500 text-white rounded text-[11px] font-semibold flex items-center gap-1 transition-all">
+                <i data-lucide="copy" class="w-3 h-3"></i> 複製此段指令
+              </button>
+            </div>
+          `;
+          item.querySelector('button').addEventListener('click', () => {
+            copyText(c.body, '指令提示詞已複製！');
+          });
+          modalCommentsList.appendChild(item);
+        });
+        modalCommentsContainer.classList.remove('hidden');
+      } else {
+        modalCommentsContainer.classList.add('hidden');
+      }
+
+      // Footer Actions
+      copyPromptBtn.onclick = () => {
+        let fullText = card.title + '\n\n' + card.body;
+        if (card.comments && card.comments.length > 0) {
+          fullText += '\n\n【提示詞/指引】\n' + card.comments.map(c => c.body).join('\n\n');
+        }
+        copyText(fullText, '卡片完整內容已複製至剪貼簿！');
+      };
+
+      if (card.local_file) {
+        downloadFileBtn.classList.remove('hidden');
+        downloadFileBtn.classList.add('flex');
+        downloadFileBtn.onclick = () => {
+          const a = document.createElement('a');
+          a.href = card.local_file;
+          a.download = card.local_file.split('/').pop();
+          a.click();
+        };
+      } else {
+        downloadFileBtn.classList.add('hidden');
+        downloadFileBtn.classList.remove('flex');
+      }
+
+      if (card.link) {
+        externalLinkBtn.href = card.link;
+        externalLinkText.textContent = `前往 ${card.link_label || '相關連結'}`;
+        externalLinkBtn.classList.remove('hidden');
+        externalLinkBtn.classList.add('flex');
+      } else {
+        externalLinkBtn.classList.add('hidden');
+        externalLinkBtn.classList.remove('flex');
+      }
+
+      cardDetailModal.classList.remove('hidden');
+      setTimeout(() => {
+        cardDetailModal.classList.remove('opacity-0');
+        cardModalContent.classList.remove('scale-95');
+      }, 10);
+      lucide.createIcons();
+    }
+
+    function closeModal() {
+      cardDetailModal.classList.add('opacity-0');
+      cardModalContent.classList.add('scale-95');
+      setTimeout(() => {
+        cardDetailModal.classList.add('hidden');
+        modalMediaContainer.innerHTML = '';
+      }, 200);
+    }
+
+    // Modal navigation
+    modalPrevBtn.addEventListener('click', () => {
+      if (visibleCards.length === 0) return;
+      currentModalCardIndex = (currentModalCardIndex - 1 + visibleCards.length) % visibleCards.length;
+      openModal(visibleCards[currentModalCardIndex]);
+    });
+
+    modalNextBtn.addEventListener('click', () => {
+      if (visibleCards.length === 0) return;
+      currentModalCardIndex = (currentModalCardIndex + 1) % visibleCards.length;
+      openModal(visibleCards[currentModalCardIndex]);
+    });
+
+    modalCloseBtn.addEventListener('click', closeModal);
+    cardDetailModal.addEventListener('click', (e) => {
+      if (e.target === cardDetailModal) closeModal();
+    });
+
+    // Downloads Modal
+    function openDownloads() {
+      downloadsListContainer.innerHTML = '';
+      const filesWithCards = cards.filter(c => c.local_file);
+      document.getElementById('downloadsCount').textContent = filesWithCards.length;
+
+      filesWithCards.forEach(c => {
+        const item = document.createElement('div');
+        item.className = 'p-3 bg-slate-950/60 rounded-xl border border-white/10 flex items-center justify-between gap-3 hover:border-sky-400/50 transition-all';
+        item.innerHTML = `
+          <div class="min-w-0">
+            <h5 class="font-bold text-white truncate text-xs">${c.title}</h5>
+            <p class="text-[11px] text-slate-400 truncate">${c.local_file.split('/').pop()}</p>
+          </div>
+          <a href="${c.local_file}" download class="px-2.5 py-1.5 bg-sky-600 hover:bg-sky-500 text-white rounded-lg font-semibold flex items-center gap-1 flex-none transition-colors">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i> 下載
+          </a>
+        `;
+        downloadsListContainer.appendChild(item);
+      });
+
+      downloadsModal.classList.remove('hidden');
+      setTimeout(() => {
+        downloadsModal.classList.remove('opacity-0');
+        downloadsModal.querySelector('div').classList.remove('scale-95');
+      }, 10);
+      lucide.createIcons();
+    }
+
+    function closeDownloads() {
+      downloadsModal.classList.add('opacity-0');
+      downloadsModal.querySelector('div').classList.add('scale-95');
+      setTimeout(() => {
+        downloadsModal.classList.add('hidden');
+      }, 200);
+    }
+
+    openDownloadsBtn.addEventListener('click', openDownloads);
+    closeDownloadsModalBtn.addEventListener('click', closeDownloads);
+    downloadsModal.addEventListener('click', (e) => {
+      if (e.target === downloadsModal) closeDownloads();
+    });
+
+    // Random Draw
+    randomDrawBtn.addEventListener('click', () => {
+      if (visibleCards.length === 0) return;
+      const randIdx = Math.floor(Math.random() * visibleCards.length);
+      openModal(visibleCards[randIdx]);
+      showToast('🎲 已隨機為您抽出一張卡片！');
+    });
+
+    // CSV Export (Excel Compatible with UTF-8 BOM)
+    exportCsvBtn.addEventListener('click', () => {
+      let csv = '\uFEFF'; // UTF-8 BOM
+      csv += '卡片編號,分欄主題,顏色分類,標題,主要內容,提示詞指引,附件連結,本機檔案\n';
+      
+      cards.forEach((c, idx) => {
+        const row = [
+          idx + 1,
+          `"${(c.section_title || '').replace(/"/g, '""')}"`,
+          `"${(c.color_label || '').replace(/"/g, '""')}"`,
+          `"${(c.title || '').replace(/"/g, '""')}"`,
+          `"${(c.body || '').replace(/"/g, '""')}"`,
+          `"${(c.comments || []).map(cm => cm.body).join(' | ').replace(/"/g, '""')}"`,
+          `"${(c.link || '').replace(/"/g, '""')}"`,
+          `"${(c.local_file || '').replace(/"/g, '""')}"`
+        ];
+        csv += row.join(',') + '\n';
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Gemini就是神奇_全量資料匯出_${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('📊 已成功匯出 Excel 相容 CSV 報表！');
+    });
+
+    // Filter Buttons Click
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('active', 'bg-white/20', 'text-white');
+          b.classList.add('text-slate-300');
+        });
+        btn.classList.add('active', 'bg-white/20', 'text-white');
+        btn.classList.remove('text-slate-300');
+
+        currentFilter = btn.dataset.filter;
+        refreshView();
+      });
+    });
+
+    // Search Input
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim();
+      clearSearchBtn.classList.toggle('hidden', !searchQuery);
+      refreshView();
+    });
+
+    clearSearchBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      searchQuery = '';
+      clearSearchBtn.classList.add('hidden');
+      refreshView();
+    });
+
+    // Column Jump
+    columnJumpSelect.addEventListener('change', (e) => {
+      const targetId = e.target.value;
+      if (!targetId) return;
+      if (currentView !== 'board') setView('board');
+      setTimeout(() => {
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', inline: 'start' });
+          el.classList.add('ring-2', 'ring-purple-400');
+          setTimeout(() => el.classList.remove('ring-2', 'ring-purple-400'), 1500);
+        }
+      }, 50);
+    });
+
+    // View Switcher Buttons
+    viewBoardBtn.addEventListener('click', () => setView('board'));
+    viewGridBtn.addEventListener('click', () => setView('grid'));
+    viewListBtn.addEventListener('click', () => setView('list'));
+
+    // Theme Toggle
+    themeToggleBtn.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // Keyboard Shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement !== searchInput) {
+        e.preventDefault();
+        searchInput.focus();
+      } else if (e.key === 'Escape') {
+        closeModal();
+        closeDownloads();
+      } else if (!cardDetailModal.classList.contains('hidden')) {
+        if (e.key === 'ArrowLeft') modalPrevBtn.click();
+        else if (e.key === 'ArrowRight') modalNextBtn.click();
+      }
+    });
+
+    // Initial Load
+    initStats();
+    setView('board');
+  </script>
+</body>
+</html>

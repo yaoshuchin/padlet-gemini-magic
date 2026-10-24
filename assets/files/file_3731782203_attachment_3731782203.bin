@@ -1,0 +1,82 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <title>Opal [Experiment]</title>
+  <meta
+    property="og:image"
+    content="https://opal.google/images/share-card-prod.png"
+  />
+  <meta property="og:image:width" content="1440" />
+  <meta property="og:image:height" content="810" />
+  <meta
+    name="twitter:image"
+    content="https://opal.google/images/share-card-prod.png"
+  />
+  <link rel="stylesheet" href="/styles/shell.css" />
+  <link
+    rel="stylesheet"
+    href="https://www.gstatic.com/glue/cookienotificationbar/cookienotificationbar.min.css"
+  />
+  <script type="module" crossorigin src="/shell.js"></script>
+  <link rel="modulepreload" crossorigin href="/modulepreload-polyfill-DvzacyrX.js">
+  <link rel="modulepreload" crossorigin href="/oauth-Ko-x6OSf.js">
+  <link rel="modulepreload" crossorigin href="/logger-CEZ4NzCb.js">
+</head>
+<body>
+  <div class="turndown-banner" id="turndown-banner" role="region" aria-label="Product graduation notice">
+    <div class="banner-leading-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" class="info-icon">
+        <path fill="currentColor" d="M11 17h2v-6h-2v6zm1-8q.425 0 .713-.288T13 8q0-.425-.288-.713T12 7q-.425 0-.713.288T11 8q0 .425.288.713T12 9zm0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20zm0-8z"/>
+      </svg>
+    </div>
+    <div class="banner-content">
+      <span class="banner-title">Opal is graduating out of Labs on November 17, 2026, as custom workflows transition to skills in Gemini.</span>
+      <span class="banner-description">Active workflows will no longer run after this date. Your workflow files remain stored in your Google Drive under My Drive &gt; Opal.</span>
+      <a
+        class="banner-action-link"
+        href="https://developers.google.com/opal/faq"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Learn more</a>
+    </div>
+    <div class="banner-actions">
+      <button
+        type="button"
+        class="banner-dismiss-button"
+        id="banner-dismiss-button"
+        aria-label="Dismiss banner"
+      >
+        <svg viewBox="0 0 24 24" class="close-icon" aria-hidden="true">
+          <path fill="currentColor" d="m12 13.4-4.9 4.9q-.275.275-.7.275t-.7-.275q-.275-.275-.275-.7t.275-.7l4.9-4.9-4.9-4.9q-.275-.275-.275-.7t.275-.7q.275-.275.7-.275t.7.275l4.9 4.9 4.9-4.9q.275-.275.7-.275t.7.275q.275.275.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275L12 13.4Z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <iframe
+    id="opal-app"
+    sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-modals allow-storage-access-by-user-activation allow-downloads allow-top-navigation"
+    allow="clipboard-read; clipboard-write; microphone; camera"
+  ></iframe>
+  <!-- Control for the cookie notification bar. The bar script binds click
+       handlers to elements with this class and manages aria-hidden based on
+       the user's region. Kept off-screen so the library can process it while
+       remaining invisible. Triggered programmatically via showCookieSettings()
+       when the guest iframe's "Manage cookies" link is clicked. -->
+  <button
+    hidden
+    aria-hidden="true"
+    class="glue-cookie-notification-bar-control"
+  ></button>
+  <template>
+    <script type="application/json">
+      {"ALLOWED_REDIRECT_ORIGINS":["https://gemini-autopush.corp.google.com","https://gemini-preprod.corp.google.com","https://gemini-staging.corp.google.com","https://gemini.google.com"],"MEASUREMENT_ID":"G-XR9XVJ2F2Y","BACKEND_API_ENDPOINT":"https://appcatalyst.pa.googleapis.com","ENVIRONMENT_NAME":"prod","GOOGLE_OAUTH_TOKEN_ENDPOINT":"","GOOGLE_OAUTH_AUTH_ENDPOINT":"","GOOGLE_DOCS_API_ENDPOINT":"","GOOGLE_SHEETS_API_ENDPOINT":"","GOOGLE_SLIDES_API_ENDPOINT":"","GOOGLE_DRIVE_API_ENDPOINT":"","GOOGLE_DRIVE_PUBLISH_PERMISSIONS":[{"type":"anyone"}],"GOOGLE_DRIVE_USER_FOLDER_NAME":"Opal","GOOGLE_FEEDBACK_PRODUCT_ID":"5364532","GOOGLE_FEEDBACK_BUCKET":"prod","ALLOW_3P_MODULES":false,"SURVEY_MODE":"on","SURVEY_API_KEY":"AIzaSyDDKBig5pupGWfCcRfxa0R-yjjTTHKWZ-c","SURVEY_NL_TO_OPAL_SATISFACTION_1_TRIGGER_ID":"w43Xnuh10sg9p1fWkLu0SzpAybax","OAUTH_CLIENT":"941581635-8nfsqsiutd5lh3k03147funjfcudq5fm.apps.googleusercontent.com","SHELL_GUEST_ORIGIN":"https://opal.google","SHELL_HOST_ORIGINS":["https://opal-ui.corp.google.com","https://opal.goog","https://opal.google","https://opal.google.com"],"SHELL_PREFIX":"","SHARE_SURFACE_URL_TEMPLATES":{"gemini":"https://gemini.google.com/gem-labs/{fileId}?resourcekey={resourceKey}"},"FAKE_MODE":false,"DEV_BACKEND_MODE":false,"domains":{"google.com":{"disallowPublicPublishing":true,"preferredUrl":"https://opal.corp.goog/"}},"flags":{"mcp":false,"force2DGraph":false,"consistentUI":false,"opalAdk":false,"outputTemplates":false,"googleOne":false,"enableNotebookLm":false,"enableResumeAgentRun":false,"enableGraphEditorAgent":false,"enableDevTools":false,"textEditorRemix":false,"showTokenCounter":false,"enableOpalBackend":false,"enableSessionsBackend":false,"enableSingletonPrefixCache":true,"enableAssetAccessConsent":true,"enableBackendGraphRunner":false,"enableAgentWorkbench":false}}
+    </script>
+  </template>
+  <script
+    src="https://www.gstatic.com/glue/cookienotificationbar/cookienotificationbar.min.js"
+    data-glue-cookie-notification-bar-category="2A"
+    data-glue-cookie-notification-bar-site-id="Opal"
+  ></script>
+</body>

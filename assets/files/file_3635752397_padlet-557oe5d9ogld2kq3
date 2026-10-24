@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<!-- BE GOOD -->
+<html
+  lang="en"
+  data-lang="en"
+  data-country="TW"
+
+  dir="ltr"
+
+  data-environment="production"
+  data-version="v-2610240958-f4a5f-production"
+  data-region="us"
+
+  
+  
+
+
+  data-variant="desktop"
+
+>
+  <head>
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="4JhSo3QUkwjMyQxLd-8Rnzb-WvTcHdDMYq0INs964Hj6fCArp-kOHIEwAYONh8IK6AaAfd3zcYZ_d9jxoSZTGA" />
+
+    <meta name="webmcp-catalog" content="v-2610240958-f4a5f-production.a">
+    <script type="application/json" id="webmcp-anonymous-tools">[{"name":"get_public_padlet_content","title":"Get Public Padlet Content","description":"Get the content of a padlet from its URL, including its posts, comments, sections, and settings.\n\n- Purpose: read the padlet the visitor is currently looking at, or one they have pasted a link to.\n- What this tool returns: { success: true, wall_url: \"...\", wall_public_key: \"...\", padlet: {...} }\n  with the padlet's title, description, format, sections, and posts.\n\nInput:\n- `wall_url`: the URL of the padlet, e.g. https://padlet.com/foo/bar-a1b2c3. Required.\n  On a padlet page this is the address of the page itself.\n\nGuidance for use:\n- There is no id-based lookup and no listing. If you do not have a padlet's URL, you cannot read it.\n- Only padlets readable without signing in are returned. When the padlet exists, a refusal\n  includes why: trashed, archived, password, or private. Sign in for access to your own padlets.\n  A missing padlet comes back as { success: false, message: \"Unauthorized\" }.\n","inputSchema":{"$schema":"https://json-schema.org/draft/2020-12/schema","type":"object","properties":{"wall_url":{"type":"string","maxLength":2048,"description":"The padlet's link (e.g. https://padlet.com/foo/bar-a1b2c3): the link you were given, the `wall_url` a previous call returned, or a link the user pasted. Not a breakout-room or submission link, and not a padlet id: no tool takes a wall_id."}},"required":["wall_url"],"additionalProperties":false},"annotations":{"destructiveHint":false,"idempotentHint":false,"openWorldHint":false,"readOnlyHint":true}}]</script>
+
+    <meta name="realtime-uri" content="wss://padlet.com/_/realtime">
+
+    <title>Members only padlet</title>
+    <meta name="description" content="Padlet">
+
+    
+
+
+    <script nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+//<![CDATA[
+
+      (function() {
+        if (!window.ww) { window.ww = {} }
+        window.ww.vueStartingState = {"title":"\u003cspan class=\"text-grape-500 dark:text-canary-500\"\u003eHey stranger!\u003c/span\u003e\u003cbr /\u003eThis padlet is for registered users only.","description":"Please log in to your account to access this padlet.","ctaButtons":[{"text":"Log in","url":"https://padlet.com/auth/login?library_id=307341\u0026referrer=https%3A%2F%2Fpadlet.com%2Fseveralplacescience%2Fpadlet-557oe5d9ogld2kq3","colorScheme":"Primary"}],"helperHtml":"Don't have an account?\u003cbr /\u003e\u003ca href=\"https://padlet.com/auth/signup?referrer=https%3A%2F%2Fpadlet.com%2Fseveralplacescience%2Fpadlet-557oe5d9ogld2kq3\"\u003eSign up to access this padlet\u003c/a\u003e","currentUser":{"id":6549535398,"name":"","short_name":"Anonymous","username":null,"identities":{},"avatar":"https://padlet.net/identicons/6549535398.png","lang":null,"status":null,"role":null,"email":null,"is_teacher":null,"bio":"","tenant_id":1,"created_at":"2026-10-24T18:20:54.469Z","updated_at":"2026-10-24T18:20:54.469Z","registered_at":null,"paying_for_self_only":false,"period":null,"membership_tier":"neon","just_registered":false,"is_emailless_library_user":false,"paying":false,"quota":{"walls_used":0,"walls_limit":0,"can_make":false,"advertized_max_upload_megabytes":20.0,"advertized_walls_limit":3,"max_upload_megabytes":30.0},"tenant_type":"native","is_beta_feature_preview_enabled":false,"is_keyboard_shortcuts_enabled":true,"is_app_messages_auto_dismissed":true,"high_contrast_mode_preference":"system","reduced_motion_preference":"system","days_before_freeze":-1,"is_over_quota_due_to_sandboxes":false,"is_verified":false,"visible":true,"account_type":null,"personal_pricing_plan_variant":null,"is_archive_enabled":false,"trial_days_left":0,"is_trial_expired":false,"trial_duration_days":60,"eligible_for_self_serve_trial":false},"flip":{"deprecateDrivePage":true,"openInAppOnAccessGate":false,"viewAsPreview":false},"isWhiteboard":false,"viewAsPreview":null}
+      })()
+
+//]]>
+</script>  <script src="https://padlet.net/ui/assets/access_request-BrCge_lQ.js" crossorigin="anonymous" type="module" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ=="></script><link rel="modulepreload" href="https://padlet.net/ui/assets/global-CpCjIuYN.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/rolldown-runtime-J3Lr-zdd.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/browser-BXmeXvrZ.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/error_tracker-CQe_mKbR.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/device-B5ALKwF9.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/cookie-CEqx94ke.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/safe_storage-BzJFy-4z.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/environment-ooZbw_Wx.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/flip-BYr67gkb.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/csrf_token-DTFRETV7.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/location-DTd85F6R.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/current_locale-tJ0CHQBu.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/overwrite_host-BiGsEiMY.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/url-Bw5XlU9x.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/desktop_analytics-Chhg6xWl.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/analytics-B3bD9QJf.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/runtime-core.esm-bundler-7FNXRhDl.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/runtime-dom.esm-bundler-CHq0IBnd.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/dom-DetimtHn.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/preload-helper-Jfcj8d48.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/dynamic_import-CFIFZKy2.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/window-MUHxQGy3.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/intl-CCK_gf9x.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/es-toolkit-eDF9T0xb.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/fetch-DzJExmO8.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/src-BXw1CmXa.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/pinia-DI9TiKLY.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/vue-C2fDH_X_.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/app_link-EDHTVNJU.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/html-CJe9CqcY.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/enums-CA-0nUvu.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/surface_view_as_preview-TcUY5v_n.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/color-DJZt5IrL.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/surface_colors-CnGb8ocJ.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/wall_admin_role_label-2O5fs9_W.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/wall_access_role_labels-CYBwWkew.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/OzBaseButton-Dds2SUMf.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/OzIcon-Cffij13s.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/window_size-BWL7WKkW.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/floating-ui.dom-4m1zaS5C.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/floating-Bx_KXIEf.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/resize_observer-CVSreD2U.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/ViewAsPreviewNotice-DKUomT3O.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/OzContainedButton-BD1pY6SR.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/OzIconButton-BEfCk-FY.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/_plugin-vue_export-helper-_rB9r3dA.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/OzInput-DJnb4wFB.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/OzPadletCraneIcon-CC9ztZlX.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/OzPadletCrane-D2BS3V4_.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/OzPadletLogo-ASKHWRAQ.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/OzPlainButton-B0yvfxVy.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/json_stringify-CfNa0lva.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/user_model-DXMoXHFa.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/api_fetch-Dl2nr2ty.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/api_url_interpolate-CgzkLaV1.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/fetchable_object-Creei8C6.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/shared-Bhn6t812.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/core-BKcjEHe3.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/accessibility_settings_store-DxOah1o8.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/view_as_preview_read_only-CAaGNm7T.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/AccessRequestBackgroundIllustration-DA7TXQBj.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/OzDropdownButton-B5maCO9I.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/arcade_game_type_labels-FNn3yaXL.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/vivaldi_client-yicvKW0s.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/types-vw0cEsrr.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/beethoven_client-dzsfMFgd.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/beethoven-C5JCUF6z.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/arcade_url-BjJg_qiM.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/native_link_payload-Bckrwkd6.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/actions-zA-85Abk.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/post_message-BLZhwbC7.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/bridge_url-D52DlhmP.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/locale-CEC6BIAV.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/resize_observer-DSHwCgHb.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/OzBox.types-CI5JTotg.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/OzBox-CSiGoi8V.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/OzFocusTrap-BxQruizF.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/OzOverlay-CcNe2J7O.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/OzPopoverModal-CstU_fr5.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/OzPopoverModal.anchor-B05gSB4n.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/LocaleSelector-w8I4IM5e.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/AccessRequestFooter-8NSsnZ5D.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/current_dir-C0ruPOHF.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/GlobalSnackbar-D4eClYV4.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/SurfaceButtonJoint-DFcSvDcb.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/useAccessibilitySettings-JQecUenO.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/useHighContrastMode-CcoopLx7.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<link rel="modulepreload" href="https://padlet.net/ui/assets/useReducedMotionMode-B26c5b04.js" as="script" crossorigin="anonymous" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ=="><link rel="stylesheet" href="https://padlet.net/ui/assets/access_request-3Z8SxNjF.css" media="screen" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==" />
+<link rel="stylesheet" href="https://padlet.net/ui/assets/tailwind-CFtCIApx.css" media="screen" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==" />
+<link rel="stylesheet" href="https://padlet.net/ui/assets/OzInput-CJwQ_n3w.css" media="screen" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==" />
+<link rel="stylesheet" href="https://padlet.net/ui/assets/OzPadletCrane-rraLR_W1.css" media="screen" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==" />
+<link rel="stylesheet" href="https://padlet.net/ui/assets/OzPadletLogo-BFkwnn9z.css" media="screen" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==" />
+<link rel="stylesheet" href="https://padlet.net/ui/assets/AccessRequestBackgroundIllustration-CCWvaffT.css" media="screen" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==" />
+<link rel="stylesheet" href="https://padlet.net/ui/assets/OzOverlay-aJY3i4NS.css" media="screen" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==" />
+<link rel="stylesheet" href="https://padlet.net/ui/assets/GlobalSnackbar-D4u-C68u.css" media="screen" fetchpriority="high" nonce="/O3+8HeoNw+aVg+Ru00WFQ==" />
+  
+  
+  
+  
+  
+
+
+      <script nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+//<![CDATA[
+('hasOwn' in Object) || (Object.hasOwn = Object.call.bind(Object.hasOwnProperty));
+//]]>
+</script>
+  <script nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+//<![CDATA[
+
+    if (!Array.prototype.toSorted) {
+      Array.prototype.toSorted = function(compareFn) {
+        return [...this].sort(compareFn);
+      };
+    }
+  
+//]]>
+</script>
+
+
+    <link rel="preload" href="https://padlet.net/fonts/inter/subset/inter-latin.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+    <link rel="manifest" href="/manifest.json">
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="rgb(17,17,17)" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="rgb(255,255,255)" media="(prefers-color-scheme: light)">
+
+    <meta property="og:title" content="Members only padlet" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://padlet.com/severalplacescience/padlet-557oe5d9ogld2kq3" />
+<meta property="og:image" content="https://padlet.net/meta/opengraph.jpg" />
+<meta property="og:description" content="" />
+<meta property="og:site_name" content="Padlet" />
+<meta property="fb:app_id" content="166448900169195" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@padlet">
+<meta name="twitter:title" content="Members only padlet">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://padlet.net/meta/opengraph.jpg">
+
+    <link rel="icon" href="https://padlet.net/favicon.ico" sizes="32x32" />
+<link rel="icon" type="image/svg+xml" href="https://padlet.net/favicon.svg" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://padlet.net/apple-touch-icon.png" />
+
+    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/kcljbbiddpoeaknnjaminoceoojdbikp">
+<link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/ppckapbnfhikdajgehibjapcohbaomhd">
+<meta name="application-name" content="Padlet" />
+<meta name="msapplication-TileImage" content="https://padlet.net/assets/ie10-tile-42822db34f1934a4c2b3e61cc9907a61393a70dae4d4335103b2815a8e285493.png" />
+<meta name="msapplication-TileColor" content="#fe2e9a" />
+<meta name="msapplication-task" content="name=Home;action-uri=https://padlet.com/;icon-uri=https://padlet.net/assets/home-32-c671a7751d3b44498697f84b2d4180f7c36462d5c12da2c9aecfe4c1409a36c9.ico" />
+<meta name="msapplication-task" content="name=My padlets;action-uri=https://padlet.com/account/walls;icon-uri=https://padlet.net/assets/grid-32-7326a51b5665f92ccb0963eb3bec19423710544dae29597f780d65a1c4cac182.ico" />
+<meta name="msapplication-task" conent="name=Create;action-uri=https://padlet.com/create;icon-uri=https://padlet.net/assets/plus-32-c3c006e2fbbb7ef4a6ed1c78403e4de3d20482499888f10e2e14daf5b1f03492.ico" />
+<meta content='yes' name='apple-mobile-web-app-capable'>
+<meta content='Padlet' name='apple-mobile-web-app-title'>
+<link href='https://padlet.net/assets/ios_startup-ac284ff63cbc0e1761e36fc82698c42739d55d62c4af13dfc10b589d4df1cf2c.png' rel='apple-touch-startup-image'>
+<meta content='yes' name='mobile-web-app-capable'>
+<link href='/android-chrome-192x192.png' rel='icon' sizes='192x192'>
+
+    
+
+    <script nonce="/O3+8HeoNw+aVg+Ru00WFQ==">window.$pepinTraits = {"userRegistration":"Anonymous","userId":"6549535398","tenantId":"1","userAge":0,"userPlanName":"vanilla","userCreatedAt":"2026-10-24T18:20:54.469Z","wallId":"245289098","wallBuilderId":"1736270122","wallTenantId":"1","wallLibraryId":"307341","wallCreatedAt":"2025-10-16T12:14:38.662Z","wallFormat":"grid"}</script>
+<link rel="preconnect" href="https://pepin.padlet.com/" crossorigin >
+<script src="https://padlet.net/ui/assets/utm-DPqOeLqX.js" crossorigin="anonymous" type="module" nonce="/O3+8HeoNw+aVg+Ru00WFQ=="></script><link rel="modulepreload" href="https://padlet.net/ui/assets/global-CpCjIuYN.js" as="script" crossorigin="anonymous" nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+<script nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+//<![CDATA[
+
+window.addEventListener('load', function() {
+  (function(){"use strict";window.RudderSnippetVersion="3.0.60";var e="rudderanalytics";window[e]||(window[e]=[]);var t=window[e];if(Array.isArray(t)){if(!0===t.snippetExecuted&&window.console&&console.error)console.error("RudderStack JavaScript SDK snippet included more than once.");else{t.snippetExecuted=!0,window.rudderAnalyticsBuildType="modern";var n="async",i=["setDefaultInstanceKey","load","ready","page","track","identify","alias","group","reset","setAnonymousId","startSession","endSession","consent"];for(var o in i){var r=i[o];t[r]=function(t){return function(){if(Array.isArray(window[e]))window[e].push([t].concat(Array.prototype.slice.call(arguments)));else{var n;(n=window[e][t])&&n.apply(window[e],arguments)}}}(r)}var a=document.head||document.getElementsByTagName("head")[0],d=document.body||document.getElementsByTagName("body")[0];window.rudderAnalyticsAddScript=function(e,t,i){var o=document.createElement("script");o.src=e,o.setAttribute("data-loader","RS_JS_SDK"),t&&i&&o.setAttribute(t,i),"async"===n?o.async=!0:"defer"===n&&(o.defer=!0),a?a.insertBefore(o,a.firstChild):d.insertBefore(o,d.firstChild)},window.rudderAnalyticsMount=function(){!function(){"undefined"==typeof globalThis&&function(){var e="undefined"!=typeof self?self:"undefined"!=typeof window?window:null;e&&Object.defineProperty(e,"globalThis",{value:e,configurable:!0})}()}(),window.rudderAnalyticsAddScript("https://padlet.net/v3/modern/rdd-v3.min.js","data-rsa-write-key","22crxVC2QvBTRHCDzJOaFA68siE")},window.rudderAnalyticsMount()}}})();
+
+  const sourceConfig = {
+    polyfillIfRequired: false,
+    storage: {
+      encryption: {
+        version: "legacy"
+      },
+      type: "none",
+      // @see https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-javascript-sdk/data-storage-cookies/#cookies
+      entries: {
+        anonymousId: {
+          type: "localStorage"
+        },
+        initialReferrer: {
+          type: "localStorage"
+        }
+      }
+    },
+    getSourceConfig: () => ({
+      updatedAt: new Date().toISOString(),
+      source: {
+        name: "Webapp Prod",
+        id: "22crxRwu6nFSukFa0fVbUzedrLD",
+        workspaceId: "20j5he3cdMxos8Iw9YC1rXtCyXc",
+        writeKey: "22crxVC2QvBTRHCDzJOaFA68siE",
+        updatedAt: new Date().toISOString(),
+        config: {
+          statsCollection: {
+            errors: { enabled: false },
+            metrics: { enabled: false }
+          }
+        },
+        enabled: true,
+        destinations: []
+      }
+    })
+  };
+  rudderanalytics.load("22crxVC2QvBTRHCDzJOaFA68siE", "https://pepin.padlet.com/", sourceConfig);
+
+  const pageOptions = { traits: window.$pepinTraits };
+  if (window.$utmParams != null) {
+    pageOptions.context = { campaign: window.$utmParams };
+  }
+  if (window.padlet?.analyticsContext) {
+    pageOptions.context = { ...pageOptions.context, desktop: window.padlet.analyticsContext };
+  }
+  rudderanalytics.page(undefined, undefined, undefined, pageOptions)
+});
+
+//]]>
+</script>
+    
+    
+    
+
+  </head>
+  <body ww-capabilities="" ww-device-supported="">
+    
+
+<div id="access_request" />
+
+    <script nonce="/O3+8HeoNw+aVg+Ru00WFQ==">
+//<![CDATA[
+
+if (navigator.serviceWorker) {
+  const previousServiceWorkerPath = '/sw.js?version=202410010000'
+  const currentServiceWorkerPath = '/sw.js?version=202505230000'
+
+  if (
+    navigator.serviceWorker.controller != null &&
+    navigator.serviceWorker.controller.scriptURL.includes(previousServiceWorkerPath)
+  ) {
+    navigator.serviceWorker.getRegistrations().then(function (registrations) {
+      for (const i in registrations) {
+        const registration = registrations[i]
+        if (
+          registration.active != null &&
+          registration.active.scriptURL.includes(previousServiceWorkerPath)
+        ) {
+          registration.unregister()
+        }
+      }
+    })
+  }
+
+  navigator.serviceWorker
+    .register(currentServiceWorkerPath)
+    .then(function (reg) {
+      // console.log('[Companion]', 'Service worker registered!');
+    })
+    .catch(function (error) {
+      // console.warn('[Companion]', 'Service worker failed to register with the following error:', error);
+    })
+}
+
+//]]>
+</script>
+  <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4faff877bc0f1f4',t:'MTc5Mjg2NjA1NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
+

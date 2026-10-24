@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<!-- BE GOOD -->
+<html
+  class="show interactive" lang="en" data-lang="en" data-dir="ltr" data-environment="production" data-version="v-2610240958-f4a5f-production" data-region="us" data-locale="en" data-layout="grid" data-country="TW"  
+  
+>
+  <head>
+    <meta name="realtime-uri" content="wss://padlet.com/_/realtime">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+      <link rel="manifest" href="/manifest.json?start_url=https%3A%2F%2Fpadlet.com%2Fseveralplacescience%2Fpadlet-m97t23zk82758g1j&title=%E6%B8%AC%E9%A9%97%E7%94%9F%E6%88%90&icon=">
+
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="I0qfwU-HMrvl5i5KYMln4387MCq5UwxJdA1FZv-DDAVPsJ60lo_962_PUjYfJtq8_uw7ReozmnvKqCPozOW7mA" />
+    
+
+
+        <link rel="icon" href="https://padlet.net/favicon.ico" sizes="32x32" />
+<link rel="icon" type="image/svg+xml" href="https://padlet.net/favicon.svg" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://padlet.net/apple-touch-icon.png" />
+
+
+
+      <meta name="description" content="Made with Padlet">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://padlet.com/severalplacescience/padlet-m97t23zk82758g1j">
+  <meta property="og:title" content="測驗生成">
+  <meta property="og:description" content="Made with Padlet">
+  <meta property="og:image" content="https://padlet.net/social-previews/board/m97t23zk82758g1j/opengraph.jpg?ts=1773737973">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:updated_time" content="2026-03-17 08:59:33 UTC">
+  <meta property="og:site_name" content="Padlet" />
+  <meta property="fb:app_id" content="166448900169195" />
+  <meta name="twitter:site" content="@padlet">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="測驗生成">
+  <meta name="twitter:description" content="Made with Padlet">
+  <meta name="twitter:image" content="https://padlet.net/social-previews/board/m97t23zk82758g1j/twitter.jpg?ts=1773737973">
+
+      <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","url":"https://padlet.com/severalplacescience/padlet-m97t23zk82758g1j","name":"測驗生成","description":"Made with Padlet","keywords":"","dateModified":"2026-03-17T08:59:33.722Z","dateCreated":"2026-01-12T03:38:30.621Z","author":{"@type":"Person","name":"臺中市資訊教育議題分團輔導員","url":"https://padlet.com/moodlela"},"creator":"臺中市資訊教育議題分團輔導員","image":"https://padlet.net/social-previews/board/m97t23zk82758g1j/opengraph.jpg?ts=1773737973"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://padlet.com/moodlela","name":"臺中市資訊教育議題分團輔導員","image":"https://lh3.googleusercontent.com/a-/AOh14GjPK1fXgOnYOp82G4gm3oLfMu1HMtLHXrYw3CR8=s96-c"}},{"@type":"ListItem","position":2,"item":{"@id":"https://padlet.com/severalplacescience/padlet-m97t23zk82758g1j","name":"測驗生成","image":"https://padlet-artifacts.storage.googleapis.com/7c333ec289325bfaf1e1ad958588df4b3d3ed2c4/c767c2c666349bd37c11d0a8cecc3bc5-h-3e8f54ee56a970eec79100a3f90e2068.jpg"}}]}
+</script>
+
+
+      <title>測驗生成</title>
+
+    <link rel="alternate" type="application/rss+xml" title="測驗生成" href="https://padlet.com/padlets/m97t23zk82758g1j/exports/feed.xml?token=a12b078c61b5c142bfd1b1fe62f17b01" />
+    <link rel="canonical" href="https://padlet.com/severalplacescience/padlet-m97t23zk82758g1j" />
+    <meta name="theme-color" content="rgb(235,229,224)">
+    <meta content="Vlu6bFyu0MZRb2mOd4CKPsSpUQ3Ca/JGklE14vPPYAc=" name="verify-v1" />
+    <script nonce="gQ7sLhYjJfuY9pL2TL+WFw==">window.$pepinTraits = {"userRegistration":"Anonymous","userId":"6549536121","tenantId":"1","userAge":0,"userPlanName":"vanilla","userCreatedAt":"2026-10-24T18:21:07.774Z","wallId":"253131860","wallBuilderId":"1736270122","wallTenantId":"1","wallLibraryId":"307341","wallCreatedAt":"2026-01-12T03:38:30.621Z","wallFormat":"grid"}</script>
+<link rel="preconnect" href="https://pepin.padlet.com/" crossorigin >
+<script src="https://padlet.net/ui/assets/utm-DPqOeLqX.js" crossorigin="anonymous" type="module" nonce="gQ7sLhYjJfuY9pL2TL+WFw=="></script><link rel="modulepreload" href="https://padlet.net/ui/assets/global-CpCjIuYN.js" as="script" crossorigin="anonymous" nonce="gQ7sLhYjJfuY9pL2TL+WFw==">
+<script nonce="gQ7sLhYjJfuY9pL2TL+WFw==">
+//<![CDATA[
+
+window.addEventListener('load', function() {
+  (function(){"use strict";window.RudderSnippetVersion="3.0.60";var e="rudderanalytics";window[e]||(window[e]=[]);var t=window[e];if(Array.isArray(t)){if(!0===t.snippetExecuted&&window.console&&console.error)console.error("RudderStack JavaScript SDK snippet included more than once.");else{t.snippetExecuted=!0,window.rudderAnalyticsBuildType="modern";var n="async",i=["setDefaultInstanceKey","load","ready","page","track","identify","alias","group","reset","setAnonymousId","startSession","endSession","consent"];for(var o in i){var r=i[o];t[r]=function(t){return function(){if(Array.isArray(window[e]))window[e].push([t].concat(Array.prototype.slice.call(arguments)));else{var n;(n=window[e][t])&&n.apply(window[e],arguments)}}}(r)}var a=document.head||document.getElementsByTagName("head")[0],d=document.body||document.getElementsByTagName("body")[0];window.rudderAnalyticsAddScript=function(e,t,i){var o=document.createElement("script");o.src=e,o.setAttribute("data-loader","RS_JS_SDK"),t&&i&&o.setAttribute(t,i),"async"===n?o.async=!0:"defer"===n&&(o.defer=!0),a?a.insertBefore(o,a.firstChild):d.insertBefore(o,d.firstChild)},window.rudderAnalyticsMount=function(){!function(){"undefined"==typeof globalThis&&function(){var e="undefined"!=typeof self?self:"undefined"!=typeof window?window:null;e&&Object.defineProperty(e,"globalThis",{value:e,configurable:!0})}()}(),window.rudderAnalyticsAddScript("https://padlet.net/v3/modern/rdd-v3.min.js","data-rsa-write-key","22crxVC2QvBTRHCDzJOaFA68siE")},window.rudderAnalyticsMount()}}})();
+
+  const sourceConfig = {
+    polyfillIfRequired: false,
+    storage: {
+      encryption: {
+        version: "legacy"
+      },
+      type: "none",
+      // @see https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-javascript-sdk/data-storage-cookies/#cookies
+      entries: {
+        anonymousId: {
+          type: "localStorage"
+        },
+        initialReferrer: {
+          type: "localStorage"
+        }
+      }
+    },
+    getSourceConfig: () => ({
+      updatedAt: new Date().toISOString(),
+      source: {
+        name: "Webapp Prod",
+        id: "22crxRwu6nFSukFa0fVbUzedrLD",
+        workspaceId: "20j5he3cdMxos8Iw9YC1rXtCyXc",
+        writeKey: "22crxVC2QvBTRHCDzJOaFA68siE",
+        updatedAt: new Date().toISOString(),
+        config: {
+          statsCollection: {
+            errors: { enabled: false },
+            metrics: { enabled: false }
+          }
+        },
+        enabled: true,
+        destinations: []
+      }
+    })
+  };
+  rudderanalytics.load("22crxVC2QvBTRHCDzJOaFA68siE", "https://pepin.padlet.com/", sourceConfig);
+
+  const pageOptions = { traits: window.$pepinTraits };
+  if (window.$utmParams != null) {
+    pageOptions.context = { campaign: window.$utmParams };
+  }
+  if (window.padlet?.analyticsContext) {
+    pageOptions.context = { ...pageOptions.context, desktop: window.padlet.analyticsContext };
+  }
+  rudderanalytics.page('Surface', 'Surface Show', undefined, pageOptions)
+});
+
+//]]>
+</script>
+
+<script nonce="gQ7sLhYjJfuY9pL2TL+WFw==">var oldTimeSincePageLoad;window.ww||(window.ww={}),ww.analytics={},oldTimeSincePageLoad=null,ww.analytics.trackTiming=function(e,n){var a,t;if(window.performance)return a=(t=performance.now())-(oldTimeSincePageLoad||0),oldTimeSincePageLoad=t,a},ww.analytics.trackEventTiming=function(e,n,a,t){return null},ww.analytics.trackEvent=function(e,n,a,t){if(null!=n)return null};</script>
+
+
+
+      <link rel="preload" href="https://padlet.net/ui/assets/inter_subset-D5WHbF5u.css" as="style" type="text/css" nonce="gQ7sLhYjJfuY9pL2TL+WFw=="><link rel="stylesheet" href="https://padlet.net/ui/assets/inter_subset-D5WHbF5u.css" nonce="gQ7sLhYjJfuY9pL2TL+WFw==" />
+      <link rel="preload" href="https://padlet.net/ui/assets/kit-CclH2eRr.css" as="style" type="text/css" nonce="gQ7sLhYjJfuY9pL2TL+WFw=="><link rel="stylesheet" href="https://padlet.net/ui/assets/kit-CclH2eRr.css" media="screen" nonce="gQ7sLhYjJfuY9pL2TL+WFw==" />
+    <link rel="preload" href="https://padlet.net/ui/assets/show-C3KAp0SD.css" as="style" type="text/css" nonce="gQ7sLhYjJfuY9pL2TL+WFw=="><link rel="stylesheet" href="https://padlet.net/ui/assets/show-C3KAp0SD.css" media="screen" nonce="gQ7sLhYjJfuY9pL2TL+WFw==" />
+    <link rel="preload" href="https://padlet.net/ui/assets/print-CE9mj-YA.css" as="style" type="text/css" nonce="gQ7sLhYjJfuY9pL2TL+WFw=="><link rel="stylesheet" href="https://padlet.net/ui/assets/print-CE9mj-YA.css" media="print" nonce="gQ7sLhYjJfuY9pL2TL+WFw==" />
+
+
+      <link rel="preload" href="https://padlet.net/ui/assets/grid-CpvpgunD.css" as="style" type="text/css" nonce="gQ7sLhYjJfuY9pL2TL+WFw=="><link rel="stylesheet" href="https://padlet.net/ui/assets/grid-CpvpgunD.css" nonce="gQ7sLhYjJfuY9pL2TL+WFw==" />
+      <link rel="preload" href="https://padlet.net/ui/assets/stream-0_PdqDYo.css" as="style" type="text/css" nonce="gQ7sLhYjJfuY9pL2TL+WFw=="><link rel="stylesheet" href="https://padlet.net/ui/assets/stream-0_PdqDYo.css" nonce="gQ7sLhYjJfuY9pL2TL+WFw==" />
+      <link rel="preload" href="https://padlet.net/ui/assets/matrix-BiXGIwzI.css" as="style" type="text/css" nonce="gQ7sLhYjJfuY9pL2TL+WFw=="><link rel="stylesheet" href="https://padlet.net/ui/assets/matrix-BiXGIwzI.css" nonce="gQ7sLhYjJfuY9pL2TL+WFw==" />
+      <link rel="preload" href="https://padlet.net/ui/assets/free-CwgdiBf9.css" as="style" type="text/css" nonce="gQ7sLhYjJfuY9pL2TL+WFw=="><link rel="stylesheet" href="https://padlet.net/ui/assets/free-CwgdiBf9.css" nonce="gQ7sLhYjJfuY9pL2TL+WFw==" />
+      <link rel="preload" href="https://padlet.net/ui/assets/map-tbv3QnER.css" as="style" type="text/css" nonce="gQ7sLhYjJfuY9pL2TL+WFw=="><link rel="stylesheet" href="https://padlet.net/ui/assets/map-tbv3QnER.css" nonce="gQ7sLhYjJfuY9pL2TL+WFw==" />
+
+    
+    
+      <script nonce="gQ7sLhYjJfuY9pL2TL+WFw==">
+//<![CDATA[
+('hasOwn' in Object) || (Object.hasOwn = Object.call.bind(Object.hasOwnProperty));
+//]]>
+</script>
+  <script nonce="gQ7sLhYjJfuY9pL2TL+WFw==">
+//<![CDATA[
+
+    if (!Array.prototype.toSorted) {
+      Array.prototype.toSorted = function(compareFn) {
+        return [...this].sort(compareFn);
+      };
+    }
+  
+//]]>
+</script>
+
+
+    
+    <link rel="preconnect" href="https://v1.padlet.pics" >
+      <img style="display: none;" src="https://v1.padlet.pics/1/image?t=c_scale%2Cdpr_1%2Ce_blur:1000%2Cf_jpg%2Ch_60%2Cw_60&url=https%3A%2F%2Fpadlet.net%2Fwallpapers%2Fv0%2F2b15c53898335155d552a6916277709e%2Fc5fe5ea7%2FBeach.jpg">
+      <style>body{background-image:url("https://v1.padlet.pics/1/image?t=c_scale%2Cdpr_1%2Ce_blur:1000%2Cf_jpg%2Ch_60%2Cw_60&url=https%3A%2F%2Fpadlet.net%2Fwallpapers%2Fv0%2F2b15c53898335155d552a6916277709e%2Fc5fe5ea7%2FBeach.jpg");background-size:cover;}</style>
+    <script nonce="gQ7sLhYjJfuY9pL2TL+WFw==">
+//<![CDATA[
+
+    document.cookie="ww_dpr="+Math.round(window.devicePixelRatio)+"; expires=Tue, 19 Aug 2042 21:56:52 GMT; path=/"
+    ww.uid = "" + (new Date().getTime() + "" + Math.random()).replace(".","");
+    ww.flip = {"accessControlSettingsV2":true,"actionMenu2026":false,"addPostLink":true,"affiliateSignupLink":true,"aiImageSearch":true,"aiPermissionsForAiRecipes":true,"aiPermissionsForImageAndSpeechGeneration":false,"allSlideAsImageWithBanksy":true,"arLensesPreview":false,"arcadeAttachment":true,"attachmentPreviewWidthAdjustmentForGridFormat":true,"banksy":true,"banksyDev":false,"brahmsCheck":false,"classesV1":true,"commentAutoPublishOnUpload":true,"crossPlatformAttachmentSettings":false,"currentSlideAsImageWithBanksy":true,"customEmojiReactions":false,"customPostUserProperty":true,"customPostVoteAndRatingProperties":true,"debugFrontend":false,"defaultDashboardLibraryNavigation":true,"demoPadletPanel":false,"demoPadletSignup":false,"deprecateDrivePage":true,"deprecateGoldPlans":true,"deviceUploads":false,"downloadWallAttachmentsV2":true,"editThumbnail":true,"editThumbnailForAudioVideoFiles":true,"embeddedPadletsOnExpandedPost":true,"embedLogin":false,"exitTicket":false,"expandedViewForTextPosts":false,"fetchLinksWithWishes":true,"fullClientSurface":false,"googleClassroom":true,"googleClassroomGrading":true,"grading":true,"groupPostsV2":false,"higherMonthlyPricingPlans":true,"joypixels8p0":true,"latamSpanishLanguage":false,"libraryGoogleAppLicensing":true,"loadWishesViaSortBy":true,"ltiDeepLinkingMenuV3":false,"maoriLanguage":false,"mapRestrictRegion":false,"microsoftOneDrivePicker":true,"multiSelectCustomProperty":false,"mobileDeviceDprOverride":true,"nativeArCamera":false,"noAccessPageUpdates":true,"onboardingDemoV2":false,"onboardingDemoV2Copy":false,"officeViewerDownApps":[],"onboardingGridLayout":true,"openInAppBanner":true,"openInMobileApp":false,"ozVirtualListVirtua":false,"padletLive":false,"pdndSurfaceGrid":true,"pdndSurfaceMap":true,"pdndSurfaceMatrix":true,"personalPricingPlansExperiment":true,"personalPricingPlansExperimentV2":true,"piChatV2":false,"piInputV2":true,"pinsightInSurface":false,"piSandboxChat":false,"piSubmissionFormWidget":false,"piUndo":false,"platinumResellerSelfServe":true,"playVideoInExpanded":true,"postComposerAttachmentPickerV2":true,"postVisibility":false,"posthogSessionRecording":false,"reactionsToCustomPropertiesMigration":true,"recycleOffscreenPosts":false,"remakeLink":true,"showRemakeLinkQr":true,"joinCodes":false,"removeArchive":true,"renameAdminOwnerToCreator":true,"routeToEurope":false,"rowsSectionScrubber":false,"whiteboardPermissionsV2":false,"sandboxCardScroll":false,"sandboxGeoShapeBorderSettings":true,"sandboxNotePlaceholders":true,"sandboxMultiShapeColorUpdate":true,"sandboxMultiShapeShapeUpdate":false,"sandboxPerCardAllowedTools":false,"sandboxRadialMenu":false,"sandboxSimplifiedRoles":false,"schoolLibraryFreeze":true,"scrollSmoothnessTracking":false,"selfServeFreeTrial":false,"shareShortcuts":true,"showAnonymousUserNames":true,"showCommandPalette":false,"sidePanelsV2":true,"signUpSurface":true,"slideshowRemote":false,"slideshowSwipeNavigation":true,"surfaceAiChat":false,"surfaceAiChatSchools":false,"surfaceCommentsPerPost":false,"surfaceCommentVideoPlayer":false,"surfaceConnectionsChange":false,"surfaceContributorsModalV2":false,"surfacePostVideoPlayer":false,"surfaceLibraryOrgVisitorPermissions":false,"surfaceMapsV2":false,"surfaceRoleBadges":true,"surfaceShiftTextSelection":false,"surfaceTranslateFeedback":true,"swipeNavigationOnBoardExpandedView":false,"tableColumnHeaderSorting":false,"tamilLanguage":false,"threeDAttachment":false,"transferPostWithCustomProperties":false,"transferSchoolPadletPermission":true,"translatePadlet":true,"translatePadletV2":true,"unicodeFontLoading":false,"unlimitedSandboxesEventOverQuotaBanner":true,"unlimitedSandboxesV2":true,"upgradeModalCopyAExperiment":true,"upgradeModalSingleStepExperiment":true,"useGoogleViewerForMicrosoftFiles":false,"viewAsPreview":false,"virtualFieldTrip":false,"virtualFieldTripNarration":false,"virtualizedColumns":false,"virtualizedPostsGrid":false,"virtualizedSurfaceLists":false,"wallContentProtection":true,"wallEngagementTime":true,"wallEngagementTimeTracking":true,"captionsTranslation":false,"translationFeedback":false};
+
+//]]>
+</script>  </head>
+  <body ww-app-env="production" ww-app-version="v-2610240958-f4a5f-production" ww-app-variant="desktop" ww-variant-version="" ww-capabilities="" ww-device-supported="" class="variant-desktop" data-behavior="background-holder" data-color-scheme="light" data-font="1">
+    <script nonce="gQ7sLhYjJfuY9pL2TL+WFw==">
+//<![CDATA[
+
+  var img = new Image()
+  img.onload = function() {document.querySelector("body").style.backgroundSize = "cover";document.querySelector("body").style.backgroundImage = 'url('+img.src+')';}
+  img.src = "https://v1.padlet.pics/1/image?t=c_lfill,dpr_1,f_auto,g_auto,h_{height},q_auto:best,w_{width}&url=https%3A%2F%2Fpadlet.net%2Fwallpapers%2Fv0%2F2b15c53898335155d552a6916277709e%2Fc5fe5ea7%2FBeach.jpg".replace("{width}", screen.width).replace("{height}", screen.height)
+
+//]]>
+</script>
+      <div id="diagnostics">
+    Trouble viewing this page? Go to our <a href="/diagnostics" target="_blank">diagnostics page</a> to see what's wrong.
+  </div>
+
+    <link rel="preload" as="fetch" id="starting-state-preload" href="/api/11/padlet_starting_state?token=eklDRHh3Y0FjR0Y1Ykc5aFpONEFJY2NIQUhWelpYSmZhV1RQQUFBQUFZWmgvWG5IQndCM1lXeHNYMmxremc4V2ZGVEhFd0JpY21WaGEyOTFkRjl6WldOMGFXOXVYMmxrd01jYkFITmxZM1JwYjI1ZlluSmxZV3R2ZFhSZmFXUmxiblJwWm1sbGNzREhEUUJpY21WaGEyOTFkRjlzYVc1cndNY1ZBR2x6WDNOMVltMXBjM05wYjI1ZmNtVnhkV1Z6ZE1MSEdRQm1jbUZ0WlY5aWNtVmhhMjkxZEY5cFpHVnVkR2xtYVdWeXdNY05BR2x6WDJacGNuTjBYM1pwWlhmQ3h3d0FhWE5mY21WaFpGOXZibXg1d3NjU0FHbHpYM05wYlhCc2FXWnBaV1JmZG1sbGQ4TEhFZ0JwYzE5elkzSmxaVzV6YUc5MFgyMXZaR1hDeHhzQWVGOWhkWFJvYjNKZmFXNWZjMk55WldWdWMyaHZkRjl0YjJSbHc4Y2VBSGhmY21WaFkzUnBiMjV6WDJsdVgzTmpjbVZsYm5Ob2IzUmZiVzlrWmNQSEhRQjRYMk52YlcxbGJuUnpYMmx1WDNOamNtVmxibk5vYjNSZmJXOWtaY1BIR1FCNFgyeHZaMjlmYVc1ZmMyTnlaV1Z1YzJodmRGOXRiMlJsdzhjTEFHbHpYMlZ0WW1Wa1pHVmt3c2NWQUhoZlpXMWlaV1JmYUdWaFpHVnlYMmx1WDJGd2NNTEhEd0JwYzE5c2RHbGZaVzFpWldSa1pXVEN4d3NBYVhOZmJIUnBYM1l4Y0REQ3h4d0FhWE5mWjI5dloyeGxYMk5zWVhOemNtOXZiVjlsYldKbFpHUmxaTUxISVFCbmIyOW5iR1ZmWTJ4aGMzTnliMjl0WDJGMWRHaHZjbDlwWkY5bWFXeDBaWExBeHhzQWFYTmZiV2xqY205emIyWjBYM1JsWVcxelgyVnRZbVZrWkdWa3dzY2RBR2x6WDNkb2FYUmxZbTloY21SZlpXMWlaV1JmY0d4aGVWOXRiMlJsd3NjVkFHUmxabUYxYkhSZmNHUm1YM0JoWjJWZmMybDZaYUpoTk1jTUFHbHpYM05zYVdSbGMyaHZkOExIRFFCcGMxOW1hV1ZzWkY5MGNtbHd3c2NQQUcxaFoybGpYM2RoYkd4ZmRIbHdaY0RIRGdCblpXNWxjbUYwYVc1blgzQmtac0xIQ3dCaGNuWnZYMk52Ym1acFo0TEhCd0JqWkc1SWIzTjB0R0Z6YzJWMGN5NXdZV1JzWlhSalpHNHVZMjl0eHdVQWRHOXJaVzZCeHdvQWIyRjFkR2hVYjJ0bGJ0bElhaloxYldwRE5WOHlOVEJrTkdJME56Wm1NVFl4WTJGbVlqVXpNRFF5T0dNeE16RTJNMlJqT0dGa01qUTFNREpoTldSa01qUmpOalU0TVRZMFkySm1ObVV5T1RBd01qTmx4eFVBYjJKcVpXTjBYM0psWjJsdmJsOXliM1YwYVc1bndzY1VBR2x1ZG1sMFpWOXFkWE4wWDJGalkyVndkR1Zrd3NjakFIQmhjbUZ0WDNCdmMzUmZiVzlrWlhKaGRHbHZibDloWTNScGIyNWZjbVZ6ZFd4MHdNY21BSEJoY21GdFgyTnZiVzFsYm5SZmJXOWtaWEpoZEdsdmJsOWhZM1JwYjI1ZmNtVnpkV3gwd01jS0FHVjRjR2x5WlhOZllYVEhEd2pPYXR6K0c4NHlncTZqQUtOVlZFUEhCZ0JqWVd4c1pYSzhjM1Z5Wm1GalpWOXpkR0Z5ZEdsdVoxOXpkR0YwWlM1eVlqbzBOZz09LS1iMmM2NDQ0NjlkYTZhODFlYmMwNDk1ODc0OWQ0NjJmYTA5YjNhZDhl" />
+  <link rel="preload" as="fetch" id="wishes-preload" href="/api/10/wishes?wall_hashid=board_qNEMvPoVVOB3y572&amp;page_start=&amp;v=1792866067" />
+<link rel="preload" href="https://padlet.net/fonts/inter/subset/inter-latin.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="https://padlet.net/ui/assets/Oricons-D6A99Hew.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+
+
+<style>
+  .padlet-asset-load-fallback {
+    align-items: center;
+    background: #ffffff;
+    color: #111111;
+    display: none;
+    font-family: 'Inter var', Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    inset: 0;
+    justify-content: center;
+    padding: 24px;
+    position: fixed;
+    text-align: center;
+    z-index: 2147483647;
+  }
+
+  .asset-load-failed .padlet-asset-load-fallback,
+  .asset-load-retrying .padlet-asset-load-fallback {
+    display: flex;
+  }
+
+  .padlet-asset-load-fallback [data-state] {
+    display: none;
+  }
+
+  .asset-load-retrying .padlet-asset-load-fallback [data-state="retrying"],
+  .asset-load-failed .padlet-asset-load-fallback [data-state="dead-end"] {
+    display: block;
+  }
+
+  .padlet-asset-load-fallback__content {
+    max-width: 360px;
+  }
+
+  .padlet-asset-load-fallback__title {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.019em;
+    line-height: 32px;
+    margin: 0 0 4px;
+  }
+
+  .padlet-asset-load-fallback__body {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 17px;
+    letter-spacing: -0.013em;
+    line-height: 24px;
+    margin: 0 0 28px;
+  }
+
+  .padlet-asset-load-fallback__button {
+    background: #ff4081;
+    border: 0;
+    border-radius: 16px;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.013em;
+    min-height: 40px;
+    padding: 0 20px;
+  }
+
+  .padlet-asset-load-fallback__button:hover {
+    background: #f01b68;
+  }
+</style>
+
+<script nonce="gQ7sLhYjJfuY9pL2TL+WFw==">
+//<![CDATA[
+
+  (function () {
+    var root = document.documentElement
+    var assetLoadFailedClassName = 'asset-load-failed'
+    var assetLoadRetryingClassName = 'asset-load-retrying'
+    var appVersion = root.getAttribute('data-version') || 'unknown'
+    var maxReloadAttempts = 5
+    // Wait before each retry so a brief network/memory hiccup doesn't burn every attempt instantly.
+    // Backoffs stretch out to ~77s total so a congested connection (e.g. conference WiFi) has a
+    // realistic window to clear before we give up and show the dead-end fallback.
+    var reloadBackoffsMs = [1000, 3000, 8000, 20000, 45000]
+    var reloadAttemptsStorageKey = 'padlet:asset-load-reload-attempts:' + appVersion
+    var fallbackShownStorageKey = 'padlet:asset-load-fallback-shown:' + appVersion
+    var hasReportedFailure = false
+    var hasRecovered = false
+    var fallbackWasShown = false
+    var hasAppMounted = false
+    var appMountedStabilityTimeout = 10000
+    var appMountedTimer = null
+    // Starting-state fetch has a 15s body-read deadline (STARTING_STATE_FETCH_TIMEOUT_MS), so
+    // failure redirects before the 20s mount watchdog fires.
+    var mountTimeoutMs = 20000
+    // The 20s deadline still applies. A grace slice extends it ONLY while assets keep arriving,
+    // so a stalled load is still declared dead promptly. 20s + 4 × 10s = a 60s hard ceiling.
+    var mountGraceMs = 10000
+    var maxMountGraceExtensions = 4
+    var mountGraceExtensions = 0
+    var lastLoadedAssetCount = null, mountTimeoutTimer = null
+    var mountVisibleAccumulatedMs = 0
+    var mountVisibleSliceStartedAt = null
+    var pageLoadTime = Date.now()
+    // Measurement only: was the tab hidden before mount-timeout? Do not change watchdog behaviour.
+    var pageWasHidden = document.visibilityState === 'hidden'
+    var cspScriptViolation = false
+    var surfaceEntryPreloadCookieName = 'padlet_surface_entry_preload_arm'
+    var surfaceEntryPreloadMaxAgeSeconds = 1209600 // 14 days
+
+    function readSurfaceEntryPreloadArm() {
+      try {
+        var match = document.cookie.match(
+          new RegExp('(?:^|; )' + surfaceEntryPreloadCookieName + '=([01])(?:;|$)')
+        )
+        return match ? match[1] : null
+      } catch (_e) {
+        return null
+      }
+    }
+
+    function setSurfaceEntryPreloadCookie() {
+      try {
+        var existing = readSurfaceEntryPreloadArm()
+        // A browser keeps the arm it was first given. Re-rolling on every failure would mix both
+        // arms into one browser's history and destroy the comparison; this only refreshes Max-Age.
+        var arm = existing !== null ? existing : (Math.random() < 0.5 ? '1' : '0')
+        document.cookie =
+          surfaceEntryPreloadCookieName + '=' + arm + ';Max-Age=' + surfaceEntryPreloadMaxAgeSeconds +
+          ';Path=/;Secure;SameSite=Lax'
+      } catch (_e) {}
+    }
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden') {
+        pageWasHidden = true
+        accumulateMountVisibleSlice()
+        clearMountTimeoutTimer()
+      } else {
+        armMountTimeoutWatchdog()
+      }
+    })
+
+    // CSP script blocks fire securitypolicyviolation, not error. This listener is early
+    // relative to the entry script, but the partial renders in the body, so violations
+    // from head scripts (utm, signup_analytics) can fire before it attaches.
+    document.addEventListener('securitypolicyviolation', function (event) {
+      var directive = (event && event.violatedDirective) || ''
+      // Only an enforcing policy actually blocks a script. Missing and report-only
+      // dispositions are not counted — they do not prevent execution.
+      if (event.disposition === 'enforce' && directive.indexOf('script-src') === 0) {
+        cspScriptViolation = true
+      }
+    })
+
+    function getSessionStorage() {
+      try {
+        const s = window.sessionStorage
+        const testKey = '__test__'
+        s.setItem(testKey, '1')
+        s.removeItem(testKey)
+        return s
+      } catch (_error) {
+        return null
+      }
+    }
+
+    // The slow-load twin of showFallback(): same panel, "still working" copy, Refresh still offered.
+    // Sets fallbackWasShown for the same reason showFallback() does — the user saw a non-blank screen
+    // before the board arrived, which is exactly what mount-after-fallback measures.
+    function showRetrying() {
+      // Never downgrade: once we have given up, saying "still loading" would be a lie.
+      if (root.classList.contains(assetLoadFailedClassName)) return
+      root.classList.add(assetLoadRetryingClassName)
+      fallbackWasShown = true
+      var storage = getSessionStorage()
+      if (storage != null) storage.setItem(fallbackShownStorageKey, '1')
+    }
+
+    function showFallback() {
+      root.classList.remove(assetLoadRetryingClassName)
+      root.classList.add(assetLoadFailedClassName)
+      fallbackWasShown = true
+      var storage = getSessionStorage()
+      if (storage != null) storage.setItem(fallbackShownStorageKey, '1')
+    }
+
+    function clearAppMountedTimer() {
+      if (appMountedTimer == null) return
+
+      window.clearTimeout(appMountedTimer)
+      appMountedTimer = null
+    }
+
+    function clearMountTimeoutTimer() {
+      if (mountTimeoutTimer == null) return
+
+      window.clearTimeout(mountTimeoutTimer)
+      mountTimeoutTimer = null
+    }
+
+    function accumulateMountVisibleSlice() {
+      if (mountVisibleSliceStartedAt == null) return
+      mountVisibleAccumulatedMs += Date.now() - mountVisibleSliceStartedAt
+      mountVisibleSliceStartedAt = null
+    }
+
+    // Called when the visible-time budget is spent. The board may still be downloading — that is a
+    // slow load, not a dead one, so spend a grace slice instead of declaring failure. The retrying
+    // panel appears on the first expiry, so the user is never left staring at nothing while we wait.
+    function onMountBudgetExpired() {
+      if (hasAppMounted || hasRecovered) return
+      // Set before either panel appears: the Refresh button reloads immediately, and the
+      // retry should carry the entry modulepreload whether or not we end up reporting.
+      setSurfaceEntryPreloadCookie()
+      showRetrying()
+      var loadedNow = countLoadedAssets(), progressed = loadedNow != null && lastLoadedAssetCount != null && loadedNow > lastLoadedAssetCount
+      if (progressed && mountGraceExtensions < maxMountGraceExtensions) {
+        mountGraceExtensions++
+        // Next expiry is one grace slice, not a fresh 20s.
+        mountVisibleAccumulatedMs = mountTimeoutMs - mountGraceMs
+        armMountTimeoutWatchdog()
+        return
+      }
+      hasRecovered = true
+      showFallback()
+      reportFailure('mount-timeout', null, null)
+    }
+
+    function armMountTimeoutWatchdog() {
+      if (previousFailures >= maxReloadAttempts) return
+      if (hasAppMounted || hasRecovered) return
+      if (document.visibilityState === 'hidden') return
+
+      clearMountTimeoutTimer()
+      mountVisibleSliceStartedAt = Date.now()
+      lastLoadedAssetCount = countLoadedAssets()
+      var remainingMs = mountTimeoutMs - mountVisibleAccumulatedMs
+      if (remainingMs <= 0) {
+        mountTimeoutTimer = null
+        if (hasAppMounted || hasRecovered) return
+        onMountBudgetExpired()
+        return
+      }
+      mountTimeoutTimer = window.setTimeout(function () {
+        mountTimeoutTimer = null
+        if (document.visibilityState === 'hidden') return
+        accumulateMountVisibleSlice()
+        if (hasAppMounted || hasRecovered) return
+        if (mountVisibleAccumulatedMs < mountTimeoutMs) {
+          armMountTimeoutWatchdog()
+          return
+        }
+        onMountBudgetExpired()
+      }, remainingMs)
+    }
+
+    // Returns a plain object so it is sent as a nested JSON object in the report payload
+    // (not a double-encoded string). The server then logs each field as a separate
+    // attribute for querying.
+    function collectDiagnostics() {
+      try {
+        var appDiv = document.getElementById('app')
+        var diagnostics = {
+          isSafari: /^((?!chrome|android|crios|fxios|edgios|opios).)*safari/i.test(navigator.userAgent),
+          cookiesEnabled: navigator.cookieEnabled,
+          serviceWorkerControlled: !!(navigator.serviceWorker && navigator.serviceWorker.controller),
+          startingStatePreloadExists: !!document.getElementById('starting-state-preload'),
+          appDivExists: !!appDiv,
+          appDivChildCount: appDiv ? appDiv.childNodes.length : 0,
+          elapsedMs: Date.now() - pageLoadTime,
+          bootStage: window.PadletBootStage || null,
+          // PAD-9494: whether PAD-9488 entry modulepreload was active (kill switch on + cookie).
+          // Server-rendered — do not count DOM modulepreload links (analytics can add their own).
+          // This is the only field that separates the preload cohort from everyone else on Datadog.
+          entryPreloadActive: false,
+          // The assigned experiment arm, server-rendered: "1" treatment, "0" control, absent if never
+          // enrolled. entryPreloadActive stays as-is so existing panels keep working.
+          entryPreloadArm: null,
+        }
+
+        // visibilityState / wasHidden / readyState / cspBlockedScript are plain
+        // property or local-variable reads and cannot throw — fold them in here.
+        diagnostics.visibilityState = document.visibilityState
+        diagnostics.wasHidden = !!pageWasHidden
+        diagnostics.readyState = document.readyState
+        diagnostics.cspBlockedScript = !!cspScriptViolation
+        diagnostics.mountGraceExtensions = mountGraceExtensions
+
+        try {
+          // Marked with data-padlet-entry because head-emitted analytics module
+          // scripts (utm, signup_analytics) precede the surface entry in document order.
+          // Shared try/catch: one Performance API throw omits both entryScriptFetched
+          // and loadedAssetCount together (other fields above still emit).
+          var entryScript = document.querySelector('script[data-padlet-entry][src]')
+          // Distinguish "no marked entry in the document" from "no Performance API"
+          // (absence of entryScriptFetched alone is ambiguous in Datadog).
+          diagnostics.entryScriptFound = !!entryScript
+          if (window.performance && typeof performance.getEntriesByType === 'function') {
+            // Default false so a missing Resource Timing entry reports "not fetched"
+            // rather than omitting the key (indistinguishable from no Performance API).
+            // responseEnd > 0 means the fetch finished or was attempted (404/blocked
+            // still produce an entry) — not that the bytes arrived intact.
+            if (entryScript) diagnostics.entryScriptFetched = false
+            var entrySrc = entryScript && entryScript.src
+            var resources = performance.getEntriesByType('resource')
+            var i
+            for (i = 0; i < resources.length; i++) {
+              if (entrySrc && resources[i].name === entrySrc) {
+                diagnostics.entryScriptFetched = resources[i].responseEnd > 0
+                diagnostics.entryScriptDurationMs = Math.round(resources[i].duration)
+                diagnostics.entryScriptStartMs = Math.round(resources[i].startTime)
+                diagnostics.entryScriptStatus = resources[i].responseStatus ?? 0
+                diagnostics.entryScriptTransferSize = resources[i].transferSize ?? 0
+              }
+            }
+            var loadedAssetCount = countLoadedAssets()
+            if (loadedAssetCount != null) diagnostics.loadedAssetCount = loadedAssetCount
+          }
+        } catch (_perf) {}
+
+        return diagnostics
+      } catch (_e) {
+        return null
+      }
+    }
+
+    function markAppMounted() {
+      var isFirstMount = !hasAppMounted
+      hasAppMounted = true
+      clearAppMountedTimer()
+      clearMountTimeoutTimer()
+      // "Still loading" is false the moment the app mounts, so drop it now. Only the dead-end
+      // panel waits out appMountedStabilityTimeout, where the delay guards against a board that
+      // mounts and then immediately breaks.
+      root.classList.remove(assetLoadRetryingClassName)
+      if (isFirstMount) {
+        if (fallbackWasShown) {
+          sendFailureReport('mount-after-fallback', null, null)
+        }
+        if (previousFailures > 0) {
+          sendFailureReport('mount-after-reload', null, null)
+        }
+        var storage = getSessionStorage()
+        if (storage != null) storage.removeItem(fallbackShownStorageKey)
+        if (Math.random() < 0.01) {
+          sendFailureReport('mount-ok', null, null)
+        }
+      }
+      appMountedTimer = window.setTimeout(function () {
+        appMountedTimer = null
+        root.classList.remove(assetLoadFailedClassName)
+      }, appMountedStabilityTimeout)
+    }
+
+    function getErrorMessage(error) {
+      return String((error && (error.message || error.href || error.src)) || error || '')
+    }
+
+    function isRecoverableAssetUrl(url) {
+      return (
+        typeof url === 'string' &&
+        /\/(?:(?:ui\/)?assets\/[^?#]+\.(?:js|css)|ui-dev\/[^?#]+\.(?:js|ts|tsx|vue|css))(\?|#|$)/.test(url)
+      )
+    }
+
+    function getAssetUrlFromError(error) {
+      if (error && typeof error.href === 'string' && isRecoverableAssetUrl(error.href)) return error.href
+      if (error && typeof error.src === 'string' && isRecoverableAssetUrl(error.src)) return error.src
+
+      var message = getErrorMessage(error)
+      var absoluteUrlMatches = message.match(/https?:\/\/[^\s'")]+/g) || []
+      var absoluteAssetUrl = absoluteUrlMatches.find(isRecoverableAssetUrl)
+      if (absoluteAssetUrl != null) return absoluteAssetUrl
+
+      var relativeUrlMatch = message.match(
+        /\/(?:(?:ui\/)?assets\/[^?\s'")]+\.(?:js|css)|ui-dev\/[^?\s'")]+\.(?:js|ts|tsx|vue|css))(?:\?[^'")\s]*)?/
+      )
+      return relativeUrlMatch && relativeUrlMatch[0]
+    }
+
+    // Chrome names the dependency relative to its importer; recovery must
+    // target that dependency, not the healthy importing entry.
+    function getRequestedModuleUrl(message, filename) {
+      if (typeof filename !== 'string') return null
+      var match = /requested module '([^']+)'/.exec(message)
+      if (!match) return null
+      try {
+        var url = new URL(match[1], filename).href
+        return isRecoverableAssetUrl(url) && !isNonCriticalAssetUrl(url) ? url : null
+      } catch (_error) {
+        return null
+      }
+    }
+
+    function getReloadAttempts() {
+      var storage = getSessionStorage()
+      if (storage == null) {
+        return null
+      }
+
+      var reloadAttempts = parseInt(storage.getItem(reloadAttemptsStorageKey) || '0', 10)
+      if (isNaN(reloadAttempts)) {
+        reloadAttempts = 0
+      }
+
+      return reloadAttempts
+    }
+
+    function reportFailure(reason, url, errorMessage) {
+      if (hasReportedFailure) return
+      hasReportedFailure = true
+      sendFailureReport(reason, url, errorMessage)
+    }
+
+    // Telemetry for failures that don't trigger recovery; capped so one page can't spam.
+    var nonBlockingReports = 0
+
+    function reportNonBlockingFailure(reason, url, errorMessage) {
+      if (nonBlockingReports >= 3) return
+      nonBlockingReports++
+      sendFailureReport(reason, url, errorMessage)
+    }
+
+    // Post-mount, the board is already up and any number of lazily-loaded features can
+    // each fail independently — there is no reload to end the page's life. So this path
+    // gets its own budget instead of sharing reportFailure's one-shot latch, which exists
+    // to report a single committing pre-mount failure. Capped so one page can't spam.
+    var postMountReports = 0
+
+    function reportPostMountFailure(reason, url, errorMessage) {
+      if (postMountReports >= 5) return
+      postMountReports++
+      sendFailureReport(reason, url, errorMessage)
+    }
+
+    function sendFailureReport(reason, url, errorMessage) {
+      var diagnostics = collectDiagnostics()
+      var payload = {
+        appVersion: appVersion,
+        diagnostics: diagnostics,
+        errorMessage: errorMessage || null,
+        pageUrl: window.location.href,
+        reason: reason,
+        reloadAttempt: previousFailures,
+        resourceUrl: url || null,
+        userAgent: window.navigator.userAgent,
+      }
+
+      var body = JSON.stringify(payload)
+      var reportUrl = '/api/6/asset-load-failures'
+
+      try {
+        if (window.navigator.sendBeacon && window.Blob) {
+          var sent = window.navigator.sendBeacon(reportUrl, new Blob([body], { type: 'application/json' }))
+          if (sent) return
+        }
+
+        if (window.fetch) {
+          window.fetch(reportUrl, {
+            body: body,
+            credentials: 'same-origin',
+            headers: { 'Content-Type': 'application/json' },
+            keepalive: true,
+            method: 'POST',
+          }).catch(function () {})
+        }
+      } catch (_error) {
+        // Reporting is best effort; recovery should continue even if telemetry fails.
+      }
+    }
+
+    function recover(reason, url, errorMessage) {
+      if (isNonCriticalAssetUrl(url)) {
+        reportNonBlockingFailure('noncritical-' + reason, url, errorMessage)
+        return
+      }
+      if (hasAppMounted) {
+        reportPostMountFailure(reason, url, errorMessage)
+        return
+      }
+      if (hasRecovered) return
+      hasRecovered = true
+      // Enrol on any committing pre-mount failure, not just mount-timeout. Non-critical assets and
+      // post-mount failures returned above, so reaching here means the board is blank and the next
+      // load is a retry — exactly when entry hints are worth spending first paint on.
+      setSurfaceEntryPreloadCookie()
+      // Remember the first (committing) failure's chunk for the manual Refresh button; a later
+      // asset failing during the backoff window must not clobber it.
+      if (canFetchFreshCopy(url)) lastFailedAssetUrl = url
+      clearAppMountedTimer()
+      clearMountTimeoutTimer()
+      reportFailure(reason, url, errorMessage)
+
+      var storage = getSessionStorage()
+      if (storage == null) {
+        showFallback()
+        return
+      }
+
+      if (previousFailures < maxReloadAttempts) {
+        var backoffMs = reloadBackoffsMs[previousFailures] || reloadBackoffsMs[reloadBackoffsMs.length - 1] || 0
+        window.setTimeout(function () {
+          // App may have mounted during the wait — don't reload a page that just recovered.
+          if (hasAppMounted) return
+          var reload = function () {
+            if (hasAppMounted) return
+            storage.setItem(reloadAttemptsStorageKey, String(previousFailures + 1))
+            window.location.reload()
+          }
+          if (canFetchFreshCopy(url)) {
+            fetchFreshCopy(url, reload)
+          } else {
+            reload()
+          }
+        }, backoffMs)
+        return
+      }
+
+      sendFailureReport('reload-attempts-exhausted', url)
+      showFallback()
+    }
+
+    // When a critical chunk fails, a plain reload just re-serves the same (poisoned) cached copy,
+    // so it keeps failing. fetchFreshCopy() re-downloads the chunk with fetch(cache:'reload'),
+    // which bypasses the cache AND overwrites the stored copy with fresh bytes — that overwrite
+    // *is* the "repair"; the bytes themselves are never executed. The follow-up reload then reads
+    // the good copy. freshCopyTimeoutMs caps how long we wait for that download before reloading
+    // anyway, so a slow/dead fetch can never block recovery (a healthy network finishes in well
+    // under a second). Outcome telemetry keeps the 'repair-fetch-*' prefix — Datadog queries and
+    // the #58656 dashboard depend on it: recovered = corrupt cache (fixed), error/timeout = true
+    // network loss.
+    var freshCopyTimeoutMs = 5000
+    var lastFailedAssetUrl = null
+    var freshCopyReports = 0
+
+    function canFetchFreshCopy(url) {
+      return (
+        isRecoverableAssetUrl(url) &&
+        typeof window.fetch === 'function' &&
+        typeof window.Request === 'function' &&
+        'cache' in window.Request.prototype
+      )
+    }
+
+    function reportFreshCopyOutcome(outcome, url) {
+      if (freshCopyReports >= 2) return
+      freshCopyReports++
+      sendFailureReport('repair-fetch-' + outcome, url)
+    }
+
+    // The stylesheet retry (#57722) appends ?padlet-css-retry=1 to force a fresh cache key. Repair
+    // the canonical entry the follow-up reload will actually request, not the cache-busted one.
+    function canonicalAssetUrl(url) {
+      return typeof url === 'string' ? url.replace(/[?&]padlet-css-retry=1/, '') : url
+    }
+
+    function fetchFreshCopy(url, onDone) {
+      url = canonicalAssetUrl(url)
+      var settled = false
+      var retried = false
+      function finish(outcome) {
+        if (settled) return
+        settled = true
+        reportFreshCopyOutcome(outcome, url)
+        onDone()
+      }
+      // A stalled fetch fires neither resolve nor reject — proceed to the reload regardless.
+      var stallTimer = window.setTimeout(function () {
+        finish('timeout')
+      }, freshCopyTimeoutMs)
+      function attempt() {
+        if (settled) return
+        try {
+          window
+            .fetch(url, { cache: 'reload', mode: 'cors', credentials: 'same-origin' })
+            .then(function (response) {
+              if (settled) return
+              if (!response.ok) {
+                if (!retried && response.status >= 500 && response.status <= 599) {
+                  retried = true
+                  window.setTimeout(attempt, 500)
+                  return
+                }
+                window.clearTimeout(stallTimer)
+                finish('http-' + response.status)
+                return
+              }
+              // Drain the body so the fresh bytes are fully written to the HTTP cache before we
+              // reload. Resolving on headers alone lets location.reload() abort the download
+              // mid-flight, leaving the poisoned entry in place (and falsely reporting 'recovered').
+              return response.arrayBuffer().then(function () {
+                if (settled) return
+                window.clearTimeout(stallTimer)
+                if (retried) {
+                  finish('retry-recovered')
+                } else {
+                  finish('recovered')
+                }
+              })
+            })
+            .catch(function () {
+              if (settled) return
+              window.clearTimeout(stallTimer)
+              finish('error')
+            })
+        } catch (_error) {
+          if (settled) return
+          window.clearTimeout(stallTimer)
+          finish('error')
+        }
+      }
+      attempt()
+    }
+
+    function refreshFromFallback() {
+      if (canFetchFreshCopy(lastFailedAssetUrl)) {
+        fetchFreshCopy(lastFailedAssetUrl, function () {
+          window.location.reload()
+        })
+        return
+      }
+      window.location.reload()
+    }
+
+    function isAssetUrl(url) {
+      return isRecoverableAssetUrl(url)
+    }
+
+    // Resource Timing records a resource only after its fetch finishes, so this counts assets that
+    // have ARRIVED, not ones in flight. Two samples taken apart in time therefore answer "is the
+    // import graph still landing?" — which is what separates a slow load from a dead one.
+    function countLoadedAssets() {
+      if (!window.performance || typeof performance.getEntriesByType !== 'function') return null
+      var resources = performance.getEntriesByType('resource')
+      var loadedCount = 0
+      var i
+      for (i = 0; i < resources.length; i++) {
+        if (isAssetUrl(resources[i].name)) loadedCount++
+      }
+      return loadedCount
+    }
+
+    var stylesheetRetryDelayMs = 500
+    var stylesheetRetryTimeoutMs = 5000
+
+    // Re-insert a failed stylesheet with a cache-busting param: a whole-page reload re-uses the
+    // same (possibly corrupt) cache entry, while a busted URL forces a fresh fetch.
+    function retryStylesheet(link, url) {
+      window.setTimeout(function () {
+        if (hasRecovered) return
+        var retry = document.createElement('link')
+        retry.rel = 'stylesheet'
+        if (link.media) retry.media = link.media
+        // Assets are cross-origin (padlet.net), so the original carries crossorigin="anonymous";
+        // copy it so the retry fetches under the same CORS mode rather than as an opaque no-cors request.
+        if (link.crossOrigin) retry.crossOrigin = link.crossOrigin
+        retry.href = url + (url.indexOf('?') === -1 ? '?' : '&') + 'padlet-css-retry=1'
+        // A failed retry routes to recover() via the global error listener (its href carries the
+        // marker). But a fetch that just stalls fires neither load nor error — fall back so the
+        // user isn't stuck waiting forever, unlike the old path that reloaded immediately.
+        var stallTimer = window.setTimeout(function () {
+          if (hasRecovered) return
+          // Post-mount the board is usable, so a stalled CSS retry is a styling gap, not a dead
+          // load: report it and leave the page alone. Pre-mount, recover() still reloads.
+          if (hasAppMounted) {
+            retry.padletRetryStallReported = true
+            reportPostMountFailure('stylesheet-retry-timeout', retry.href)
+            return
+          }
+          recover('stylesheet-retry-timeout', retry.href)
+        }, stylesheetRetryTimeoutMs)
+        retry.padletRetryStallTimer = stallTimer
+        retry.onload = function () {
+          // CSS arrived before the stall fallback fired: cancel it so we never recover/reload.
+          // (If it arrives after the stall already committed, the reload just proceeds — harmless,
+          // the reloaded page finds the CSS cached/available.)
+          window.clearTimeout(stallTimer)
+          retry.padletRetryStallTimer = null
+          reportPostMountFailure('stylesheet-retry-recovered', url)
+        }
+        retry.onerror = function () {
+          window.clearTimeout(stallTimer)
+          retry.padletRetryStallTimer = null
+        }
+        var parent = link.parentNode || document.head
+        parent.appendChild(retry)
+      }, stylesheetRetryDelayMs)
+    }
+
+    // Chunks the board doesn't need to render: analytics/telemetry (ad-blocked) and locale translations (missing strings, not a broken board).
+    function isNonCriticalAssetUrl(url) {
+      if (typeof url !== 'string') return false
+      return (
+        /\/(?:utm|_sentry-release-injection-file)(?:-[^/]+)?\.js(\?|#|$)/.test(url) ||
+        /\/translations\/[^/?#]+\.js(\?|#|$)/.test(url)
+      )
+    }
+
+    function isDynamicImportFailure(error) {
+      var message = getErrorMessage(error)
+      return (
+        message.indexOf('Failed to fetch dynamically imported module') !== -1 ||
+        message.indexOf('Importing a module script failed') !== -1 ||
+        message.indexOf('error loading dynamically imported module') !== -1 ||
+        message.indexOf('Failed to fetch module script') !== -1 ||
+        message.indexOf('Failed to load module script') !== -1 ||
+        message.indexOf('Load failed for module') !== -1 ||
+        (getAssetUrlFromError(error) != null && /(fetch|import|module|load)/i.test(message))
+      )
+    }
+
+    // Read the counter from the previous load, then immediately clear it.
+    // A clean load leaves the counter at 0, so the next visit starts fresh
+    // without needing to wait for the Vue app to mount. recover() will
+    // re-set it to previousFailures + 1 if this load also fails.
+    var previousFailures = getReloadAttempts() || 0
+    var storageForReset = getSessionStorage()
+    fallbackWasShown = storageForReset != null && storageForReset.getItem(fallbackShownStorageKey) === '1'
+    if (storageForReset != null) {
+      storageForReset.removeItem(reloadAttemptsStorageKey)
+      storageForReset.removeItem(fallbackShownStorageKey)
+    }
+
+    window.PadletAssetLoadRecovery = {
+      markAppMounted: markAppMounted,
+      recover: recover,
+      refresh: refreshFromFallback,
+    }
+
+    // If the previous load already exhausted retry attempts, show the fallback
+    // immediately without waiting for another error event.
+    if (previousFailures >= maxReloadAttempts) {
+      showFallback()
+    } else if (previousFailures > 0) {
+      // A recover() reload chain is in progress. Its backoffs for loads 2-5 are 3s, 8s, 20s and
+      // 45s, so without this the user watches a blank page for ~76 of the chain's 77 seconds
+      // with nothing to say we are still retrying.
+      showRetrying()
+    }
+
+    // Mount timeout watchdog: if the Vue app never mounts (e.g., starting-state
+    // API hangs, cookies silently blocked, content blocker interference), show the
+    // fallback UI so the user isn't stuck on a blank screen indefinitely.
+    // Does NOT auto-reload — legitimately slow startups get a manual refresh button.
+    if (previousFailures < maxReloadAttempts) {
+      if (document.visibilityState === 'hidden') {
+        // Do not arm until first visible visibilitychange.
+      } else {
+        armMountTimeoutWatchdog()
+      }
+    }
+
+    window.addEventListener('vite:preloadError', function (event) {
+      // Only suppress pre-mount, where recover() reloads. Post-mount, preventDefault makes the
+      // failed dynamic import resolve `undefined` and silently break every `await import()` site
+      // (MOZART-W7R4/X8MJ/X8MN/X8MP) — let it reject so callers handle it.
+      if (!hasAppMounted) event.preventDefault()
+      recover('vite-preload-error', getAssetUrlFromError(event.payload), getErrorMessage(event.payload))
+    })
+
+    window.addEventListener('unhandledrejection', function (event) {
+      if (!isDynamicImportFailure(event.reason)) return
+      event.preventDefault()
+      recover('dynamic-import-error', getAssetUrlFromError(event.reason), getErrorMessage(event.reason))
+    })
+
+    window.addEventListener(
+      'error',
+      function (event) {
+        var target = event.target
+        var tagName = target && target.tagName
+
+        if (tagName === 'SCRIPT' || tagName === 'LINK') {
+          var url = target.src || target.href
+          if (!isAssetUrl(url)) return
+
+          // A failed preload/modulepreload is only a missed hint — rel=preload/modulepreload just
+          // warm the cache. The browser re-fetches the real resource when it's actually used (script
+          // import or stylesheet apply), and that failure is caught separately if it's real.
+          if (tagName === 'LINK' && target.relList && (target.relList.contains('modulepreload') || target.relList.contains('preload'))) {
+            reportNonBlockingFailure(target.relList.contains('modulepreload') ? 'modulepreload-error' : 'preload-error', url)
+            return
+          }
+
+          // Retry a failed stylesheet in place once before resorting to a page reload. The first
+          // failure retries (pre- or post-mount); a failed retry goes to recover() so telemetry
+          // isn't lost.
+          if (tagName === 'LINK' && target.relList && target.relList.contains('stylesheet')) {
+            var isStylesheetRetry = url.indexOf('padlet-css-retry=1') !== -1
+            if (!isStylesheetRetry && !hasRecovered) {
+              // Retry replaced the original report, so outcomes need a denominator.
+              reportPostMountFailure('stylesheet-error-retrying', url)
+              retryStylesheet(target, url)
+              return
+            }
+            if (isStylesheetRetry) {
+              if (target.padletRetryStallTimer != null) {
+                window.clearTimeout(target.padletRetryStallTimer)
+                target.padletRetryStallTimer = null
+              }
+              if (target.padletRetryStallReported) return
+            }
+            recover(isStylesheetRetry ? 'stylesheet-retry-error' : 'stylesheet-error', url)
+            return
+          }
+
+          recover(tagName.toLowerCase() + '-error', url)
+          return
+        }
+
+        var message = event.message || getErrorMessage(event.error)
+        var filename = event.filename
+        if (!isDynamicImportFailure(event.error || message) && !isDynamicImportFailure(message + ' ' + filename)) return
+
+        event.preventDefault()
+        recover(
+          'module-error',
+          getRequestedModuleUrl(message, filename) ||
+            getAssetUrlFromError(event.error) ||
+            getAssetUrlFromError(message) ||
+            filename,
+          message
+        )
+      },
+      true
+    )
+  })()
+
+//]]>
+</script>
+<div class="padlet-asset-load-fallback" role="status" aria-live="polite">
+  <div class="padlet-asset-load-fallback__content">
+    <p class="padlet-asset-load-fallback__title" data-state="retrying">Still loading…</p>
+    <p class="padlet-asset-load-fallback__body" data-state="retrying">Your connection looks slow. We&#39;re still trying.</p>
+    <p class="padlet-asset-load-fallback__title" data-state="dead-end">We had trouble loading Padlet.</p>
+    <p class="padlet-asset-load-fallback__body" data-state="dead-end">Please refresh the page to try again.</p>
+    <button class="padlet-asset-load-fallback__button" type="button" data-action="asset-load-recovery-reload">
+      Refresh
+    </button>
+  </div>
+</div>
+
+<script nonce="gQ7sLhYjJfuY9pL2TL+WFw==">
+//<![CDATA[
+
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('[data-action="asset-load-recovery-reload"]');
+    if (el) {
+      e.preventDefault();
+      if (window.PadletAssetLoadRecovery) {
+        window.PadletAssetLoadRecovery.refresh();
+      } else {
+        window.location.reload();
+      }
+    }
+  });
+
+//]]>
+</script>
+  <div id="print-notification" title="To print this page properly, go to the &quot;Share&quot; panel and select &quot;Print&quot; under the &quot;Export&quot; section."></div>
+<div id="app"></div>
+
+
+
+    
+      
+
+      <script src="https://padlet.net/ui/assets/surface-WpIXNCHx.js" crossorigin="anonymous" type="module" data-padlet-entry="true" nonce="gQ7sLhYjJfuY9pL2TL+WFw=="></script><link rel="stylesheet" crossorigin="anonymous" href="https://padlet.net/ui/assets/surface-3edcS6cD.css" media="screen" nonce="gQ7sLhYjJfuY9pL2TL+WFw==" />
+<link rel="stylesheet" crossorigin="anonymous" href="https://padlet.net/ui/assets/tailwind-CFtCIApx.css" media="screen" nonce="gQ7sLhYjJfuY9pL2TL+WFw==" />
+<link rel="stylesheet" crossorigin="anonymous" href="https://padlet.net/ui/assets/GlobalSnackbar-D4u-C68u.css" media="screen" nonce="gQ7sLhYjJfuY9pL2TL+WFw==" />
+<link rel="stylesheet" crossorigin="anonymous" href="https://padlet.net/ui/assets/OzOverlay-aJY3i4NS.css" media="screen" nonce="gQ7sLhYjJfuY9pL2TL+WFw==" />
+<link rel="stylesheet" crossorigin="anonymous" href="https://padlet.net/ui/assets/SurfacePostBody-D_e6QWao.css" media="screen" nonce="gQ7sLhYjJfuY9pL2TL+WFw==" />
+<link rel="stylesheet" crossorigin="anonymous" href="https://padlet.net/ui/assets/avatar_image-BJy8E1Ku.css" media="screen" nonce="gQ7sLhYjJfuY9pL2TL+WFw==" />
+<link rel="stylesheet" crossorigin="anonymous" href="https://padlet.net/ui/assets/SurfaceTranslationIndicator-C_b3qj_M.css" media="screen" nonce="gQ7sLhYjJfuY9pL2TL+WFw==" />
+<link rel="stylesheet" crossorigin="anonymous" href="https://padlet.net/ui/assets/SurfacePostBeingShowed-BzKWYe2G.css" media="screen" nonce="gQ7sLhYjJfuY9pL2TL+WFw==" />
+<link rel="stylesheet" crossorigin="anonymous" href="https://padlet.net/ui/assets/useWallEngagementTimePing-YWmq-y-m.css" media="screen" nonce="gQ7sLhYjJfuY9pL2TL+WFw==" />
+
+    
+    <script nonce="gQ7sLhYjJfuY9pL2TL+WFw==">
+//<![CDATA[
+
+if (navigator.serviceWorker) {
+  const previousServiceWorkerPath = '/sw.js?version=202410010000'
+  const currentServiceWorkerPath = '/sw.js?version=202505230000'
+
+  if (
+    navigator.serviceWorker.controller != null &&
+    navigator.serviceWorker.controller.scriptURL.includes(previousServiceWorkerPath)
+  ) {
+    navigator.serviceWorker.getRegistrations().then(function (registrations) {
+      for (const i in registrations) {
+        const registration = registrations[i]
+        if (
+          registration.active != null &&
+          registration.active.scriptURL.includes(previousServiceWorkerPath)
+        ) {
+          registration.unregister()
+        }
+      }
+    })
+  }
+
+  navigator.serviceWorker
+    .register(currentServiceWorkerPath)
+    .then(function (reg) {
+      // console.log('[Companion]', 'Service worker registered!');
+    })
+    .catch(function (error) {
+      // console.warn('[Companion]', 'Service worker failed to register with the following error:', error);
+    })
+}
+
+//]]>
+</script>
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="0" height="0" viewBox="0 0 1 1">
+      <clipPath id="rounded-hexagon-svg-clip-path" clipPathUnits="objectBoundingBox">
+        <path
+          d="M 0.371094 0.03125 C 0.449219 -0.0117188 0.550781 -0.0117188 0.628906 0.03125 L 0.871094 0.164062 C 0.949219 0.207031 1 0.285156 1 0.371094 L 1 0.628906 C 1 0.714844 0.949219 0.792969 0.871094 0.835938 L 0.628906 0.96875 C 0.550781 1.011719 0.449219 1.011719 0.371094 0.96875 L 0.128906 0.835938 C 0.0507812 0.792969 0 0.714844 0 0.628906 L 0 0.371094 C 0 0.285156 0.0507812 0.207031 0.128906 0.164062 Z M 0.371094 0.03125"
+        />
+      </clipPath>
+    </svg>
+  <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4faffdaada1f1f4',t:'MTc5Mjg2NjA2Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

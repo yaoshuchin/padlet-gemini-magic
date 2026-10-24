@@ -1,0 +1,9 @@
+{
+  "name": "padlet-gemini-magic",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Gemini就是神奇 · 協作看板與完整提示詞庫 (100% 離線鏡像版)",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}
