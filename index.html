@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google AI 雙刀流與全方位實戰 · 雙看板整合平台 (Gemini就是神奇 × 公明國中-Gemini Notebook)</title>
+  <title>Google AI 雙刀流與全方位教學實戰 · 9大主題看板整合平台 (2,616 張卡片全量離線)</title>
   
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="https://padlet.net/favicon.svg">
@@ -22,15 +22,6 @@
         extend: {
           fontFamily: {
             sans: ['"Noto Sans TC"', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              50: '#f0fdf4',
-              100: '#dcfce7',
-              500: '#22c55e',
-              600: '#16a34a',
-              700: '#15803d',
-            }
           }
         }
       }
@@ -43,8 +34,8 @@
   <style>
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
     }
     ::-webkit-scrollbar-track {
       background: rgba(0, 0, 0, 0.2);
@@ -58,6 +49,14 @@
       background: rgba(255, 255, 255, 0.48);
     }
     
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
     body {
       font-family: 'Noto Sans TC', Inter, sans-serif;
       background-color: #0f172a;
@@ -91,59 +90,57 @@
     }
   </style>
 
-  <!-- Load Both Board Datasets directly for 100% Offline / file:// Support -->
+  <!-- Load All 9 Board Datasets for 100% Offline / file:// Support -->
   <script src="data.js"></script>
   <script src="data_gm.js"></script>
+  <script src="data_ai_expert.js"></script>
+  <script src="data_interactive_web.js"></script>
+  <script src="data_ai_sketch.js"></script>
+  <script src="data_text_to_slides.js"></script>
+  <script src="data_music_creation.js"></script>
+  <script src="data_notebooklm_projects.js"></script>
+  <script src="data_prompt_architecture.js"></script>
 </head>
 <body id="appBody" class="text-slate-100 flex flex-col h-screen overflow-hidden antialiased select-none">
 
-  <!-- ================= TOPMOST APPLICATION BAR (TAB SWITCHER) ================= -->
-  <div class="flex-none bg-slate-950/95 border-b border-white/10 px-4 md:px-6 py-2 flex items-center justify-between gap-3 z-40 backdrop-blur-md shadow-md">
-    <div class="flex items-center gap-2 overflow-x-auto">
-      
-      <!-- TAB 1: Gemini就是神奇 -->
-      <button id="tabBtnGemini" class="app-tab px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold flex items-center gap-2 transition-all bg-indigo-600 text-white shadow-md shadow-indigo-600/30">
-        <i data-lucide="sparkles" class="w-4 h-4 text-amber-300"></i>
-        <span>Gemini就是神奇</span>
-        <span id="tabCountGemini" class="px-1.5 py-0.2 rounded-full text-[10px] bg-black/30 font-mono">85</span>
-      </button>
-
-      <!-- TAB 2: 公明國中-Gemini Notebook -->
-      <button id="tabBtnGM" class="app-tab px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-medium flex items-center gap-2 transition-all text-slate-300 hover:text-white hover:bg-white/10">
-        <i data-lucide="book-open" class="w-4 h-4 text-sky-400"></i>
-        <span>公明國中-Gemini Notebook</span>
-        <span id="tabCountGM" class="px-1.5 py-0.2 rounded-full text-[10px] bg-sky-500/20 text-sky-300 font-mono">73</span>
-      </button>
-
+  <!-- ================= TOPMOST APPLICATION BAR (MULTI-BOARD TAB SWITCHER) ================= -->
+  <div class="flex-none bg-slate-950/95 border-b border-white/10 px-3 md:px-5 py-2 flex items-center justify-between gap-3 z-40 backdrop-blur-md shadow-md">
+    
+    <!-- Dynamic Tabs List -->
+    <div id="tabsContainer" class="flex items-center gap-1.5 overflow-x-auto py-0.5 no-scrollbar flex-nowrap scroll-smooth flex-1 min-w-0">
+      <!-- Generated dynamically in JS -->
     </div>
 
-    <div class="flex items-center gap-2.5 flex-none">
-      <span class="hidden sm:inline-flex text-[11px] text-slate-400">作者：姚述勤</span>
-      <span class="hidden sm:inline-block w-1 h-1 rounded-full bg-slate-600"></span>
-      <span class="text-[11px] text-indigo-300 font-semibold bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">雙看板全量離線系統</span>
+    <!-- Right Metadata & Stats -->
+    <div class="flex items-center gap-2.5 flex-none pl-2 border-l border-white/10">
+      <span class="hidden xl:inline-flex text-[11px] text-slate-400">作者：姚述勤 / 臺中市資教議題分團</span>
+      <span class="hidden xl:inline-block w-1 h-1 rounded-full bg-slate-600"></span>
+      <span id="globalStatsBadge" class="text-[11px] text-indigo-300 font-semibold bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20 whitespace-nowrap">
+        9大看板 · 2,616卡片全量離線
+      </span>
     </div>
   </div>
 
   <!-- ================= SUB-HEADER: CONTROLS & TOOLBAR ================= -->
-  <header class="flex-none bg-slate-900/90 dark:bg-slate-950/85 backdrop-blur-md border-b border-white/10 px-4 md:px-6 py-2.5 flex flex-col md:flex-row items-center justify-between gap-3 z-30 shadow-lg">
+  <header class="flex-none bg-slate-900/90 dark:bg-slate-950/85 backdrop-blur-md border-b border-white/10 px-3 md:px-5 py-2.5 flex flex-col md:flex-row items-center justify-between gap-3 z-30 shadow-lg">
     
     <!-- Title & Legend -->
-    <div class="flex items-center gap-3 w-full md:w-auto justify-between md:justify-start">
-      <div class="flex items-center gap-2.5">
-        <div id="boardIcon" class="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-500 to-sky-400 flex items-center justify-center shadow-md shadow-indigo-500/20 text-white font-black text-lg">
+    <div class="flex items-center gap-3 w-full md:w-auto justify-between md:justify-start min-w-0">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <div id="boardIcon" class="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-500 to-sky-400 flex items-center justify-center shadow-md shadow-indigo-500/20 text-white font-black text-lg flex-none">
           <i data-lucide="sparkles" class="w-5 h-5"></i>
         </div>
-        <div>
-          <div class="flex items-center gap-2">
-            <h1 id="boardTitle" class="text-base sm:text-lg font-bold text-white tracking-tight flex items-center gap-2">
+        <div class="min-w-0">
+          <div class="flex items-center gap-2 flex-wrap">
+            <h1 id="boardTitle" class="text-base sm:text-lg font-bold text-white tracking-tight truncate">
               Gemini就是神奇
             </h1>
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1 flex-none">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               100% 離線就緒
             </span>
           </div>
-          <div id="legendContainer" class="text-[11px] text-indigo-200/80 flex items-center gap-2 flex-wrap mt-0.5">
+          <div id="legendContainer" class="text-[11px] text-indigo-200/80 flex items-center gap-2 flex-wrap mt-0.5 truncate">
             <!-- Dynamic Legend -->
           </div>
         </div>
@@ -160,7 +157,7 @@
           id="searchInput" 
           type="text" 
           placeholder="搜尋卡片、Prompt、分欄... (/)" 
-          class="pl-9 pr-8 py-1.5 bg-black/40 border border-white/15 rounded-lg text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 w-full sm:w-52 transition-all"
+          class="pl-9 pr-8 py-1.5 bg-black/40 border border-white/15 rounded-lg text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 w-full sm:w-48 xl:w-56 transition-all"
         >
         <button id="clearSearchBtn" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white">
           <i data-lucide="x" class="w-3.5 h-3.5"></i>
@@ -186,215 +183,236 @@
       </div>
 
       <!-- Jump to Column Dropdown -->
-      <select id="columnJumpSelect" class="bg-black/40 border border-white/15 rounded-lg text-xs text-slate-200 py-1.5 px-2.5 focus:outline-none focus:border-indigo-400 cursor-pointer hidden md:block">
+      <select id="columnJumpSelect" class="bg-black/40 border border-white/15 rounded-lg text-xs text-slate-200 py-1.5 px-2.5 focus:outline-none focus:border-indigo-400 cursor-pointer hidden md:block max-w-[140px] truncate">
         <option value="">跳轉分欄...</option>
       </select>
 
       <!-- Random Draw Button -->
       <button id="randomDrawBtn" title="隨機探索一張卡片" class="flex items-center gap-1 px-2.5 py-1.5 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/40 text-purple-200 rounded-lg text-xs font-semibold shadow transition-all">
         <i data-lucide="dice-5" class="w-3.5 h-3.5 text-purple-300"></i>
-        <span>隨機抽籤</span>
+        <span class="hidden sm:inline">抽籤</span>
       </button>
 
       <!-- Downloads Modal Button -->
       <button id="openDownloadsBtn" class="flex items-center gap-1 px-2.5 py-1.5 bg-sky-500/20 hover:bg-sky-500/30 border border-sky-500/40 text-sky-200 rounded-lg text-xs font-semibold shadow transition-all">
-        <i data-lucide="download" class="w-3.5 h-3.5 text-sky-300"></i>
-        <span>素材庫 (<span id="downloadsCount">0</span>)</span>
+        <i data-lucide="folder-down" class="w-3.5 h-3.5 text-sky-300"></i>
+        <span>素材 (<span id="downloadsCount">0</span>)</span>
       </button>
 
-      <!-- CSV Export Button -->
-      <button id="exportCsvBtn" title="匯出 CSV 報表 (Excel 相容)" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors">
-        <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
+      <!-- Export CSV Button -->
+      <button id="exportCsvBtn" title="匯出 Excel 相容 CSV 報表" class="flex items-center gap-1 px-2.5 py-1.5 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-200 rounded-lg text-xs font-semibold shadow transition-all">
+        <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5 text-emerald-300"></i>
+        <span class="hidden sm:inline">匯出</span>
       </button>
 
-      <!-- Theme Switcher -->
-      <button id="themeToggleBtn" title="切換明暗主題" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors">
-        <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
-        <i data-lucide="sun" class="w-4 h-4 block dark:hidden text-amber-400"></i>
+      <!-- Theme Toggle -->
+      <button id="themeToggleBtn" title="切換深色/淺色主題" class="p-1.5 bg-black/40 hover:bg-white/10 border border-white/10 rounded-lg text-slate-300 hover:text-white transition-colors">
+        <i data-lucide="sun-moon" class="w-4 h-4"></i>
       </button>
 
       <!-- Original Padlet Link -->
-      <a id="origPadletLink" href="#" target="_blank" rel="noopener noreferrer" title="前往原版 Padlet 看板" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors">
+      <a id="origPadletLink" href="#" target="_blank" rel="noopener noreferrer" title="開啟原始 Padlet 看板" class="p-1.5 bg-black/40 hover:bg-white/10 border border-white/10 rounded-lg text-slate-300 hover:text-white transition-colors flex items-center">
         <i data-lucide="external-link" class="w-4 h-4"></i>
       </a>
+
     </div>
   </header>
 
-  <!-- MOBILE FILTER BAR -->
-  <div id="colorFiltersMobile" class="xl:hidden flex items-center justify-between px-4 py-2 bg-black/60 border-b border-white/10 text-xs overflow-x-auto gap-2 z-20">
-    <!-- Mobile Filter Rendered dynamically -->
+  <!-- Mobile Color Filter Bar -->
+  <div id="colorFiltersMobile" class="xl:hidden flex-none bg-slate-900/90 border-b border-white/10 px-4 py-1.5 flex items-center gap-2 overflow-x-auto text-xs">
+    <!-- Rendered dynamically -->
   </div>
 
-  <!-- ================= MAIN VIEWS CONTAINER ================= -->
-  <main class="flex-1 relative overflow-hidden">
+  <!-- ================= MAIN CONTENT VIEWPORT ================= -->
+  <main class="flex-1 relative overflow-hidden bg-slate-950/40 backdrop-blur-[2px]">
     
-    <!-- VIEW 1: BOARD / SHELF HORIZONTAL SCROLL -->
-    <div id="boardView" class="h-full flex overflow-x-auto overflow-y-hidden px-4 md:px-6 py-4 gap-4 scroll-smooth">
-      <!-- Injected dynamically via JS -->
+    <!-- 1. Board View (Shelves) -->
+    <div id="boardView" class="w-full h-full p-4 overflow-x-auto overflow-y-hidden flex gap-4 items-start select-text scroll-smooth">
+      <!-- Shelves dynamically injected -->
     </div>
 
-    <!-- VIEW 2: MASONRY GRID VIEW (VERTICAL SCROLL) -->
-    <div id="gridView" class="hidden h-full overflow-y-auto px-4 md:px-8 py-6">
-      <div id="gridCardsContainer" class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-4 space-y-4">
-        <!-- Injected dynamically via JS -->
+    <!-- 2. Grid View -->
+    <div id="gridView" class="hidden w-full h-full p-4 md:p-6 overflow-y-auto select-text">
+      <div id="gridCardsContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        <!-- Cards dynamically injected -->
       </div>
     </div>
 
-    <!-- VIEW 3: COMPACT LIST VIEW -->
-    <div id="listView" class="hidden h-full overflow-y-auto px-4 md:px-8 py-6 max-w-5xl mx-auto">
-      <div id="listCardsContainer" class="space-y-3">
-        <!-- Injected dynamically via JS -->
+    <!-- 3. List View -->
+    <div id="listView" class="hidden w-full h-full p-4 md:p-6 overflow-y-auto select-text">
+      <div class="max-w-5xl mx-auto space-y-2" id="listCardsContainer">
+        <!-- List rows dynamically injected -->
       </div>
     </div>
+
   </main>
 
   <!-- ================= CARD DETAIL MODAL ================= -->
-  <div id="cardDetailModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-200">
-    <div class="relative w-full max-w-3xl max-h-[92vh] bg-slate-900 border border-white/20 rounded-2xl shadow-2xl overflow-hidden flex flex-col scale-95 transition-transform duration-200" id="cardModalContent">
+  <div id="cardDetailModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-5 hidden opacity-0 transition-opacity duration-200">
+    <div id="cardModalContent" class="bg-slate-900 border border-white/15 rounded-2xl w-full max-w-3xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden scale-95 transition-transform duration-200">
       
       <!-- Modal Header -->
-      <div class="p-4 sm:p-5 border-b border-white/10 flex items-start justify-between gap-3 bg-slate-950/70">
-        <div class="space-y-1.5 flex-1 pr-4">
-          <div class="flex items-center gap-2 flex-wrap">
-            <span id="modalSectionName" class="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-slate-800 text-indigo-300 border border-slate-700">分欄</span>
-            <span id="modalColorBadge" class="px-2.5 py-0.5 rounded-md text-xs font-semibold border">分類</span>
-            <span id="modalLinkTypeBadge" class="px-2.5 py-0.5 rounded-md text-xs font-medium bg-white/10 text-slate-300 border border-white/10 hidden">類型</span>
-          </div>
-          <h2 id="modalTitle" class="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug">卡片標題</h2>
+      <div class="p-4 border-b border-white/10 flex items-center justify-between gap-3 bg-slate-950/70 flex-none">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span id="modalSectionName" class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+            分欄名稱
+          </span>
+          <span id="modalColorBadge" class="px-2.5 py-0.5 rounded-md text-xs font-semibold border">
+            分類標籤
+          </span>
+          <span id="modalLinkTypeBadge" class="hidden px-2 py-0.5 rounded text-[11px] font-mono bg-sky-500/20 text-sky-300 border border-sky-500/30">
+            Gemini
+          </span>
         </div>
-        <div class="flex items-center gap-2 flex-none">
-          <button id="modalPrevBtn" title="上一張 (←)" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors">
-            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+        <div class="flex items-center gap-2">
+          <button id="modalPrevBtn" title="上一張卡片" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white transition-colors">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
           </button>
-          <button id="modalNextBtn" title="下一張 (→)" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors">
-            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          <button id="modalNextBtn" title="下一張卡片" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white transition-colors">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
           </button>
-          <button id="modalCloseBtn" title="關閉 (Esc)" class="p-1.5 rounded-lg bg-white/10 hover:bg-rose-500/80 text-slate-300 hover:text-white transition-colors ml-1">
-            <i data-lucide="x" class="w-5 h-5"></i>
+          <button id="modalCloseBtn" title="關閉視窗 (Esc)" class="p-1.5 rounded-lg bg-white/5 hover:bg-rose-500/20 text-slate-300 hover:text-rose-300 transition-colors">
+            <i data-lucide="x" class="w-4 h-4"></i>
           </button>
         </div>
       </div>
 
       <!-- Modal Body (Scrollable) -->
-      <div class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5">
-        
-        <!-- Media Preview Area (Video or Image) -->
-        <div id="modalMediaContainer" class="rounded-xl overflow-hidden bg-black/40 border border-white/10 flex items-center justify-center max-h-96 hidden">
-          <!-- Video or img injected dynamically -->
+      <div class="p-5 overflow-y-auto space-y-4 flex-1 select-text">
+        <h3 id="modalTitle" class="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug">
+          卡片標題
+        </h3>
+
+        <!-- Media preview (Video/Image) -->
+        <div id="modalMediaContainer" class="rounded-xl overflow-hidden bg-black/60 border border-white/10 flex items-center justify-center max-h-96">
+          <!-- Media injected dynamically -->
         </div>
 
-        <!-- Body / Content -->
-        <div id="modalBodyContainer" class="text-sm sm:text-base text-slate-200 leading-relaxed space-y-3 font-normal whitespace-pre-line">
-          <!-- Body text injected -->
+        <!-- Text Content -->
+        <div id="modalBodyContainer" class="text-sm text-slate-200 leading-relaxed whitespace-pre-wrap font-sans bg-black/25 p-4 rounded-xl border border-white/5">
+          <!-- Body text -->
         </div>
 
-        <!-- Comments & Prompts Section -->
-        <div id="modalCommentsContainer" class="p-4 rounded-xl bg-purple-500/10 border border-purple-500/30 space-y-3 hidden">
+        <!-- Comments / Prompt Box -->
+        <div id="modalCommentsContainer" class="space-y-2">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-purple-300 flex items-center gap-1.5 uppercase tracking-wide">
-              <i data-lucide="sparkles" class="w-4 h-4"></i>
-              自訂提示詞與專家指引 (Prompt Instructions)
-            </span>
+            <h4 class="text-xs font-bold text-purple-300 flex items-center gap-1.5 uppercase tracking-wider">
+              <i data-lucide="message-square-code" class="w-4 h-4"></i>
+              提示詞與指引 (Comments & Prompt)
+            </h4>
           </div>
-          <div id="modalCommentsList" class="space-y-2.5">
-            <!-- Comments injected -->
+          <div id="modalCommentsList" class="space-y-2">
+            <!-- Comments injected here -->
           </div>
         </div>
 
       </div>
 
       <!-- Modal Footer -->
-      <div class="p-4 border-t border-white/10 bg-slate-950/70 flex items-center justify-between flex-wrap gap-2">
+      <div class="p-4 border-t border-white/10 bg-slate-950/80 flex items-center justify-between gap-3 flex-none flex-wrap">
         <div class="flex items-center gap-2">
-          <button id="copyPromptBtn" class="px-3 py-1.5 bg-purple-600 hover:bg-purple-500 text-white font-semibold rounded-lg text-xs flex items-center gap-1.5 transition-all shadow">
-            <i data-lucide="copy" class="w-4 h-4"></i>
-            <span>複製本文內容</span>
+          <button id="copyPromptBtn" class="px-3.5 py-1.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors shadow">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            複製卡片內容與提示詞
           </button>
-          <button id="downloadFileBtn" class="hidden px-3 py-1.5 bg-sky-600 hover:bg-sky-500 text-white font-semibold rounded-lg text-xs items-center gap-1.5 transition-all shadow">
-            <i data-lucide="download" class="w-4 h-4"></i>
-            <span>下載本機附件</span>
+          <button id="downloadFileBtn" class="hidden px-3.5 py-1.5 bg-sky-600 hover:bg-sky-500 text-white rounded-lg text-xs font-bold items-center gap-1.5 transition-colors shadow">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            下載附件檔案
           </button>
         </div>
-        <div class="flex items-center gap-2">
-          <a id="externalLinkBtn" href="#" target="_blank" rel="noopener noreferrer" class="hidden px-3 py-1.5 bg-white/10 hover:bg-white/20 text-slate-200 hover:text-white font-medium rounded-lg text-xs items-center gap-1.5 transition-all">
-            <i data-lucide="external-link" class="w-4 h-4"></i>
-            <span id="externalLinkText">前往外部連結</span>
-          </a>
-        </div>
+        <a id="externalLinkBtn" href="#" target="_blank" rel="noopener noreferrer" class="hidden px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-white/15 rounded-lg text-xs font-semibold items-center gap-1.5 transition-colors">
+          <span id="externalLinkText">前往外部連結</span>
+          <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+        </a>
       </div>
 
     </div>
   </div>
 
-  <!-- ================= DOWNLOADS MODAL ================= -->
-  <div id="downloadsModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-200">
-    <div class="relative w-full max-w-2xl max-h-[85vh] bg-slate-900 border border-white/20 rounded-2xl shadow-2xl overflow-hidden flex flex-col scale-95 transition-transform duration-200">
+  <!-- ================= DOWNLOADS LIST MODAL ================= -->
+  <div id="downloadsModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-200">
+    <div class="bg-slate-900 border border-white/15 rounded-2xl w-full max-w-2xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden scale-95 transition-transform duration-200">
       <div class="p-4 border-b border-white/10 flex items-center justify-between bg-slate-950/70">
         <div class="flex items-center gap-2">
           <i data-lucide="folder-down" class="w-5 h-5 text-sky-400"></i>
-          <h3 id="downloadsModalTitle" class="text-base font-bold text-white">本機素材與附件庫</h3>
+          <h3 id="downloadsModalTitle" class="font-bold text-white text-base">本機素材與手冊下載庫</h3>
         </div>
-        <button id="closeDownloadsModalBtn" class="p-1.5 rounded-lg bg-white/10 hover:bg-rose-500/80 text-slate-300 hover:text-white transition-colors">
+        <button id="closeDownloadsModalBtn" class="p-1 rounded-lg text-slate-400 hover:text-white">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
-      <div class="p-4 flex-1 overflow-y-auto space-y-2 text-xs" id="downloadsListContainer">
-        <!-- Injected dynamically -->
+      <div id="downloadsListContainer" class="p-4 overflow-y-auto space-y-2.5 flex-1 select-text">
+        <!-- File rows injected -->
       </div>
     </div>
   </div>
 
-  <!-- ================= TOAST NOTIFICATION ================= -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 px-4 py-2.5 bg-emerald-600 text-white text-xs font-semibold rounded-xl shadow-xl border border-emerald-400/40 flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-indigo-600 text-white px-4 py-2.5 rounded-xl shadow-2xl text-xs sm:text-sm font-semibold flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
     <i data-lucide="check-circle" class="w-4 h-4"></i>
     <span id="toastMsg">提示詞已成功複製至剪貼簿！</span>
   </div>
 
-  <!-- ================= APPLICATION LOGIC ================= -->
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
   <script>
+    // All 9 Boards Dictionary
     const boards = {
-      gemini: window.BOARD_DATA || { title: 'Gemini就是神奇', sections: [], cards: [] },
-      gm: window.GM_BOARD_DATA || { title: '公明國中-Gemini Notebook', sections: [], cards: [] }
+      gemini: window.BOARD_DATA,
+      gm: window.GM_BOARD_DATA,
+      ai_expert: window.AI_EXPERT_BOARD_DATA,
+      interactive_web: window.IW_BOARD_DATA,
+      ai_sketch: window.AS_BOARD_DATA,
+      text_to_slides: window.TS_BOARD_DATA,
+      music_creation: window.MC_BOARD_DATA,
+      notebooklm_projects: window.NP_BOARD_DATA,
+      prompt_architecture: window.PA_BOARD_DATA
     };
 
+    // Board Tab Definitions
+    const boardTabs = [
+      { key: 'gemini', icon: 'sparkles', label: 'Gemini就是神奇', color: 'indigo' },
+      { key: 'gm', icon: 'book-open', label: '公明國中-Notebook', color: 'sky' },
+      { key: 'ai_expert', icon: 'bot', label: 'AI專家系統建置', color: 'purple' },
+      { key: 'interactive_web', icon: 'globe', label: '互動網頁實作', color: 'emerald' },
+      { key: 'ai_sketch', icon: 'palette', label: 'AI素描課-圖片摹寫', color: 'amber' },
+      { key: 'text_to_slides', icon: 'presentation', label: '文生簡報', color: 'rose' },
+      { key: 'music_creation', icon: 'music', label: '歌曲創作', color: 'violet' },
+      { key: 'notebooklm_projects', icon: 'file-text', label: 'NotebookLM教學專案', color: 'blue' },
+      { key: 'prompt_architecture', icon: 'code', label: '提示詞架構練習', color: 'teal' }
+    ];
+
+    // State Variables
     let activeBoardKey = 'gemini';
-    let currentFilter = 'all';
-    let searchQuery = '';
     let currentView = 'board'; // 'board' | 'grid' | 'list'
+    let currentFilter = 'all';  // 'all' | '資料' | '範例' | '工具' | '實作'
+    let searchQuery = '';
     let currentModalCardIndex = 0;
     let visibleCards = [];
 
-    // DOM Elements - Tabs
-    const tabBtnGemini = document.getElementById('tabBtnGemini');
-    const tabBtnGM = document.getElementById('tabBtnGM');
-    const tabCountGemini = document.getElementById('tabCountGemini');
-    const tabCountGM = document.getElementById('tabCountGM');
+    // DOM Elements
     const appBody = document.getElementById('appBody');
-
-    // DOM Elements - Headers & Tools
-    const boardTitle = document.getElementById('boardTitle');
+    const tabsContainer = document.getElementById('tabsContainer');
+    const globalStatsBadge = document.getElementById('globalStatsBadge');
     const boardIcon = document.getElementById('boardIcon');
+    const boardTitle = document.getElementById('boardTitle');
     const legendContainer = document.getElementById('legendContainer');
+    const searchInput = document.getElementById('searchInput');
+    const clearSearchBtn = document.getElementById('clearSearchBtn');
     const colorFiltersDesktop = document.getElementById('colorFiltersDesktop');
     const colorFiltersMobile = document.getElementById('colorFiltersMobile');
-    const origPadletLink = document.getElementById('origPadletLink');
     const columnJumpSelect = document.getElementById('columnJumpSelect');
-    const downloadsCount = document.getElementById('downloadsCount');
-    const downloadsModalTitle = document.getElementById('downloadsModalTitle');
+    const origPadletLink = document.getElementById('origPadletLink');
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toastMsg');
 
-    // DOM Elements - Views
+    // Views
     const boardView = document.getElementById('boardView');
     const gridView = document.getElementById('gridView');
     const listView = document.getElementById('listView');
     const gridCardsContainer = document.getElementById('gridCardsContainer');
     const listCardsContainer = document.getElementById('listCardsContainer');
-    const searchInput = document.getElementById('searchInput');
-    const clearSearchBtn = document.getElementById('clearSearchBtn');
-    const themeToggleBtn = document.getElementById('themeToggleBtn');
-    const toast = document.getElementById('toast');
-    const toastMsg = document.getElementById('toastMsg');
 
-    // View Buttons
     const viewBoardBtn = document.getElementById('viewBoardBtn');
     const viewGridBtn = document.getElementById('viewGridBtn');
     const viewListBtn = document.getElementById('viewListBtn');
@@ -420,18 +438,52 @@
 
     // Downloads Modal Elements
     const downloadsModal = document.getElementById('downloadsModal');
+    const downloadsModalTitle = document.getElementById('downloadsModalTitle');
     const openDownloadsBtn = document.getElementById('openDownloadsBtn');
     const closeDownloadsModalBtn = document.getElementById('closeDownloadsModalBtn');
     const downloadsListContainer = document.getElementById('downloadsListContainer');
+    const downloadsCount = document.getElementById('downloadsCount');
     const randomDrawBtn = document.getElementById('randomDrawBtn');
     const exportCsvBtn = document.getElementById('exportCsvBtn');
 
     function getActiveBoard() {
-      return boards[activeBoardKey];
+      return boards[activeBoardKey] || boards.gemini;
+    }
+
+    // Initialize Top Navigation Tabs
+    function initTabs() {
+      tabsContainer.innerHTML = '';
+      let totalAllCards = 0;
+
+      boardTabs.forEach(t => {
+        const b = boards[t.key];
+        const count = b ? b.cards.length : 0;
+        totalAllCards += count;
+
+        const btn = document.createElement('button');
+        btn.id = `tabBtn_${t.key}`;
+        btn.dataset.board = t.key;
+        btn.className = 'flex-none px-3 py-1.5 rounded-lg text-xs md:text-sm font-semibold flex items-center gap-1.5 transition-all text-slate-300 hover:text-white hover:bg-white/10 whitespace-nowrap cursor-pointer';
+        btn.innerHTML = `
+          <i data-lucide="${t.icon}" class="w-3.5 h-3.5"></i>
+          <span>${t.label}</span>
+          <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-black/30 font-mono text-slate-300">${count}</span>
+        `;
+
+        btn.addEventListener('click', () => {
+          switchBoard(t.key);
+          btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        });
+
+        tabsContainer.appendChild(btn);
+      });
+
+      globalStatsBadge.textContent = `9大看板 · ${totalAllCards.toLocaleString()}張卡片全量離線`;
     }
 
     // Switch Active Board
     function switchBoard(key) {
+      if (!boards[key]) return;
       activeBoardKey = key;
       currentFilter = 'all';
       searchQuery = '';
@@ -440,70 +492,58 @@
 
       const b = getActiveBoard();
 
-      // Update Body Background
-      if (document.documentElement.classList.contains('dark')) {
-        appBody.style.backgroundImage = `radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.78) 0%, rgba(8, 12, 24, 0.94) 100%), url("${b.wallpaper}")`;
-      } else {
-        appBody.style.backgroundImage = `radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.88) 0%, rgba(241, 245, 249, 0.96) 100%), url("${b.wallpaper}")`;
+      // Update Body Background Wallpaper
+      if (b.wallpaper) {
+        if (document.documentElement.classList.contains('dark')) {
+          appBody.style.backgroundImage = `radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.78) 0%, rgba(8, 12, 24, 0.94) 100%), url("${b.wallpaper}")`;
+        } else {
+          appBody.style.backgroundImage = `radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.88) 0%, rgba(241, 245, 249, 0.96) 100%), url("${b.wallpaper}")`;
+        }
       }
 
-      // Tab styling
-      if (key === 'gemini') {
-        tabBtnGemini.className = 'app-tab px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold flex items-center gap-2 transition-all bg-indigo-600 text-white shadow-md shadow-indigo-600/30';
-        tabBtnGM.className = 'app-tab px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-medium flex items-center gap-2 transition-all text-slate-300 hover:text-white hover:bg-white/10';
-        boardIcon.className = 'w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-500 to-sky-400 flex items-center justify-center shadow-md shadow-indigo-500/20 text-white font-black text-lg';
-      } else {
-        tabBtnGM.className = 'app-tab px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold flex items-center gap-2 transition-all bg-sky-600 text-white shadow-md shadow-sky-600/30';
-        tabBtnGemini.className = 'app-tab px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-medium flex items-center gap-2 transition-all text-slate-300 hover:text-white hover:bg-white/10';
-        boardIcon.className = 'w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-600 via-blue-500 to-emerald-400 flex items-center justify-center shadow-md shadow-sky-500/20 text-white font-black text-lg';
-      }
+      // Update Top Tabs styling
+      boardTabs.forEach(t => {
+        const btn = document.getElementById(`tabBtn_${t.key}`);
+        if (!btn) return;
+        const isActive = t.key === key;
+        if (isActive) {
+          btn.className = `flex-none px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold flex items-center gap-1.5 transition-all bg-indigo-600 text-white shadow-md shadow-indigo-600/30 whitespace-nowrap`;
+        } else {
+          btn.className = `flex-none px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium flex items-center gap-1.5 transition-all text-slate-300 hover:text-white hover:bg-white/10 whitespace-nowrap`;
+        }
+      });
 
-      // Title & Link
+      // Update Board Icon & Header
       boardTitle.textContent = b.title;
       origPadletLink.href = b.original_url || '#';
 
-      // Update Legend
       renderLegend();
-
-      // Update Filter Tabs
       renderFilterTabs();
-
-      // Update Jump Select
       renderColumnJump();
 
-      // Update Download Count
+      // Update Downloads Count
       const filesCount = b.cards.filter(c => c.local_file).length;
       downloadsCount.textContent = filesCount;
       downloadsModalTitle.textContent = `${b.title} - 本機素材庫 (${filesCount})`;
 
-      // Render Active View
       refreshView();
       lucide.createIcons();
     }
 
     // Render Legend
     function renderLegend() {
-      if (activeBoardKey === 'gemini') {
-        legendContainer.innerHTML = `
-          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-purple-400"></span>紫標是資料</span>
-          <span class="text-slate-500">•</span>
-          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-400"></span>紅標有範例</span>
-          <span class="text-slate-500">•</span>
-          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-sky-400"></span>藍標歸工具</span>
-          <span class="text-slate-500">•</span>
-          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>綠標要實作</span>
-        `;
-      } else {
-        legendContainer.innerHTML = `
-          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-400"></span>黃標是資料</span>
-          <span class="text-slate-500">•</span>
-          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-400"></span>紅標有範例</span>
-          <span class="text-slate-500">•</span>
-          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-sky-400"></span>藍標歸工具</span>
-          <span class="text-slate-500">•</span>
-          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>綠標要實作</span>
-        `;
-      }
+      const dataLabel = (activeBoardKey === 'gemini') ? '紫標是資料' : '黃標是資料';
+      const dataDot = (activeBoardKey === 'gemini') ? 'bg-purple-400' : 'bg-amber-400';
+
+      legendContainer.innerHTML = `
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full ${dataDot}"></span>${dataLabel}</span>
+        <span class="text-slate-500">•</span>
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-400"></span>紅標有範例</span>
+        <span class="text-slate-500">•</span>
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-sky-400"></span>藍標歸工具</span>
+        <span class="text-slate-500">•</span>
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>綠標要實作</span>
+      `;
     }
 
     // Render Filter Tabs
@@ -540,7 +580,7 @@
         </div>
       `;
 
-      // Attach filter click handlers
+      // Filter click listeners
       document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           document.querySelectorAll('.filter-btn').forEach(b => {
@@ -556,25 +596,49 @@
       });
     }
 
+    // Get Active Shelves (Handles single-section boards by grouping into 4 color shelves for great layout)
+    function getBoardShelves(b) {
+      if (b.sections && b.sections.length > 1) {
+        return b.sections;
+      }
+      // For single-section boards, split into 4 logical color shelves
+      const colorGroups = [
+        { id: `${b.key || 'sec'}-color-data`, title: '📖 資料與說明', filterColor: '資料' },
+        { id: `${b.key || 'sec'}-color-example`, title: '💡 範例與案例', filterColor: '範例' },
+        { id: `${b.key || 'sec'}-color-tool`, title: '🛠️ 工具與平台', filterColor: '工具' },
+        { id: `${b.key || 'sec'}-color-practice`, title: '🚀 實作與成果', filterColor: '實作' }
+      ];
+
+      return colorGroups.map(g => {
+        const secCards = b.cards.filter(c => c.color_label === g.filterColor);
+        return {
+          id: g.id,
+          title: g.title,
+          cards_count: secCards.length,
+          cards: secCards
+        };
+      }).filter(s => s.cards.length > 0);
+    }
+
     // Render Column Jump
     function renderColumnJump() {
       const b = getActiveBoard();
-      columnJumpSelect.innerHTML = `<option value="">跳轉分欄 (${b.sections.length})...</option>`;
-      b.sections.forEach(s => {
+      const shelves = getBoardShelves(b);
+      columnJumpSelect.innerHTML = `<option value="">跳轉分欄 (${shelves.length})...</option>`;
+      shelves.forEach(s => {
         const opt = document.createElement('option');
         opt.value = s.id;
-        opt.textContent = `${s.title} (${s.cards_count})`;
+        opt.textContent = `${s.title} (${s.cards_count || s.cards.length})`;
         columnJumpSelect.appendChild(opt);
       });
     }
 
-    // Match Filter
+    // Filter Matching
     function matchesFilter(card) {
       if (currentFilter === 'all') return true;
       return card.color_label === currentFilter;
     }
 
-    // Match Search
     function matchesSearch(card) {
       if (!searchQuery) return true;
       const q = searchQuery.toLowerCase();
@@ -591,7 +655,7 @@
       return text.replace(regex, '<mark>$1</mark>');
     }
 
-    // Show Toast
+    // Toast
     function showToast(msg) {
       toastMsg.textContent = msg;
       toast.classList.remove('translate-y-20', 'opacity-0');
@@ -602,7 +666,7 @@
       }, 2500);
     }
 
-    // Copy to clipboard
+    // Copy Text
     function copyText(str, msg = '提示詞已成功複製至剪貼簿！') {
       navigator.clipboard.writeText(str).then(() => {
         showToast(msg);
@@ -617,16 +681,14 @@
       });
     }
 
-    // Create Card Element
-    function createCardElement(card, index) {
+    // Card Element Builder
+    function createCardElement(card) {
       const cardEl = document.createElement('div');
       cardEl.className = 'card-transition bg-slate-900/85 dark:bg-slate-900/90 border border-white/10 hover:border-indigo-400/50 rounded-xl p-3.5 shadow-md flex flex-col gap-2.5 cursor-pointer backdrop-blur-sm';
       cardEl.dataset.id = card.id;
 
-      // Color badge
       let badgeClass = card.badge_class || 'bg-slate-800 text-slate-300 border-slate-700';
 
-      // Header row
       const headerRow = `
         <div class="flex items-center justify-between gap-2">
           <span class="px-2 py-0.5 rounded text-[11px] font-semibold border ${badgeClass}">
@@ -638,11 +700,11 @@
             ${card.is_pptx ? '<span class="px-1.5 py-0.5 rounded text-[10px] bg-orange-500/20 text-orange-300 border border-orange-500/30 font-medium flex items-center gap-1"><i data-lucide="presentation" class="w-3 h-3"></i> PPTX</span>' : ''}
             ${card.link_type === 'gem' ? '<span class="px-1.5 py-0.5 rounded text-[10px] bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-medium flex items-center gap-1"><i data-lucide="bot" class="w-3 h-3"></i> Gem</span>' : ''}
             ${card.link_type === 'notebook' ? '<span class="px-1.5 py-0.5 rounded text-[10px] bg-sky-500/20 text-sky-300 border border-sky-500/30 font-medium flex items-center gap-1"><i data-lucide="book-open" class="w-3 h-3"></i> NBLM</span>' : ''}
+            ${card.link_type === 'music' ? '<span class="px-1.5 py-0.5 rounded text-[10px] bg-violet-500/20 text-violet-300 border border-violet-500/30 font-medium flex items-center gap-1"><i data-lucide="music" class="w-3 h-3"></i> 音樂</span>' : ''}
           </div>
         </div>
       `;
 
-      // Media
       let mediaHtml = '';
       if (card.is_video && card.local_file) {
         mediaHtml = `
@@ -661,7 +723,6 @@
         `;
       }
 
-      // Title & snippet
       const titleHtml = `<h4 class="text-sm font-bold text-white tracking-tight leading-snug">${highlightText(card.title)}</h4>`;
       
       let bodySnippet = '';
@@ -669,22 +730,18 @@
         bodySnippet = `<p class="text-xs text-slate-300 line-clamp-4 leading-relaxed">${highlightText(card.body)}</p>`;
       }
 
-      // Comments badge
       let commentsBadge = '';
       if (card.comments && card.comments.length > 0) {
         commentsBadge = `
           <div class="pt-1 border-t border-white/5 flex items-center justify-between text-[11px] text-purple-300">
-            <span class="flex items-center gap-1"><i data-lucide="message-square-code" class="w-3.5 h-3.5"></i> ${card.comments.length} 則提示詞/指引</span>
+            <span class="flex items-center gap-1"><i data-lucide="message-square-code" class="w-3.5 h-3.5"></i> ${card.comments.length} 則提示詞/備註</span>
             <span class="text-[10px] text-slate-400">點擊查看</span>
           </div>
         `;
       }
 
       cardEl.innerHTML = headerRow + mediaHtml + titleHtml + bodySnippet + commentsBadge;
-
-      cardEl.addEventListener('click', () => {
-        openModal(card);
-      });
+      cardEl.addEventListener('click', () => openModal(card));
 
       return cardEl;
     }
@@ -693,8 +750,9 @@
     function renderBoardView() {
       boardView.innerHTML = '';
       const b = getActiveBoard();
-      
-      b.sections.forEach(sec => {
+      const shelves = getBoardShelves(b);
+
+      shelves.forEach(sec => {
         const secCards = sec.cards.filter(c => matchesFilter(c) && matchesSearch(c));
         
         const shelf = document.createElement('div');
@@ -705,7 +763,7 @@
         header.className = 'p-3.5 border-b border-white/10 bg-slate-900/80 flex items-center justify-between sticky top-0 z-10';
         header.innerHTML = `
           <div class="flex items-center gap-2">
-            <h3 class="font-bold text-sm text-white tracking-tight">${sec.title}</h3>
+            <h3 class="font-bold text-sm text-white tracking-tight truncate">${sec.title}</h3>
             <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/10 text-slate-300">${secCards.length}</span>
           </div>
         `;
@@ -748,27 +806,28 @@
       listCardsContainer.innerHTML = '';
       const b = getActiveBoard();
       const filtered = b.cards.filter(c => matchesFilter(c) && matchesSearch(c));
+
       if (filtered.length === 0) {
-        listCardsContainer.innerHTML = `<div class="py-12 text-center text-slate-400 text-sm">無符合條件項目</div>`;
+        listCardsContainer.innerHTML = `<div class="py-12 text-center text-slate-400 text-sm">無符合搜尋或篩選條件的卡片</div>`;
         return;
       }
 
-      filtered.forEach(c => {
+      filtered.forEach((c, idx) => {
         const row = document.createElement('div');
-        row.className = 'card-transition p-3.5 bg-slate-900/80 border border-white/10 rounded-xl hover:border-indigo-400/50 flex items-center justify-between gap-4 cursor-pointer backdrop-blur-sm';
-        
-        let badgeClass = c.badge_class || 'bg-slate-800 text-slate-300 border-slate-700';
-
+        row.className = 'p-3 bg-slate-900/80 hover:bg-slate-800/80 border border-white/10 rounded-xl flex items-center justify-between gap-3 cursor-pointer transition-all';
         row.innerHTML = `
           <div class="flex items-center gap-3 min-w-0">
-            <span class="px-2 py-0.5 rounded text-[10px] font-bold border flex-none ${badgeClass}">${c.color_label || '一般'}</span>
+            <span class="w-6 text-center text-xs text-slate-500 font-mono flex-none">${idx + 1}</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-semibold border ${c.badge_class || 'bg-slate-800 text-slate-300'} flex-none">
+              ${c.color_label || '一般'}
+            </span>
             <div class="min-w-0">
               <h4 class="text-sm font-bold text-white truncate">${highlightText(c.title)}</h4>
-              <p class="text-xs text-slate-400 truncate">${highlightText(c.section_title)}</p>
+              <p class="text-xs text-slate-400 truncate">${c.section_title} ${c.body ? '• ' + c.body : ''}</p>
             </div>
           </div>
           <div class="flex items-center gap-2 flex-none">
-            ${c.comments && c.comments.length > 0 ? `<span class="text-xs text-purple-300 font-semibold flex items-center gap-1"><i data-lucide="sparkles" class="w-3.5 h-3.5"></i> ${c.comments.length}</span>` : ''}
+            ${c.local_file ? '<span class="text-[10px] text-sky-400 flex items-center gap-1"><i data-lucide="download" class="w-3 h-3"></i> 附件</span>' : ''}
             <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500"></i>
           </div>
         `;
@@ -778,14 +837,17 @@
       lucide.createIcons();
     }
 
+    // Refresh Current View
     function refreshView() {
       const b = getActiveBoard();
       visibleCards = b.cards.filter(c => matchesFilter(c) && matchesSearch(c));
+
       if (currentView === 'board') renderBoardView();
       else if (currentView === 'grid') renderGridView();
       else if (currentView === 'list') renderListView();
     }
 
+    // Set Active View
     function setView(view) {
       currentView = view;
       boardView.classList.toggle('hidden', view !== 'board');
@@ -840,7 +902,7 @@
       // Comments & Prompts
       if (card.comments && card.comments.length > 0) {
         modalCommentsList.innerHTML = '';
-        card.comments.forEach((c, i) => {
+        card.comments.forEach(c => {
           const item = document.createElement('div');
           item.className = 'p-3 bg-black/40 rounded-lg border border-purple-500/20 flex flex-col gap-2';
           item.innerHTML = `
@@ -935,20 +997,24 @@
       const filesWithCards = b.cards.filter(c => c.local_file);
       downloadsCount.textContent = filesWithCards.length;
 
-      filesWithCards.forEach(c => {
-        const item = document.createElement('div');
-        item.className = 'p-3 bg-slate-950/60 rounded-xl border border-white/10 flex items-center justify-between gap-3 hover:border-sky-400/50 transition-all';
-        item.innerHTML = `
-          <div class="min-w-0">
-            <h5 class="font-bold text-white truncate text-xs">${c.title}</h5>
-            <p class="text-[11px] text-slate-400 truncate">${c.local_file.split('/').pop()}</p>
-          </div>
-          <a href="${c.local_file}" download class="px-2.5 py-1.5 bg-sky-600 hover:bg-sky-500 text-white rounded-lg font-semibold flex items-center gap-1 flex-none transition-colors">
-            <i data-lucide="download" class="w-3.5 h-3.5"></i> 下載
-          </a>
-        `;
-        downloadsListContainer.appendChild(item);
-      });
+      if (filesWithCards.length === 0) {
+        downloadsListContainer.innerHTML = `<div class="p-8 text-center text-slate-400 text-sm">本看板暫無本機獨立檔案，所有內容皆為線上雲端互動教材。</div>`;
+      } else {
+        filesWithCards.forEach(c => {
+          const item = document.createElement('div');
+          item.className = 'p-3 bg-slate-950/60 rounded-xl border border-white/10 flex items-center justify-between gap-3 hover:border-sky-400/50 transition-all';
+          item.innerHTML = `
+            <div class="min-w-0">
+              <h5 class="font-bold text-white truncate text-xs">${c.title}</h5>
+              <p class="text-[11px] text-slate-400 truncate">${c.local_file.split('/').pop()}</p>
+            </div>
+            <a href="${c.local_file}" download class="px-2.5 py-1.5 bg-sky-600 hover:bg-sky-500 text-white rounded-lg font-semibold flex items-center gap-1 flex-none transition-colors text-xs">
+              <i data-lucide="download" class="w-3.5 h-3.5"></i> 下載
+            </a>
+          `;
+          downloadsListContainer.appendChild(item);
+        });
+      }
 
       downloadsModal.classList.remove('hidden');
       setTimeout(() => {
@@ -1065,14 +1131,8 @@
       }
     });
 
-    // Tab Button Click Listeners
-    tabBtnGemini.addEventListener('click', () => switchBoard('gemini'));
-    tabBtnGM.addEventListener('click', () => switchBoard('gm'));
-
-    // Initialize
-    tabCountGemini.textContent = boards.gemini.cards.length;
-    tabCountGM.textContent = boards.gm.cards.length;
-
+    // Boot
+    initTabs();
     switchBoard('gemini');
     setView('board');
   </script>

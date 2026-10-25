@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奇幻森林冒險記</title>
+    <style>
+        body {
+            background-color: #FFE5B4;
+            color: #8B4513;
+            font-family: "Arial", sans-serif;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            border: 2px solid #FF8C00;
+            border-radius: 15px;
+            background-color: #FFDAB9;
+            margin: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .question {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        .answers {
+            margin-top: 10px;
+        }
+        .answer-btn {
+            background-color: #FF8C00;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .answer-btn:hover {
+            background-color: #FFA500;
+        }
+        #restart-btn {
+            background-color: #FF6347;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        #restart-btn:hover {
+            background-color: #FF7F50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>奇幻森林冒險記</h1>
+        <p>🌳 歡迎來到奇幻森林！這裡住著許多可愛的小動物 🐰🐾。有一天，🌴 森林裡的小動物們決定舉辦一場冒險活動 🏃‍♂️，💪 每個小動物都要完成不同的任務，學習如何面對生活中的挑戰。<br>讓我們一起跟著小動物們展開這段奇妙的冒險吧！✨每個問題都代表著小動物們可能遇到的情況，請幫助他們做出最好的選擇。🙏</p>
+        <div id="question-section">
+            <p id="question" class="question"></p>
+            <div id="answers" class="answers"></div>
+        </div>
+        <p id="score"></p>
+        <button id="restart-btn" onclick="restartGame()" style="display: none;">重新探險</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "🐇 小兔子小白發現爸爸媽媽好像有點不一樣了，爸爸媽媽的時間也變少了，她應該怎麼辦呢？",
+                answers: [
+                    { text: "🤗 找家人或朋友聊聊自己的感受", correct: true },
+                    { text: "😔 自己生悶氣，不跟任何人說", correct: false },
+                    { text: "👨‍🌏 偷偷跑去別的地方", correct: false }
+                ]
+            },
+            {
+                question: "🐻 小熊小勇發現爸爸媽媽因為工作分開了，他感覺很孤單，他應該怎麼做？",
+                answers: [
+                    { text: "💖 尋找可以依靠的親人或老師", correct: true },
+                    { text: "😞 躲在家裡不和任何人說話", correct: false },
+                    { text: "⛔ 責怪自己造成的問題", correct: false }
+                ]
+            },
+            // 再加入8個問題
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        const questionElement = document.getElementById("question");
+        const answersElement = document.getElementById("answers");
+        const scoreElement = document.getElementById("score");
+
+        function startGame() {
+            currentQuestionIndex = 0;
+            score = 0;
+            scoreElement.textContent = "";
+            document.getElementById("restart-btn").style.display = "none";
+            setNextQuestion();
+        }
+
+        function setNextQuestion() {
+            resetState();
+            if (currentQuestionIndex < 5) {
+                showQuestion(questions[Math.floor(Math.random() * questions.length)]);
+            } else {
+                endGame();
+            }
+        }
+
+        function showQuestion(question) {
+            questionElement.textContent = question.question;
+            question.answers.forEach(answer => {
+                const button = document.createElement("button");
+                button.textContent = answer.text;
+                button.classList.add("answer-btn");
+                if (answer.correct) {
+                    button.dataset.correct = answer.correct;
+                }
+                button.addEventListener("click", selectAnswer);
+                answersElement.appendChild(button);
+            });
+        }
+
+        function resetState() {
+            while (answersElement.firstChild) {
+                answersElement.removeChild(answersElement.firstChild);
+            }
+        }
+
+        function selectAnswer(e) {
+            const selectedButton = e.target;
+            const correct = selectedButton.dataset.correct;
+            if (correct) {
+                score += 20;
+            }
+            currentQuestionIndex++;
+            setNextQuestion();
+        }
+
+        function endGame() {
+            scoreElement.textContent = `你的得分是：${score} 分`;
+            if (score >= 80) {
+                scoreElement.textContent += "\n恭喜你成功完成了奇幻森林冒險！🎉🎊";
+            } else {
+                scoreElement.textContent += "\n🚫 你沒有通過這次冒險，請再接再厲！";
+            }
+            document.getElementById("restart-btn").style.display = "block";
+        }
+
+        function restartGame() {
+            startGame();
+        }
+
+        startGame();
+    </script>
+</body>
+</html>

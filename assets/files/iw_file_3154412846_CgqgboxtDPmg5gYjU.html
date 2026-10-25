@@ -1,0 +1,244 @@
+<html><head><base href="https://forest.adventure/" target="_blank">
+<meta charset="UTF-8">
+<title>奇幻森林冒險記</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e6f3e6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    max-width: 800px;
+    width: 100%;
+}
+h1 {
+    color: #2e7d32;
+    text-align: center;
+}
+.question {
+    margin-bottom: 20px;
+}
+button {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #45a049;
+}
+#result {
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+}
+.emoji {
+    font-size: 24px;
+    margin-right: 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>奇幻森林冒險記 <span class="emoji">🌳🐾</span></h1>
+    <p>歡迎來到奇幻森林！這裡住著許多可愛的小動物。有一天，森林裡的小動物們決定舉辦一場冒險活動， 每個小動物都要完成不同的任務，學習如何面對生活中的挑戰。</p>
+    <p>讓我們一起跟著小動物們展開這段奇妙的冒險吧！每個問題都代表著小動物們可能遇到的情況， 請幫助他們做出最好的選擇。</p>
+    <div id="quiz"></div>
+    <button id="submit">提交答案</button>
+    <div id="result"></div>
+    <button id="restart" style="display:none;">重新探險</button>
+</div>
+
+<script>
+const questions = [
+    {
+        question: "小兔子發現了一個美麗的蘑菇，但不確定是否可以吃。他應該怎麼做？ 🐰🍄",
+        answers: [
+            "立即吃掉，看起來很好吃",
+            "詢問森林裡的智慧老樹",
+            "用鼻子聞一聞",
+            "找其他動物朋友一起分享"
+        ],
+        correct: 1
+    },
+    {
+        question: "小狐狸遇到了一條湍急的小溪，他想要過河。應該如何安全地過河？ 🦊🌊",
+        answers: [
+            "直接跳入水中游過去",
+            "尋找一個安全的淺灘",
+            "等待其他動物幫忙",
+            "放棄過河，選擇其他路線"
+        ],
+        correct: 1
+    },
+    {
+        question: "小熊找到了一個蜂巢，想吃蜂蜜。他應該怎麼做才能安全地品嚐蜂蜜？ 🐻🍯",
+        answers: [
+            "直接用爪子抓蜂巢",
+            "大聲嚇跑蜜蜂",
+            "等待蜜蜂離開後再取蜂蜜",
+            "找森林裡的養蜂專家幫忙"
+        ],
+        correct: 3
+    },
+    {
+        question: "小鳥發現自己迷路了，找不到回家的路。他應該怎麼辦？ 🐦🌳",
+        answers: [
+            "一直飛，直到找到熟悉的地方",
+            "停在原地等待救援",
+            "向路過的其他動物尋求幫助",
+            "試著回憶來時的路，慢慢飛回去"
+        ],
+        correct: 2
+    },
+    {
+        question: "小鹿遇到了一隻受傷的小松鼠。他應該如何幫助這位朋友？ 🦌🐿️",
+        answers: [
+            "獨自照顧受傷的松鼠",
+            "去找森林醫生來幫忙",
+            "把松鼠留在原地不管",
+            "教松鼠如何自己療傷"
+        ],
+        correct: 1
+    },
+    {
+        question: "小浣熊發現了一堆閃閃發光的石頭。他應該怎麼處理這些石頭？ 🦝💎",
+        answers: [
+            "全部帶回家收藏",
+            "分享給所有的森林朋友",
+            "把石頭留在原處，保護自然環境",
+            "用石頭裝飾自己的樹洞"
+        ],
+        correct: 2
+    },
+    {
+        question: "小刺猬在森林裡發現了一個神秘的洞穴。他應該怎麼做？ 🦔🕳️",
+        answers: [
+            "立即進入探險",
+            "在洞口大聲呼喊看是否有回應",
+            "找其他動物朋友一起探險",
+            "向森林裡的智者詢問這個洞穴的信息"
+        ],
+        correct: 3
+    },
+    {
+        question: "小猴子想要摘到樹頂最甜美的果實。他應該怎麼安全地到達樹頂？ 🐒🍎",
+        answers: [
+            "一口氣快速爬到頂端",
+            "慢慢地、小心地往上爬，確保每一步都穩固",
+            "請鳥兒朋友幫忙摘取",
+            "放棄，選擇低處的果實"
+        ],
+        correct: 1
+    },
+    {
+        question: "小狼發現森林裡有一處垃圾堆積。他應該如何處理？ 🐺🗑️",
+        answers: [
+            "無視它，繼續自己的路",
+            "自己清理乾淨",
+            "通知森林管理員",
+            "組織所有動物一起清理"
+        ],
+        correct: 3
+    },
+    {
+        question: "小青蛙在池塘邊發現了一種從未見過的植物。他應該怎麼做？ 🐸🌿",
+        answers: [
+            "立即品嚐看看味道如何",
+            "把它移植到自己的花園裡",
+            "仔細觀察並記錄下來，但不要碰它",
+            "把所有的葉子都摘下來做成標本"
+        ],
+        correct: 2
+    }
+];
+
+let currentQuestions = [];
+let score = 0;
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function startQuiz() {
+    score = 0;
+    currentQuestions = [];
+    shuffleArray(questions);
+    currentQuestions = questions.slice(0, 5);
+    displayQuestion();
+}
+
+function displayQuestion() {
+    const quizContainer = document.getElementById('quiz');
+    quizContainer.innerHTML = '';
+    
+    currentQuestions.forEach((q, index) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.classList.add('question');
+        questionDiv.innerHTML = `
+            <p>${index + 1}. ${q.question}</p>
+            ${q.answers.map((answer, i) => `
+                <label>
+                    <input type="radio" name="question${index}" value="${i}">
+                    ${answer}
+                </label>
+            `).join('')}
+        `;
+        quizContainer.appendChild(questionDiv);
+    });
+}
+
+function calculateScore() {
+    score = 0;
+    currentQuestions.forEach((q, index) => {
+        const selectedAnswer = document.querySelector(`input[name="question${index}"]:checked`);
+        if (selectedAnswer && parseInt(selectedAnswer.value) === q.correct) {
+            score += 20; // 每題20分，總共5題
+        }
+    });
+    
+    const resultDiv = document.getElementById('result');
+    if (score >= 80) {
+        resultDiv.innerHTML = `恭喜你通過了冒險！你的分數是 ${score} 分。小動物們都很感謝你的幫助！ 🎉🌟`;
+    } else {
+        resultDiv.innerHTML = `你的分數是 ${score} 分。再接再厲，相信下次一定能幫助到更多小動物！ 💪🌳`;
+    }
+    
+    document.getElementById('submit').style.display = 'none';
+    document.getElementById('restart').style.display = 'inline-block';
+}
+
+document.getElementById('submit').addEventListener('click', calculateScore);
+document.getElementById('restart').addEventListener('click', () => {
+    startQuiz();
+    document.getElementById('submit').style.display = 'inline-block';
+    document.getElementById('restart').style.display = 'none';
+    document.getElementById('result').innerHTML = '';
+});
+
+startQuiz();
+</script>
+</body>
+</html>

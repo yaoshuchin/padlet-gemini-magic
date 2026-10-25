@@ -1,0 +1,279 @@
+<html><head><base href="https://interactive-zenfun.com/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奇幻森林冒險記</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FFF3E0;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #FFECB3;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #FF9800;
+            text-align: center;
+        }
+        .story, .question, .result {
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #FF9800;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #F57C00;
+        }
+        .hidden {
+            display: none;
+        }
+        .emoji {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        #progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        #progress-bar {
+            width: 0;
+            height: 20px;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            transition: width 0.5s ease-in-out;
+        }
+        #score-display {
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌳 奇幻森林冒險記 🐾</h1>
+        <div class="story">
+            <p>歡迎來到奇幻森林！這裡住著許多可愛的小動物。有一天，森林裡的小動物們決定舉辦一場冒險活動， 每個小動物都要完成不同的任務，學習如何面對生活中的挑戰。</p>
+            <p>讓我們一起跟著小動物們展開這段奇妙的冒險吧！每個問題都代表著小動物們可能遇到的情況， 請幫助他們做出最好的選擇。</p>
+        </div>
+        <div id="quiz" class="hidden">
+            <div id="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+            <div id="score-display">分數: 0</div>
+            <div id="question" class="question"></div>
+            <div id="options"></div>
+        </div>
+        <div id="result" class="result hidden">
+            <p>你的總分是: <span id="score"></span></p>
+            <p id="feedback"></p>
+        </div>
+        <button id="startBtn">開始冒險</button>
+        <button id="restartBtn" class="hidden">重新探險</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "🦊 小狐狸發現爸爸狐狸最近很少回家，他該怎麼辦？",
+                options: [
+                    "假裝沒事發生，繼續玩自己的",
+                    "主動跟媽媽狐狸聊聊，表達自己的擔心",
+                    "偷偷跟蹤爸爸狐狸，看看他去哪裡",
+                    "生氣地質問爸爸狐狸為什麼不回家"
+                ],
+                correct: 1
+            },
+            {
+                question: "🐰 小兔子的爸媽吵架後分開住了，他感到很難過，應該怎麼做？",
+                options: [
+                    "把自己關在房間裡不出來",
+                    "跟好朋友分享感受，尋求支持",
+                    "責怪自己，覺得是自己造成爸媽分開",
+                    "假裝很開心，不讓任何人知道自己難過"
+                ],
+                correct: 1
+            },
+            {
+                question: "🐻 小熊只和媽媽熊住在一起，同學問起爸爸熊的事，他該如何回應？",
+                options: [
+                    "生氣地說這不關他們的事",
+                    "誠實地說明情況，表示雖然只和媽媽住，但生活依然美好",
+                    "編造一個爸爸熊的故事",
+                    "完全不回答，轉移話題"
+                ],
+                correct: 1
+            },
+            {
+                question: "🦉 貓頭鷹媽媽因為工作很忙，小貓頭鷹常常感到孤單，他該怎麼辦？",
+                options: [
+                    "一直抱怨媽媽不陪自己",
+                    "主動跟媽媽溝通，表達自己的需求",
+                    "整天看電視打發時間",
+                    "故意闖禍引起媽媽的注意"
+                ],
+                correct: 1
+            },
+            {
+                question: "🐘 小象的爸媽離婚了，他要搬家到新的森林，他應該如何面對？",
+                options: [
+                    "拒絕搬家，一直哭鬧",
+                    "積極地看待新環境，把它當作一次冒險",
+                    "對所有人發脾氣，表達自己的不滿",
+                    "完全不理會這件事，假裝沒發生"
+                ],
+                correct: 1
+            },
+            {
+                question: "🦁 獅子爸爸再婚了，小獅子該如何與新家人相處？",
+                options: [
+                    "完全不理會新家人，當他們不存在",
+                    "試著敞開心扉，給予彼此相處的機會",
+                    "刻意找新家人的麻煩",
+                    "要求爸爸選擇自己或新家人"
+                ],
+                correct: 1
+            },
+            {
+                question: "🐼 熊貓媽媽因工作調動，要和小熊貓分開一段時間，小熊貓該怎麼辦？",
+                options: [
+                    "生氣地拒絕媽媽離開",
+                    "理解媽媽的工作需求，同時約定保持聯繫的方式",
+                    "覺得媽媽不要自己了，整天難過",
+                    "跟媽媽說自己可以一個人生活，不需要她"
+                ],
+                correct: 1
+            },
+            {
+                question: "🦒 長頸鹿家庭經濟情況不好，小長頸鹿想要新玩具，該怎麼辦？",
+                options: [
+                    "一直吵著要買新玩具",
+                    "理解家庭情況，學習珍惜現有的玩具",
+                    "偷偷拿媽媽的錢去買",
+                    "覺得爸媽不愛自己，所以不給買玩具"
+                ],
+                correct: 1
+            },
+            {
+                question: "🐧 企鵝爸爸常因工作很晚回家，小企鵝該如何表達想念？",
+                options: [
+                    "生氣地不理爸爸",
+                    "畫一張卡片，表達對爸爸的愛和想念",
+                    "跟媽媽抱怨爸爸不陪自己",
+                    "假裝自己不在意，其實心裡很難過"
+                ],
+                correct: 1
+            },
+            {
+                question: "🦋 蝴蝶家庭遇到困難，小蝴蝶看到爸媽愁眉苦臉，他該怎麼做？",
+                options: [
+                    "假裝沒看見，自己玩自己的",
+                    "主動關心爸媽，問問能不能幫上什麼忙",
+                    "覺得爸媽有困難都不告訴自己，很生氣",
+                    "整天不開心，讓爸媽更擔心"
+                ],
+                correct: 1
+            }
+        ];
+
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        const quizDiv = document.getElementById('quiz');
+        const questionDiv = document.getElementById('question');
+        const optionsDiv = document.getElementById('options');
+        const resultDiv = document.getElementById('result');
+        const scoreSpan = document.getElementById('score');
+        const feedbackP = document.getElementById('feedback');
+        const startBtn = document.getElementById('startBtn');
+        const restartBtn = document.getElementById('restartBtn');
+        const progressBar = document.getElementById('progress-bar');
+        const scoreDisplay = document.getElementById('score-display');
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function startQuiz() {
+            currentQuestions = [...questions];
+            shuffleArray(currentQuestions);
+            currentQuestions = currentQuestions.slice(0, 5);
+            currentQuestionIndex = 0;
+            score = 0;
+            showQuestion();
+            startBtn.classList.add('hidden');
+            quizDiv.classList.remove('hidden');
+            updateProgress();
+        }
+
+        function showQuestion() {
+            const question = currentQuestions[currentQuestionIndex];
+            questionDiv.textContent = question.question;
+            optionsDiv.innerHTML = '';
+            question.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.onclick = () => selectOption(index);
+                optionsDiv.appendChild(button);
+            });
+            updateProgress();
+        }
+
+        function selectOption(optionIndex) {
+            const question = currentQuestions[currentQuestionIndex];
+            if (optionIndex === question.correct) {
+                score += 20;
+            }
+            currentQuestionIndex++;
+            if (currentQuestionIndex < currentQuestions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+            updateProgress();
+        }
+
+        function showResult() {
+            quizDiv.classList.add('hidden');
+            resultDiv.classList.remove('hidden');
+            scoreSpan.textContent = score;
+            if (score >= 80) {
+                feedbackP.textContent = "太棒了！你成功完成了冒險，並學會了如何面對生活中的挑戰。";
+            } else {
+                feedbackP.textContent = "謝謝你的參與！讓我們再次冒險，學習更多面對挑戰的方法吧。";
+            }
+            restartBtn.classList.remove('hidden');
+        }
+
+        function updateProgress() {
+            const progress = (currentQuestionIndex / currentQuestions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            scoreDisplay.textContent = `分數: ${score}`;
+        }
+
+        startBtn.onclick = startQuiz;
+        restartBtn.onclick = startQuiz;
+    </script>
+</body></html>

@@ -1,0 +1,319 @@
+<html><head><base href="https://websim.world/tw/school/"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>奇幻森林冒險記</title><style>
+body {
+    font-family: 'Arial', '微軟正黑體', sans-serif;
+    background-color: #FFF3E0;
+    color: #5D4037;
+    line-height: 1.6;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+h1, h2 {
+    color: #FF9800;
+    text-align: center;
+}
+#story, #question, #result, #final-result, #feedback {
+    background-color: #FFE0B2;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+button {
+    background-color: #FF9800;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #F57C00;
+}
+#score {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.choice {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+#final-result {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+.emoji {
+    font-size: 24px;
+    margin-right: 10px;
+}
+#feedback {
+    font-style: italic;
+    text-align: center;
+}
+.progress-bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    padding: 3px;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2);
+}
+.progress-bar-fill {
+    display: block;
+    height: 22px;
+    background-color: #FF9800;
+    border-radius: 3px;
+    transition: width 500ms ease-in-out;
+}
+</style></head><body>
+<h1>奇幻森林冒險記 🌳🦊🐰</h1>
+<div id="score">分數: 0 / 100</div>
+<div class="progress-bar">
+    <span class="progress-bar-fill" style="width: 0%;"></span>
+</div>
+<div id="feedback"></div>
+<div id="story"></div>
+<div id="question"></div>
+<div id="result"></div>
+<div id="final-result"></div>
+<button id="restart" style="display:none;">重新探險</button>
+
+<script>
+const questions = [
+    {
+        question: "小兔子眨眨發現爸爸兔最近很少回家，他應該怎麼辦？",
+        choices: [
+            "A. 生氣地質問爸爸兔為什麼不回家",
+            "B. 跟媽媽兔談談，表達自己的感受",
+            "C. 假裝沒事，不說也不問",
+            "D. 偷偷跟蹤爸爸兔，看看他去哪裡"
+        ],
+        correct: 1,
+        explanation: "與家人溝通是很重要的。跟媽媽兔談談可以幫助眨眨表達自己的感受，也許媽媽兔能夠解釋情況或幫助解決問題。"
+    },
+    {
+        question: "小熊多多的父母最近常常吵架，他感到很難過，該怎麼辦？",
+        choices: [
+            "A. 大聲要求父母停止吵架",
+            "B. 躲在房間裡，蓋住耳朵",
+            "C. 找信任的老師或親戚傾訴",
+            "D. 責怪自己，覺得是自己造成父母吵架"
+        ],
+        correct: 2,
+        explanation: "找一個信任的大人傾訴是很好的選擇。老師或親戚可以提供支持和建議，幫助多多度過這個困難時期。"
+    },
+    {
+        question: "小狐狸圓圓的父母決定離婚，他覺得很困惑，該怎麼辦？",
+        choices: [
+            "A. 強烈反對，試圖阻止父母離婚",
+            "B. 跟父母談談，表達自己的感受和疑惑",
+            "C. 假裝不在意，獨自承受所有情緒",
+            "D. 責怪其中一方父母，覺得是他/她的錯"
+        ],
+        correct: 1,
+        explanation: "與父母溝通很重要。表達自己的感受和疑惑可以幫助圓圓理解情況，也讓父母知道他的想法。"
+    },
+    {
+        question: "小鳥叮叮的媽媽因為工作很忙，常常無法參加學校活動，叮叮該怎麼辦？",
+        choices: [
+            "A. 生氣地責備媽媽不關心自己",
+            "B. 理解媽媽的辛苦，主動與她分享學校生活",
+            "C. 不再邀請媽媽參加任何活動",
+            "D. 跟同學抱怨媽媽不好"
+        ],
+        correct: 1,
+        explanation: "理解和溝通是最好的方式。叮叮可以理解媽媽的辛苦，同時主動與她分享學校生活，讓媽媽感受到孩子的成長。"
+    },
+    {
+        question: "小貓咪嘟嘟發現爸爸交了新女朋友，他感到很不安，該怎麼辦？",
+        choices: [
+            "A. 對爸爸的新女朋友表現出敵意",
+            "B. 假裝很開心，隱藏自己的真實感受",
+            "C. 跟爸爸談談，誠實地表達自己的感受",
+            "D. 要求爸爸選擇自己或新女朋友"
+        ],
+        correct: 2,
+        explanation: "誠實溝通是最好的方式。嘟嘟可以跟爸爸談談，表達自己的感受和擔憂，這樣爸爸可以理解並幫助嘟嘟適應新的情況。"
+    },
+    {
+        question: "小狗汪汪的父母離婚後，他要搬家和媽媽一起住，離開熟悉的環境，他該怎麼辦？",
+        choices: [
+            "A. 拒絕搬家，堅持要留在原來的地方",
+            "B. 默默接受，但內心很難過",
+            "C. 與媽媽討論，看看能否保持與朋友和熟悉環境的聯繫",
+            "D. 對新環境充滿期待，完全不在意舊環境"
+        ],
+        correct: 2,
+        explanation: "與媽媽討論是個好主意。汪汪可以表達自己的擔憂，同時探討如何在新環境適應的同時，保持與舊環境的聯繫。"
+    },
+    {
+        question: "小猴子啾啾的爸爸因為工作變動，需要長期在外地工作，啾啾該怎麼辦？",
+        choices: [
+            "A. 生氣地責備爸爸不顧家",
+            "B. 假裝不在意，但內心很難過",
+            "C. 與爸爸商量如何保持聯繫，如視訊通話",
+            "D. 要求爸爸放棄工作機會"
+        ],
+        correct: 2,
+        explanation: "保持聯繫是很重要的。啾啾可以和爸爸商量如何通過視訊通話等方式保持聯繫，這樣可以維持親子關係。"
+    },
+    {
+        question: "小象咚咚的媽媽因為工作壓力很大，常常心情不好，咚咚該怎麼辦？",
+        choices: [
+            "A. 避開媽媽，盡量不打擾她",
+            "B. 試著理解媽媽的壓力，問問有什麼可以幫忙的",
+            "C. 跟媽媽發脾氣，要求她對自己好一點",
+            "D. 假裝媽媽心情很好，不理會她的情緒"
+        ],
+        correct: 1,
+        explanation: "理解和支持是很重要的。咚咚可以試著理解媽媽的壓力，並詢問是否有什麼可以幫忙的，這樣可以讓媽媽感受到支持。"
+    },
+    {
+        question: "小羊咩咩的爸爸媽媽離婚後，假日要輪流住在爸爸和媽媽家，他感到很困擾，該怎麼辦？",
+        choices: [
+            "A. 拒絕這種安排，堅持只住在一個地方",
+            "B. 接受安排，但內心很不開心",
+            "C. 與父母討論自己的感受，看看能否找到更好的方案",
+            "D. 假裝很喜歡這種安排，不表達真實感受"
+        ],
+        correct: 2,
+        explanation: "與父母溝通很重要。咩咩可以跟父母討論自己的感受，也許他們能找到一個讓咩咩更舒服的安排。"
+    },
+    {
+        question: "小鴨子嘎嘎的單親媽媽工作很辛苦，常常很晚才回家，嘎嘎該怎麼辦？",
+        choices: [
+            "A. 抱怨媽媽不陪自己",
+            "B. 主動幫忙做一些家務，減輕媽媽的負擔",
+            "C. 要求媽媽辭掉工作，多陪伴自己",
+            "D. 假裝不在意，自己一個人玩"
+        ],
+        correct: 1,
+        explanation: "主動幫忙是很棒的做法。嘎嘎可以通過做一些力所能及的家務來減輕媽媽的負擔，這樣不僅可以幫助媽媽，也能讓自己感到更有價值。"
+    }
+];
+
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+let score = 0;
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function startGame() {
+    currentQuestions = [...questions];
+    shuffleArray(currentQuestions);
+    currentQuestions = currentQuestions.slice(0, 5);
+    currentQuestionIndex = 0;
+    score = 0;
+    updateScore();
+    updateProgressBar();
+    showStory();
+}
+
+function showStory() {
+    document.getElementById('story').innerHTML = `
+        <h2>奇幻森林冒險開始啦！🌟</h2>
+        <p>歡迎來到奇幻森林！這裡住著許多可愛的小動物。有一天，森林裡的小動物們決定舉辦一場冒險活動，每個小動物都要完成不同的任務，學習如何面對生活中的挑戰。</p>
+        <p>讓我們一起跟著小動物們展開這段奇妙的冒險吧！每個問題都代表著小動物們可能遇到的情況，請幫助他們做出最好的選擇。</p>
+        <button onclick="showQuestion()">開始冒險</button>
+    `;
+    document.getElementById('question').innerHTML = '';
+    document.getElementById('result').innerHTML = '';
+    document.getElementById('final-result').innerHTML = '';
+    document.getElementById('restart').style.display = 'none';
+    document.getElementById('feedback').innerHTML = '';
+}
+
+function showQuestion() {
+    if (currentQuestionIndex < currentQuestions.length) {
+        const question = currentQuestions[currentQuestionIndex];
+        let choicesHTML = '';
+        for (let i = 0; i < question.choices.length; i++) {
+            choicesHTML += `<button class="choice" onclick="checkAnswer(${i})">${question.choices[i]}</button>`;
+        }
+        document.getElementById('story').innerHTML = '';
+        document.getElementById('question').innerHTML = `
+            <h2>問題 ${currentQuestionIndex + 1}</h2>
+            <p>${question.question}</p>
+            ${choicesHTML}
+        `;
+        document.getElementById('result').innerHTML = '';
+    } else {
+        showFinalResult();
+    }
+}
+
+function checkAnswer(choiceIndex) {
+    const question = currentQuestions[currentQuestionIndex];
+    const isCorrect = choiceIndex === question.correct;
+    score += isCorrect ? 20 : 0;
+    updateScore();
+    updateProgressBar();
+    
+    let resultHTML = isCorrect 
+        ? `<p class="emoji">✅ 太棒了！你選對了！得到20分！</p>` 
+        : `<p class="emoji">❌ 哎呀，不太對喔。這題沒有得分。</p>`;
+    resultHTML += `<p>${question.explanation}</p>`;
+    resultHTML += `<button onclick="nextQuestion()">繼續冒險</button>`;
+    
+    document.getElementById('result').innerHTML = resultHTML;
+    document.getElementById('question').innerHTML = '';
+
+    updateFeedback();
+}
+
+function nextQuestion() {
+    currentQuestionIndex++;
+    showQuestion();
+}
+
+function updateScore() {
+    document.getElementById('score').innerText = `分數: ${score} / 100`;
+}
+
+function updateProgressBar() {
+    const progressPercentage = (score / 100) * 100;
+    document.querySelector('.progress-bar-fill').style.width = `${progressPercentage}%`;
+}
+
+function updateFeedback() {
+    let feedback = '';
+    if (score <= 20) {
+        feedback = '加油！你可以做得更好的！';
+    } else if (score <= 40) {
+        feedback = '不錯的開始，繼續努力！';
+    } else if (score <= 60) {
+        feedback = '做得好！你正在進步！';
+    } else if (score <= 80) {
+        feedback = '太棒了！你已經很接近目標了！';
+    } else {
+        feedback = '太厲害了！你是奇幻森林的小專家！';
+    }
+    document.getElementById('feedback').innerHTML = feedback;
+}
+
+function showFinalResult() {
+    let message = score >= 80 
+        ? `<p class="emoji">🎉 恭喜你！你獲得了 ${score} 分，成功通過了奇幻森林的冒險！</p>
+           <p>你已經學會了如何幫助小動物們面對生活中的挑戰。繼續保持愛心和勇氣，相信自己一定可以克服任何困難！</p>`
+        : `<p class="emoji">😊 你獲得了 ${score} 分。雖然還沒有通過冒險，但別灰心！</p>
+           <p>每次冒險都是一次學習的機會。再試一次，相信你一定可以做得更好！</p>`;
+    
+    document.getElementById('final-result').innerHTML = message;
+    document.getElementById('restart').style.display = 'block';
+}
+
+document.getElementById('restart').addEventListener('click', startGame);
+
+startGame();
+</script>
+</body></html>

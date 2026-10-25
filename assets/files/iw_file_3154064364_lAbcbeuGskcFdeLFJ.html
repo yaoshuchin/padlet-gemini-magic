@@ -1,0 +1,348 @@
+<html><head><base href="https://edu-games-taiwan.netlify.app/"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>逆風飛翔</title><style>
+    body {
+        font-family: 'Microsoft JhengHei', '微軟正黑體', sans-serif;
+        background-color: #FFF0F5;
+        color: #4A0E4E;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .container {
+        background-color: #FDE6F3;
+        border-radius: 15px;
+        padding: 30px;
+        max-width: 800px;
+        width: 100%;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        color: #8E4585;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    p {
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    .question {
+        background-color: #F8BBD0;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    button {
+        background-color: #CE93D8;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+        padding: 10px 20px;
+        transition: background-color 0.3s;
+    }
+    button:hover {
+        background-color: #BA68C8;
+    }
+    #score {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 20px;
+        text-align: center;
+    }
+    #result {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 20px;
+        text-align: center;
+    }
+    .emoji {
+        font-size: 24px;
+        margin-right: 10px;
+    }
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+    .floating {
+        animation: float 3s ease-in-out infinite;
+    }
+    .progress-bar {
+        width: 100%;
+        height: 20px;
+        background-color: #E1BEE7;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+    .progress {
+        width: 0%;
+        height: 100%;
+        background-color: #8E24AA;
+        border-radius: 10px;
+        transition: width 0.5s ease-in-out;
+    }
+    .feedback {
+        margin-top: 20px;
+        font-style: italic;
+        color: #6A1B9A;
+    }
+    .explanation {
+        background-color: #E1BEE7;
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 20px;
+        font-style: italic;
+    }
+</style></head><body><div class="container"><h1>逆風飛翔 <span class="emoji floating">🦋</span></h1><p id="intro">歡迎來到小熙的內心世界！這裡住著許多色彩繽紛的情緒仙子。有一天，仙子們決定舉辦一場真心話大冒險的活動，每一位仙子都要完成不同的任務，帶領著小熙學習如何面對內心的各種情緒挑戰。<br><br>讓我們一起跟著情緒仙子，展開這段奇妙的冒險吧！每個問題都代表著小熙可能遇到的情況， 請幫助他做出最好的選擇。</p><div id="quiz"></div><div class="progress-bar"><div class="progress"></div></div><div id="score"></div><div id="result"></div><button id="restart" style="display: none;">重新探索</button></div><script>
+    const questions = [
+        {
+            question: "小熙最近感到很疲憊，連平常喜歡的活動都提不起勁。小憂鬱仙子建議他：",
+            options: [
+                { text: "強迫自己參加活動，假裝開心就會真的開心", correct: false },
+                { text: "允許自己休息，同時嘗試漸進式地參與喜愛的活動", correct: true }
+            ],
+            explanation: "給自己休息的時間很重要，但同時也要嘗試慢慢重新參與喜愛的活動，這樣可以幫助改善心情。"
+        },
+        {
+            question: "小熙總是覺得自己不夠好，小自信仙子想幫助他。以下哪個建議比較適當？",
+            options: [
+                { text: "每天列出三件感恩的事和自己的一個優點", correct: true },
+                { text: "不斷與他人比較，激勵自己變得更好", correct: false }
+            ],
+            explanation: "培養感恩的心和認識自己的優點，可以幫助建立健康的自我形象，而非透過比較來定義自己的價值。"
+        },
+        {
+            question: "小熙遇到困難就想放棄，小毅力仙子想鼓勵他。哪種方法更有幫助？",
+            options: [
+                { text: "設定更容易達成的小目標，一步步完成", correct: true },
+                { text: "責罵自己懶惰，逼迫自己更努力", correct: false }
+            ],
+            explanation: "將大目標分解成小目標更容易達成，每次的小成就都能增加信心和動力。"
+        },
+        {
+            question: "小熙經常失眠，小睡眠仙子想幫助他。以下哪個建議更適合？",
+            options: [
+                { text: "睡前喝點酒，幫助入睡", correct: false },
+                { text: "建立規律的睡眠時間，睡前做些放鬆的活動", correct: true }
+            ],
+            explanation: "規律的作息和放鬆的睡前活動能幫助改善睡眠品質，而酒精雖然可能幫助入睡，但會影響睡眠品質。"
+        },
+        {
+            question: "小熙最近很容易發脾氣，小冷靜仙子想教他控制情緒。哪個方法比較好？",
+            options: [
+                { text: "深呼吸，數到十，給自己一點時間冷靜下來", correct: true },
+                { text: "大吼大叫，發洩情緒就會好了", correct: false }
+            ],
+            explanation: "深呼吸和給自己時間冷靜可以幫助控制情緒，而大吼大叫可能會讓情況變得更糟。"
+        },
+        {
+            question: "小熙感到孤單，不知道該怎麼辦。小友誼仙子的建議是：",
+            options: [
+                { text: "主動聯絡朋友，安排見面活動", correct: true },
+                { text: "把自己關在房間裡，等別人來關心自己", correct: false }
+            ],
+            explanation: "主動聯絡朋友和安排活動可以幫助建立社交連結，減少孤單感。"
+        },
+        {
+            question: "小熙對未來感到很焦慮，小樂觀仙子想幫助他。哪個建議更有幫助？",
+            options: [
+                { text: "忽視所有負面想法，只想美好的事", correct: false },
+                { text: "列出擔心的事，思考可能的解決方案", correct: true }
+            ],
+            explanation: "面對焦慮，實際分析問題並尋找解決方案比單純逃避更有幫助。"
+        },
+        {
+            question: "小熙覺得壓力很大，小放鬆仙子想教他紓壓。哪個方法更適合？",
+            options: [
+                { text: "嘗試冥想或漸進式肌肉放鬆", correct: true },
+                { text: "玩手機遊戲或看電視到很晚", correct: false }
+            ],
+            explanation: "冥想和肌肉放鬆等方法可以有效紓解壓力，而過度使用電子產品可能影響睡眠，加重壓力。"
+        },
+        {
+            question: "小熙總是拖延做事，小行動仙子想幫助他。哪個建議比較好？",
+            options: [
+                { text: "使用番茄工作法，專注工作25分鐘後休息5分鐘", correct: true },
+                { text: "等到心情好或有靈感再開始工作", correct: false }
+            ],
+            explanation: "番茄工作法可以幫助集中注意力，提高工作效率，而等待完美時機可能導致一直拖延。"
+        },
+        {
+            question: "小熙經常覺得生活很無趣，小創意仙子想幫助他。以下哪個建議更適合？",
+            options: [
+                { text: "嘗試新的興趣愛好或學習新技能", correct: true },
+                { text: "每天都做一樣的事，保持生活穩定", correct: false }
+            ],
+            explanation: "嘗試新事物可以為生活帶來新鮮感和挑戰，有助於增添生活的樂趣。"
+        },
+        {
+            question: "小熙常常無法專心，小專注仙子想幫助他。哪個方法更有效？",
+            options: [
+                { text: "在安靜的環境中工作，並將任務分解成小步驟", correct: true },
+                { text: "一邊聽音樂一邊看手機一邊做功課", correct: false }
+            ],
+            explanation: "創造適合專注的環境，並將任務分解可以提高專注力和效率。"
+        },
+        {
+            question: "小熙感到很沮喪，小開心仙子想讓他心情變好。哪個建議更適合？",
+            options: [
+                { text: "出去曬太陽散步，或做些喜歡的運動", correct: true },
+                { text: "一個人待在家裡，等心情自己好起來", correct: false }
+            ],
+            explanation: "運動和接觸陽光可以幫助改善心情，而長期獨處可能加重沮喪感。"
+        },
+        {
+            question: "小熙對自己的體型很不滿意，小健康仙子想幫助他。哪個建議比較好？",
+            options: [
+                { text: "制定合理的飲食和運動計劃，慢慢改變", correct: true },
+                { text: "節食或過度運動，快速達到理想體型", correct: false }
+            ],
+            explanation: "健康的生活方式改變應該是循序漸進的，極端的方法可能傷害身心健康。"
+        },
+        {
+            question: "小熙遇到挫折就很沮喪，小成長仙子想幫助他。哪個想法更有幫助？",
+            options: [
+                { text: "把挫折看作學習和成長的機會", correct: true },
+                { text: "認為自己不夠好，放棄嘗試", correct: false }
+            ],
+            explanation: "將挫折視為學習機會可以幫助建立積極的心態，促進個人成長。"
+        },
+        {
+            question: "小熙常常覺得很孤單，小溝通仙子想幫助他。哪個建議更適合？",
+            options: [
+                { text: "學習表達自己的感受，主動與他人交流", correct: true },
+                { text: "把所有感受都藏在心裡，不讓別人知道", correct: false }
+            ],
+            explanation: "學會表達感受和主動溝通可以幫助建立更深厚的人際關係，減少孤單感。"
+        }
+    ];
+
+    let currentQuestions = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    function startQuiz() {
+        currentQuestions = [];
+        shuffleArray(questions);
+        for (let i = 0; i < 5; i++) {
+            currentQuestions.push(questions[i]);
+        }
+        currentQuestionIndex = 0;
+        score = 0;
+        showQuestion();
+        updateProgressBar();
+    }
+
+    function showQuestion() {
+        const questionElement = document.getElementById("quiz");
+        const currentQuestion = currentQuestions[currentQuestionIndex];
+        
+        let questionHTML = `
+            <div class="question">
+                <h2>問題 ${currentQuestionIndex + 1}</h2>
+                <p>${currentQuestion.question}</p>
+                <div class="options">
+        `;
+        
+        shuffleArray(currentQuestion.options);
+        currentQuestion.options.forEach((option, index) => {
+            questionHTML += `
+                <button onclick="selectAnswer(${index})">${option.text}</button>
+            `;
+        });
+        
+        questionHTML += `
+                </div>
+            </div>
+        `;
+        
+        questionElement.innerHTML = questionHTML;
+    }
+
+    function selectAnswer(index) {
+        const currentQuestion = currentQuestions[currentQuestionIndex];
+        const selectedOption = currentQuestion.options[index];
+        const isCorrect = selectedOption.correct;
+        
+        if (isCorrect) {
+            score += 20;
+        }
+        
+        const questionElement = document.getElementById("quiz");
+        questionElement.innerHTML += `
+            <div class="feedback">
+                ${isCorrect ? '太棒了！' : '別灰心，讓我們一起學習：'}
+            </div>
+            <div class="explanation">
+                ${currentQuestion.explanation}
+            </div>
+            <button onclick="nextQuestion()">繼續冒險</button>
+        `;
+        
+        document.querySelectorAll(".options button").forEach(button => {
+            button.disabled = true;
+        });
+        
+        updateProgressBar();
+    }
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < currentQuestions.length) {
+            showQuestion();
+        } else {
+            showResult();
+        }
+    }
+
+    function showResult() {
+        const quizElement = document.getElementById("quiz");
+        const scoreElement = document.getElementById("score");
+        const resultElement = document.getElementById("result");
+        const restartButton = document.getElementById("restart");
+        
+        quizElement.style.display = "none";
+        scoreElement.textContent = `你的分數：${score}分`;
+        
+        if (score >= 80) {
+            resultElement.innerHTML = '恭喜你通過了考驗！<span class="emoji">🎉</span> 你已經學會了如何更好地面對憂鬱情緒。記住，生活中總有起起落落，但只要保持積極的態度，就能逆風飛翔！';
+        } else {
+            resultElement.innerHTML = '雖然這次沒有達到80分，但別灰心！<span class="emoji">💪</span> 每次的嘗試都是一次學習的機會。讓我們再試一次，相信你一定能做得更好！';
+        }
+        
+        restartButton.style.display = "block";
+    }
+
+    function updateProgressBar() {
+        const progressBar = document.querySelector('.progress');
+        const progressPercentage = (currentQuestionIndex / currentQuestions.length) * 100;
+        progressBar.style.width = `${progressPercentage}%`;
+    }
+
+    document.getElementById("restart").addEventListener("click", () => {
+        document.getElementById("quiz").style.display = "block";
+        document.getElementById("score").textContent = "";
+        document.getElementById("result").textContent = "";
+        document.getElementById("restart").style.display = "none";
+        startQuiz();
+    });
+
+    startQuiz();
+</script></body></html>

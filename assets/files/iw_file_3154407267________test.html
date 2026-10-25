@@ -1,0 +1,289 @@
+<html><head><base href="https://creativeengine.ai/"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>奇幻森林冒險記</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFE4B5;
+    color: #8B4513;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.container {
+    background-color: #FFDAB9;
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 800px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+h1 {
+    color: #FF8C00;
+    text-align: center;
+}
+.story, .question, .result {
+    margin-bottom: 20px;
+}
+button {
+    background-color: #FFA500;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #FF8C00;
+}
+.hidden {
+    display: none;
+}
+.emoji {
+    font-size: 24px;
+    margin-right: 10px;
+}
+#scoreDisplay {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FF8C00;
+    margin-top: 10px;
+}
+.hint {
+    font-style: italic;
+    color: #D2691E;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>🌳 奇幻森林冒險記 🌳</h1>
+    <div class="story">
+        <p>歡迎來到奇幻森林！這裡住著許多可愛的小動物。有一天，森林裡的小動物們決定舉辦一場冒險活動， 每個小動物都要完成不同的任務，學習如何面對生活中的挑戰。</p>
+        <p>讓我們一起跟著小動物們展開這段奇妙的冒險吧！每個問題都代表著小動物們可能遇到的情況， 請幫助他們做出最好的選擇。</p>
+    </div>
+    <div id="questionContainer" class="question"></div>
+    <div id="hintContainer" class="hint hidden"></div>
+    <div id="scoreDisplay"></div>
+    <div id="result" class="result hidden">
+        <h2>冒險結束！</h2>
+        <p>你的總分是：<span id="score"></span></p>
+        <p id="feedback"></p>
+    </div>
+    <button id="startButton">開始冒險</button>
+    <button id="nextButton" class="hidden">下一題</button>
+    <button id="restartButton" class="hidden">重新探險</button>
+</div>
+
+<script>
+const questions = [
+    {
+        question: "小兔子蘿蔔發現爸爸兔最近常常加班，回家的時間變少了。他應該怎麼做？🐰",
+        options: [
+            "生氣地責怪爸爸不愛他了",
+            "主動幫忙做家務，減輕爸爸的負擔",
+            "假裝沒發現，繼續玩自己的",
+            "跟爸爸說說自己的感受，並問問能不能幫上什麼忙"
+        ],
+        correct: 3,
+        hint: "溝通和表達感受很重要，同時也要想想自己能為家庭做些什麼。"
+    },
+    {
+        question: "小狐狸阿橘的媽媽最近心情不太好。作為孩子，阿橘可以怎麼做？🦊",
+        options: [
+            "假裝沒看見，避開媽媽",
+            "生氣地質問媽媽為什麼心情不好",
+            "給媽媽一個大大的擁抱，說「我愛你」",
+            "偷偷把媽媽最喜歡的東西藏起來，讓她著急"
+        ],
+        correct: 2,
+        hint: "有時候，一個簡單的動作就能傳達很多愛和關心。"
+    },
+    {
+        question: "小熊波比的爸爸媽媽最近常常吵架。波比應該怎麼辦？🐻",
+        options: [
+            "躲在房間裡偷偷哭泣",
+            "大聲喊叫，要爸爸媽媽不要再吵了",
+            "找trusted adult（信任的大人）傾訴，比如老師或親戚",
+            "假裝沒事發生，不要理會"
+        ],
+        correct: 2,
+        hint: "當我們遇到無法自己解決的問題時，尋求可信賴的大人幫助是個好主意。"
+    },
+    {
+        question: "小鳥莉莉的媽媽生病了，需要在醫院住一段時間。莉莉可以怎麼做？🐦",
+        options: [
+            "每天都哭鬧，要媽媽趕快回家",
+            "主動幫忙做家務，照顧好自己",
+            "生氣地責怪媽媽為什麼要生病",
+            "假裝媽媽不存在，自己一個人玩"
+        ],
+        correct: 1,
+        hint: "在困難時刻，我們可以通過自己的行動來支持和幫助家人。"
+    },
+    {
+        question: "小貓咪毛毛的爸爸媽媽決定分開生活。毛毛應該怎麼想？🐱",
+        options: [
+            "覺得這都是自己的錯",
+            "認為爸爸媽媽都不愛他了",
+            "了解這是大人的決定，不是自己的錯",
+            "覺得世界末日來了，什麼都不想做"
+        ],
+        correct: 2,
+        hint: "大人的決定常常很複雜，但記住，這不是孩子的錯。"
+    },
+    {
+        question: "小狗汪汪的媽媽要出差一個月。汪汪可以怎麼做？🐶",
+        options: [
+            "每天都打電話給媽媽，不讓她工作",
+            "生氣地要求媽媽不要去出差",
+            "跟爸爸一起制定計劃，等媽媽回來給她一個驚喜",
+            "整天不開心，什麼事都不想做"
+        ],
+        correct: 2,
+        hint: "我們可以用積極的方式來表達對家人的思念和愛。"
+    },
+    {
+        question: "小猴子香蕉發現爸爸最近心情不好。他可以怎麼做？🐒",
+        options: [
+            "問問爸爸發生了什麼事，看看能不能幫上忙",
+            "假裝沒看見，繼續玩自己的",
+            "生氣地質問爸爸為什麼心情不好",
+            "偷偷把爸爸的東西藏起來，讓他更煩惱"
+        ],
+        correct: 0,
+        hint: "關心和理解是解決問題的第一步。"
+    },
+    {
+        question: "小鹿斑比的爸爸媽媽最近常常忙於工作。斑比覺得被忽視了，他應該怎麼做？🦌",
+        options: [
+            "大聲吵鬧，引起爸爸媽媽的注意",
+            "跟爸爸媽媽好好溝通，表達自己的感受",
+            "離家出走，讓爸爸媽媽著急",
+            "什麼都不做，自己一個人悶悶不樂"
+        ],
+        correct: 1,
+        hint: "有效的溝通可以幫助家人更好地理解彼此的需求。"
+    },
+    {
+        question: "小浣熊浪浪的媽媽找到了新的工作，但需要搬家。浪浪應該怎麼想？🦝",
+        options: [
+            "覺得媽媽不愛他了，所以要離開",
+            "理解這是為了家庭更好的發展，積極面對新環境",
+            "生氣地拒絕搬家，不跟媽媽說話",
+            "整天哭鬧，希望媽媽放棄新工作"
+        ],
+        correct: 1,
+        hint: "改變有時候是必要的，我們可以用積極的態度來迎接新的挑戰。"
+    },
+    {
+        question: "小刺蝟尖尖的爸爸最近失業了。作為孩子，尖尖可以怎麼做？🦔",
+        options: [
+            "責怪爸爸沒用，丟了工作",
+            "假裝不知道，繼續要求買新玩具",
+            "主動節省零用錢，減少不必要的開支",
+            "到處跟同學說爸爸沒工作了"
+        ],
+        correct: 2,
+        hint: "在家庭遇到困難時，每個成員都可以做出自己的貢獻。"
+    }
+];
+
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+let score = 0;
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function startQuiz() {
+    currentQuestions = [...questions];
+    shuffleArray(currentQuestions);
+    currentQuestions = currentQuestions.slice(0, 5);
+    currentQuestionIndex = 0;
+    score = 0;
+    showQuestion();
+    updateScoreDisplay();
+    document.getElementById('startButton').classList.add('hidden');
+    document.getElementById('nextButton').classList.remove('hidden');
+}
+
+function showQuestion() {
+    const questionContainer = document.getElementById('questionContainer');
+    const question = currentQuestions[currentQuestionIndex];
+    let optionsHtml = '';
+    for (let i = 0; i < question.options.length; i++) {
+        optionsHtml += `<button onclick="selectAnswer(${i})">${question.options[i]}</button><br>`;
+    }
+    questionContainer.innerHTML = `
+        <h2>問題 ${currentQuestionIndex + 1}</h2>
+        <p>${question.question}</p>
+        ${optionsHtml}
+    `;
+    document.getElementById('hintContainer').classList.add('hidden');
+}
+
+function selectAnswer(answerIndex) {
+    const question = currentQuestions[currentQuestionIndex];
+    if (answerIndex === question.correct) {
+        score += 20;
+        alert('答對了！太棒了！ 🎉');
+    } else {
+        alert('不太對哦，再想想看~ 😊');
+        showHint();
+    }
+    updateScoreDisplay();
+}
+
+function showHint() {
+    const hintContainer = document.getElementById('hintContainer');
+    hintContainer.textContent = currentQuestions[currentQuestionIndex].hint;
+    hintContainer.classList.remove('hidden');
+}
+
+function updateScoreDisplay() {
+    const scoreDisplay = document.getElementById('scoreDisplay');
+    scoreDisplay.textContent = `目前分數：${score}分`;
+}
+
+function showResult() {
+    document.getElementById('questionContainer').classList.add('hidden');
+    document.getElementById('hintContainer').classList.add('hidden');
+    document.getElementById('result').classList.remove('hidden');
+    document.getElementById('nextButton').classList.add('hidden');
+    document.getElementById('restartButton').classList.remove('hidden');
+    document.getElementById('score').textContent = score;
+    const feedback = document.getElementById('feedback');
+    if (score >= 80) {
+        feedback.textContent = '恭喜你通過了冒險！你真是個善解人意的小幫手！ 🌟';
+    } else {
+        feedback.textContent = '雖然沒有通過冒險，但相信你已經學到了很多。再接再厲！ 💪';
+    }
+}
+
+document.getElementById('startButton').addEventListener('click', startQuiz);
+document.getElementById('nextButton').addEventListener('click', () => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < currentQuestions.length) {
+        showQuestion();
+    } else {
+        showResult();
+    }
+});
+document.getElementById('restartButton').addEventListener('click', () => {
+    document.getElementById('result').classList.add('hidden');
+    document.getElementById('questionContainer').classList.remove('hidden');
+    document.getElementById('restartButton').classList.add('hidden');
+    startQuiz();
+});
+</script>
+</body></html>

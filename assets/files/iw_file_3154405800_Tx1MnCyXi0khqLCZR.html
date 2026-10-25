@@ -1,0 +1,173 @@
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奇幻森林冒險記</title>
+    <style>
+        body {
+            font-family: '微軟正黑體', sans-serif;
+            background-color: #FFCC99;
+            color: #6F3C30;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        .question {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #FFE5B4;
+            border: 2px solid #FF8500;
+            border-radius: 10px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: #FF8C00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #FF6F00;
+        }
+        .score {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        .emoji {
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>奇幻森林冒險記</h1>
+    <p>歡迎來到奇幻森林！這裡住著許多可愛的小動物。有一天，森林裡的小動物們決定舉辦一場冒險活動，每個小動物都要完成不同的任務，學習如何面對生活中的挑戰。讓我們一起跟著小動物們展開這段奇妙的冒險吧！每個問題都代表著小動物們可能遇到的情況，請幫助他們做出最好的選擇。🌳✨</p>
+    
+    <div class="question" id="question-container">
+        <h2 id="question-text"></h2>
+        <div id="options-container"></div>
+    </div>
+    
+    <div class="score" id="score-container">你的分數: <span id="score">0</span>/100</div>
+    
+    <button id="retry" style="display: none;">重新探險</button>
+    
+    <script>
+        const questions = [
+            {
+                question: "小兔遇到了一點困難，他應該怎麼做？",
+                options: ["請其他小動物幫忙", "獨自解決", "不管它"],
+                answer: 0
+            },
+            {
+                question: "小鳥發現樹上有一個空巢，她該怎麼辦？",
+                options: ["把巢弄壞", "不理會", "告訴媽媽"],
+                answer: 2
+            },
+            {
+                question: "小熊常常感到孤單，他該怎麼做？",
+                options: ["去找朋友玩", "一直待在家裡", "寫日記"],
+                answer: 0
+            },
+            {
+                question: "小松鼠知道考試很重要，她應該怎麼準備？",
+                options: ["最後一晚通宵熬夜", "每天都複習", "隨便應付"],
+                answer: 1
+            },
+            {
+                question: "小貓和朋友們發生了爭吵，最好的選擇是？",
+                options: ["冷戰", "發脾氣", "道歉溝通"],
+                answer: 2
+            },
+            {
+                question: "小狗看到有小朋友不高興，應該如何幫助他？",
+                options: ["假裝沒看到", "過去詢問", "跑開"],
+                answer: 1
+            },
+            {
+                question: "小魚被同伴排擠，她應該怎麼做？",
+                options: ["加入其他的小魚", "一直待在水角", "回家"],
+                answer: 0
+            },
+            {
+                question: "當小象學到新的技能時, 她該如何回報老師？",
+                options: ["說謝謝", "不理會", "忽略老師"],
+                answer: 0
+            },
+            {
+                question: "小馬在課堂上不專心，他該怎麼辦？",
+                options: ["注意聽講", "玩手機", "睡覺"],
+                answer: 0
+            },
+            {
+                question: "小豬的朋友們都不想玩，她該怎麼做？",
+                options: ["哭著回家", "邀請別的朋友", "逼他們一起玩"],
+                answer: 1
+            },
+        ];
+
+        let score = 0;
+        let questionIndex = 0;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function loadQuestion() {
+            if (questionIndex < 5) {
+                const randomQuestions = shuffle([...questions]);
+                displayQuestion(randomQuestions[questionIndex]);
+            } else {
+                endGame();
+            }
+        }
+
+        function displayQuestion(question) {
+            document.getElementById("question-text").innerText = question.question;
+            const optionsContainer = document.getElementById("options-container");
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, index) => {
+                const button = document.createElement("button");
+                button.innerText = option;
+                button.onclick = () => selectOption(index, question.answer);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function selectOption(selected, correct) {
+            if (selected === correct) {
+                score += 20;
+            }
+            questionIndex++;
+            loadQuestion();
+            document.getElementById("score").innerText = score;
+        }
+
+        function endGame() {
+            document.getElementById("question-container").style.display = "none";
+            const message = score >= 80 ? "恭喜你！你成功完成了冒險！" : "加油！你下次會做得更好！";
+            document.body.insertAdjacentHTML('beforeend', `<h2>${message}</h2>`);
+            document.getElementById("retry").style.display = "inline";
+        }
+
+        document.getElementById("retry").onclick = function() {
+            score = 0;
+            questionIndex = 0;
+            document.getElementById("score").innerText = score;
+            document.getElementById("retry").style.display = "none";
+            document.getElementById("question-container").style.display = "block";
+            loadQuestion();
+        };
+
+        loadQuestion();
+    </script>
+</body>
+</html>

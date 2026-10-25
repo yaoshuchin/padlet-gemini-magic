@@ -1,0 +1,280 @@
+<html><head><base href="https://websimai.com/taiwanesetutorials/"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>奇幻森林冒險記</title><style>
+    body {
+        font-family: 'Noto Sans TC', sans-serif;
+        background-color: #FFF3E0;
+        color: #4E342E;
+        line-height: 1.6;
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    h1 {
+        color: #FF9800;
+        text-align: center;
+    }
+    .story, .question, .result {
+        background-color: #FFCC80;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    button {
+        background-color: #FF9800;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 10px 0;
+    }
+    button:hover {
+        background-color: #F57C00;
+    }
+    .hidden {
+        display: none;
+    }
+    .gif-container {
+        text-align: center;
+        margin: 20px 0;
+    }
+    .gif-container img {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+    #feedback {
+        font-weight: bold;
+        margin-top: 10px;
+    }
+</style></head><body>
+    <h1>🌳 奇幻森林冒險記 🐾</h1>
+    <div class="story">
+        <p>歡迎來到奇幻森林！這裡住著許多可愛的小動物。有一天，森林裡的小動物們決定舉辦一場冒險活動， 每個小動物都要完成不同的任務，學習如何面對生活中的挑戰。</p>
+        <p>讓我們一起跟著小動物們展開這段奇妙的冒險吧！每個問題都代表著小動物們可能遇到的情況， 請幫助他們做出最好的選擇。</p>
+        <div class="gif-container">
+            <img src="https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif" alt="森林動物們" width="300" height="200">
+        </div>
+        <button onclick="startAdventure()">開始冒險 🚀</button>
+    </div>
+    <div id="questionContainer" class="hidden">
+        <div class="question">
+            <h3 id="questionTitle"></h3>
+            <p id="questionText"></p>
+            <div id="options"></div>
+            <p id="feedback"></p>
+        </div>
+        <p>目前得分：<span id="score">0</span> / 100</p>
+        <div class="gif-container">
+            <img id="questionGif" src="" alt="問題相關動畫" width="300" height="200">
+        </div>
+    </div>
+    <div id="resultContainer" class="hidden">
+        <div class="result">
+            <h2 id="resultTitle"></h2>
+            <p id="resultText"></p>
+            <div class="gif-container">
+                <img id="resultGif" src="" alt="結果動畫" width="300" height="200">
+            </div>
+            <button onclick="restartAdventure()">重新探險 🔄</button>
+        </div>
+    </div>
+
+<script>
+const questions = [
+    {
+        title: "小兔子的煩惱",
+        text: "小兔子最近發現爸爸媽媽常常吵架，他感到很難過。這時候，小兔子應該怎麼做呢？",
+        options: [
+            { text: "偷偷躲在房間裡哭泣", correct: false },
+            { text: "跟trusted的長輩或老師談談自己的感受", correct: true },
+            { text: "大聲叫爸爸媽媽不要吵架", correct: false },
+            { text: "假裝沒事發生", correct: false }
+        ],
+        explanation: "和trusted的長輩或老師分享感受是個好主意。他們可以給予支持和建議，幫助小兔子度過這個困難時期。",
+        gif: "https://media.giphy.com/media/3o6Zt6KHxJTbXCnSvu/giphy.gif"
+    },
+    {
+        title: "小狐狸的新家",
+        text: "小狐狸的父母決定分開住，他需要在爸爸和媽媽的家之間輪流生活。小狐狸應該如何適應這個改變？",
+        options: [
+            { text: "生氣地拒絕去另一個家", correct: false },
+            { text: "嘗試在兩個家都保持積極的態度，享受與每個父母相處的時光", correct: true },
+            { text: "要求父母復合", correct: false },
+            { text: "整天悶悶不樂", correct: false }
+        ],
+        explanation: "雖然情況有變，但小狐狸可以嘗試在兩個家庭中找到快樂。每個父母都愛小狐狸，重要的是保持開放和正面的態度。",
+        gif: "https://media.giphy.com/media/3o7TKTxeQEObwjEcVy/giphy.gif"
+    },
+    {
+        title: "小熊的特別日子",
+        text: "學校要舉辦親子日活動，但小熊只有媽媽可以參加。小熊應該怎麼做？",
+        options: [
+            { text: "不去參加活動", correct: false },
+            { text: "邀請媽媽或其他重要的家人來參加，快樂地享受活動", correct: true },
+            { text: "生氣地告訴老師這個活動不公平", correct: false },
+            { text: "騙同學說爸爸在國外工作所以不能來", correct: false }
+        ],
+        explanation: "家庭的形式有很多種，重要的是有愛的人陪伴。小熊可以邀請媽媽或其他親近的家人來參加，一樣可以度過愉快的時光。",
+        gif: "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyE/giphy.gif"
+    },
+    {
+        title: "小鳥的煩惱",
+        text: "小鳥的父母離婚後，他開始覺得是自己的錯。小鳥應該怎麼辦？",
+        options: [
+            { text: "把這個想法藏在心裡", correct: false },
+            { text: "和父母或信任的大人談談這種感覺", correct: true },
+            { text: "努力表現得更好，希望父母能復合", correct: false },
+            { text: "責怪自己沒有阻止父母離婚", correct: false }
+        ],
+        explanation: "父母的離婚不是小鳥的錯。和trusted的人談談這種感覺很重要，他們可以幫助小鳥理解這不是他的責任。",
+        gif: "https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif"
+    },
+    {
+        title: "小貓的新朋友",
+        text: "小貓的媽媽交了新朋友，常常帶他來家裡。小貓應該如何面對這個情況？",
+        options: [
+            { text: "對媽媽的新朋友無禮，希望他不要再來", correct: false },
+            { text: "試著了解媽媽的新朋友，保持開放的態度", correct: true },
+            { text: "躲在房間裡不出來", correct: false },
+            { text: "告訴媽媽不准再見那個新朋友", correct: false }
+        ],
+        explanation: "雖然可能需要一些時間適應，但保持開放的態度是最好的。試著了解媽媽的新朋友，也許會發現他是個不錯的人。",
+        gif: "https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif"
+    },
+    {
+        title: "小狗的兩個家",
+        text: "小狗在爸爸家和媽媽家有不同的規矩，他感到困惑。小狗應該怎麼做？",
+        options: [
+            { text: "完全忽視規矩，想怎麼做就怎麼做", correct: false },
+            { text: "和爸爸媽媽溝通，理解每個家的規矩，並嘗試適應", correct: true },
+            { text: "只遵守自己喜歡的規矩", correct: false },
+            { text: "要求爸爸媽媽定一樣的規矩", correct: false }
+        ],
+        explanation: "每個家庭可能有不同的規矩，這是正常的。和父母溝通，了解原因，並努力適應是最好的方法。",
+        gif: "https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif"
+    },
+    {
+        title: "小松鼠的心事",
+        text: "小松鼠想念住在遠方的爸爸，但又不知道該怎麼表達。他應該怎麼做？",
+        options: [
+            { text: "把想念的心情藏在心裡", correct: false },
+            { text: "跟媽媽說想爸爸的心情，問問有什麼方法可以和爸爸聯繫", correct: true },
+            { text: "生氣地責怪媽媽讓爸爸離開", correct: false },
+            { text: "假裝自己一點也不想爸爸", correct: false }
+        ],
+        explanation: "表達自己的感受是很重要的。和媽媽談談，也許可以找到和爸爸保持聯繫的好方法，比如視訊通話或寫信。",
+        gif: "https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif"
+    },
+    {
+        title: "小猴子的困擾",
+        text: "小猴子的班上有同學取笑他沒有爸爸。小猴子應該如何應對？",
+        options: [
+            { text: "和那些同學打架", correct: false },
+            { text: "告訴老師或trusted的大人，尋求幫助", correct: true },
+            { text: "偷偷哭泣，不告訴任何人", correct: false },
+            { text: "也開始取笑那些同學", correct: false }
+        ],
+        explanation: "被取笑是不對的。告訴老師或trusted的大人是正確的做法，他們可以幫助解決這個問題，教導同學們尊重不同的家庭形式。",
+        gif: "https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif"
+    },
+    {
+        title: "小鹿的新家人",
+        text: "小鹿的爸爸要再婚了，他將有一個繼母和繼兄弟。小鹿應該怎麼面對這個改變？",
+        options: [
+            { text: "拒絕接受新家人，對他們冷淡", correct: false },
+            { text: "給予新家人機會，嘗試建立新的關係", correct: true },
+            { text: "要求爸爸不要再婚", correct: false },
+            { text: "假裝新家人不存在", correct: false }
+        ],
+        explanation: "雖然這是一個大變化，但給新家人一個機會是很重要的。慢慢了解他們，也許會發現新的快樂。記住，爸爸依然愛小鹿。",
+        gif: "https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif"
+    },
+    {
+        title: "小象的心願",
+        text: "小象的父母離婚後，他總是希望他們能復合。小象應該怎麼調整自己的想法？",
+        options: [
+            { text: "一直堅持要父母復合", correct: false },
+            { text: "理解並接受現實，珍惜與父母各自相處的時光", correct: true },
+            { text: "假裝不在意這件事", correct: false },
+            { text: "責怪父母讓自己難過", correct: false }
+        ],
+        explanation: "雖然希望父母復合是自然的，但接受現實很重要。重點是珍惜與每個父母相處的時光，記住他們都愛小象。",
+        gif: "https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif"
+    }
+];
+
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+let score = 0;
+
+function startAdventure() {
+    currentQuestions = getRandomQuestions(5);
+    currentQuestionIndex = 0;
+    score = 0;
+    document.querySelector('.story').classList.add('hidden');
+    document.getElementById('questionContainer').classList.remove('hidden');
+    document.getElementById('resultContainer').classList.add('hidden');
+    showQuestion();
+}
+
+function getRandomQuestions(num) {
+    let shuffled = questions.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, num);
+}
+
+function showQuestion() {
+    let question = currentQuestions[currentQuestionIndex];
+    document.getElementById('questionTitle').textContent = question.title;
+    document.getElementById('questionText').textContent = question.text;
+    let optionsHtml = '';
+    question.options.forEach((option, index) => {
+        optionsHtml += `<button onclick="selectAnswer(${index})">${option.text}</button>`;
+    });
+    document.getElementById('options').innerHTML = optionsHtml;
+    document.getElementById('feedback').textContent = '';
+    document.getElementById('questionGif').src = question.gif;
+}
+
+function selectAnswer(index) {
+    let question = currentQuestions[currentQuestionIndex];
+    let feedback = document.getElementById('feedback');
+    if (question.options[index].correct) {
+        score += 20;
+        feedback.textContent = "答對了！" + question.explanation;
+    } else {
+        feedback.textContent = "答錯了。" + question.explanation;
+    }
+    document.getElementById('score').textContent = score;
+    
+    setTimeout(() => {
+        if (currentQuestionIndex < currentQuestions.length - 1) {
+            currentQuestionIndex++;
+            showQuestion();
+        } else {
+            showResult();
+        }
+    }, 3000);
+}
+
+function showResult() {
+    document.getElementById('questionContainer').classList.add('hidden');
+    document.getElementById('resultContainer').classList.remove('hidden');
+    let resultTitle = document.getElementById('resultTitle');
+    let resultText = document.getElementById('resultText');
+    let resultGif = document.getElementById('resultGif');
+
+    if (score >= 80) {
+        resultTitle.textContent = "恭喜你通過了冒險！🎉";
+        resultText.textContent = "你真棒！你已經學會了如何面對單親家庭可能遇到的各種情況。記住，每個家庭都是獨特的，重要的是保持開放、理解和愛心。";
+        resultGif.src = "https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif";
+    } else {
+        resultTitle.textContent = "繼續加油！👍";
+        resultText.textContent = "雖然這次冒險還沒有完全成功，但別灰心！每次嘗試都是學習的機會。再試一次，相信你一定能做得更好！";
+        resultGif.src = "https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif";
+    }
+}
+
+function restartAdventure() {
+    startAdventure();
+}
+</script></body></html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奇幻森林冒險記 🐾🌳</title>
+    <style>
+        body {
+            background-color: #FFFAE5;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #FFF0D9;
+            border-radius: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            border: 4px solid #FFCC80;
+        }
+        h1 {
+            color: #FF7043;
+            font-size: 2.5em;
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        .question {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            color: #FF7043;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .option {
+            background-color: #FFD180;
+            border: 2px solid #FFB74D;
+            padding: 12px;
+            margin: 8px 0;
+            width: 60%;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1.2em;
+        }
+        .option:hover {
+            background-color: #FFAB40;
+        }
+        .emoji {
+            font-size: 2.5em;
+        }
+        #score {
+            font-size: 1.6em;
+            margin-top: 20px;
+            color: #FF7043;
+        }
+        #restart {
+            margin-top: 30px;
+            background-color: #FF7043;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+        #restart:hover {
+            background-color: #F4511E;
+        }
+        .animal-emoji {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>奇幻森林冒險記 🐾🌳</h1>
+        <p>
+            歡迎來到奇幻森林！這裡住著許多可愛的小動物 🦊🐰🐻。<br>
+            有一天，森林裡的小動物們決定舉辦一場冒險活動，每個小動物都要完成不同的任務，學習如何面對生活中的挑戰！<br>
+            讓我們一起跟著小動物們展開這段奇妙的冒險吧！每個問題都代表著小動物們可能遇到的情況，請幫助牠們做出最好的選擇！🌟
+        </p>
+
+        <div id="question-container">
+            <div class="animal-emoji">🦊</div>
+            <div class="question" id="question"></div>
+            <div class="options" id="options"></div>
+        </div>
+
+        <div id="score-container">
+            <p id="score"></p>
+            <button id="restart" onclick="restartGame()">重新探險 🐾</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "🦊 小狐狸爸爸媽媽分開住，小狐狸想念爸爸時該怎麼辦？",
+                options: ["跟媽媽說出自己的感受 😊", "自己偷偷哭泣 😢", "一直生氣不理媽媽 😡"],
+                correct: 0
+            },
+            {
+                question: "🐰 小兔子媽媽工作很忙，無法陪牠做功課，小兔子該怎麼辦？",
+                options: ["自己獨立完成，必要時請求幫助 ✨", "放著不寫 😴", "把作業撕掉 😠"],
+                correct: 0
+            },
+            {
+                question: "🐼 小熊貓和同學說起單親家庭的事情時，同學笑了，小熊貓該怎麼應對？",
+                options: ["勇敢說出自己的感受 💪", "裝作沒聽見 🙉", "對同學生氣並絕交 😡"],
+                correct: 0
+            },
+            {
+                question: "🐱 小貓咪想和爸爸去旅行，但爸爸因工作無法去，小貓咪該怎麼辦？",
+                options: ["尊重爸爸的忙碌，另找時間 🕒", "一直吵鬧 😠", "偷偷跑出去玩 🏃"],
+                correct: 0
+            },
+            {
+                question: "🐘 小象覺得只有一個家長管教時覺得孤單，牠該怎麼處理這個情緒？",
+                options: ["向家長或老師尋求幫助 🧑‍🏫", "把自己關在房間裡 🚪", "假裝不在意 😐"],
+                correct: 0
+            }
+        ];
+
+        let currentScore = 0;
+        let totalQuestions = 5;
+        let currentQuestionIndex = 0;
+
+        function startGame() {
+            currentScore = 0;
+            currentQuestionIndex = 0;
+            loadQuestion();
+            document.getElementById('score').innerText = '';
+            document.getElementById('restart').style.display = 'none';
+        }
+
+        function loadQuestion() {
+            if (currentQuestionIndex < totalQuestions) {
+                const randomIndex = Math.floor(Math.random() * questions.length);
+                const question = questions[randomIndex];
+                document.getElementById('question').innerText = question.question;
+
+                const optionsContainer = document.getElementById('options');
+                optionsContainer.innerHTML = '';
+                question.options.forEach((option, index) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'option';
+                    optionDiv.innerText = option;
+                    optionDiv.onclick = () => checkAnswer(index, question.correct);
+                    optionsContainer.appendChild(optionDiv);
+                });
+
+                // 隨機顯示一個動物emoji
+                const animals = ['🦊', '🐰', '🐼', '🐱', '🐘'];
+                const animalEmoji = animals[Math.floor(Math.random() * animals.length)];
+                document.querySelector('.animal-emoji').innerText = animalEmoji;
+
+            } else {
+                endGame();
+            }
+        }
+
+        function checkAnswer(selectedIndex, correctIndex) {
+            if (selectedIndex === correctIndex) {
+                currentScore += 20;
+            }
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+
+        function endGame() {
+            document.getElementById('score').innerText = `你的得分是: ${currentScore}分！${currentScore >= 80 ? "恭喜過關！🎉" : "再接再厲！💪"}`;
+            document.getElementById('restart').style.display = 'block';
+        }
+
+        function restartGame() {
+            startGame();
+        }
+
+        startGame();
+    </script>
+
+</body>
+</html>

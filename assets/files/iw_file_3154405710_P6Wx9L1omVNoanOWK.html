@@ -1,0 +1,358 @@
+<html><head><base href="https://www.websim.example.com/taiwan-elementary/class-teacher/family-education/"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>奇幻森林冒險記</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #FFF3E0;
+        color: #4E342E;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .container {
+        background-color: #FFE0B2;
+        border-radius: 15px;
+        padding: 20px;
+        max-width: 800px;
+        width: 100%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        color: #FF9800;
+        text-align: center;
+    }
+    .story, .question, .result {
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+    .options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    button {
+        background-color: #FF9800;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    button:hover {
+        background-color: #F57C00;
+    }
+    .score {
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 20px;
+    }
+    .hidden {
+        display: none;
+    }
+    .emoji {
+        font-size: 24px;
+        margin-right: 5px;
+    }
+    .current-score {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 10px;
+        color: #FF5722;
+    }
+    .progress-bar {
+        width: 100%;
+        height: 20px;
+        background-color: #E0E0E0;
+        border-radius: 10px;
+        margin-top: 10px;
+        overflow: hidden;
+    }
+    .progress {
+        height: 100%;
+        background-color: #4CAF50;
+        transition: width 0.5s ease-in-out;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>奇幻森林冒險記 🌳🐾</h1>
+        <div id="story" class="story">
+            <p>歡迎來到奇幻森林！這裡住著許多可愛的小動物。有一天，森林裡的小動物們決定舉辦一場冒險活動， 每個小動物都要完成不同的任務，學習如何面對生活中的挑戰。</p>
+            <p>讓我們一起跟著小動物們展開這段奇妙的冒險吧！每個問題都代表著小動物們可能遇到的情況， 請幫助他們做出最好的選擇。</p>
+        </div>
+        <div id="quiz" class="hidden">
+            <div id="question" class="question"></div>
+            <div id="options" class="options"></div>
+        </div>
+        <div id="result" class="result hidden"></div>
+        <div id="currentScore" class="current-score hidden"></div>
+        <div id="progressBar" class="progress-bar hidden">
+            <div id="progress" class="progress"></div>
+        </div>
+        <div id="score" class="score hidden"></div>
+        <button id="startBtn">開始冒險</button>
+        <button id="nextBtn" class="hidden">下一題</button>
+        <button id="restartBtn" class="hidden">重新探險</button>
+    </div>
+
+<script>
+const questions = [
+    {
+        question: "小兔子蹦蹦的媽媽最近很忙，常常加班到很晚。蹦蹦感到有點寂寞，他應該怎麼做？",
+        options: [
+            "生氣地責怪媽媽不陪他",
+            "跟媽媽說說自己的感受，一起想辦法安排相處時間",
+            "假裝沒事，自己一個人玩",
+            "整天哭鬧，要求媽媽辭職"
+        ],
+        correct: 1,
+        explanation: "跟家人溝通自己的感受很重要喔！這樣才能一起找到解決方法。"
+    },
+    {
+        question: "小熊波比的爸爸媽媽最近常常吵架。波比應該怎麼辦？",
+        options: [
+            "躲在房間裡摀住耳朵",
+            "大聲喊叫，試圖讓爸爸媽媽停止吵架",
+            "找信任的大人（如老師或親戚）傾訴，尋求幫助",
+            "責怪自己，覺得是自己造成爸爸媽媽吵架"
+        ],
+        correct: 2,
+        explanation: "記住，父母吵架不是你的錯。找可信賴的大人傾訴，能得到支持和建議。"
+    },
+    {
+        question: "小狐狸阿橘發現班上新來的同學小狼來自單親家庭，有些同學在背後說閒話。阿橘應該怎麼做？",
+        options: [
+            "也跟著說小狼的閒話",
+            "裝作沒聽到，不要管這件事",
+            "告訴老師同學們在欺負小狼",
+            "主動和小狼做朋友，告訴其他同學不應該歧視別人"
+        ],
+        correct: 3,
+        explanation: "每個家庭都是獨特的，我們應該尊重並接納不同的家庭形式。"
+    },
+    {
+        question: "小鳥莉莉的爸爸媽媽最近離婚了，她覺得很難過。莉莉應該怎麼辦？",
+        options: [
+            "把所有難過的情緒藏在心裡",
+            "跟爸爸媽媽說自己的感受，尋求他們的安慰和解釋",
+            "覺得是自己不夠好，所以爸爸媽媽才會離婚",
+            "生氣地責備爸爸媽媽，不理他們"
+        ],
+        correct: 1,
+        explanation: "父母離婚不是孩子的錯。表達自己的感受，尋求父母的支持很重要。"
+    },
+    {
+        question: "小猴子豆豆的爸爸再婚了，他有了繼母。豆豆應該怎麼面對這個新家庭成員？",
+        options: [
+            "完全不理會繼母，假裝她不存在",
+            "試著和繼母好好相處，給彼此一個機會",
+            "天天鬧脾氣，表示自己的不滿",
+            "要求爸爸選擇自己或繼母"
+        ],
+        correct: 1,
+        explanation: "適應新家庭成員需要時間，保持開放的心態很重要。"
+    },
+    {
+        question: "小貓咪米米的媽媽是單親媽媽，總是很辛苦。米米想幫忙，他可以怎麼做？",
+        options: [
+            "什麼都不做，媽媽會處理所有事情",
+            "主動幫忙做一些家務，減輕媽媽的負擔",
+            "要求媽媽買很多玩具來補償自己",
+            "整天黏著媽媽，不讓她工作"
+        ],
+        correct: 1,
+        explanation: "在力所能及的範圍內幫助家人，可以讓家庭更和諧。"
+    },
+    {
+        question: "小鹿斑比的爸爸在他很小的時候就去世了。當同學問起爸爸的事，斑比應該怎麼回答？",
+        options: [
+            "生氣地叫同學不要多管閒事",
+            "假裝自己有爸爸，編造故事騙同學",
+            "誠實地說爸爸已經去世了，但媽媽和其他親人都很愛他",
+            "難過地跑走，不理會同學"
+        ],
+        correct: 2,
+        explanation: "誠實面對自己的家庭狀況，並記住還有很多愛你的人，這樣的態度最健康。"
+    },
+    {
+        question: "小松鼠花生的父母正在鬧離婚，他覺得很困擾。花生可以怎麼做？",
+        options: [
+            "強迫父母復合，不准他們離婚",
+            "把事情告訴所有朋友，讓大家一起勸阻父母",
+            "找學校輔導老師傾訴，尋求專業的建議和心理支持",
+            "離家出走，讓父母緊張後就會復合"
+        ],
+        correct: 2,
+        explanation: "面對父母離婚，尋求專業的輔導和支持是很好的選擇。"
+    },
+    {
+        question: "小豬胖胖的爸爸媽媽雖然離婚了，但都很愛他。胖胖應該怎麼看待這種情況？",
+        options: [
+            "覺得自己很不幸，比不上其他同學",
+            "感謝爸爸媽媽的愛，珍惜和他們相處的時光",
+            "覺得太複雜了，乾脆誰都不要理",
+            "利用這個情況，向爸爸媽媽要很多禮物"
+        ],
+        correct: 1,
+        explanation: "父母即使離婚，也可以用不同的方式愛你。珍惜與父母相處的時光最重要。"
+    },
+    {
+        question: "小蛇絲絲的媽媽常常心情不好，對絲絲發脾氣。絲絲應該怎麼辦？",
+        options: [
+            "也對媽媽發脾氣，吵得更兇",
+            "偷偷離家出走，躲起來",
+            "默默忍受，不跟任何人說",
+            "告訴可信賴的大人（如師長或親戚），尋求幫助"
+        ],
+        correct: 3,
+        explanation: "如果家人的情緒影響到你，尋求其他大人的幫助是個好辦法。"
+    }
+];
+
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+let score = 0;
+
+const storyElement = document.getElementById('story');
+const quizElement = document.getElementById('quiz');
+const questionElement = document.getElementById('question');
+const optionsElement = document.getElementById('options');
+const resultElement = document.getElementById('result');
+const scoreElement = document.getElementById('score');
+const currentScoreElement = document.getElementById('currentScore');
+const progressBarElement = document.getElementById('progressBar');
+const progressElement = document.getElementById('progress');
+const startBtn = document.getElementById('startBtn');
+const nextBtn = document.getElementById('nextBtn');
+const restartBtn = document.getElementById('restartBtn');
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function startQuiz() {
+    storyElement.classList.add('hidden');
+    quizElement.classList.remove('hidden');
+    currentScoreElement.classList.remove('hidden');
+    progressBarElement.classList.remove('hidden');
+    startBtn.classList.add('hidden');
+    nextBtn.classList.remove('hidden');
+    
+    shuffleArray(questions);
+    currentQuestions = questions.slice(0, 5);
+    currentQuestionIndex = 0;
+    score = 0;
+    
+    updateScore();
+    showQuestion();
+}
+
+function showQuestion() {
+    const question = currentQuestions[currentQuestionIndex];
+    questionElement.innerHTML = `<p><span class="emoji">❓</span>${question.question}</p>`;
+    optionsElement.innerHTML = '';
+    
+    question.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.innerText = option;
+        button.addEventListener('click', () => selectAnswer(index));
+        optionsElement.appendChild(button);
+    });
+
+    updateProgressBar();
+}
+
+function selectAnswer(selectedIndex) {
+    const question = currentQuestions[currentQuestionIndex];
+    const correct = selectedIndex === question.correct;
+    
+    if (correct) {
+        score += 20;
+    }
+    
+    updateScore();
+    showResult(correct, question.explanation);
+}
+
+function showResult(correct, explanation) {
+    resultElement.classList.remove('hidden');
+    resultElement.innerHTML = `
+        <p>${correct ? '<span class="emoji">✅</span>答對了！' : '<span class="emoji">❌</span>答錯了。'}</p>
+        <p>${explanation}</p>
+    `;
+    
+    optionsElement.querySelectorAll('button').forEach(button => {
+        button.disabled = true;
+    });
+    
+    nextBtn.innerText = currentQuestionIndex === currentQuestions.length - 1 ? '查看結果' : '下一題';
+}
+
+function nextQuestion() {
+    currentQuestionIndex++;
+    
+    if (currentQuestionIndex < currentQuestions.length) {
+        resultElement.classList.add('hidden');
+        showQuestion();
+    } else {
+        showFinalResult();
+    }
+}
+
+function showFinalResult() {
+    quizElement.classList.add('hidden');
+    resultElement.classList.add('hidden');
+    currentScoreElement.classList.add('hidden');
+    progressBarElement.classList.add('hidden');
+    nextBtn.classList.add('hidden');
+    scoreElement.classList.remove('hidden');
+    restartBtn.classList.remove('hidden');
+    
+    let resultMessage = '';
+    if (score >= 80) {
+        resultMessage = '<span class="emoji">🎉</span>恭喜你通過了冒險！你真是一個善解人意的小幫手！';
+    } else {
+        resultMessage = '<span class="emoji">🌟</span>雖然還沒有通過冒險，但你已經學到了很多。再試一次，相信你一定可以的！';
+    }
+    
+    scoreElement.innerHTML = `
+        <p>你的最終得分：${score} 分</p>
+        <p>${resultMessage}</p>
+    `;
+}
+
+function restartQuiz() {
+    scoreElement.classList.add('hidden');
+    restartBtn.classList.add('hidden');
+    startQuiz();
+}
+
+function updateScore() {
+    currentScoreElement.textContent = `目前得分：${score} 分`;
+}
+
+function updateProgressBar() {
+    const progress = ((currentQuestionIndex + 1) / currentQuestions.length) * 100;
+    progressElement.style.width = `${progress}%`;
+}
+
+startBtn.addEventListener('click', startQuiz);
+nextBtn.addEventListener('click', nextQuestion);
+restartBtn.addEventListener('click', restartQuiz);
+</script>
+</body></html>

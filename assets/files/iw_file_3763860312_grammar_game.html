@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>形容詞與副詞大挑戰</title>
+    <style>
+        :root {
+            --adj-color: #FF9F43; /* 橘色 - 形容詞 */
+            --adv-color: #2E86DE; /* 藍色 - 副詞 */
+            --bg-color: #f0f8ff;
+            --text-color: #333;
+            --card-bg: #fff;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "Heiti TC", sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+            user-select: none; /* 防止選取文字干擾拖拉 */
+        }
+
+        /* 頂部控制列 */
+        header {
+            background: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .controls button {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: transform 0.1s;
+        }
+
+        .controls button:active { transform: scale(0.95); }
+        .controls button#resetBtn { background-color: #1dd1a1; }
+        .controls button#showAnsBtn { background-color: #ff6b6b; }
+
+        /* 遊戲主區域 */
+        .game-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* 答案放置區 (Drop Zones) */
+        .zones-container {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+            min-height: 40%;
+        }
+
+        .zone {
+            flex: 1;
+            border-radius: 15px;
+            border: 4px dashed rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .zone-header {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding: 5px 20px;
+            border-radius: 20px;
+            color: white;
+        }
+
+        #zone-adj { border-color: var(--adj-color); }
+        #zone-adj .zone-header { background-color: var(--adj-color); }
+        
+        #zone-adv { border-color: var(--adv-color); }
+        #zone-adv .zone-header { background-color: var(--adv-color); }
+
+        .zone.hovered {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        .zone-content {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* 詞語卡片 (Draggable Items) */
+        .pool-container {
+            background: rgba(255,255,255,0.5);
+            border-radius: 15px;
+            padding: 15px;
+            min-height: 120px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .card {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 4px 0 #ddd;
+            cursor: grab;
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+            touch-action: none; /* 關鍵：讓觸控能夠拖曳 */
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid transparent;
+        }
+
+        .card:active {
+            cursor: grabbing;
+            transform: scale(1.05);
+        }
+
+        .card.dragging {
+            opacity: 0.5;
+        }
+
+        .card.selected {
+            border-color: #6c5ce7;
+            background-color: #e0e0ff;
+            transform: translateY(-5px);
+        }
+
+        /* 答對樣式 */
+        .card.correct {
+            box-shadow: none;
+            cursor: default;
+            background: #fff;
+        }
+        
+        /* 資訊按鈕 */
+        .info-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #eee;
+            color: #666;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+        }
+        .info-btn:hover {
+            background: #ccc;
+        }
+
+        /* 燈箱 (Lightbox/Modal) */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(3px);
+        }
+
+        .modal {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal h2 { color: var(--text-color); margin-top: 0; }
+        .modal .tag {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            color: white;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        .modal .example-sentence {
+            font-size: 1.3rem;
+            color: #444;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+        .modal .highlight { color: #d63031; font-weight: bold; }
+        .modal-close {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .shake { animation: shake 0.3s ease-in-out; }
+
+        /* RWD 調整 */
+        @media (max-width: 768px) {
+            .game-area { padding: 10px; }
+            .zones-container { flex-direction: column; }
+            .zone { min-height: 150px; }
+            .card { font-size: 1rem; padding: 8px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>國語科：形容詞與副詞大挑戰</h1>
+    <div class="controls">
+        <button id="showAnsBtn">👀 顯示答案</button>
+        <button id="resetBtn">🔄 重新開始</button>
+    </div>
+</header>
+
+<div class="game-area">
+    <div class="zones-container">
+        <div class="zone" id="zone-adj" data-type="adj">
+            <div class="zone-header">形容詞 (的)</div>
+            <div class="zone-content"></div>
+        </div>
+        <div class="zone" id="zone-adv" data-type="adv">
+            <div class="zone-header">副詞 (地)</div>
+            <div class="zone-content"></div>
+        </div>
+    </div>
+
+    <div class="pool-container" id="card-pool">
+        </div>
+</div>
+
+<div class="modal-overlay" id="modal">
+    <div class="modal">
+        <span class="tag" id="modal-tag"></span>
+        <h2 id="modal-word"></h2>
+        <div class="example-sentence" id="modal-sentence"></div>
+        <p id="modal-desc" style="color: #666; font-size: 0.9rem;"></p>
+        <button class="modal-close" onclick="closeModal()">我知道了</button>
+    </div>
+</div>
+
+<script>
+    // 1️⃣ 資料設定 (JSON格式，方便教師擴充)
+    const questionData = [
+        { id: 1, word: "美麗", type: "adj", example: "這是一朵<span class='highlight'>美麗</span>的花。", desc: "用來修飾名詞（花），通常後面接「的」。" },
+        { id: 2, word: "快樂", type: "adj", example: "他度過了一個<span class='highlight'>快樂</span>的週末。", desc: "用來形容名詞（週末）的狀態。" },
+        { id: 3, word: "認真", type: "adv", example: "弟弟<span class='highlight'>認真</span>地寫作業。", desc: "用來修飾動詞（寫），通常後面接「地」。" },
+        { id: 4, word: "飛快", type: "adv", example: "跑車<span class='highlight'>飛快</span>地奔馳在公路上。", desc: "修飾動作（奔馳）的速度。" },
+        { id: 5, word: "聰明", type: "adj", example: "他是一個<span class='highlight'>聰明</span>的孩子。", desc: "修飾名詞（孩子）的特質。" },
+        { id: 6, word: "仔細", type: "adv", example: "請你<span class='highlight'>仔細</span>地觀察這張圖片。", desc: "修飾動作（觀察）的態度。" },
+        { id: 7, word: "巨大", type: "adj", example: "前面有一塊<span class='highlight'>巨大</span>的石頭。", desc: "形容物體（石頭）的大小。" },
+        { id: 8, word: "悄悄", type: "adv", example: "小貓<span class='highlight'>悄悄</span>地走進了房間。", desc: "形容動作（走進）的方式，無聲無息。" }
+    ];
+
+    const poolContainer = document.getElementById('card-pool');
+    const zoneAdj = document.querySelector('#zone-adj .zone-content');
+    const zoneAdv = document.querySelector('#zone-adv .zone-content');
+    let selectedCard = null;
+
+    // 2️⃣ 初始化遊戲
+    function initGame() {
+        poolContainer.innerHTML = '';
+        zoneAdj.innerHTML = '';
+        zoneAdv.innerHTML = '';
+        
+        // 隨機打亂順序
+        const shuffled = [...questionData].sort(() => 0.5 - Math.random());
+
+        shuffled.forEach(item => {
+            const card = createCard(item);
+            poolContainer.appendChild(card);
+        });
+    }
+
+    // 建立卡片 DOM
+    function createCard(item) {
+        const el = document.createElement('div');
+        el.className = 'card';
+        el.draggable = true;
+        el.dataset.type = item.type;
+        el.dataset.id = item.id;
+        el.innerHTML = `
+            ${item.word} 
+            <button class="info-btn" onclick="showInfo(event, ${item.id})">?</button>
+        `;
+
+        // 綁定拖拉事件
+        el.addEventListener('dragstart', handleDragStart);
+        el.addEventListener('dragend', handleDragEnd);
+        
+        // 綁定點擊事件 (平板/點擊模式)
+        el.addEventListener('click', (e) => handleClickCard(e, el));
+        
+        return el;
+    }
+
+    // 3️⃣ 互動邏輯：拖拉 (Drag & Drop)
+    function handleDragStart(e) {
+        e.dataTransfer.setData('text/plain', e.target.dataset.id);
+        e.target.classList.add('dragging');
+        playTone(300, 'sine', 0.1); // 提起音效
+    }
+
+    function handleDragEnd(e) {
+        e.target.classList.remove('dragging');
+    }
+
+    // 區域事件 (Drop Zones)
+    const zones = document.querySelectorAll('.zone');
+    zones.forEach(zone => {
+        zone.addEventListener('dragover', e => {
+            e.preventDefault(); // 允許 Drop
+            zone.classList.add('hovered');
+        });
+
+        zone.addEventListener('dragleave', () => {
+            zone.classList.remove('hovered');
+        });
+
+        zone.addEventListener('drop', e => {
+            e.preventDefault();
+            zone.classList.remove('hovered');
+            const id = e.dataTransfer.getData('text/plain');
+            const card = document.querySelector(`.card[data-id="${id}"]`);
+            if (card) checkAnswer(card, zone);
+        });
+
+        // 點擊區域 (配合點擊模式)
+        zone.addEventListener('click', () => {
+            if (selectedCard) {
+                checkAnswer(selectedCard, zone);
+                selectedCard.classList.remove('selected');
+                selectedCard = null;
+            }
+        });
+    });
+
+    // 互動邏輯：點擊選取模式 (Click Mode)
+    function handleClickCard(e, card) {
+        // 如果點擊的是 info 按鈕，不觸發選取
+        if (e.target.classList.contains('info-btn')) return;
+
+        // 如果卡片已經歸位，不動作
+        if (card.classList.contains('correct')) return;
+
+        // 取消其他選取
+        document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+        
+        // 選取當前
+        card.classList.add('selected');
+        selectedCard = card;
+        playTone(400, 'sine', 0.1); // 選取音效
+    }
+
+    // 4️⃣ 判斷邏輯
+    function checkAnswer(card, zone) {
+        const cardType = card.dataset.type;
+        const zoneType = zone.dataset.type;
+
+        if (cardType === zoneType) {
+            // 答對
+            zone.querySelector('.zone-content').appendChild(card);
+            card.classList.add('correct');
+            card.draggable = false; // 鎖定
+            playSuccessSound();
+        } else {
+            // 答錯
+            playErrorSound();
+            card.classList.add('shake');
+            setTimeout(() => card.classList.remove('shake'), 500);
+        }
+    }
+
+    // 5️⃣ 燈箱功能
+    function showInfo(e, id) {
+        e.stopPropagation(); // 防止觸發卡片選取
+        const item = questionData.find(d => d.id === id);
+        const modal = document.getElementById('modal');
+        const tag = document.getElementById('modal-tag');
+        
+        // 設定內容
+        document.getElementById('modal-word').textContent = item.word;
+        document.getElementById('modal-sentence').innerHTML = item.example;
+        document.getElementById('modal-desc').textContent = item.desc;
+        
+        // 設定顏色
+        if(item.type === 'adj') {
+            tag.textContent = "形容詞";
+            tag.style.background = "var(--adj-color)";
+        } else {
+            tag.textContent = "副詞";
+            tag.style.background = "var(--adv-color)";
+        }
+
+        modal.style.display = 'flex';
+        playTone(500, 'sine', 0.1);
+    }
+
+    function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+    }
+
+    // 6️⃣ 控制按鈕
+    document.getElementById('resetBtn').addEventListener('click', () => {
+        playTone(600, 'triangle', 0.2);
+        initGame();
+    });
+
+    document.getElementById('showAnsBtn').addEventListener('click', () => {
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            const type = card.dataset.type;
+            const targetZone = type === 'adj' ? zoneAdj : zoneAdv;
+            targetZone.appendChild(card);
+            card.classList.add('correct');
+        });
+        playTone(800, 'sine', 0.3);
+    });
+
+    // 7️⃣ 音效系統 (Web Audio API - 無需外部檔案)
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    
+    function playTone(freq, type, duration) {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+    }
+
+    function playSuccessSound() {
+        playTone(523.25, 'sine', 0.1); // Do
+        setTimeout(() => playTone(659.25, 'sine', 0.1), 100); // Mi
+        setTimeout(() => playTone(783.99, 'sine', 0.2), 200); // Sol
+    }
+
+    function playErrorSound() {
+        playTone(150, 'sawtooth', 0.1);
+        setTimeout(() => playTone(100, 'sawtooth', 0.2), 100);
+    }
+
+    // 啟動
+    initGame();
+
+</script>
+
+</body>
+</html>

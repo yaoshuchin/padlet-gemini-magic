@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國中成語配對挑戰賽 - 093教學</title>
+    <!-- 修正外部資源連結 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        /* 強化卡片式樣式 */
+        .card {
+            perspective: 1000px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            border: 2px solid transparent;
+            word-break: break-all;
+        }
+
+        /* 懸停效果 */
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            border-color: #e2e8f0;
+        }
+
+        .card:active {
+            transform: scale(0.95);
+        }
+
+        /* 選取狀態 */
+        .selected {
+            border-color: #3b82f6;
+            background-color: #eff6ff !important;
+            transform: scale(1.02);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+
+        /* 錯誤狀態動畫 */
+        .wrong {
+            border-color: #ef4444;
+            background-color: #fef2f2 !important;
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        /* 配對成功狀態 */
+        .matched {
+            visibility: hidden;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.5s ease-out;
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        @media (min-width: 768px) {
+            .game-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-6">
+
+    <!-- 標題區域 -->
+    <header class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-slate-800 mb-3">國中成語配對挑戰賽</h1>
+        <div class="h-1 w-24 bg-blue-500 mx-auto rounded-full mb-3"></div>
+        <p class="text-slate-500 font-medium">請將左方的「成語卡」與右方的「定義卡」正確配對</p>
+    </header>
+
+    <!-- 資訊面板 -->
+    <div class="w-full max-w-3xl flex flex-wrap justify-between items-center bg-white p-5 rounded-2xl shadow-sm border border-slate-100 mb-8">
+        <div class="flex space-x-6">
+            <div class="flex flex-col">
+                <span class="text-xs text-slate-400 uppercase tracking-wider font-bold">目前得分</span>
+                <span id="score" class="text-2xl font-black text-blue-600">0</span>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-xs text-slate-400 uppercase tracking-wider font-bold">挑戰時間</span>
+                <span id="timer" class="text-2xl font-black text-blue-600">00:00</span>
+            </div>
+        </div>
+        <button onclick="initGame()" class="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-6 rounded-xl transition-all active:scale-95 shadow-lg shadow-slate-200">
+            重置挑戰
+        </button>
+    </div>
+
+    <!-- 遊戲區域 -->
+    <div id="game-grid" class="game-grid">
+        <!-- 卡片由 JavaScript 動態插入 -->
+    </div>
+
+    <!-- 挑戰完成模態視窗 -->
+    <div id="modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl p-10 max-w-md w-full text-center shadow-2xl transform transition-all">
+            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+            <h2 class="text-3xl font-black text-slate-800 mb-2">太棒了！</h2>
+            <p id="final-result" class="text-slate-500 mb-8 text-lg"></p>
+            <button onclick="initGame()" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold text-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-200">
+                再次挑戰
+            </button>
+        </div>
+    </div>
+
+    <footer class="mt-12 text-slate-400 text-sm italic">
+        教材設計：093教學
+    </footer>
+
+    <script>
+        const idiomData = [
+            { text: "學富五車", matchId: 1, type: "idiom" },
+            { text: "形容書多或讀書甚多，學問淵博。", matchId: 1, type: "def" },
+            { text: "破釜沉舟", matchId: 2, type: "idiom" },
+            { text: "下定決心，不顧一切地戰鬥到底。", matchId: 2, type: "def" },
+            { text: "臥薪嘗膽", matchId: 3, type: "idiom" },
+            { text: "刻苦自勵，發奮圖強。", matchId: 3, type: "def" },
+            { text: "鑿壁偷光", matchId: 4, type: "idiom" },
+            { text: "形容家貧而勤學。", matchId: 4, type: "def" },
+            { text: "溫故知新", matchId: 5, type: "idiom" },
+            { text: "複習舊學問，進而獲得新知識。", matchId: 5, type: "def" },
+            { text: "名落孫山", matchId: 6, type: "idiom" },
+            { text: "指考試落榜。", matchId: 6, type: "def" },
+            { text: "一字千金", matchId: 7, type: "idiom" },
+            { text: "形容文辭精妙，極具價值。", matchId: 7, type: "def" },
+            { text: "青出於藍", matchId: 8, type: "idiom" },
+            { text: "比喻學生勝過老師。", matchId: 8, type: "def" }
+        ];
+
+        let selectedCards = [];
+        let score = 0;
+        let matchedCount = 0;
+        let startTime;
+        let timerInterval;
+
+        function shuffle(array) {
+            return array.sort(() => Math.random() - 0.5);
+        }
+
+        function formatTime(seconds) {
+            const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+            const s = (seconds % 60).toString().padStart(2, '0');
+            return `${m}:${s}`;
+        }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            startTime = Date.now();
+            timerInterval = setInterval(() => {
+                const elapsed = Math.floor((Date.now() - startTime) / 1000);
+                document.getElementById('timer').textContent = formatTime(elapsed);
+            }, 1000);
+        }
+
+        function initGame() {
+            const grid = document.getElementById('game-grid');
+            const modal = document.getElementById('modal');
+            grid.innerHTML = '';
+            modal.classList.add('hidden');
+            selectedCards = [];
+            score = 0;
+            matchedCount = 0;
+            document.getElementById('score').textContent = '0';
+            document.getElementById('timer').textContent = '00:00';
+
+            const shuffledCards = shuffle([...idiomData]);
+            
+            shuffledCards.forEach((data, index) => {
+                const card = document.createElement('div');
+                card.className = 'card text-slate-700 font-bold text-lg';
+                // 如果是定義，稍微縮小字體以適應長文本
+                if (data.type === 'def') {
+                    card.classList.remove('text-lg');
+                    card.classList.add('text-sm', 'md:text-base', 'font-normal');
+                }
+                card.textContent = data.text;
+                card.dataset.id = data.matchId;
+                card.dataset.type = data.type;
+                card.onclick = () => handleCardClick(card, data);
+                grid.appendChild(card);
+            });
+
+            startTimer();
+        }
+
+        function handleCardClick(cardElement, data) {
+            if (selectedCards.length === 2 || cardElement.classList.contains('selected') || cardElement.classList.contains('matched')) return;
+
+            cardElement.classList.add('selected');
+            selectedCards.push({ element: cardElement, data: data });
+
+            if (selectedCards.length === 2) {
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            const [card1, card2] = selectedCards;
+
+            // 檢查是否同 ID 且不同類型（一個成語配一個定義）
+            if (card1.data.matchId === card2.data.matchId && card1.data.type !== card2.data.type) {
+                setTimeout(() => {
+                    card1.element.classList.add('matched');
+                    card2.element.classList.add('matched');
+                    score += 10;
+                    matchedCount++;
+                    document.getElementById('score').textContent = score;
+                    selectedCards = [];
+
+                    if (matchedCount === idiomData.length / 2) {
+                        endGame();
+                    }
+                }, 500);
+            } else {
+                card1.element.classList.add('wrong');
+                card2.element.classList.add('wrong');
+                setTimeout(() => {
+                    card1.element.classList.remove('selected', 'wrong');
+                    card2.element.classList.remove('selected', 'wrong');
+                    selectedCards = [];
+                }, 800);
+            }
+        }
+
+        function endGame() {
+            clearInterval(timerInterval);
+            const timeUsed = document.getElementById('timer').textContent;
+            document.getElementById('final-result').textContent = `挑戰成功！您獲得了 ${score} 分，共花費 ${timeUsed}。`;
+            document.getElementById('modal').classList.remove('hidden');
+        }
+
+        window.onload = initGame;
+    </script>
+</body>
+</html>

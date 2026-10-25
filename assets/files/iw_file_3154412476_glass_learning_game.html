@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>認識葛雷斯</title>
+    <style>
+        body {
+            font-family: '微軟正黑體', sans-serif;
+            background-color: #e8f5e9;
+            margin: 0;
+            padding: 20px;
+            color: #2e7d32;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .title {
+            text-align: center;
+            color: #1b5e20;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .story {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .question {
+            background-color: #c8e6c9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .options {
+            display: grid;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .option {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .option:hover {
+            background-color: #388e3c;
+        }
+        .score {
+            text-align: center;
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        .restart {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #1b5e20;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+        .feedback {
+            text-align: center;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">認識葛雷斯 🏰</h1>
+        <div id="story" class="story">
+            歡迎來到新竹玻璃博物館的夢幻世界！博物館決定舉辦一場冒險活動，讓我們一起展開這段奇妙的冒險吧！每個問題都代表著你可能遇到的情況，請幫助他們做出最好的選擇。 ✨
+        </div>
+        <div id="quiz" class="hidden">
+            <div id="question" class="question"></div>
+            <div id="options" class="options"></div>
+        </div>
+        <div id="score" class="score hidden"></div>
+        <div id="feedback" class="feedback hidden"></div>
+        <button id="restart" class="restart hidden">重新探險 🔄</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "小明在博物館看到一塊透明的玻璃，請問最早的玻璃是在哪裡被發現的？ 🤔",
+                options: ["古埃及", "古中國", "古羅馬", "古印度"],
+                correct: 0,
+                explanation: "答對了！古埃及人在公元前3000年就發現了玻璃，是最早發現玻璃的文明！ 👏"
+            },
+            {
+                question: "參觀玻璃製作過程時，你發現玻璃的主要原料是什麼？ 🏭",
+                options: ["石灰和矽砂", "鐵礦和銅礦", "黏土和水", "木材和竹子"],
+                correct: 0,
+                explanation: "沒錯！玻璃主要是由石灰和矽砂製成的，這就是為什麼海灘的沙子可以製作玻璃！ 🌊"
+            },
+            {
+                question: "在博物館裡，你看到了一個古老的玻璃器皿，玻璃的顏色是綠色的，這是因為加入了什麼金屬？ 🎨",
+                options: ["銅", "金", "銀", "鐵"],
+                correct: 0,
+                explanation: "正確！加入銅離子會讓玻璃呈現美麗的綠色！ 💚"
+            },
+            {
+                question: "玻璃博物館的導覽員告訴你，玻璃可以回收再利用，請問玻璃可以被回收幾次？ ♻️",
+                options: ["無限次", "最多10次", "最多50次", "只能回收1次"],
+                correct: 0,
+                explanation: "太棒了！玻璃確實可以無限次回收，這對環境保護非常重要！ 🌍"
+            },
+            {
+                question: "在製作玻璃藝術品時，需要將玻璃加熱到多少度才能軟化？ 🔥",
+                options: ["約1500度", "約500度", "約100度", "約3000度"],
+                correct: 0,
+                explanation: "答對了！玻璃需要加熱到約1500度才能軟化，這樣才能塑造成各種形狀！ 🌡️"
+            },
+            {
+                question: "新竹為什麼被稱為台灣的玻璃之都？ 🏢",
+                options: ["因為有許多玻璃工廠", "因為地名中有玻璃", "因為地上有很多玻璃", "因為天氣很熱"],
+                correct: 0,
+                explanation: "沒錯！新竹擁有許多玻璃工廠，是台灣重要的玻璃產業基地！ 🏭"
+            },
+            {
+                question: "玻璃珠是古代重要的裝飾品，請問最早的玻璃珠是用來做什麼的？ 💎",
+                options: ["驅邪護身", "玩具", "計數工具", "裝飾衣服"],
+                correct: 0,
+                explanation: "答對了！古代人相信玻璃珠有驅邪護身的功能！ 🔮"
+            },
+            {
+                question: "博物館裡展示了許多玻璃藝術品，請問玻璃工藝大約在什麼時候傳入台灣？ 🗓️",
+                options: ["清朝時期", "日治時期", "戰後時期", "最近20年"],
+                correct: 1,
+                explanation: "正確！玻璃工藝是在日治時期傳入台灣的！ 📚"
+            },
+            {
+                question: "玻璃可以有很多種顏色，請問要如何讓玻璃變成藍色？ 🎨",
+                options: ["加入鈷元素", "加入鉛", "加入鋅", "加入鎂"],
+                correct: 0,
+                explanation: "答對了！加入鈷元素確實會讓玻璃呈現漂亮的藍色！ 💙"
+            },
+            {
+                question: "在博物館中，你看到了防彈玻璃，請問防彈玻璃是由幾層玻璃組成的？ 🛡️",
+                options: ["多層", "單層", "兩層", "三層"],
+                correct: 0,
+                explanation: "沒錯！防彈玻璃是由多層玻璃和特殊材料組合而成的！ 💪"
+            }
+        ];
+
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function startQuiz() {
+            currentQuestions = shuffleArray([...questions]).slice(0, 5);
+            currentQuestionIndex = 0;
+            score = 0;
+            document.getElementById('story').classList.add('hidden');
+            document.getElementById('quiz').classList.remove('hidden');
+            document.getElementById('score').classList.add('hidden');
+            document.getElementById('feedback').classList.add('hidden');
+            document.getElementById('restart').classList.add('hidden');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const questionData = currentQuestions[currentQuestionIndex];
+            document.getElementById('question').innerHTML = questionData.question;
+            
+            const optionsHtml = questionData.options.map((option, index) => 
+                `<button class="option" onclick="selectAnswer(${index})">${option}</button>`
+            ).join('');
+            
+            document.getElementById('options').innerHTML = optionsHtml;
+        }
+
+        function selectAnswer(selectedIndex) {
+            const questionData = currentQuestions[currentQuestionIndex];
+            const feedback = document.getElementById('feedback');
+            
+            if (selectedIndex === questionData.correct) {
+                score += 20;
+                feedback.innerHTML = questionData.explanation;
+            } else {
+                feedback.innerHTML = "答錯了！讓我們繼續努力！ 💪";
+            }
+            
+            feedback.classList.remove('hidden');
+            
+            setTimeout(() => {
+                feedback.classList.add('hidden');
+                currentQuestionIndex++;
+                
+                if (currentQuestionIndex < currentQuestions.length) {
+                    showQuestion();
+                } else {
+                    showResult();
+                }
+            }, 2000);
+        }
+
+        function showResult() {
+            document.getElementById('quiz').classList.add('hidden');
+            document.getElementById('score').classList.remove('hidden');
+            document.getElementById('restart').classList.remove('hidden');
+            
+            const scoreElement = document.getElementById('score');
+            if (score >= 80) {
+                scoreElement.innerHTML = `恭喜你獲得 ${score} 分！你已經是玻璃專家了！ 🎉`;
+            } else {
+                scoreElement.innerHTML = `你獲得了 ${score} 分。再試一次，你一定可以做得更好！ 💪`;
+            }
+        }
+
+        function restart() {
+            startQuiz();
+        }
+
+        // 初始化遊戲
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(startQuiz, 3000);
+        });
+
+        document.getElementById('restart').addEventListener('click', restart);
+    </script>
+</body>
+</html>

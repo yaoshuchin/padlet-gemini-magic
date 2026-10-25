@@ -1,0 +1,279 @@
+<html><head><base href="https://cdn.jsdelivr.net/gh/"></base>
+<meta charset="UTF-8">
+<title>奇幻森林冒險記</title>
+<style>
+body {
+    font-family: 'Comic Sans MS', '微軟正黑體', sans-serif;
+    background-color: #FFF3E0;
+    color: #5D4037;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+h1 {
+    color: #FF9800;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    font-size: 2.5em;
+}
+.story, .question, .result {
+    background-color: #FFCC80;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: 3px solid #FF9800;
+}
+button {
+    background-color: #FF9800;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.3s;
+    margin: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+button:hover {
+    background-color: #F57C00;
+    transform: scale(1.05);
+}
+.hidden {
+    display: none;
+}
+#score {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FF5722;
+}
+.emoji {
+    font-size: 30px;
+    margin: 10px;
+}
+#character {
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+    transition: all 0.5s;
+}
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+</style>
+</head>
+<body>
+<h1>奇幻森林冒險記 🌳🦊🦉</h1>
+
+<div id="character">
+    <img src="animated-svg-loading-icons/svg-loaders/puff.svg" alt="森林小夥伴" width="100" height="100">
+</div>
+
+<div id="intro" class="story">
+    <p>歡迎來到奇幻森林！這裡住著許多可愛的小動物。有一天，森林裡的小動物們決定舉辦一場冒險活動， 每個小動物都要完成不同的任務，學習如何面對生活中的挑戰。</p>
+    <p>讓我們一起跟著小動物們展開這段奇妙的冒險吧！每個問題都代表著小動物們可能遇到的情況， 請幫助他們做出最好的選擇。</p>
+    <button onclick="startGame()">開始冒險</button>
+</div>
+
+<div id="gameArea" class="hidden">
+    <div id="questionArea" class="question"></div>
+    <div id="result" class="result hidden"></div>
+    <div id="scoreArea">得分：<span id="score">0</span></div>
+</div>
+
+<div id="endGame" class="hidden">
+    <h2>冒險結束！</h2>
+    <p>你的最終得分是：<span id="finalScore"></span></p>
+    <div id="endMessage"></div>
+    <button onclick="restartGame()">重新探險</button>
+</div>
+
+<script>
+const questions = [
+    {
+        question: "小熊波比的爸爸媽媽分開了，他感到很難過。小兔子露西想要安慰他，她應該怎麼做？🐻😢",
+        options: [
+            "A. 告訴波比別難過，很快就會忘記這件事",
+            "B. 認真聆聽波比的感受，給他一個溫暖的擁抱",
+            "C. 建議波比去找其他朋友玩，不要想這件事",
+            "D. 告訴波比這是大人的事，小孩不用管"
+        ],
+        answer: 1
+    },
+    {
+        question: "小狐狸吉米只和爸爸一起生活，有時會想念媽媽。當他感到難過時，應該怎麼辦？🦊💭",
+        options: [
+            "A. 把所有關於媽媽的照片都藏起來",
+            "B. 跟爸爸聊聊，分享自己的感受",
+            "C. 假裝自己一點都不想媽媽",
+            "D. 整天待在房間裡不出來"
+        ],
+        answer: 1
+    },
+    {
+        question: "小鳥琪琪的父母離婚後，她需要搬家。她應該如何面對這個改變？🐦🏠",
+        options: [
+            "A. 拒絕搬家，一直哭鬧",
+            "B. 把所有東西都丟掉，不帶任何回憶",
+            "C. 跟父母討論自己的擔憂，並一起規劃新家",
+            "D. 假裝這件事不存在，不做任何準備"
+        ],
+        answer: 2
+    },
+    {
+        question: "小鹿多多的父母分居後，她要如何維持與雙方的關係？🦌👨‍👩‍👧",
+        options: [
+            "A. 只跟一個父母親保持聯繫",
+            "B. 在父母之間傳遞消息，當作溝通橋樑",
+            "C. 對父母雙方都保持開放和誠實的態度",
+            "D. 完全不跟父母談論對方的事情"
+        ],
+        answer: 2
+    },
+    {
+        question: "小貓咪米米發現爸爸有了新女朋友，她應該怎麼反應？🐱👩‍❤️‍👨",
+        options: [
+            "A. 拒絕見爸爸的新女朋友",
+            "B. 試著認識新女朋友，給彼此一個機會",
+            "C. 告訴爸爸不准再交新朋友",
+            "D. 假裝新女朋友不存在"
+        ],
+        answer: 1
+    },
+    {
+        question: "小猴子奇奇的父母離婚後，他在學校常常心不在焉。老師應該怎麼幫助他？🐒📚",
+        options: [
+            "A. 忽視奇奇的行為，等他自己調適",
+            "B. 責罵奇奇，要求他專心上課",
+            "C. 私下關心奇奇，提供必要的支持和輔導",
+            "D. 在全班面前討論奇奇的家庭狀況"
+        ],
+        answer: 2
+    },
+    {
+        question: "小羊咩咩的爸爸媽媽吵架很兇，她很害怕。咩咩應該怎麼做？🐑😨",
+        options: [
+            "A. 躲在房間裡摀住耳朵",
+            "B. 跑出去找朋友玩",
+            "C. 試圖阻止爸爸媽媽吵架",
+            "D. 告訴信任的大人，尋求幫助"
+        ],
+        answer: 3
+    },
+    {
+        question: "小狗汪汪的父母離婚後，他總是很生氣。他應該如何控制自己的情緒？🐶😠",
+        options: [
+            "A. 把氣出在其他同學身上",
+            "B. 學習深呼吸和冥想等放鬆方法",
+            "C. 把所有感覺都藏在心裡",
+            "D. 整天發脾氣，不理會任何人"
+        ],
+        answer: 1
+    },
+    {
+        question: "小兔子跳跳的媽媽要再婚了，他覺得很不安。跳跳應該怎麼辦？🐰💒",
+        options: [
+            "A. 拒絕參加婚禮",
+            "B. 跟媽媽分享自己的擔心，了解這個新家庭",
+            "C. 要求媽媽取消婚禮",
+            "D. 假裝很開心，不表達任何意見"
+        ],
+        answer: 1
+    },
+    {
+        question: "小浣熊瑞瑞的父母離婚後，她要在兩個家庭間輪流生活。她應該如何適應？🦝🏠🏠",
+        options: [
+            "A. 拒絕在兩個家庭間移動",
+            "B. 在兩個家庭中製造矛盾",
+            "C. 建立一個行事曆，安排好時間和物品",
+            "D. 總是抱怨不想去另一個家"
+        ],
+        answer: 2
+    }
+];
+
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+let score = 0;
+
+function startGame() {
+    document.getElementById('intro').classList.add('hidden');
+    document.getElementById('gameArea').classList.remove('hidden');
+    currentQuestions = getRandomQuestions(5);
+    currentQuestionIndex = 0;
+    score = 0;
+    displayQuestion();
+}
+
+function getRandomQuestions(num) {
+    const shuffled = [...questions].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, num);
+}
+
+function displayQuestion() {
+    const questionArea = document.getElementById('questionArea');
+    const currentQuestion = currentQuestions[currentQuestionIndex];
+    
+    let questionHTML = `<h2>問題 ${currentQuestionIndex + 1}</h2>
+                        <p>${currentQuestion.question}</p>`;
+    
+    currentQuestion.options.forEach((option, index) => {
+        questionHTML += `<button onclick="selectAnswer(${index})">${option}</button>`;
+    });
+    
+    questionArea.innerHTML = questionHTML;
+    document.getElementById('character').style.animation = 'bounce 0.5s';
+}
+
+function selectAnswer(selectedIndex) {
+    const currentQuestion = currentQuestions[currentQuestionIndex];
+    const resultArea = document.getElementById('result');
+    const scoreSpan = document.getElementById('score');
+    
+    if (selectedIndex === currentQuestion.answer) {
+        score += 20;
+        resultArea.innerHTML = '<p>答對了！💖 真棒！</p>';
+        document.getElementById('character').style.animation = 'bounce 0.5s infinite';
+    } else {
+        resultArea.innerHTML = '<p>哎呀，答錯了。😢 再接再厲！</p>';
+        document.getElementById('character').style.animation = 'none';
+    }
+    
+    scoreSpan.textContent = score;
+    resultArea.classList.remove('hidden');
+    
+    setTimeout(() => {
+        resultArea.classList.add('hidden');
+        currentQuestionIndex++;
+        if (currentQuestionIndex < currentQuestions.length) {
+            displayQuestion();
+        } else {
+            endGame();
+        }
+    }, 2000);
+}
+
+function endGame() {
+    document.getElementById('gameArea').classList.add('hidden');
+    document.getElementById('endGame').classList.remove('hidden');
+    document.getElementById('finalScore').textContent = score;
+    
+    const endMessage = document.getElementById('endMessage');
+    if (score >= 80) {
+        endMessage.innerHTML = '<p>恭喜你通過了冒險！🎉 你真是個善解人意的小朋友！</p>';
+        document.getElementById('character').style.animation = 'bounce 0.5s infinite';
+    } else {
+        endMessage.innerHTML = '<p>別灰心，再試一次吧！📚 每次冒險都是學習的機會。</p>';
+        document.getElementById('character').style.animation = 'none';
+    }
+}
+
+function restartGame() {
+    document.getElementById('endGame').classList.add('hidden');
+    startGame();
+}
+</script>
+</body>
+</html>

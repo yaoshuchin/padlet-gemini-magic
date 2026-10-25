@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奇幻森林冒險記</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #FFF3E0;
+            font-family: Arial, sans-serif;
+            color: #FF8C00;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        .question {
+            font-size: 1.5em;
+            margin: 20px;
+        }
+        .option {
+            background-color: #FFCC80;
+            border: none;
+            color: white;
+            padding: 15px;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+        .option:hover {
+            background-color: #FF7043;
+        }
+        .score {
+            font-size: 1.8em;
+            margin-top: 20px;
+        }
+        .restart {
+            background-color: #FF6F00;
+            color: white;
+            padding: 15px;
+            font-size: 1.5em;
+            cursor: pointer;
+            border: none;
+        }
+        .restart:hover {
+            background-color: #F57C00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>奇幻森林冒險記</h1>
+        <p>歡迎來到奇幻森林！這裡住著許多可愛的小動物。有一天，森林裡的小動物們決定舉辦一場冒險活動，每個小動物都要完成不同的任務，學習如何面對生活中的挑戰。讓我們一起跟著小動物們展開這段奇妙的冒險吧！每個問題都代表著小動物們可能遇到的情況，請幫助他們做出最好的選擇。</p>
+        <div id="question-container"></div>
+        <div class="score" id="score"></div>
+        <button class="restart" id="restart-button" onclick="restartGame()">重新探險</button>
+    </div>
+    <script>
+        const questions = [
+            {
+                question: "小兔子莉莉今天有些難過，因為爸爸媽媽分開住了。她應該怎麼做才能感覺好一些呢？ 🐰",
+                options: [
+                    { text: "去找朋友玩，分享她的感受。", correct: true },
+                    { text: "躲在房間裡，不跟任何人說話。", correct: false },
+                    { text: "裝作沒事，什麼也不說。", correct: false }
+                ]
+            },
+            {
+                question: "小狐狸奇奇擔心自己不能每週見到爸爸了，他應該怎麼辦？ 🦊",
+                options: [
+                    { text: "跟媽媽說出自己的擔憂，看看怎麼解決。", correct: true },
+                    { text: "偷偷跑出去找爸爸。", correct: false },
+                    { text: "假裝不在乎，自己忍受。", correct: false }
+                ]
+            },
+            {
+                question: "小熊布布今天聽到同學們討論家庭，覺得自己有點不一樣，他應該？ 🐻",
+                options: [
+                    { text: "勇敢地跟同學分享自己的家庭故事。", correct: true },
+                    { text: "不再參加同學的討論。", correct: false },
+                    { text: "假裝聽不到，繼續默默玩。", correct: false }
+                ]
+            },
+            {
+                question: "小貓咪咪覺得爸爸很少來看她，感到難過，她應該？ 🐱",
+                options: [
+                    { text: "把自己的感受告訴爸爸。", correct: true },
+                    { text: "生爸爸的氣，不再理他。", correct: false },
+                    { text: "隱藏自己的感受，不跟任何人說。", correct: false }
+                ]
+            },
+            {
+                question: "小狗旺旺的媽媽常常忙著工作，他覺得有點孤單，他可以怎麼辦？ 🐶",
+                options: [
+                    { text: "跟媽媽說自己想多些陪伴的時間。", correct: true },
+                    { text: "自己跑去外面玩，不告訴媽媽。", correct: false },
+                    { text: "一整天看電視來忘掉孤單。", correct: false }
+                ]
+            },
+            {
+                question: "小猴子淘淘覺得自己家和其他同學不太一樣，他應該怎麼想？ 🐒",
+                options: [
+                    { text: "每個家庭都有不同的樣子，這是很正常的。", correct: true },
+                    { text: "覺得自己不夠好，應該像別人一樣。", correct: false },
+                    { text: "不跟任何人說自己的家庭狀況。", correct: false }
+                ]
+            },
+            {
+                question: "小羊咩咩的爸爸媽媽分開後，她的生活有了變化，她應該？ 🐑",
+                options: [
+                    { text: "試著適應新生活，並尋找新的樂趣。", correct: true },
+                    { text: "一直想著以前的生活，什麼也不做。", correct: false },
+                    { text: "對所有人表現出冷漠。", correct: false }
+                ]
+            },
+            {
+                question: "小松鼠小小發現自己和爸爸媽媽的相處時間變少了，他應該？ 🐿️",
+                options: [
+                    { text: "安排一些特別的活動，好好珍惜相處的時間。", correct: true },
+                    { text: "覺得沒希望了，放棄和爸爸媽媽相處的機會。", correct: false },
+                    { text: "對父母不滿，不願再見面。", correct: false }
+                ]
+            },
+            {
+                question: "小鹿露露覺得自己很孤單，不知道如何是好，她應該？ 🦌",
+                options: [
+                    { text: "找一個信任的大人或老師聊聊自己的感受。", correct: true },
+                    { text: "把孤單藏在心裡，什麼也不說。", correct: false },
+                    { text: "覺得自己沒有人理解，放棄和別人交流。", correct: false }
+                ]
+            },
+            {
+                question: "小刺蝟球球覺得父母不再一起讓他覺得不安全，他應該？ 🦔",
+                options: [
+                    { text: "把這些不安告訴父母，尋求安慰。", correct: true },
+                    { text: "不再相信父母，什麼也不說。", correct: false },
+                    { text: "對父母表現出生氣，拒絕溝通。", correct: false }
+                ]
+            }
+        ];
+
+        let currentScore = 0;
+        let questionsAsked = 0;
+
+        function startGame() {
+            currentScore = 0;
+            questionsAsked = 0;
+            document.getElementById('score').innerText = '';
+            showQuestion();
+        }
+
+        function showQuestion() {
+            if (questionsAsked >= 5) {
+                endGame();
+                return;
+            }
+
+            const questionIndex = Math.floor(Math.random() * questions.length);
+            const questionData = questions[questionIndex];
+
+            const questionContainer = document.getElementById('question-container');
+            questionContainer.innerHTML = `
+                <div class="question">${questionData.question}</div>
+            `;
+
+            questionData.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.classList.add('option');
+                button.innerText = option.text;
+                button.onclick = () => selectOption(option.correct);
+                questionContainer.appendChild(button);
+            });
+
+            questionsAsked++;
+        }
+
+        function selectOption(correct) {
+            if (correct) {
+                currentScore += 20;
+                document.getElementById('score').innerText = `目前分數：${currentScore} 分 🎉`;
+            } else {
+                document.getElementById('score').innerText = `目前分數：${currentScore} 分 😔`;
+            }
+            showQuestion();
+        }
+
+        function endGame() {
+            const scoreContainer = document.getElementById('score');
+            scoreContainer.innerText = `你的分數是：${currentScore} 分`;
+
+            if (currentScore >= 80) {
+                scoreContainer.innerHTML += ' 🎉 恭喜你過關了！你真的很會幫助小動物們！';
+            } else {
+                scoreContainer.innerHTML += ' 😢 很可惜，你可以再試一次，幫助更多的小動物！';
+            }
+        }
+
+        function restartGame() {
+            startGame();
+        }
+
+        startGame();
+    </script>
+</body>
+</html>

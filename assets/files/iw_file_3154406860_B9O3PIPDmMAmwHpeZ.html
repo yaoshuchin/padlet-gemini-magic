@@ -1,0 +1,292 @@
+<html><head><base href="https://cdn.skypack.dev/"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>奇幻森林冒險記</title>
+<style>
+body {
+    font-family: 'Microsoft JhengHei', Arial, sans-serif;
+    background-color: #FFF3E0;
+    color: #5D4037;
+    line-height: 1.6;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+h1 {
+    color: #FF9800;
+    text-align: center;
+}
+.story, .question, .result, .hint {
+    background-color: #FFECB3;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+button {
+    background-color: #FF9800;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+}
+button:hover {
+    background-color: #F57C00;
+}
+.option {
+    display: block;
+    margin: 10px 0;
+}
+.score {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+.hidden {
+    display: none;
+}
+.hint {
+    background-color: #E1BEE7;
+    color: #4A148C;
+    font-style: italic;
+}
+</style>
+</head>
+<body>
+<h1>奇幻森林冒險記 🌳🐾</h1>
+<div class="story">
+    <p>歡迎來到奇幻森林！這裡住著許多可愛的小動物。有一天，森林裡的小動物們決定舉辦一場冒險活動，每個小動物都要完成不同的任務，學習如何面對生活中的挑戰。</p>
+    <p>讓我們一起跟著小動物們展開這段奇妙的冒險吧！每個問題都代表著小動物們可能遇到的情況，請幫助他們做出最好的選擇。</p>
+</div>
+<div id="quiz" class="hidden">
+    <div id="question" class="question"></div>
+    <button id="submit">提交答案</button>
+    <button id="hint">提示</button>
+</div>
+<div id="hintText" class="hint hidden"></div>
+<div id="result" class="result hidden">
+    <p>你的總分是：<span id="score"></span></p>
+    <p id="feedback"></p>
+    <button id="restart">重新探險</button>
+</div>
+<div class="score">得分：<span id="currentScore">0</span></div>
+<button id="start">開始冒險</button>
+
+<script type="module">
+import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+
+const questions = [
+    {
+        question: "小兔子蹦蹦的父母最近分開了，他感到很難過。小松鼠奇奇想安慰他，應該怎麼做？🐰😢",
+        options: [
+            "告訴蹦蹦不要難過，很快就會好起來的",
+            "耐心聆聽蹦蹦的感受，給予支持和理解",
+            "建議蹦蹦多出去玩，忘記這件事",
+            "告訴蹦蹦父母分開是他的錯"
+        ],
+        correctAnswer: 1,
+        hint: "當朋友難過時，最重要的是聆聽和理解他們的感受。"
+    },
+    {
+        question: "小狐狸圓圓的媽媽要出差一個月，他感到很不安。小熊多多應該如何幫助他？🦊👜",
+        options: [
+            "告訴圓圓不要那麼依賴媽媽",
+            "幫圓圓計劃一些有趣的活動，讓他保持忙碌",
+            "建議圓圓每天和媽媽視訊聊天",
+            "鼓勵圓圓表達自己的感受，並幫助他想辦法度過這段時間"
+        ],
+        correctAnswer: 3,
+        hint: "幫助朋友面對困難時，鼓勵他們表達感受並一起尋找解決方法是很好的方式。"
+    },
+    {
+        question: "小鳥叮叮的爸爸最近很少回家，他感到很孤單。小貓咪喵喵該如何幫助他？🐦🏠",
+        options: [
+            "告訴叮叮要堅強，不要想太多",
+            "邀請叮叮來自己家玩，讓他感受家的溫暖",
+            "建議叮叮多看電視轉移注意力",
+            "告訴叮叮爸爸可能不愛他了"
+        ],
+        correctAnswer: 1,
+        hint: "當朋友感到孤單時，給予溫暖和陪伴是很重要的。"
+    },
+    {
+        question: "小猴子跳跳的父母最近常常吵架，他感到很困擾。小鹿點點該如何安慰他？🐒😞",
+        options: [
+            "告訴跳跳父母吵架是正常的，不用在意",
+            "建議跳跳插入父母的對話，阻止他們吵架",
+            "鼓勵跳跳和父母溝通自己的感受，表達對家庭和諧的期望",
+            "告訴跳跳離家出走，讓父母緊張"
+        ],
+        correctAnswer: 2,
+        hint: "鼓勵朋友與家人進行良好的溝通，表達自己的感受是很好的做法。"
+    },
+    {
+        question: "小刺蝟尖尖最近變得很安靜，大家發現他的父母可能要離婚了。小浣熊圓圓該怎麼幫助他？🦔😔",
+        options: [
+            "假裝沒發生什麼事，不去打擾尖尖",
+            "告訴尖尖離婚沒什麼大不了的",
+            "主動關心尖尖，表示願意隨時傾聽和支持他",
+            "建議尖尖去找心理醫生"
+        ],
+        correctAnswer: 2,
+        hint: "當朋友遇到困難時，主動關心和提供支持是非常重要的。"
+    },
+    {
+        question: "小蛇絲絲的媽媽要再婚了，他對即將到來的變化感到不安。小兔子棉棉該如何開導他？🐍👰",
+        options: [
+            "告訴絲絲要勇於接受改變，新的家庭成員可能帶來正面影響",
+            "建議絲絲拒絕接受新的家庭成員",
+            "鼓勵絲絲逃家",
+            "告訴絲絲媽媽不愛他了"
+        ],
+        correctAnswer: 0,
+        hint: "面對生活中的變化，保持開放和積極的態度通常是最好的選擇。"
+    },
+    {
+        question: "小狼嗷嗷的爸爸因工作變得很忙碌，常常無法參加他的活動。小鴨子嘎嘎該如何安慰他？🐺👔",
+        options: [
+            "告訴嗷嗷爸爸不愛他了",
+            "建議嗷嗷放棄那些活動",
+            "鼓勵嗷嗷和爸爸溝通，找出能夠共處的時間",
+            "告訴嗷嗷習慣就好了"
+        ],
+        correctAnswer: 2,
+        hint: "良好的溝通可以幫助解決很多問題，尤其是在家庭關係中。"
+    },
+    {
+        question: "小熊貓圓圓的父母離婚後，他要在兩個家庭之間輪流生活。小松鼠堅果該如何幫助他適應？🐼🏠🏠",
+        options: [
+            "建議圓圓選擇一個最喜歡的家庭定居",
+            "鼓勵圓圓把兩個家庭的優點結合起來，創造新的生活方式",
+            "告訴圓圓這種生活很辛苦，應該抗議",
+            "建議圓圓裝病逃避"
+        ],
+        correctAnswer: 1,
+        hint: "在面對複雜的家庭情況時，找出積極的方式來適應新的生活是很重要的。"
+    },
+    {
+        question: "小袋鼠跳跳的媽媽要出國工作一年，他感到很沮喪。小企鵝滑滑該如何鼓勵他？🦘✈️",
+        options: [
+            "告訴跳跳一年很快就過去了，不要難過",
+            "建議跳跳跟著媽媽一起去",
+            "幫跳跳製定一個計劃，包括定期與媽媽聯繫和自我成長的目標",
+            "告訴跳跳媽媽不要他了"
+        ],
+        correctAnswer: 2,
+        hint: "當面對長期分離時，保持聯繫和設定個人成長目標可以幫助度過這段時間。"
+    },
+    {
+        question: "小浣熊娃娃的父親再婚了，他對新的家庭成員感到不適應。小狐狸聰聰該如何開導他？🦝👨‍👩‍👧",
+        options: [
+            "告訴娃娃要立即喜歡新家人，否則就是不懂事",
+            "建議娃娃完全無視新家人的存在",
+            "鼓勵娃娃給自己和新家人一些時間慢慢適應，同時保持開放和理解的態度",
+            "告訴娃娃裝病逃避面對新家人"
+        ],
+        correctAnswer: 2,
+        hint: "適應新的家庭成員需要時間和耐心，保持開放和理解的態度是很重要的。"
+    }
+];
+
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+let score = 0;
+
+const startButton = document.getElementById('start');
+const quizDiv = document.getElementById('quiz');
+const questionDiv = document.getElementById('question');
+const submitButton = document.getElementById('submit');
+const hintButton = document.getElementById('hint');
+const hintTextDiv = document.getElementById('hintText');
+const resultDiv = document.getElementById('result');
+const scoreSpan = document.getElementById('score');
+const feedbackP = document.getElementById('feedback');
+const restartButton = document.getElementById('restart');
+const currentScoreSpan = document.getElementById('currentScore');
+
+startButton.addEventListener('click', startQuiz);
+submitButton.addEventListener('click', submitAnswer);
+hintButton.addEventListener('click', showHint);
+restartButton.addEventListener('click', restartQuiz);
+
+function startQuiz() {
+    startButton.classList.add('hidden');
+    quizDiv.classList.remove('hidden');
+    currentQuestions = getRandomQuestions(5);
+    currentQuestionIndex = 0;
+    score = 0;
+    showQuestion();
+}
+
+function getRandomQuestions(num) {
+    const shuffled = [...questions].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, num);
+}
+
+function showQuestion() {
+    const question = currentQuestions[currentQuestionIndex];
+    questionDiv.innerHTML = `
+        <h2>${question.question}</h2>
+        ${question.options.map((option, index) => `
+            <label class="option">
+                <input type="radio" name="answer" value="${index}">
+                ${option}
+            </label>
+        `).join('')}
+    `;
+    hintTextDiv.classList.add('hidden');
+}
+
+function submitAnswer() {
+    const selectedOption = document.querySelector('input[name="answer"]:checked');
+    if (!selectedOption) return;
+
+    const answer = parseInt(selectedOption.value);
+    const question = currentQuestions[currentQuestionIndex];
+
+    if (answer === question.correctAnswer) {
+        score += 20;
+        currentScoreSpan.textContent = score;
+    }
+
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < currentQuestions.length) {
+        showQuestion();
+    } else {
+        showResult();
+    }
+}
+
+function showHint() {
+    const question = currentQuestions[currentQuestionIndex];
+    hintTextDiv.textContent = question.hint;
+    hintTextDiv.classList.remove('hidden');
+}
+
+function showResult() {
+    quizDiv.classList.add('hidden');
+    resultDiv.classList.remove('hidden');
+    scoreSpan.textContent = score;
+    
+    if (score >= 80) {
+        feedbackP.textContent = "太棒了！你已經成功通過冒險，成為森林裡最優秀的小幫手！🎉🌟";
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+    } else {
+        feedbackP.textContent = "加油！再嘗試一次，相信你一定能成功的！💪🌈";
+    }
+}
+
+function restartQuiz() {
+    resultDiv.classList.add('hidden');
+    startButton.classList.remove('hidden');
+    currentScoreSpan.textContent = "0";
+}
+</script>
+</body></html>

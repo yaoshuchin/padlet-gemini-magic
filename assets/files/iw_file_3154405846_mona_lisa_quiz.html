@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>莎莎記趣</title>
+    <style>
+        body {
+            font-family: "Microsoft JhengHei", sans-serif;
+            background-color: #e6f3ff;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1e90ff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .story {
+            background-color: #f0f8ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        .question {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #1e90ff;
+        }
+        .options {
+            display: grid;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        button {
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #187bcd;
+        }
+        .score {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0;
+            color: #1e90ff;
+        }
+        .result {
+            text-align: center;
+            font-size: 20px;
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #90EE90;
+            color: #006400;
+        }
+        .failure {
+            background-color: #FFB6C1;
+            color: #8B0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 莎莎記趣 🎨</h1>
+        <div class="story">
+            歡迎來到羅浮宮！這裡住著許多可愛的小美女。有一天，羅浮裡的小美女們決定舉辦一場冒險活動，
+            每個小美女都要完成不同的任務，學習如何面對博物館中的挑戰。
+            讓我們一起跟著小美女們展開這段奇妙的冒險吧！每個問題都代表著小美女們可能遇到的情況，
+            請幫助他們做出最好的選擇。 ✨
+        </div>
+        <div id="quiz-container"></div>
+        <div class="score">得分：<span id="score">0</span></div>
+        <div id="result" class="result"></div>
+        <button id="restart" style="display: none;">重新探險</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "小莎莎想知道蒙娜麗莎是誰畫的，你知道嗎？ 🎨",
+                options: [
+                    "達文西",
+                    "米開朗基羅",
+                    "拉斐爾",
+                    "畢卡索"
+                ],
+                correct: 0
+            },
+            {
+                question: "蒙娜麗莎的真實名字是什麼呢？ 👩",
+                options: [
+                    "麗莎・傑拉爾迪尼",
+                    "麗莎・喬康達",
+                    "麗莎・波提切利",
+                    "麗莎・達文西"
+                ],
+                correct: 1
+            },
+            {
+                question: "蒙娜麗莎是在哪一年完成的呢？ 📅",
+                options: [
+                    "1503年",
+                    "1603年",
+                    "1703年",
+                    "1803年"
+                ],
+                correct: 0
+            },
+            {
+                question: "為什麼蒙娜麗莎的微笑那麼特別？ 😊",
+                options: [
+                    "因為畫得很醜",
+                    "因為她很開心",
+                    "因為達文西使用特殊的繪畫技巧，讓微笑若隱若現",
+                    "因為她在笑別人"
+                ],
+                correct: 2
+            },
+            {
+                question: "蒙娜麗莎現在在哪裡展示？ 🏛️",
+                options: [
+                    "英國大英博物館",
+                    "法國羅浮宮",
+                    "美國大都會博物館",
+                    "義大利烏菲茲美術館"
+                ],
+                correct: 1
+            },
+            {
+                question: "蒙娜麗莎的畫作使用什麼特殊技法？ 🖌️",
+                options: [
+                    "疊色法",
+                    "水彩暈染",
+                    "油畫肌理",
+                    "暗影漸層法(斯福馬托)"
+                ],
+                correct: 3
+            },
+            {
+                question: "蒙娜麗莎畫作的尺寸大約是多大？ 📏",
+                options: [
+                    "和一張A4紙差不多大",
+                    "和一面牆一樣大",
+                    "和一個書包一樣大",
+                    "和一台電視機一樣大"
+                ],
+                correct: 0
+            },
+            {
+                question: "蒙娜麗莎的背景是什麼？ 🌄",
+                options: [
+                    "繁華的城市",
+                    "神秘的風景",
+                    "空白的牆壁",
+                    "熱鬧的市集"
+                ],
+                correct: 1
+            },
+            {
+                question: "蒙娜麗莎的眼睛有什麼特別之處？ 👀",
+                options: [
+                    "她在哭泣",
+                    "她閉著眼睛",
+                    "無論你從哪個角度看，她的眼睛都像在看著你",
+                    "她的眼睛是藍色的"
+                ],
+                correct: 2
+            },
+            {
+                question: "達文西花了多久時間完成蒙娜麗莎？ ⏰",
+                options: [
+                    "一天",
+                    "一個月",
+                    "一年",
+                    "四年"
+                ],
+                correct: 3
+            }
+        ];
+
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function startQuiz() {
+            currentQuestions = shuffleArray([...questions]).slice(0, 5);
+            currentQuestionIndex = 0;
+            score = 0;
+            document.getElementById('score').textContent = score;
+            document.getElementById('result').textContent = '';
+            document.getElementById('result').className = 'result';
+            document.getElementById('restart').style.display = 'none';
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const quizContainer = document.getElementById('quiz-container');
+            const currentQuestion = currentQuestions[currentQuestionIndex];
+
+            const questionHTML = `
+                <div class="question">
+                    <h3>${currentQuestion.question}</h3>
+                    <div class="options">
+                        ${currentQuestion.options.map((option, index) => `
+                            <button onclick="checkAnswer(${index})">${option}</button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            quizContainer.innerHTML = questionHTML;
+        }
+
+        function checkAnswer(selectedIndex) {
+            const currentQuestion = currentQuestions[currentQuestionIndex];
+            if (selectedIndex === currentQuestion.correct) {
+                score += 20;
+                document.getElementById('score').textContent = score;
+            }
+
+            currentQuestionIndex++;
+            
+            if (currentQuestionIndex < currentQuestions.length) {
+                showQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            const quizContainer = document.getElementById('quiz-container');
+            quizContainer.innerHTML = '';
+            
+            const result = document.getElementById('result');
+            if (score >= 80) {
+                result.textContent = '🎉 恭喜你通過測驗！你真是個藝術小天才！';
+                result.className = 'result success';
+            } else {
+                result.textContent = '💪 再接再厲！讓我們一起繼續學習藝術的奧秘！';
+                result.className = 'result failure';
+            }
+            
+            document.getElementById('restart').style.display = 'block';
+        }
+
+        document.getElementById('restart').addEventListener('click', startQuiz);
+
+        // 開始測驗
+        startQuiz();
+    </script>
+</body>
+</html>

@@ -5,8 +5,8 @@ import path from 'path';
 const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const htmlPath = path.resolve('c:/antigravity/1151025Gemini就是神奇/index.html');
 const targetUrl = 'file:///' + htmlPath.replace(/\\/g, '/');
-const port = 9385;
-const userDataDir = 'C:\\Users\\Administrator\\.gemini\\antigravity\\chrome_temp_test_gemini_magic3';
+const port = 9580;
+const userDataDir = 'C:\\Users\\Administrator\\.gemini\\antigravity\\chrome_temp_test_all_9';
 
 const chromeProc = spawn(chromePath, [
   `--remote-debugging-port=${port}`,
@@ -68,55 +68,37 @@ async function main() {
   await new Promise(r => ws.onopen = r);
   await sleep(2000);
 
-  // Check Board 1 (Gemini就是神奇)
-  const board1Check = await send('Runtime.evaluate', {
+  // Check all 9 tabs
+  const testResults = await send('Runtime.evaluate', {
     expression: `(() => {
-      return {
-        board: 'gemini',
-        title: document.getElementById('boardTitle').textContent.trim(),
-        shelvesCount: document.querySelectorAll('#boardView > div').length,
-        cardsCount: document.querySelectorAll('.card-transition').length,
-        tabGeminiActive: document.getElementById('tabBtnGemini').classList.contains('bg-indigo-600')
-      };
+      const boardKeys = [
+        'gemini', 'gm', 'ai_expert', 'interactive_web',
+        'ai_sketch', 'text_to_slides', 'music_creation',
+        'notebooklm_projects', 'prompt_architecture'
+      ];
+      
+      const results = [];
+      for (const k of boardKeys) {
+        switchBoard(k);
+        results.push({
+          key: k,
+          title: document.getElementById('boardTitle').textContent.trim(),
+          shelvesCount: document.querySelectorAll('#boardView > div').length,
+          cardsCount: document.querySelectorAll('.card-transition').length,
+          downloadsCount: document.getElementById('downloadsCount').textContent
+        });
+      }
+      // Switch back to primary
+      switchBoard('gemini');
+      return results;
     })()`,
     returnByValue: true
   });
-  console.log('Board 1 Check:', board1Check.result?.result?.value);
 
-  // Switch to Board 2 (公明國中-Gemini Notebook)
-  await send('Runtime.evaluate', {
-    expression: `document.getElementById('tabBtnGM').click()`
-  });
-  await sleep(1500);
+  console.log('9 Boards Test Results:');
+  console.table(testResults.result?.result?.value);
 
-  const board2Check = await send('Runtime.evaluate', {
-    expression: `(() => {
-      return {
-        board: 'gm',
-        title: document.getElementById('boardTitle').textContent.trim(),
-        shelvesCount: document.querySelectorAll('#boardView > div').length,
-        cardsCount: document.querySelectorAll('.card-transition').length,
-        tabGMActive: document.getElementById('tabBtnGM').classList.contains('bg-sky-600'),
-        legend: document.getElementById('legendContainer').textContent.replace(/\\s+/g, ' ').trim()
-      };
-    })()`,
-    returnByValue: true
-  });
-  console.log('Board 2 Check:', board2Check.result?.result?.value);
-
-  // Capture screenshot of Board 2
-  const ssResGM = await send('Page.captureScreenshot', { format: 'png' });
-  if (ssResGM.result?.data) {
-    fs.writeFileSync('c:/antigravity/1151025Gemini就是神奇/preview_gm_screenshot.png', Buffer.from(ssResGM.result.data, 'base64'));
-    console.log('Saved preview_gm_screenshot.png');
-  }
-
-  // Switch back to Board 1 to take primary preview
-  await send('Runtime.evaluate', {
-    expression: `document.getElementById('tabBtnGemini').click()`
-  });
-  await sleep(1000);
-
+  // Capture preview screenshot of primary board
   const ssRes = await send('Page.captureScreenshot', { format: 'png' });
   if (ssRes.result?.data) {
     fs.writeFileSync('c:/antigravity/1151025Gemini就是神奇/preview_screenshot.png', Buffer.from(ssRes.result.data, 'base64'));
@@ -124,7 +106,7 @@ async function main() {
   }
 
   ws.close();
-  chromeProc.kill();
+  try { chromeProc.kill(); } catch (e) {}
   process.exit(0);
 }
 

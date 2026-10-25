@@ -1,0 +1,260 @@
+<html><head><base href="https://html-template.taiwanschool.edu.tw/"></head>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奇幻森林冒險記</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFF3E0;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #FFE0B2;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #FF9800;
+            text-align: center;
+        }
+        .story, .question, .result {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #FFCCBC;
+            border-radius: 5px;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+        }
+        button {
+            margin: 5px 0;
+            padding: 10px;
+            background-color: #FF9800;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #F57C00;
+        }
+        .result {
+            font-weight: bold;
+            text-align: center;
+        }
+        .emoji {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>奇幻森林冒險記 <span class="emoji">🌳🦊🐰</span></h1>
+        <div class="story">
+            歡迎來到奇幻森林！這裡住著許多可愛的小動物。有一天，森林裡的小動物們決定舉辦一場冒險活動， 每個小動物都要完成不同的任務，學習如何面對生活中的挑戰。
+            讓我們一起跟著小動物們展開這段奇妙的冒險吧！每個問題都代表著小動物們可能遇到的情況， 請幫助他們做出最好的選擇。
+        </div>
+        <div id="quiz"></div>
+        <div id="result" class="result" style="display: none;"></div>
+        <button id="restart" style="display: none;">重新探險</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "小熊波比的爸爸媽媽最近分開了，他感到很難過。作為好朋友，你會怎麼安慰波比？",
+                options: [
+                    "告訴波比不要想太多，假裝什麼事都沒發生",
+                    "耐心聆聽波比的感受，給予擁抱和支持",
+                    "建議波比責怪其中一方父母",
+                    "告訴波比這種事很常見，不需要在意"
+                ],
+                correct: 1
+            },
+            {
+                question: "小兔露西只和媽媽一起生活，有時候會覺得和其他小動物不一樣。你會怎麼幫助露西？",
+                options: [
+                    "告訴露西要藏起這個秘密，不要讓其他動物知道",
+                    "幫助露西認識到每個家庭都是獨特的，單親家庭也很棒",
+                    "建議露西找一個新爸爸",
+                    "告訴露西應該羨慕其他有完整家庭的小動物"
+                ],
+                correct: 1
+            },
+            {
+                question: "小狐狸阿橙的爸爸常常加班到很晚，阿橙感到寂寞。你會給阿橙什麼建議？",
+                options: [
+                    "建議阿橙責怪爸爸不關心他",
+                    "鼓勵阿橙和爸爸溝通，表達自己的感受",
+                    "告訴阿橙習慣就好，反正爸爸賺錢比較重要",
+                    "建議阿橙乾脆離家出走，引起爸爸的注意"
+                ],
+                correct: 1
+            },
+            {
+                question: "小鹿斑比的媽媽最近心情不好，常常發脾氣。斑比應該怎麼做？",
+                options: [
+                    "躲著媽媽，不要惹她生氣",
+                    "理解媽媽可能有壓力，試著關心和幫助她",
+                    "也跟著發脾氣，讓媽媽知道這樣不對",
+                    "找其他動物朋友訴說媽媽的壞話"
+                ],
+                correct: 1
+            },
+            {
+                question: "小貓咪米米的爸爸媽媽常常吵架，米米很擔心。你會怎麼開導米米？",
+                options: [
+                    "告訴米米這是大人的事，小孩不要管",
+                    "鼓勵米米勇敢表達自己的感受，告訴父母吵架會讓自己難過",
+                    "建議米米加入吵架，幫其中一方說話",
+                    "告訴米米乾脆離家出走，這樣父母就不會吵架了"
+                ],
+                correct: 1
+            },
+            {
+                question: "小猴子奇奇的爸爸有了新的伴侶，奇奇不知道該如何相處。你會給奇奇什麼建議？",
+                options: [
+                    "告訴奇奇不要接受爸爸的新伴侶",
+                    "鼓勵奇奇保持開放態度，慢慢了解新家庭成員",
+                    "建議奇奇找媽媽訴苦，說爸爸的壞話",
+                    "告訴奇奇假裝喜歡新的伴侶，即使內心不喜歡"
+                ],
+                correct: 1
+            },
+            {
+                question: "小鳥皮皮的父母離婚後，假日要輪流住在不同的地方。皮皮覺得很困擾，該怎麼辦？",
+                options: [
+                    "建議皮皮拒絕這種安排，選擇只和一方父母住",
+                    "幫助皮皮理解這是為了維持與雙方父母的關係，鼓勵他適應新生活",
+                    "告訴皮皮乾脆離家，這樣就不用煩惱了",
+                    "建議皮皮對父母說謊，讓他們吵架"
+                ],
+                correct: 1
+            },
+            {
+                question: "小刺蝟尖尖的媽媽常因工作壓力而心情不好，尖尖想要幫忙。你會給尖尖什麼建議？",
+                options: [
+                    "告訴尖尖不要理會媽媽的心情",
+                    "鼓勵尖尖主動幫忙做家事，給媽媽一個溫暖的擁抱",
+                    "建議尖尖責備媽媽，要求她改變",
+                    "告訴尖尖最好離媽媽遠一點，避免受到影響"
+                ],
+                correct: 1
+            },
+            {
+                question: "小浣熊圓圓的爸爸媽媽雖然分開了，但都很愛他。有時圓圓卻感到困惑，不知道該怎麼平衡和雙方的關係。你會怎麼開導圓圓？",
+                options: [
+                    "告訴圓圓乾脆選一個最喜歡的父母",
+                    "幫助圓圓明白可以同時愛爸爸和媽媽，鼓勵他與雙方保持良好關係",
+                    "建議圓圓對父母說些小謊言，讓他們互相吃醋",
+                    "告訴圓圓這種情況下最好裝作沒事，不要表達自己的感受"
+                ],
+                correct: 1
+            },
+            {
+                question: "小狗多多的父母雖然分居，但都參與他的生活。有時多多會聽到他們說對方的壞話，感到很難過。你會怎麼建議多多？",
+                options: [
+                    "鼓勵多多跟著一起說另一方父母的壞話",
+                    "幫助多多明白父母的感受，但也鼓勵他勇敢表達這樣會讓自己難過",
+                    "建議多多乾脆不要理會雙方父母",
+                    "告訴多多要選邊站，支持其中一方"
+                ],
+                correct: 1
+            }
+        ];
+
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function startQuiz() {
+            currentQuestions = [...questions];
+            shuffleArray(currentQuestions);
+            currentQuestions = currentQuestions.slice(0, 5);
+            currentQuestionIndex = 0;
+            score = 0;
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const quizContainer = document.getElementById('quiz');
+            const currentQuestion = currentQuestions[currentQuestionIndex];
+
+            let optionsHTML = '';
+            currentQuestion.options.forEach((option, index) => {
+                optionsHTML += `<button onclick="selectAnswer(${index})">${option}</button>`;
+            });
+
+            quizContainer.innerHTML = `
+                <div class="question">
+                    <p>${currentQuestion.question}</p>
+                    <div class="options">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectAnswer(selectedIndex) {
+            const currentQuestion = currentQuestions[currentQuestionIndex];
+            if (selectedIndex === currentQuestion.correct) {
+                score += 20;
+            }
+
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < currentQuestions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            const resultContainer = document.getElementById('result');
+            const quizContainer = document.getElementById('quiz');
+            const restartButton = document.getElementById('restart');
+
+            quizContainer.style.display = 'none';
+            resultContainer.style.display = 'block';
+            restartButton.style.display = 'block';
+
+            if (score >= 80) {
+                resultContainer.innerHTML = `
+                    <p>恭喜你！你獲得了 ${score} 分 <span class="emoji">🎉🏆</span></p>
+                    <p>你成功地幫助了奇幻森林的小動物們！你對單親家庭的理解和同理心令人讚嘆。</p>
+                `;
+            } else {
+                resultContainer.innerHTML = `
+                    <p>你獲得了 ${score} 分 <span class="emoji">🌟</span></p>
+                    <p>繼續加油！再多了解一些關於單親家庭的知識，你就能成為奇幻森林的小英雄了。</p>
+                `;
+            }
+        }
+
+        document.getElementById('restart').addEventListener('click', function() {
+            document.getElementById('result').style.display = 'none';
+            this.style.display = 'none';
+            startQuiz();
+        });
+
+        startQuiz();
+    </script>
+</body>
+</html>

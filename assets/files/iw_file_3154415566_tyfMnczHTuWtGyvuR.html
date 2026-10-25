@@ -1,0 +1,323 @@
+<html><head><base href="https://cdn.jsdelivr.net/"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>現代裝置藝術冒險記</title>
+<style>
+body {
+    font-family: 'Microsoft JhengHei', Arial, sans-serif;
+    background-color: #FFE5D9;
+    color: #4A4A4A;
+    line-height: 1.6;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+h1 {
+    color: #FF6B6B;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+.story, .question, .result {
+    background-color: #FFF0F5;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+.story:hover, .question:hover, .result:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+}
+.options {
+    display: flex;
+    flex-direction: column;
+}
+button {
+    background-color: #4ECDC4;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    margin: 8px 0;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+button:hover {
+    background-color: #45B7AA;
+    transform: scale(1.05);
+}
+#score, #currentScore {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #FF6B6B;
+}
+.hidden {
+    display: none;
+}
+.emoji {
+    font-size: 2em;
+    margin-right: 10px;
+    animation: bounce 0.6s infinite alternate;
+}
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+}
+.feedback {
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #E0FFFF;
+}
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+.progress {
+    width: 0%;
+    height: 100%;
+    background-color: #4ECDC4;
+    transition: width 0.5s ease;
+}
+</style>
+</head>
+<body>
+<h1>🎨 現代裝置藝術冒險記 🚀</h1>
+<div id="story" class="story">
+    <p><span class="emoji">🌈</span>歡迎來到現代裝置藝術冒險記！這裡住著許多奇妙科幻的物品。有一天，國中生們決定舉辦一場冒險活動， 每個國中生們都要完成不同的任務，學習如何面對生活中的挑戰。</p>
+    <p><span class="emoji">🌟</span>讓我們一起跟著國中生們展開這段奇妙的冒險吧！每個問題都代表著國中生們可能遇到的情況， 請幫助他們做出最好的選擇。</p>
+    <button onclick="startQuiz()">開始冒險</button>
+</div>
+<div id="question" class="question hidden"></div>
+<div id="result" class="result hidden">
+    <h2>探險結果</h2>
+    <p>你的總分是：<span id="score"></span></p>
+    <p id="feedback"></p>
+    <button id="restart">重新探險</button>
+</div>
+<div class="progress-bar">
+    <div id="progress" class="progress"></div>
+</div>
+
+<script>
+const questions = [
+    {
+        question: "小明走進了「未來城市」展廳，看到一個由廢棄電子零件組成的巨大機器人雕塑。這個機器人似乎在對著觀眾眨眼睛，小明覺得很困惑。他應該怎麼做？",
+        options: [
+            "覺得這個作品太奇怪了，直接走開",
+            "仔細觀察作品的細節，思考藝術家想表達的訊息",
+            "大聲說這不是真正的藝術，只是垃圾堆而已",
+            "用手機拍照，發到社交媒體吐槽這個奇怪的作品"
+        ],
+        answer: 1,
+        explanation: "現代裝置藝術常常使用非傳統材料來表達新的想法。仔細觀察作品的細節，可以幫助我們理解藝術家想要傳達的訊息，比如這個作品可能在探討科技發展與環境保護的關係。"
+    },
+    {
+        question: "小花來到了「聲音迷宮」展區，這是一個充滿各種聲音的互動裝置。展板上寫著「請您觸摸牆壁，聆聽聲音的變化」。小花應該如何體驗這件作品？",
+        options: [
+            "害怕弄壞作品，所以站在原地不動",
+            "不理會指示，自顧自地在展區內走動",
+            "按照指示，輕輕觸摸牆壁，仔細聆聽聲音的變化",
+            "覺得太吵了，直接離開展區"
+        ],
+        answer: 2,
+        explanation: "互動式藝術作品需要觀眾的參與才能完整呈現。按照藝術家的指示去體驗作品，可以讓我們更深入地了解作品的意義，感受藝術家想要創造的獨特體驗。"
+    },
+    {
+        question: "大雄在「日常再想像」展區看到一件由舊衣架、塑料袋和廢棄玩具組成的大型裝置藝術。他覺得這些東西在家裡隨處可見，不明白為什麼能成為藝術品。他應該如何看待這種藝術？",
+        options: [
+            "認為這不是真正的藝術，因為材料太普通了",
+            "嘗試理解藝術家選擇這些物品的原因，以及它們的排列方式有什麼特別之處",
+            "覺得自己也可以做出類似的作品，藝術一點都不難",
+            "抱怨美術館浪費空間展示這種作品"
+        ],
+        answer: 1,
+        explanation: "現代藝術常常使用日常物品來創作，目的是讓我們重新思考這些物品的意義和價值。嘗試理解藝術家的創作意圖，可以幫助我們發現平凡事物中的不平凡，培養創新思維。"
+    },
+    {
+        question: "靜香參觀了「無聲的吶喊」展，裡面有一件完全靜音的裝置藝術。展板上寫著「請您在作品前停留5分鐘，感受寂靜」。但靜香覺得很無聊，她應該怎麼辦？",
+        options: [
+            "快速走過，因為覺得浪費時間",
+            "照著指示做，嘗試靜下心來體會5分鐘的寂靜",
+            "拿出手機，一邊看社交媒體一邊等待5分鐘過去",
+            "跟朋友抱怨這件作品一點意思都沒有"
+        ],
+        answer: 1,
+        explanation: "有些現代藝術作品挑戰我們的耐心和感知方式。嘗試按照藝術家的建議去體驗作品，可能會讓我們有意想不到的收穫，比如在喧囂的現代生活中重新認識寂靜的價值。"
+    },
+    {
+        question: "小傑看到一件名為「未見之境」的作品，就是一個完全空白的展廳。他感到很困惑，不知道應該看什麼。他應該如何欣賞這件作品？",
+        options: [
+            "認為這是騙局，空房間怎麼能算藝術",
+            "快速走過，因為覺得沒什麼好看的",
+            "停下來，仔細觀察空間本身，思考藝術家想表達的意義",
+            "在展廳內大聲說話或跑跳，測試空間的效果"
+        ],
+        answer: 2,
+        explanation: "極簡主義藝術挑戰我們對藝術的傳統理解。通過靜心體驗空間，我們可能會發現藝術家想要傳達的深層含義，比如關於存在、空虛或觀者參與的思考。這種體驗可以幫助我們培養更深入的藝術欣賞能力。"
+    },
+    {
+        question: "美美在「科技與人性」展區看到一件由人工智能創作的畫作。她不確定該如何評價這種作品。她應該怎麼看待AI藝術？",
+        options: [
+            "認為這不是真正的藝術，因為不是人類創作的",
+            "對比人類畫家的作品，試圖找出AI作品的缺點",
+            "好奇地了解AI創作的過程，思考科技對藝術創作的影響",
+            "完全否定AI藝術的價值，認為它威脅到人類藝術家的地位"
+        ],
+        answer: 2,
+        explanation: "AI藝術是現代藝術的新領域，反映了科技與藝術的融合。保持開放和好奇的態度，了解AI創作過程，可以幫助我們思考科技如何改變藝術創作和欣賞的方式，以及人類創意在這個過程中的角色。"
+    },
+    {
+        question: "小光參觀了一個虛擬實境（VR）藝術展，但他從未使用過VR設備。工作人員遞給他一個VR頭盔，他應該怎麼做？",
+        options: [
+            "拒絕使用，因為覺得太複雜了",
+            "隨意戴上頭盔，不聽工作人員的使用說明",
+            "仔細聽取工作人員的指導，然後小心地體驗VR藝術作品",
+            "只是看別人體驗，自己不嘗試"
+        ],
+        answer: 2,
+        explanation: "新科技在現代藝術中扮演越來越重要的角色。面對陌生的技術，保持開放和好奇的態度，並按照指導使用，能讓我們充分體驗藝術家想要創造的沉浸式體驗，開拓對藝術的新理解。"
+    },
+    {
+        question: "小華看到一件關於環境污染的裝置藝術，作品使用了真實的垃圾。他覺得作品聞起來有點臭，但好像有重要的訊息。他應該如何看待這個作品？",
+        options: [
+            "因為氣味難聞就走開，認為藝術品不應該有壞味道",
+            "忽略氣味，試圖理解藝術家想通過這件作品傳達的環保訊息",
+            "抱怨這種創作方式，認為藝術品應該是美的",
+            "認為藝術家這樣做太誇張了，沒必要用真垃圾"
+        ],
+        answer: 1,
+        explanation: "有些藝術家會使用非常規的材料來強調他們的訊息。即使作品可能會讓人不舒服，嘗試去理解藝術家的意圖很重要。在這個例子中，藝術家可能是想通過真實的感官體驗來強調環境污染的嚴重性，引起人們的反思。"
+    },
+    {
+        question: "小明在一個現代藝術展上看到一件名為「觀者的參與」的互動裝置。展板上寫著「請在作品上留下你的痕跡」。小明應該怎麼做？",
+        options: [
+            "害怕破壞藝術品，所以不敢碰觸",
+            "用筆在作品上塗鴉，留下自己的名字",
+            "仔細閱讀作品說明，按照藝術家的指示參與互動",
+            "認為這不是真正的藝術，直接離開"
+        ],
+        answer: 2,
+        explanation: "互動藝術鼓勵觀眾參與，成為作品的一部分。正確的做法是仔細閱讀藝術家的指示，按照規定的方式參與。這樣不僅尊重了藝術家的創作意圖，也能真正體驗到互動藝術的樂趣和意義。"
+    },
+    {
+        question: "小花看到一件由回收塑料瓶製成的大型裝置藝術，作品標題是「海洋的哀鳴」。她應該如何理解這件作品？",
+        options: [
+            "認為這只是一堆垃圾，沒有藝術價值",
+            "思考作品標題與材料之間的關係，了解藝術家想表達的環保訊息",
+            "覺得這種藝術太難懂了，不想深入思考",
+            "認為藝術家這樣做太誇張了，環保議題不需要用藝術來表達"
+        ],
+        answer: 1,
+        explanation: "現代裝置藝術常常利用特定材料來傳達深層含義。在這個例子中，藝術家使用回收塑料瓶來創作，並將作品命名為「海洋的哀鳴」，很可能是想引起人們對海洋污染問題的關注。通過思考材料、標題和形式之間的關係，我們可以更好地理解藝術家想要傳達的環保訊息。"
+    }
+];
+
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+let score = 0;
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function startQuiz() {
+    currentQuestions = [...questions];
+    shuffleArray(currentQuestions);
+    currentQuestions = currentQuestions.slice(0, 5);
+    currentQuestionIndex = 0;
+    score = 0;
+    showQuestion();
+}
+
+function showQuestion() {
+    const questionElem = document.getElementById('question');
+    const currentQuestion = currentQuestions[currentQuestionIndex];
+    
+    let optionsHTML = '';
+    currentQuestion.options.forEach((option, index) => {
+        optionsHTML += `<button onclick="selectAnswer(${index})">${option}</button>`;
+    });
+    
+    questionElem.innerHTML = `
+        <h2>問題 ${currentQuestionIndex + 1}</h2>
+        <p>${currentQuestion.question}</p>
+        <div class="options">
+            ${optionsHTML}
+        </div>
+        <p>目前分數：<span id="currentScore">${score}</span></p>
+    `;
+    
+    document.getElementById('story').classList.add('hidden');
+    questionElem.classList.remove('hidden');
+    document.getElementById('result').classList.add('hidden');
+    updateProgressBar();
+}
+
+function selectAnswer(selectedIndex) {
+    const currentQuestion = currentQuestions[currentQuestionIndex];
+    let pointsEarned = 0;
+    if (selectedIndex === currentQuestion.answer) {
+        pointsEarned = 20;
+        score += pointsEarned;
+    }
+    
+    const feedback = selectedIndex === currentQuestion.answer ? 
+        '🎉 太棒了！你的藝術觀察力真敏銳！' : '😔 這次沒找到最佳答案，但別灰心！藝術欣賞是需要時間培養的。';
+    
+    document.getElementById('question').innerHTML += `
+        <div class="feedback">
+            <p>${feedback}</p>
+            <p>解釋：${currentQuestion.explanation}</p>
+            <p>這題得分：${pointsEarned}</p>
+            <p>目前總分：${score}</p>
+        </div>
+        <button onclick="nextQuestion()">繼續冒險</button>
+    `;
+}
+
+function nextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < currentQuestions.length) {
+        showQuestion();
+    } else {
+        showResult();
+    }
+}
+
+function showResult() {
+    const resultElem = document.getElementById('result');
+    const scoreElem = document.getElementById('score');
+    const feedbackElem = document.getElementById('feedback');
+    
+    scoreElem.textContent = score;
+    
+    if (score >= 80) {
+        feedbackElem.innerHTML = '🌟 恭喜你成功通過了現代裝置藝術冒險！你展現了驚人的藝術洞察力和開放的心態。繼續保持好奇心，你的藝術之旅才正要開始呢！';
+    } else {
+        feedbackElem.innerHTML = '💪 這次冒險雖然遇到了一些挑戰，但別氣餒！藝術欣賞是一輩子的學習。保持熱情和好奇心，相信下次你一定能做得更好！';
+    }
+    
+    document.getElementById('question').classList.add('hidden');
+    resultElem.classList.remove('hidden');
+}
+
+document.getElementById('restart').addEventListener('click', startQuiz);
+
+function updateProgressBar() {
+    const progress = document.getElementById('progress');
+    const percentage = (currentQuestionIndex / currentQuestions.length) * 100;
+    progress.style.width = `${percentage}%`;
+}
+
+startQuiz();
+</script>
+</body>
+</html>

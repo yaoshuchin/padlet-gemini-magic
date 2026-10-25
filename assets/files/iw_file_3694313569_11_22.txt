@@ -1,0 +1,334 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Roblox風格射擊遊戲</title>
+<style>
+  /* 基本重置 */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+    user-select: none;
+  }
+  body {
+    background: #d0e6f7;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex; flex-direction: column; align-items: center; padding: 10px;
+    height: 100vh;
+  }
+  h1 {
+    margin-bottom: 10px;
+    color: #0b3c5d;
+    text-shadow: 1px 1px 2px #a0c4ff;
+  }
+  #gameArea {
+    position: relative;
+    width: 90vw; max-width: 600px; height: 400px;
+    background: linear-gradient(135deg, #6fb1fc 0%, #3761a8 100%);
+    border: 4px solid #0b3c5d;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+  }
+  .target {
+    position: absolute;
+    width: 60px; height: 60px;
+    background: linear-gradient(45deg, #ff4f4f, #d40000);
+    border: 3px solid #670000;
+    box-shadow: inset 4px 4px 8px rgba(255,255,255,0.4),
+                inset -4px -4px 8px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex; justify-content: center; align-items: center;
+    font-weight: bold;
+    color: white;
+    font-size: 24px;
+    user-select: none;
+    transition: transform 0.1s ease;
+  }
+  .target:active {
+    transform: scale(0.9);
+  }
+  #scoreBoard {
+    width: 90vw; max-width: 600px;
+    display: flex; justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #0b3c5d;
+  }
+  button {
+    background-color: #0b3c5d;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0 5px;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #07406d;
+  }
+  #message {
+    margin-top: 10px;
+    font-size: 18px;
+    min-height: 24px;
+    color: #333;
+    user-select: none;
+  }
+  #infoOverlay {
+    position: fixed;
+    top:0; left:0; right:0; bottom:0;
+    background-color: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center; align-items: center;
+    color: white;
+    padding: 20px;
+    z-index: 1000;
+  }
+  #infoContent {
+    background-color: #0b3c5d;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    padding: 20px;
+    text-align: left;
+  }
+  #infoContent h2 {
+    margin-bottom: 10px;
+  }
+  #infoContent ul {
+    list-style: disc inside;
+    margin-bottom: 15px;
+  }
+  #infoContent button {
+    background-color: #ff4f4f;
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+
+<h1>Roblox風格射擊遊戲</h1>
+
+<div id="scoreBoard">
+  <div>玩家 1 分數: <span id="score1">0</span></div>
+  <div>玩家 2 分數: <span id="score2">0</span></div>
+  <div>時間: <span id="timer">60</span> 秒</div>
+  <div>輪到: <span id="currentPlayer">1</span></div>
+</div>
+
+<div id="gameArea" aria-label="射擊遊戲區域" role="main" tabindex="0"></div>
+
+<div>
+  <button id="restartBtn">重新開始</button>
+  <button id="infoBtn">遊戲說明</button>
+</div>
+
+<div id="message" aria-live="polite"></div>
+
+<!-- 遊戲說明彈窗 -->
+<div id="infoOverlay" role="dialog" aria-modal="true" aria-labelledby="infoTitle">
+  <div id="infoContent">
+    <h2 id="infoTitle">遊戲說明</h2>
+    <ul>
+      <li>遊戲限時60秒，兩位玩家輪流射擊目標。</li>
+      <li>畫面中會出現紅色方塊目標，點擊目標即可得分。</li>
+      <li>每次射擊後切換玩家，得分會即時更新。</li>
+      <li>時間結束後顯示最終分數與勝負結果。</li>
+      <li>點擊「重新開始」可重新遊玩。</li>
+    </ul>
+    <button id="closeInfoBtn">關閉說明</button>
+  </div>
+</div>
+
+<!-- 簡單音效 -->
+<audio id="shootSound" src="https://actions.google.com/sounds/v1/impacts/pop.ogg" preload="auto"></audio>
+<audio id="hitSound" src="https://actions.google.com/sounds/v1/explosions/explosion.ogg" preload="auto"></audio>
+
+<script>
+  const gameArea = document.getElementById('gameArea');
+  const score1El = document.getElementById('score1');
+  const score2El = document.getElementById('score2');
+  const timerEl = document.getElementById('timer');
+  const currentPlayerEl = document.getElementById('currentPlayer');
+  const messageEl = document.getElementById('message');
+  const restartBtn = document.getElementById('restartBtn');
+  const infoBtn = document.getElementById('infoBtn');
+  const infoOverlay = document.getElementById('infoOverlay');
+  const closeInfoBtn = document.getElementById('closeInfoBtn');
+  const shootSound = document.getElementById('shootSound');
+  const hitSound = document.getElementById('hitSound');
+
+  let score = [0, 0];
+  let currentPlayer = 0; // 0 = 玩家1, 1 = 玩家2
+  let timeLeft = 60;
+  let gameInterval;
+  let targetMoveInterval;
+  let targets = [];
+  const maxTargets = 5;
+
+  // 產生一個 Roblox 方塊風格目標元素
+  function createTarget() {
+    const target = document.createElement('div');
+    target.classList.add('target');
+    // Roblox風格配色(紅色系方塊)
+    // 文字顯示分數加成(可擴充)
+    target.textContent = '■';
+    // 初始隨機位置
+    const x = Math.random() * (gameArea.clientWidth - 60);
+    const y = Math.random() * (gameArea.clientHeight - 60);
+    target.style.left = x + 'px';
+    target.style.top = y + 'px';
+    target.dataset.point = 1; // 每個目標分數
+    target.dataset.id = Date.now() + Math.random();
+
+    // 點擊事件
+    target.addEventListener('click', () => {
+      shootSound.currentTime = 0;
+      shootSound.play();
+      hitSound.currentTime = 0;
+      hitSound.play();
+      addScore(currentPlayer, parseInt(target.dataset.point));
+      animateHit(target);
+      removeTarget(target);
+      switchPlayer();
+    });
+
+    gameArea.appendChild(target);
+    targets.push(target);
+  }
+
+  // 動畫效果：簡單放大縮小模擬爆炸
+  function animateHit(target) {
+    target.style.transition = 'transform 0.3s ease';
+    target.style.transform = 'scale(1.5)';
+    setTimeout(() => {
+      if (target.parentElement) target.style.transform = 'scale(0)';
+    }, 250);
+  }
+
+  // 移除目標
+  function removeTarget(target) {
+    targets = targets.filter(t => t !== target);
+    if (target.parentElement) target.parentElement.removeChild(target);
+  }
+
+  // 增加分數
+  function addScore(playerIdx, points) {
+    score[playerIdx] += points;
+    updateScoreDisplay();
+  }
+
+  // 更新分數顯示
+  function updateScoreDisplay() {
+    score1El.textContent = score[0];
+    score2El.textContent = score[1];
+  }
+
+  // 切換玩家
+  function switchPlayer() {
+    currentPlayer = 1 - currentPlayer;
+    currentPlayerEl.textContent = currentPlayer + 1;
+  }
+
+  // 遊戲倒數計時
+  function startTimer() {
+    timerEl.textContent = timeLeft;
+    gameInterval = setInterval(() => {
+      timeLeft--;
+      timerEl.textContent = timeLeft;
+      if (timeLeft <= 0) {
+        endGame();
+      }
+    }, 1000);
+  }
+
+  // 遊戲結束顯示結果
+  function endGame() {
+    clearInterval(gameInterval);
+    clearInterval(targetMoveInterval);
+    removeAllTargets();
+
+    let resultMsg = '';
+    if (score[0] > score[1]) {
+      resultMsg = '玩家 1 獲勝！🎉';
+    } else if (score[1] > score[0]) {
+      resultMsg = '玩家 2 獲勝！🎉';
+    } else {
+      resultMsg = '平手！🤝';
+    }
+    messageEl.textContent = `遊戲結束！${resultMsg} 最終分數：玩家1 ${score[0]} 分，玩家2 ${score[1]} 分`;
+  }
+
+  // 移除所有目標
+  function removeAllTargets() {
+    targets.forEach(t => {
+      if (t.parentElement) t.parentElement.removeChild(t);
+    });
+    targets = [];
+  }
+
+  // 隨機移動目標
+  function moveTargets() {
+    targets.forEach(target => {
+      let x = parseFloat(target.style.left);
+      let y = parseFloat(target.style.top);
+      // 隨機方向移動，範圍限制在遊戲區域內
+      x += (Math.random() - 0.5) * 30;
+      y += (Math.random() - 0.5) * 30;
+      x = Math.min(Math.max(0, x), gameArea.clientWidth - 60);
+      y = Math.min(Math.max(0, y), gameArea.clientHeight - 60);
+      target.style.left = x + 'px';
+      target.style.top = y + 'px';
+    });
+  }
+
+  // 遊戲主循環：持續維持目標數量與移動
+  function gameLoop() {
+    if (targets.length < maxTargets) {
+      createTarget();
+    }
+  }
+
+  // 重新開始遊戲
+  function restartGame() {
+    clearInterval(gameInterval);
+    clearInterval(targetMoveInterval);
+    removeAllTargets();
+    score = [0, 0];
+    currentPlayer = 0;
+    timeLeft = 60;
+    updateScoreDisplay();
+    currentPlayerEl.textContent = '1';
+    messageEl.textContent = '';
+    startTimer();
+    targetMoveInterval = setInterval(moveTargets, 500);
+    gameLoopInterval = setInterval(gameLoop, 1000);
+  }
+
+  // 監聽重新開始按鈕
+  restartBtn.addEventListener('click', () => {
+    restartGame();
+  });
+
+  // 遊戲說明彈窗開關
+  infoBtn.addEventListener('click', () => {
+    infoOverlay.style.display = 'flex';
+  });
+  closeInfoBtn.addEventListener('click', () => {
+    infoOverlay.style.display = 'none';
+  });
+
+  // 初始化遊戲
+  let gameLoopInterval;
+  restartGame();
+
+</script>
+
+</body>
+</html>
+```

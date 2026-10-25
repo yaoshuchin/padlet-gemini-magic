@@ -1,0 +1,260 @@
+<html><head><base href="https://cdn.jsdelivr.net/gh/xiaolin/animate.css@4.0.0/animate.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奇幻森林冒險記</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FFF3E0;
+            color: #4E342E;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #E65100;
+            text-align: center;
+            animation: bounceIn 1s;
+        }
+        .story {
+            background-color: #FFE0B2;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            background-color: #FFCC80;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            animation: fadeIn 1s;
+        }
+        button {
+            background-color: #FF9800;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #F57C00;
+        }
+        #score {
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+        #result {
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>奇幻森林冒險記 <span class="emoji">🌳🐾</span></h1>
+    <div class="story">
+        歡迎來到奇幻森林！這裡住著許多可愛的小動物。有一天，森林裡的小動物們決定舉辦一場冒險活動， 每個小動物都要完成不同的任務，學習如何面對生活中的挑戰。
+        讓我們一起跟著小動物們展開這段奇妙的冒險吧！每個問題都代表著小動物們可能遇到的情況， 請幫助他們做出最好的選擇。
+    </div>
+    <div id="quiz"></div>
+    <div id="score">分數：0</div>
+    <div id="result"></div>
+    <button id="restartBtn" style="display: none;">重新探險</button>
+
+    <script>
+        const questions = [
+            {
+                question: "小兔子的爸爸媽媽最近分開了，他感到很難過。小鳥告訴他：",
+                answers: [
+                    "這都是你的錯，你一定做錯了什麼。",
+                    "不要難過，假裝什麼事都沒發生。",
+                    "你的感受很正常，願意聽你說說嗎？",
+                    "他們很快就會和好的，不用擔心。"
+                ],
+                correct: 2
+            },
+            {
+                question: "小熊只和媽媽住在一起，有時候會想念爸爸。小狐狸建議他：",
+                answers: [
+                    "爸爸不重要，忘記他吧。",
+                    "可以和媽媽聊聊，看看能不能安排和爸爸見面或通話。",
+                    "偷偷跑去找爸爸。",
+                    "生氣地責怪媽媽，為什麼不讓你見爸爸。"
+                ],
+                correct: 1
+            },
+            {
+                question: "小鹿的媽媽要加班，沒時間參加學校的家長日。小鹿應該：",
+                answers: [
+                    "生氣地拒絕和媽媽說話。",
+                    "理解媽媽的工作很忙，和她商量其他時間來學校。",
+                    "跟老師說謊，說媽媽生病了。",
+                    "不告訴媽媽家長日的事。"
+                ],
+                correct: 1
+            },
+            {
+                question: "小松鼠的爸爸要和新阿姨結婚了，小松鼠覺得很困惑。小貓咪告訴他：",
+                answers: [
+                    "新阿姨會搶走爸爸的愛，一定要反對。",
+                    "裝作很開心，不要表達自己的真實感受。",
+                    "可以和爸爸聊聊你的感受，也試著認識新阿姨。",
+                    "乾脆搬去和媽媽住，不理爸爸。"
+                ],
+                correct: 2
+            },
+            {
+                question: "小狗的爸爸媽媽吵架很兇，他很害怕。小猴子建議：",
+                answers: [
+                    "躲在房間裡，用枕頭蓋住耳朵。",
+                    "衝出去大叫，要他們停止吵架。",
+                    "默默忍受，不要告訴任何人。",
+                    "找信任的大人（如老師或親戚）傾訴，尋求幫助。"
+                ],
+                correct: 3
+            },
+            {
+                question: "小鳥的媽媽總是很忙，沒時間陪他。小鳥應該：",
+                answers: [
+                    "生氣地摔東西，引起媽媽注意。",
+                    "跟媽媽好好溝通，表達自己的需要。",
+                    "假裝自己不在意，獨自玩耍。",
+                    "整天跟在媽媽身邊，不讓她工作。"
+                ],
+                correct: 1
+            },
+            {
+                question: "小猪的爸爸失業了，家裡經濟變得困難。小猪可以：",
+                answers: [
+                    "偷偷拿走同學的東西，因為他們家裡有錢。",
+                    "不要跟任何人說，怕被笑話。",
+                    "理解家裡的情況，減少不必要的開支。",
+                    "整天抱怨，責怪爸爸無能。"
+                ],
+                correct: 2
+            },
+            {
+                question: "小兔子的媽媽要和他們住在一起的外婆吵架，小兔子應該：",
+                answers: [
+                    "站在媽媽這邊，一起對外婆發脾氣。",
+                    "站在外婆這邊，責罵媽媽。",
+                    "保持中立，鼓勵她們好好溝通。",
+                    "假裝沒聽到，躲在房間裡。"
+                ],
+                correct: 2
+            },
+            {
+                question: "小羊的爸爸有了新的女朋友，常常帶她來家裡。小羊覺得：",
+                answers: [
+                    "非常生氣，每次都躲在房間不出來。",
+                    "試著認識爸爸的女朋友，給彼此一個機會。",
+                    "告訴爸爸不准帶她來家裡。",
+                    "故意對爸爸的女朋友惡作劇。"
+                ],
+                correct: 1
+            },
+            {
+                question: "小貓的父母離婚後，爸爸搬到很遠的地方。小貓想念爸爸時可以：",
+                answers: [
+                    "偷偷離家去找爸爸。",
+                    "和媽媽商量，看能不能通過電話或視訊和爸爸聯繫。",
+                    "把所有和爸爸有關的東西都扔掉。",
+                    "整天哭鬧，要求媽媽帶自己去找爸爸。"
+                ],
+                correct: 1
+            }
+        ];
+
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function startQuiz() {
+            currentQuestions = [];
+            shuffleArray(questions);
+            currentQuestions = questions.slice(0, 5);
+            currentQuestionIndex = 0;
+            score = 0;
+            showQuestion();
+            updateScore();
+        }
+
+        function showQuestion() {
+            const quizContainer = document.getElementById('quiz');
+            const currentQuestion = currentQuestions[currentQuestionIndex];
+            
+            let answersHtml = '';
+            for (let i = 0; i < currentQuestion.answers.length; i++) {
+                answersHtml += `<button onclick="selectAnswer(${i})">${currentQuestion.answers[i]}</button><br>`;
+            }
+
+            quizContainer.innerHTML = `
+                <div class="question">
+                    <h3>${currentQuestion.question}</h3>
+                    ${answersHtml}
+                </div>
+            `;
+        }
+
+        function selectAnswer(answerIndex) {
+            const currentQuestion = currentQuestions[currentQuestionIndex];
+            if (answerIndex === currentQuestion.correct) {
+                score += 20;
+                updateScore();
+            }
+
+            currentQuestionIndex++;
+            if (currentQuestionIndex < currentQuestions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = `分數：${score}`;
+        }
+
+        function showResult() {
+            const resultDiv = document.getElementById('result');
+            if (score >= 80) {
+                resultDiv.innerHTML = '恭喜你通過了奇幻森林的冒險！你真是個善解人意的小動物！ <span class="emoji">🎉🏆</span>';
+            } else {
+                resultDiv.innerHTML = '哎呀，看來我們還需要多學習一下。別灰心，再試一次吧！ <span class="emoji">💪🌟</span>';
+            }
+            document.getElementById('restartBtn').style.display = 'block';
+        }
+
+        document.getElementById('restartBtn').addEventListener('click', function() {
+            this.style.display = 'none';
+            document.getElementById('result').innerHTML = '';
+            startQuiz();
+        });
+
+        startQuiz();
+    </script>
+</body></html>

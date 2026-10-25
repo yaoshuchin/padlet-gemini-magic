@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>臺灣百岳冒險記</title>
+    <style>
+        body {
+            font-family: 'Microsoft JhengHei', sans-serif;
+            background-color: #E0E0E0;
+            color: #3E2723;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #F5F5F5;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 90%;
+        }
+        h1 {
+            color: #795548;
+            text-align: center;
+        }
+        .story, .question, .result {
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #757575;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #5D4037;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .score {
+            text-align: right;
+            font-weight: bold;
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: #D7CCC8;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .progress {
+            height: 100%;
+            width: 0;
+            background-color: #8D6E63;
+            transition: width 0.4s;
+        }
+        .hidden {
+            display: none;
+        }
+        .correct {
+            background-color: #4CAF50;
+        }
+        .wrong {
+            background-color: #F44336;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>臺灣百岳冒險記 🌲🌿🍂</h1>
+    <div class="story">
+        <p>歡迎來到綠色迷宮！這裡住著許多可愛的綠色植物。有一天，森林裡的小動物們決定舉辦一場冒險活動，每個小動物都要完成不同的任務，學習如何面對生活中的挑戰。</p>
+        <p>讓我們一起跟著小動物們展開這段奇妙的冒險吧！每個問題都代表著小動物們可能遇到的情況，請幫助他們做出最好的選擇。</p>
+    </div>
+    <div class="score">得分：<span id="score">0</span> / 100</div>
+    <div class="progress-bar">
+        <div id="progress" class="progress"></div>
+    </div>
+    <div id="question-container" class="question"></div>
+    <div id="result" class="result hidden"></div>
+    <button id="start-btn" onclick="startQuiz()">開始冒險</button>
+    <button id="next-btn" class="hidden" onclick="nextQuestion()">下一題</button>
+    <button id="restart-btn" class="hidden" onclick="restartQuiz()">重新探險</button>
+</div>
+
+<script>
+const questions = [
+    {
+        question: "高山上的玉山杉有哪些特徵？",
+        options: [
+            "適應嚴寒氣候，葉子尖尖 🌲",
+            "根部短小，葉子寬平 🌾",
+            "顏色金黃，落葉枯萎 🍂",
+            "全身光滑，沒有明顯的年輪 🌳"
+        ],
+        correct: 0,
+        explanation: "玉山杉的葉子尖尖且適應寒冷氣候，非常適合高海拔環境。"
+    },
+    {
+        question: "小動物發現高海拔植物的成長速度比較慢，這是因為？",
+        options: [
+            "陽光豐富，誤以為成長過快 ☀️",
+            "水氣過多，容易腐爛 💧",
+            "氧氣比較稀薄，氣候更加嚴峻 🏔️",
+            "競爭激烈，土壤貧瘠 🌱"
+        ],
+        correct: 2,
+        explanation: "高海拔氧氣稀薄且氣候較為嚴峻，導致植物成長速度慢。"
+    },
+    {
+        question: "為什麼玉山杜鵑可以在寒冷中生長？",
+        options: [
+            "它有著厚厚的葉片，可以避免凍傷 🍁",
+            "它會冬眠，在春天才會成長 😴",
+            "因為它能吸收太陽全部能量 🔆",
+            "它不需要根系，只依賴空氣裡的水分 🌬️"
+        ],
+        correct: 0,
+        explanation: "玉山杜鵑有厚厚的葉片，能避免在寒冷環境中凍傷。"
+    },
+    {
+        question: "玉山小蘗有什麼特別用途？",
+        options: [
+            "可以入藥，消炎止痛 🩺",
+            "葉片可製成武器盾牌 🛡️",
+            "能發光，在晚上指引方向 🌟",
+            "美觀，適合城市種植 🌇"
+        ],
+        correct: 0,
+        explanation: "玉山小蘗的根、莖可以入藥，有消炎止痛功效。"
+    },
+    {
+        question: "高山莨詳述的環境適應能力如何？",
+        options: [
+            "即使在貧瘠土壤中也能成長 🌱",
+            "只能在富營養的土地上生存 🌿",
+            "必須有人的工藝才能活 🌾",
+            "只能依賴別的植物以糊口 🍃"
+        ],
+        correct: 0,
+        explanation: "高山莨詳述能在貧瘠的土壤中生長，適應性十分強。"
+    },
+    {
+        question: "出現於高山的迎風垂柳有什麼特徵？",
+        options: [
+            "葉子細長，能抵禦強風 🍃",
+            "根部交錯，深入岩石間根系穩固 🌳",
+            "濃密的花團上，總是與其他植物共生 🌸",
+            "非常易碎，適合水邊生長 💧"
+        ],
+        correct: 1,
+        explanation: "迎風垂柳的根系深入岩石中，非常穩固。"
+    },
+    {
+        question: "臺灣高山植被中，哪一種可以食用？",
+        options: [
+            "馬祖菊 🌼", 
+            "高山蓮花 🍽️", 
+            "野薑花 🌺", 
+            "食用菇 🍄"
+        ],
+        correct: 3,
+        explanation: "食用菇在高山中可以食用，並且營養豐富。"
+    },
+    {
+        question: "在炎熱的夏季，通常可以在高山見到哪種植物？",
+        options: [
+            "嫩綠的小蕨 蕨類 🌿", 
+            "笠竹 🌾", 
+            "冰雪蓮 🌸", 
+            "松樹 🌲"
+        ],
+        correct: 0,
+        explanation: "小蕨類植物通常在高山中形成嫩綠的景觀，非常清新。"
+    },
+    {
+        question: "高山上的植物通常如何保存水分？",
+        options: [
+            "納入多汁的儲水系統，減少蒸騰流失 🍂",
+            "葉子是絲狀，增加霧露更易吸收 ☁️",
+            "多分枝，互相交錯減少水流失 🌿",
+            "有粘性護膜，保持表層濕潤 🚿"
+        ],
+        correct: 0,
+        explanation: "高山植物多汁的儲水系統有助於減少水分蒸發。"
+    },
+    {
+        question: "為什麼某些高山植物會長成圓形？",
+        options: [
+            "以便抵抗高低溫交替影響 ☃️",
+            "增加表面積以吸收空氣水份 🌬️",
+            "為不受風寒來保護核心 🌳",
+            "自然演變，源於土堆形成 ⛰️"
+        ],
+        correct: 2,
+        explanation: "圓形生長有助於抵禦風寒，保護植物的核心部位。"
+    }
+];
+
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+let score = 0;
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function startQuiz() {
+    currentQuestions = [...questions];
+    shuffleArray(currentQuestions);
+    currentQuestions = currentQuestions.slice(0, 5);
+    currentQuestionIndex = 0;
+    score = 0;
+    updateProgress();
+    document.getElementById('score').textContent = score;
+    document.getElementById('start-btn').classList.add('hidden');
+    document.getElementById('question-container').classList.remove('hidden');
+    document.getElementById('result').classList.add('hidden');
+    showQuestion();
+}
+
+function updateProgress() {
+    const progress = ((currentQuestionIndex) /currentQuestions.length) * 100;
+    document.getElementById('progress').style.width = progress + '%';
+}
+
+function showQuestion() {
+    const questionData = currentQuestions[currentQuestionIndex];
+    let questionHtml = `<h2>${questionData.question}</h2>`;
+    questionHtml += '<div class="options">';
+    for (let i = 0; i < questionData.options.length; i++) {
+        questionHtml += `<button onclick="selectAnswer(${i})">${questionData.options[i]}</button>`;
+    }
+    questionHtml += '</div>';
+    document.getElementById('question-container').innerHTML = questionHtml;
+    updateProgress();
+}
+
+function selectAnswer(answerIndex) {
+    const questionData = currentQuestions[currentQuestionIndex];
+    if (answerIndex === questionData.correct) {
+        score += 20;
+        document.querySelectorAll('.options button')[answerIndex].classList.add('correct');
+    } else {
+        document.querySelectorAll('.options button')[answerIndex].classList.add('wrong');
+        document.querySelectorAll('.options button')[questionData.correct].classList.add('correct');
+    }
+    document.getElementById('score').textContent = score;
+
+    document.getElementById('question-container').insertAdjacentHTML('beforeend', `<p>${questionData.explanation}</p>`);
+    
+    document.getElementById('next-btn').classList.remove('hidden');
+    const buttons = document.querySelectorAll('.options button');
+    buttons.forEach(button => {
+        button.disabled = true;
+    });
+}
+
+function nextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < currentQuestions.length) {
+        showQuestion();
+        document.getElementById('next-btn').classList.add('hidden');
+    } else {
+        showResult();
+    }
+}
+
+function showResult() {
+    document.getElementById('question-container').classList.add('hidden');
+    document.getElementById('next-btn').classList.add('hidden');
+    document.getElementById('result').classList.remove('hidden');
+    document.getElementById('restart-btn').classList.remove('hidden');
+
+    let resultMessage = '';
+    if (score >= 80) {
+        resultMessage = `恭喜你！你獲得了${score}分。成功掌握高山植物的知識，成為植物小達人！🌟`;
+    } else {
+        resultMessage = `你獲得了${score}分。別氣餒，再來一遍，掌握更多的植物知識！💪🌿`;
+    }
+    document.getElementById('result').innerHTML = resultMessage;
+}
+
+function restartQuiz() {
+    startQuiz();
+}
+</script>
+</body>
+</html>
+```
+
+This code now adds a visual distinction for correct and incorrect answers after each question is answered. Correct answers are marked with a green color, while incorrect answers are shown in red with the correct answer also highlighted in green. This provides immediate feedback to help learners understand their mistakes.

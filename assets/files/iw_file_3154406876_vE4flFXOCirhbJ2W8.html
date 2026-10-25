@@ -1,0 +1,305 @@
+<html><head><base href="https://example.com/game/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>奇幻森林冒險記</title>
+<style>
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #FFF3E0;
+    color: #4E342E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.game-container {
+    background-color: #FFE0B2;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 90%;
+}
+
+h1 {
+    color: #FF9800;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.story, .question, .result {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+button {
+    background-color: #FFA726;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #FF9800;
+}
+
+.score {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.emoji {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-20px);}
+    60% {transform: translateY(-10px);}
+}
+
+.bouncing {
+    display: inline-block;
+    animation: bounce 2s infinite;
+}
+</style>
+</head>
+<body>
+<div class="game-container">
+    <h1>奇幻森林冒險記 <span class="emoji bouncing">🌳🦊🐰</span></h1>
+    <div class="story">
+        歡迎來到奇幻森林！這裡住著許多可愛的小動物。有一天，森林裡的小動物們決定舉辦一場冒險活動， 每個小動物都要完成不同的任務，學習如何面對生活中的挑戰。<br><br>
+        讓我們一起跟著小動物們展開這段奇妙的冒險吧！每個問題都代表著小動物們可能遇到的情況， 請幫助他們做出最好的選擇。
+    </div>
+    <div class="question"></div>
+    <div class="options"></div>
+    <div class="result hidden"></div>
+    <div class="score">得分：<span id="score">0</span>/100</div>
+    <button id="next" class="hidden">下一題</button>
+    <button id="restart" class="hidden">重新探險</button>
+</div>
+
+<script>
+const questions = [
+    {
+        question: "小兔子露比的爸爸媽媽最近吵架很兇，他們決定分開一段時間。露比感到很難過，不知道該怎麼辦。你覺得露比應該怎麼做？",
+        options: [
+            { text: "把自己關在房間裡，不跟任何人說話", correct: false },
+            { text: "跟最好的朋友分享自己的感受", correct: true },
+            { text: "假裝一切都沒發生", correct: false },
+            { text: "生氣地責怪爸爸媽媽", correct: false }
+        ],
+        explanation: "與朋友分享感受是很好的選擇。這樣可以幫助露比釋放壓力，並得到支持。記住，這不是露比的錯，家人之間有矛盾是正常的。"
+    },
+    {
+        question: "小狐狸阿橙的媽媽需要經常加班工作，無法參加他的足球比賽。阿橙感到很失望。你認為阿橙應該怎麼做？",
+        options: [
+            { text: "生氣地拒絕參加比賽", correct: false },
+            { text: "理解媽媽的辛苦，並邀請其他家人來觀賽", correct: true },
+            { text: "偷偷逃學，不去上學", correct: false },
+            { text: "在比賽中故意表現不好", correct: false }
+        ],
+        explanation: "理解媽媽的辛苦並尋找其他支持是很成熟的做法。阿橙可以邀請其他家人或朋友來觀賽，這樣他就能得到鼓勵，同時也不會讓媽媽感到太大壓力。"
+    },
+    {
+        question: "小熊波比的爸爸最近失業了，家裡的經濟情況變得困難。波比想要一個新的遊戲機，但爸爸說現在買不起。你覺得波比應該怎麼反應？",
+        options: [
+            { text: "大哭大鬧，堅持要買遊戲機", correct: false },
+            { text: "理解家裡的情況，跟爸爸一起想辦法省錢", correct: true },
+            { text: "偷偷拿走爸爸的錢去買遊戲機", correct: false },
+            { text: "生氣地責怪爸爸沒本事", correct: false }
+        ],
+        explanation: "理解家庭情況並一起想辦法是最好的做法。波比可以學習如何省錢，或者找些不花錢的娛樂方式。這樣不僅可以幫助家庭，還能學到寶貴的生活技能。"
+    },
+    {
+        question: "小鹿斑比的父母最近離婚了，他需要決定跟誰一起住。你認為斑比應該怎麼做？",
+        options: [
+            { text: "完全不理會父母，自己一個人住", correct: false },
+            { text: "跟父母坦誠地談談自己的感受和想法", correct: true },
+            { text: "隨便選一個，不考慮後果", correct: false },
+            { text: "威脅父母如果離婚就離家出走", correct: false }
+        ],
+        explanation: "與父母坦誠溝通是最好的方法。斑比可以表達自己的感受和想法，聽聽父母的建議，然後一起做出最適合的決定。記住，父母雖然離婚了，但他們都還是愛斑比的。"
+    },
+    {
+        question: "小貓咪米米的媽媽要出差一個月，米米需要暫時住在阿姨家。米米感到很不安，你覺得她應該怎麼做？",
+        options: [
+            { text: "拒絕去阿姨家，一直哭鬧", correct: false },
+            { text: "跟媽媽和阿姨討論如何保持聯繫，並嘗試適應新環境", correct: true },
+            { text: "假裝生病，讓媽媽不要出差", correct: false },
+            { text: "偷偷跟著媽媽，不讓她知道", correct: false }
+        ],
+        explanation: "與媽媽和阿姨溝通，討論如何保持聯繫是很好的做法。米米可以每天和媽媽視訊，或者寫日記記錄自己的生活。同時，她也可以把這段時間當作一次新的冒險，嘗試適應新環境。"
+    },
+    {
+        question: "小猴子吉吉的爸爸再婚了，他有了一個新的繼母。吉吉對這個情況感到不舒服。你認為吉吉應該怎麼做？",
+        options: [
+            { text: "對繼母惡作劇，讓她離開", correct: false },
+            { text: "給自己和繼母一些時間相處，慢慢了解對方", correct: true },
+            { text: "完全無視繼母的存在", correct: false },
+            { text: "要求爸爸選擇他或繼母", correct: false }
+        ],
+        explanation: "給彼此一些時間相處是最好的方法。吉吉可以慢慢了解繼母，也許會發現她其實很好。同時，吉吉也可以和爸爸談談自己的感受，讓爸爸知道自己需要時間適應。"
+    },
+    {
+        question: "小鳥皮皮的父母工作很忙，常常沒時間陪她。皮皮感到很孤單。你覺得皮皮應該怎麼做？",
+        options: [
+            { text: "整天看電視，不理任何人", correct: false },
+            { text: "跟父母商量安排固定的家庭時間，並培養自己的興趣", correct: true },
+            { text: "逃學，在外面玩耍", correct: false },
+            { text: "故意闖禍，引起父母注意", correct: false }
+        ],
+        explanation: "與父母商量安排固定的家庭時間是個好主意。皮皮可以提議每週有一個固定的家庭日，大家一起做些有趣的事。同時，皮皮也可以培養自己的興趣，例如加入學校的社團，這樣就不會感到那麼孤單了。"
+    },
+    {
+        question: "小松鼠奇奇的爸爸因為工作要搬到另一個森林，奇奇必須轉學。奇奇很擔心在新學校交不到朋友。你覺得奇奇應該怎麼做？",
+        options: [
+            { text: "拒絕轉學，堅持留在原來的學校", correct: false },
+            { text: "保持開放的心態，主動認識新同學", correct: true },
+            { text: "整天悶悶不樂，不跟任何人說話", correct: false },
+            { text: "假裝生病，不去新學校", correct: false }
+        ],
+        explanation: "保持開放的心態，主動認識新同學是最好的做法。奇奇可以把這次轉學當作一次新的冒險，也許會認識更多有趣的朋友。同時，奇奇也可以和原來的朋友保持聯繫，這樣就不會感到孤單了。"
+    },
+    {
+        question: "小浣熊樂樂的媽媽生病住院了，家裡的氣氛變得很沉重。你認為樂樂應該怎麼做？",
+        options: [
+            { text: "整天哭泣，不做任何事", correct: false },
+            { text: "幫忙做一些家務，陪伴媽媽，並保持樂觀的態度", correct: true },
+            { text: "假裝一切都沒發生，繼續玩耍", correct: false },
+            { text: "生氣地責怪爸爸沒照顧好媽媽", correct: false }
+        ],
+        explanation: "幫忙做家務，陪伴媽媽，並保持樂觀的態度是最好的做法。樂樂可以幫忙整理房間，或者做些小卡片給媽媽加油打氣。記住，保持樂觀和正面的態度對媽媽的康復也很有幫助。"
+    },
+    {
+        question: "小刺蝟尖尖的父母最近常常爭吵，家裡的氣氛變得很緊張。你覺得尖尖應該怎麼做？",
+        options: [
+            { text: "躲在房間裡，不出來", correct: false },
+            { text: "和父母談談自己的感受，請他們考慮尖尖的感受", correct: true },
+            { text: "大聲叫喊，要求父母停止爭吵", correct: false },
+            { text: "離家出走，不回家", correct: false }
+        ],
+        explanation: "和父母談談自己的感受是最好的做法。尖尖可以告訴父母，他們的爭吵讓自己感到害怕和難過。也許父母會意識到自己的行為對尖尖造成了影響，進而改善溝通方式。記住，表達自己的感受是很重要的。"
+    }
+];
+
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+let score = 0;
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function startGame() {
+    currentQuestions = [];
+    shuffleArray(questions);
+    currentQuestions = questions.slice(0, 5);
+    currentQuestionIndex = 0;
+    score = 0;
+    showQuestion();
+}
+
+function showQuestion() {
+    const questionElement = document.querySelector('.question');
+    const optionsElement = document.querySelector('.options');
+    const resultElement = document.querySelector('.result');
+    const nextButton = document.getElementById('next');
+    const restartButton = document.getElementById('restart');
+    
+    resultElement.classList.add('hidden');
+    nextButton.classList.add('hidden');
+    restartButton.classList.add('hidden');
+    
+    const currentQuestion = currentQuestions[currentQuestionIndex];
+    questionElement.innerHTML = `<p>${currentQuestion.question}</p>`;
+    
+    optionsElement.innerHTML = '';
+    currentQuestion.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.innerText = option.text;
+        button.addEventListener('click', () => selectAnswer(option.correct));
+        optionsElement.appendChild(button);
+    });
+}
+
+function selectAnswer(isCorrect) {
+    const resultElement = document.querySelector('.result');
+    const nextButton = document.getElementById('next');
+    const restartButton = document.getElementById('restart');
+    const currentQuestion = currentQuestions[currentQuestionIndex];
+    
+    if (isCorrect) {
+        score += 20;
+        resultElement.innerHTML = `<p>答對了！ <span class="emoji">🎉</span>${currentQuestion.explanation}</p>`;
+    } else {
+        resultElement.innerHTML = `<p>答錯了。 <span class="emoji">😢</span>${currentQuestion.explanation}</p>`;
+    }
+    
+    document.getElementById('score').innerText = score;
+    resultElement.classList.remove('hidden');
+    
+    const optionButtons = document.querySelectorAll('.options button');
+    optionButtons.forEach(button => button.disabled = true);
+    
+    if (currentQuestionIndex < currentQuestions.length - 1) {
+        nextButton.classList.remove('hidden');
+    } else {
+        showFinalResult();
+    }
+}
+
+function showFinalResult() {
+    const questionElement = document.querySelector('.question');
+    const optionsElement = document.querySelector('.options');
+    const resultElement = document.querySelector('.result');
+    const restartButton = document.getElementById('restart');
+    
+    questionElement.innerHTML = '';
+    optionsElement.innerHTML = '';
+    
+    if (score >= 80) {
+        resultElement.innerHTML = `<p>恭喜你通過了奇幻森林的冒險！ <span class="emoji bouncing">🏆</span><br>你的得分是 ${score} 分。你展現了優秀的問題解決能力和同理心。繼續保持！</p>`;
+    } else {
+        resultElement.innerHTML = `<p>很遺憾，你沒有通過奇幻森林的冒險。 <span class="emoji">😔</span><br>你的得分是 ${score} 分。不要灰心，再試一次，相信你一定可以做得更好！</p>`;
+    }
+    
+    restartButton.classList.remove('hidden');
+}
+
+document.getElementById('next').addEventListener('click', () => {
+    currentQuestionIndex++;
+    showQuestion();
+});
+
+document.getElementById('restart').addEventListener('click', startGame);
+
+startGame();
+</script>
+</body></html>
