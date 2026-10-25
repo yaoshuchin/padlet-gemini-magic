@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gemini就是神奇 × 國中-Gemini Notebook - Google AI 雙刀流全方位實戰看板</title>
+  <title>Google AI 雙刀流與全方位實戰 · 雙看板整合平台 (Gemini就是神奇 × 公明國中-Gemini Notebook)</title>
   
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="https://padlet.net/favicon.svg">
@@ -61,20 +61,11 @@
     body {
       font-family: 'Noto Sans TC', Inter, sans-serif;
       background-color: #0f172a;
-      background-image: 
-        radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.75) 0%, rgba(8, 12, 24, 0.94) 100%),
-        url("assets/images/wallpaper.png");
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
       min-height: 100vh;
-    }
-
-    html:not(.dark) body {
-      background-color: #f8fafc;
-      background-image: 
-        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.88) 0%, rgba(241, 245, 249, 0.96) 100%),
-        url("assets/images/wallpaper.png");
+      transition: background-image 0.3s ease;
     }
 
     mark {
@@ -100,41 +91,46 @@
     }
   </style>
 
-  <!-- Load Board Data directly for 100% Offline / file:// Support -->
+  <!-- Load Both Board Datasets directly for 100% Offline / file:// Support -->
   <script src="data.js"></script>
+  <script src="data_gm.js"></script>
 </head>
-<body class="text-slate-100 flex flex-col h-screen overflow-hidden antialiased select-none">
+<body id="appBody" class="text-slate-100 flex flex-col h-screen overflow-hidden antialiased select-none">
 
   <!-- ================= TOPMOST APPLICATION BAR (TAB SWITCHER) ================= -->
   <div class="flex-none bg-slate-950/95 border-b border-white/10 px-4 md:px-6 py-2 flex items-center justify-between gap-3 z-40 backdrop-blur-md shadow-md">
     <div class="flex items-center gap-2 overflow-x-auto">
-      <button id="navTabGemini" class="nav-app-tab active px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold flex items-center gap-2 transition-all bg-indigo-600 text-white shadow-md shadow-indigo-600/30">
+      
+      <!-- TAB 1: Gemini就是神奇 -->
+      <button id="tabBtnGemini" class="app-tab px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold flex items-center gap-2 transition-all bg-indigo-600 text-white shadow-md shadow-indigo-600/30">
         <i data-lucide="sparkles" class="w-4 h-4 text-amber-300"></i>
         <span>Gemini就是神奇</span>
-        <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-black/30 font-mono">85</span>
+        <span id="tabCountGemini" class="px-1.5 py-0.2 rounded-full text-[10px] bg-black/30 font-mono">85</span>
       </button>
 
-      <button id="navTabNotebook" class="nav-app-tab px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-medium flex items-center gap-2 transition-all text-slate-300 hover:text-white hover:bg-white/10">
+      <!-- TAB 2: 公明國中-Gemini Notebook -->
+      <button id="tabBtnGM" class="app-tab px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-medium flex items-center gap-2 transition-all text-slate-300 hover:text-white hover:bg-white/10">
         <i data-lucide="book-open" class="w-4 h-4 text-sky-400"></i>
-        <span>國中-Gemini Notebook</span>
-        <span class="px-2 py-0.5 rounded-full text-[10px] bg-sky-500/20 text-sky-300 border border-sky-500/30 font-medium">新連動看板</span>
+        <span>公明國中-Gemini Notebook</span>
+        <span id="tabCountGM" class="px-1.5 py-0.2 rounded-full text-[10px] bg-sky-500/20 text-sky-300 font-mono">73</span>
       </button>
+
     </div>
 
     <div class="flex items-center gap-2.5 flex-none">
-      <span class="hidden sm:inline-flex text-[11px] text-slate-400">臺中市資訊教育議題分團</span>
+      <span class="hidden sm:inline-flex text-[11px] text-slate-400">作者：姚述勤</span>
       <span class="hidden sm:inline-block w-1 h-1 rounded-full bg-slate-600"></span>
-      <span class="text-[11px] text-indigo-300 font-semibold bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">雙看板整合平台</span>
+      <span class="text-[11px] text-indigo-300 font-semibold bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">雙看板全量離線系統</span>
     </div>
   </div>
 
-  <!-- ================= TAB 1: GEMINI就是神奇 CONTROLS HEADER ================= -->
-  <header id="geminiHeader" class="flex-none bg-slate-900/90 dark:bg-slate-950/85 backdrop-blur-md border-b border-white/10 px-4 md:px-6 py-2.5 flex flex-col md:flex-row items-center justify-between gap-3 z-30 shadow-lg">
+  <!-- ================= SUB-HEADER: CONTROLS & TOOLBAR ================= -->
+  <header class="flex-none bg-slate-900/90 dark:bg-slate-950/85 backdrop-blur-md border-b border-white/10 px-4 md:px-6 py-2.5 flex flex-col md:flex-row items-center justify-between gap-3 z-30 shadow-lg">
     
     <!-- Title & Legend -->
     <div class="flex items-center gap-3 w-full md:w-auto justify-between md:justify-start">
       <div class="flex items-center gap-2.5">
-        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-500 to-sky-400 flex items-center justify-center shadow-md shadow-indigo-500/20 text-white font-black text-lg">
+        <div id="boardIcon" class="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-500 to-sky-400 flex items-center justify-center shadow-md shadow-indigo-500/20 text-white font-black text-lg">
           <i data-lucide="sparkles" class="w-5 h-5"></i>
         </div>
         <div>
@@ -147,14 +143,8 @@
               100% 離線就緒
             </span>
           </div>
-          <div class="text-[11px] text-indigo-200/80 flex items-center gap-2 flex-wrap mt-0.5">
-            <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-purple-400"></span>紫標是資料</span>
-            <span class="text-slate-500">•</span>
-            <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-400"></span>紅標有範例</span>
-            <span class="text-slate-500">•</span>
-            <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-sky-400"></span>藍標歸工具</span>
-            <span class="text-slate-500">•</span>
-            <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>綠標要實作</span>
+          <div id="legendContainer" class="text-[11px] text-indigo-200/80 flex items-center gap-2 flex-wrap mt-0.5">
+            <!-- Dynamic Legend -->
           </div>
         </div>
       </div>
@@ -170,7 +160,7 @@
           id="searchInput" 
           type="text" 
           placeholder="搜尋卡片、Prompt、分欄... (/)" 
-          class="pl-9 pr-8 py-1.5 bg-black/40 border border-white/15 rounded-lg text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 w-full sm:w-56 transition-all"
+          class="pl-9 pr-8 py-1.5 bg-black/40 border border-white/15 rounded-lg text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 w-full sm:w-52 transition-all"
         >
         <button id="clearSearchBtn" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white">
           <i data-lucide="x" class="w-3.5 h-3.5"></i>
@@ -178,12 +168,8 @@
       </div>
 
       <!-- Color Filter Tabs (Desktop) -->
-      <div class="hidden xl:flex items-center bg-black/40 p-1 rounded-lg border border-white/10 text-xs">
-        <button data-filter="all" class="filter-btn active px-2.5 py-1 rounded-md font-medium transition-colors bg-white/20 text-white">全部 (<span id="count-all">85</span>)</button>
-        <button data-filter="purple" class="filter-btn px-2.5 py-1 rounded-md font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-purple-400"></span>資料 (<span id="count-purple">24</span>)</button>
-        <button data-filter="red" class="filter-btn px-2.5 py-1 rounded-md font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-400"></span>範例 (<span id="count-red">21</span>)</button>
-        <button data-filter="blue" class="filter-btn px-2.5 py-1 rounded-md font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-sky-400"></span>工具 (<span id="count-blue">26</span>)</button>
-        <button data-filter="green" class="filter-btn px-2.5 py-1 rounded-md font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>實作 (<span id="count-green">11</span>)</button>
+      <div id="colorFiltersDesktop" class="hidden xl:flex items-center bg-black/40 p-1 rounded-lg border border-white/10 text-xs">
+        <!-- Rendered dynamically -->
       </div>
 
       <!-- View Switcher -->
@@ -201,7 +187,7 @@
 
       <!-- Jump to Column Dropdown -->
       <select id="columnJumpSelect" class="bg-black/40 border border-white/15 rounded-lg text-xs text-slate-200 py-1.5 px-2.5 focus:outline-none focus:border-indigo-400 cursor-pointer hidden md:block">
-        <option value="">跳轉分欄 (19)...</option>
+        <option value="">跳轉分欄...</option>
       </select>
 
       <!-- Random Draw Button -->
@@ -213,7 +199,7 @@
       <!-- Downloads Modal Button -->
       <button id="openDownloadsBtn" class="flex items-center gap-1 px-2.5 py-1.5 bg-sky-500/20 hover:bg-sky-500/30 border border-sky-500/40 text-sky-200 rounded-lg text-xs font-semibold shadow transition-all">
         <i data-lucide="download" class="w-3.5 h-3.5 text-sky-300"></i>
-        <span>素材庫 (<span id="downloadsCount">56</span>)</span>
+        <span>素材庫 (<span id="downloadsCount">0</span>)</span>
       </button>
 
       <!-- CSV Export Button -->
@@ -228,25 +214,19 @@
       </button>
 
       <!-- Original Padlet Link -->
-      <a href="https://padlet.com/inforissuescounseling/gemini-jlkd6q3f4kuet6gh" target="_blank" rel="noopener noreferrer" title="前往原版 Padlet 看板" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors">
+      <a id="origPadletLink" href="#" target="_blank" rel="noopener noreferrer" title="前往原版 Padlet 看板" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors">
         <i data-lucide="external-link" class="w-4 h-4"></i>
       </a>
     </div>
   </header>
 
-  <!-- MOBILE FILTER BAR (TAB 1) -->
-  <div id="geminiMobileFilter" class="xl:hidden flex items-center justify-between px-4 py-2 bg-black/60 border-b border-white/10 text-xs overflow-x-auto gap-2 z-20">
-    <div class="flex items-center gap-1.5 flex-none">
-      <button data-filter="all" class="filter-btn active px-2 py-0.5 rounded-md bg-white/20 text-white">全部 (85)</button>
-      <button data-filter="purple" class="filter-btn px-2 py-0.5 rounded-md text-slate-300">🟣 資料 (24)</button>
-      <button data-filter="red" class="filter-btn px-2 py-0.5 rounded-md text-slate-300">🔴 範例 (21)</button>
-      <button data-filter="blue" class="filter-btn px-2 py-0.5 rounded-md text-slate-300">🔵 工具 (26)</button>
-      <button data-filter="green" class="filter-btn px-2 py-0.5 rounded-md text-slate-300">🟢 實作 (11)</button>
-    </div>
+  <!-- MOBILE FILTER BAR -->
+  <div id="colorFiltersMobile" class="xl:hidden flex items-center justify-between px-4 py-2 bg-black/60 border-b border-white/10 text-xs overflow-x-auto gap-2 z-20">
+    <!-- Mobile Filter Rendered dynamically -->
   </div>
 
-  <!-- ================= TAB 1 MAIN VIEWS CONTAINER ================= -->
-  <main id="geminiMainContainer" class="flex-1 relative overflow-hidden">
+  <!-- ================= MAIN VIEWS CONTAINER ================= -->
+  <main class="flex-1 relative overflow-hidden">
     
     <!-- VIEW 1: BOARD / SHELF HORIZONTAL SCROLL -->
     <div id="boardView" class="h-full flex overflow-x-auto overflow-y-hidden px-4 md:px-6 py-4 gap-4 scroll-smooth">
@@ -267,75 +247,6 @@
       </div>
     </div>
   </main>
-
-  <!-- ================= TAB 2: 國中-GEMINI NOTEBOOK VIEW CONTAINER ================= -->
-  <section id="notebookMainContainer" class="hidden flex-1 flex flex-col overflow-hidden bg-slate-950/80 backdrop-blur-md">
-    
-    <!-- Sub-header bar for Notebook Tab -->
-    <div class="flex-none bg-slate-900/90 border-b border-white/10 px-4 md:px-6 py-2.5 flex flex-col md:flex-row items-center justify-between gap-3 shadow-md z-20">
-      <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 border border-sky-500/30 flex items-center justify-center font-bold">
-          <i data-lucide="book-open" class="w-4 h-4"></i>
-        </div>
-        <div>
-          <div class="flex items-center gap-2">
-            <h2 class="text-sm md:text-base font-bold text-white tracking-tight">國中-Gemini Notebook 協作看板</h2>
-            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-sky-500/20 text-sky-300 border border-sky-500/30">Padlet 連動鏡像</span>
-            <span class="px-2 py-0.5 rounded text-[10px] font-medium bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1">
-              <i data-lucide="lock" class="w-3 h-3"></i> 研習會員權限
-            </span>
-          </div>
-          <p class="text-[11px] text-slate-400">結合 Gemini Notebook 知識庫、AI 規格化與國中各學科教學備課之專題協作板</p>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-2 flex-wrap self-end md:self-auto">
-        <button id="refreshNotebookIframeBtn" title="重新整理內嵌視窗" class="px-2.5 py-1.5 bg-white/10 hover:bg-white/20 text-slate-200 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-colors">
-          <i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i>
-          <span>重新載入</span>
-        </button>
-
-        <a href="https://padlet.com/inforissuescounseling/gemini-notebook-5oeo73b93q2co043" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-sky-600 hover:bg-sky-500 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow transition-all">
-          <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-          <span>在新分頁開啟原版看板</span>
-        </a>
-
-        <button id="toggleNotebookInfoBtn" class="px-2.5 py-1.5 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/30 text-purple-200 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all">
-          <i data-lucide="info" class="w-3.5 h-3.5 text-purple-300"></i>
-          <span>看板說明與指引</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Info Banner (Collapsible) -->
-    <div id="notebookInfoBanner" class="flex-none bg-indigo-950/70 border-b border-indigo-500/20 px-4 md:px-6 py-3 text-xs text-indigo-100 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
-      <div class="flex items-start gap-2.5">
-        <i data-lucide="sparkles" class="w-4 h-4 text-indigo-400 flex-none mt-0.5"></i>
-        <div class="space-y-1">
-          <p class="font-medium text-white">【研習登入與存取說明】</p>
-          <p class="text-indigo-200/90 leading-relaxed">
-            此看板設有 Padlet 會員存取保護（Members Only）。若下方視窗顯示「嘿，陌生人！」或登入提示，您只需在該視窗中直接登入授權之 Google/Padlet 帳號，或點擊上方「在新分頁開啟原版看板」，登入後即可直接在此無縫互動瀏覽所有內容！
-          </p>
-        </div>
-      </div>
-      <button id="closeNotebookInfoBannerBtn" class="text-indigo-400 hover:text-white flex-none p-1">
-        <i data-lucide="x" class="w-4 h-4"></i>
-      </button>
-    </div>
-
-    <!-- Interactive Embed Frame Container -->
-    <div class="flex-1 relative p-2 md:p-4 overflow-hidden flex flex-col">
-      <div class="w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative bg-slate-900 flex flex-col">
-        <iframe 
-          id="notebookIframe" 
-          src="https://padlet.com/inforissuescounseling/gemini-notebook-5oeo73b93q2co043" 
-          class="w-full h-full border-0" 
-          allow="camera; microphone; geolocation"
-          title="國中-Gemini Notebook Padlet 看板"
-        ></iframe>
-      </div>
-    </div>
-  </section>
 
   <!-- ================= CARD DETAIL MODAL ================= -->
   <div id="cardDetailModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-200">
@@ -421,7 +332,7 @@
       <div class="p-4 border-b border-white/10 flex items-center justify-between bg-slate-950/70">
         <div class="flex items-center gap-2">
           <i data-lucide="folder-down" class="w-5 h-5 text-sky-400"></i>
-          <h3 class="text-base font-bold text-white">本機素材與附件庫</h3>
+          <h3 id="downloadsModalTitle" class="text-base font-bold text-white">本機素材與附件庫</h3>
         </div>
         <button id="closeDownloadsModalBtn" class="p-1.5 rounded-lg bg-white/10 hover:bg-rose-500/80 text-slate-300 hover:text-white transition-colors">
           <i data-lucide="x" class="w-5 h-5"></i>
@@ -441,31 +352,37 @@
 
   <!-- ================= APPLICATION LOGIC ================= -->
   <script>
-    const data = window.BOARD_DATA || { sections: [], cards: [] };
-    const cards = data.cards || [];
-    const sections = data.sections || [];
+    const boards = {
+      gemini: window.BOARD_DATA || { title: 'Gemini就是神奇', sections: [], cards: [] },
+      gm: window.GM_BOARD_DATA || { title: '公明國中-Gemini Notebook', sections: [], cards: [] }
+    };
 
+    let activeBoardKey = 'gemini';
     let currentFilter = 'all';
     let searchQuery = '';
     let currentView = 'board'; // 'board' | 'grid' | 'list'
     let currentModalCardIndex = 0;
-    let visibleCards = [...cards];
-    let currentAppTab = 'gemini'; // 'gemini' | 'notebook'
+    let visibleCards = [];
 
     // DOM Elements - Tabs
-    const navTabGemini = document.getElementById('navTabGemini');
-    const navTabNotebook = document.getElementById('navTabNotebook');
-    const geminiHeader = document.getElementById('geminiHeader');
-    const geminiMobileFilter = document.getElementById('geminiMobileFilter');
-    const geminiMainContainer = document.getElementById('geminiMainContainer');
-    const notebookMainContainer = document.getElementById('notebookMainContainer');
-    const notebookIframe = document.getElementById('notebookIframe');
-    const refreshNotebookIframeBtn = document.getElementById('refreshNotebookIframeBtn');
-    const toggleNotebookInfoBtn = document.getElementById('toggleNotebookInfoBtn');
-    const notebookInfoBanner = document.getElementById('notebookInfoBanner');
-    const closeNotebookInfoBannerBtn = document.getElementById('closeNotebookInfoBannerBtn');
+    const tabBtnGemini = document.getElementById('tabBtnGemini');
+    const tabBtnGM = document.getElementById('tabBtnGM');
+    const tabCountGemini = document.getElementById('tabCountGemini');
+    const tabCountGM = document.getElementById('tabCountGM');
+    const appBody = document.getElementById('appBody');
 
-    // DOM Elements - Gemini Board
+    // DOM Elements - Headers & Tools
+    const boardTitle = document.getElementById('boardTitle');
+    const boardIcon = document.getElementById('boardIcon');
+    const legendContainer = document.getElementById('legendContainer');
+    const colorFiltersDesktop = document.getElementById('colorFiltersDesktop');
+    const colorFiltersMobile = document.getElementById('colorFiltersMobile');
+    const origPadletLink = document.getElementById('origPadletLink');
+    const columnJumpSelect = document.getElementById('columnJumpSelect');
+    const downloadsCount = document.getElementById('downloadsCount');
+    const downloadsModalTitle = document.getElementById('downloadsModalTitle');
+
+    // DOM Elements - Views
     const boardView = document.getElementById('boardView');
     const gridView = document.getElementById('gridView');
     const listView = document.getElementById('listView');
@@ -473,13 +390,9 @@
     const listCardsContainer = document.getElementById('listCardsContainer');
     const searchInput = document.getElementById('searchInput');
     const clearSearchBtn = document.getElementById('clearSearchBtn');
-    const columnJumpSelect = document.getElementById('columnJumpSelect');
     const themeToggleBtn = document.getElementById('themeToggleBtn');
     const toast = document.getElementById('toast');
     const toastMsg = document.getElementById('toastMsg');
-
-    // Filter Buttons
-    const filterBtns = document.querySelectorAll('.filter-btn');
 
     // View Buttons
     const viewBoardBtn = document.getElementById('viewBoardBtn');
@@ -513,68 +426,141 @@
     const randomDrawBtn = document.getElementById('randomDrawBtn');
     const exportCsvBtn = document.getElementById('exportCsvBtn');
 
-    // ================= APP TAB SWITCHING =================
-    function switchAppTab(tab) {
-      currentAppTab = tab;
-      if (tab === 'gemini') {
-        navTabGemini.classList.add('bg-indigo-600', 'text-white', 'shadow-md', 'shadow-indigo-600/30', 'font-bold');
-        navTabGemini.classList.remove('text-slate-300', 'hover:bg-white/10', 'font-medium');
+    function getActiveBoard() {
+      return boards[activeBoardKey];
+    }
 
-        navTabNotebook.classList.remove('bg-sky-600', 'text-white', 'shadow-md', 'shadow-sky-600/30', 'font-bold');
-        navTabNotebook.classList.add('text-slate-300', 'hover:bg-white/10', 'font-medium');
+    // Switch Active Board
+    function switchBoard(key) {
+      activeBoardKey = key;
+      currentFilter = 'all';
+      searchQuery = '';
+      searchInput.value = '';
+      clearSearchBtn.classList.add('hidden');
 
-        geminiHeader.classList.remove('hidden');
-        geminiMobileFilter.classList.remove('hidden');
-        geminiMainContainer.classList.remove('hidden');
-        notebookMainContainer.classList.add('hidden');
+      const b = getActiveBoard();
+
+      // Update Body Background
+      if (document.documentElement.classList.contains('dark')) {
+        appBody.style.backgroundImage = `radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.78) 0%, rgba(8, 12, 24, 0.94) 100%), url("${b.wallpaper}")`;
       } else {
-        navTabNotebook.classList.add('bg-sky-600', 'text-white', 'shadow-md', 'shadow-sky-600/30', 'font-bold');
-        navTabNotebook.classList.remove('text-slate-300', 'hover:bg-white/10', 'font-medium');
-
-        navTabGemini.classList.remove('bg-indigo-600', 'text-white', 'shadow-md', 'shadow-indigo-600/30', 'font-bold');
-        navTabGemini.classList.add('text-slate-300', 'hover:bg-white/10', 'font-medium');
-
-        geminiHeader.classList.add('hidden');
-        geminiMobileFilter.classList.add('hidden');
-        geminiMainContainer.classList.add('hidden');
-        notebookMainContainer.classList.remove('hidden');
+        appBody.style.backgroundImage = `radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.88) 0%, rgba(241, 245, 249, 0.96) 100%), url("${b.wallpaper}")`;
       }
+
+      // Tab styling
+      if (key === 'gemini') {
+        tabBtnGemini.className = 'app-tab px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold flex items-center gap-2 transition-all bg-indigo-600 text-white shadow-md shadow-indigo-600/30';
+        tabBtnGM.className = 'app-tab px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-medium flex items-center gap-2 transition-all text-slate-300 hover:text-white hover:bg-white/10';
+        boardIcon.className = 'w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-500 to-sky-400 flex items-center justify-center shadow-md shadow-indigo-500/20 text-white font-black text-lg';
+      } else {
+        tabBtnGM.className = 'app-tab px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-bold flex items-center gap-2 transition-all bg-sky-600 text-white shadow-md shadow-sky-600/30';
+        tabBtnGemini.className = 'app-tab px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-medium flex items-center gap-2 transition-all text-slate-300 hover:text-white hover:bg-white/10';
+        boardIcon.className = 'w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-600 via-blue-500 to-emerald-400 flex items-center justify-center shadow-md shadow-sky-500/20 text-white font-black text-lg';
+      }
+
+      // Title & Link
+      boardTitle.textContent = b.title;
+      origPadletLink.href = b.original_url || '#';
+
+      // Update Legend
+      renderLegend();
+
+      // Update Filter Tabs
+      renderFilterTabs();
+
+      // Update Jump Select
+      renderColumnJump();
+
+      // Update Download Count
+      const filesCount = b.cards.filter(c => c.local_file).length;
+      downloadsCount.textContent = filesCount;
+      downloadsModalTitle.textContent = `${b.title} - 本機素材庫 (${filesCount})`;
+
+      // Render Active View
+      refreshView();
       lucide.createIcons();
     }
 
-    navTabGemini.addEventListener('click', () => switchAppTab('gemini'));
-    navTabNotebook.addEventListener('click', () => switchAppTab('notebook'));
+    // Render Legend
+    function renderLegend() {
+      if (activeBoardKey === 'gemini') {
+        legendContainer.innerHTML = `
+          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-purple-400"></span>紫標是資料</span>
+          <span class="text-slate-500">•</span>
+          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-400"></span>紅標有範例</span>
+          <span class="text-slate-500">•</span>
+          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-sky-400"></span>藍標歸工具</span>
+          <span class="text-slate-500">•</span>
+          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>綠標要實作</span>
+        `;
+      } else {
+        legendContainer.innerHTML = `
+          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-400"></span>黃標是資料</span>
+          <span class="text-slate-500">•</span>
+          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-400"></span>紅標有範例</span>
+          <span class="text-slate-500">•</span>
+          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-sky-400"></span>藍標歸工具</span>
+          <span class="text-slate-500">•</span>
+          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>綠標要實作</span>
+        `;
+      }
+    }
 
-    refreshNotebookIframeBtn.addEventListener('click', () => {
-      notebookIframe.src = notebookIframe.src;
-      showToast('🔄 正在重新整理 國中-Gemini Notebook 視窗...');
-    });
-
-    toggleNotebookInfoBtn.addEventListener('click', () => {
-      notebookInfoBanner.classList.toggle('hidden');
-    });
-
-    closeNotebookInfoBannerBtn.addEventListener('click', () => {
-      notebookInfoBanner.classList.add('hidden');
-    });
-
-    // Initialize Counts
-    function initStats() {
-      const counts = { all: cards.length, purple: 0, red: 0, blue: 0, green: 0 };
+    // Render Filter Tabs
+    function renderFilterTabs() {
+      const b = getActiveBoard();
+      const cards = b.cards;
+      
+      const counts = { all: cards.length, data: 0, example: 0, tool: 0, practice: 0 };
       cards.forEach(c => {
-        if (c.color === 'purple' || c.color === 'plum') counts.purple++;
-        else if (c.color === 'red' || c.color === 'orange' || c.color === 'coral') counts.red++;
-        else if (c.color === 'blue' || c.color === 'oceanic') counts.blue++;
-        else if (c.color === 'green' || c.color === 'lime') counts.green++;
+        if (c.color_label === '資料') counts.data++;
+        else if (c.color_label === '範例') counts.example++;
+        else if (c.color_label === '工具') counts.tool++;
+        else if (c.color_label === '實作') counts.practice++;
       });
-      document.getElementById('count-all').textContent = counts.all;
-      document.getElementById('count-purple').textContent = counts.purple;
-      document.getElementById('count-red').textContent = counts.red;
-      document.getElementById('count-blue').textContent = counts.blue;
-      document.getElementById('count-green').textContent = counts.green;
 
-      // Populate Column Jump
-      sections.forEach(s => {
+      const colorDataName = (activeBoardKey === 'gemini') ? '紫標' : '黃標';
+      const colorDataDot = (activeBoardKey === 'gemini') ? 'bg-purple-400' : 'bg-amber-400';
+
+      colorFiltersDesktop.innerHTML = `
+        <button data-filter="all" class="filter-btn active px-2.5 py-1 rounded-md font-medium transition-colors bg-white/20 text-white">全部 (${counts.all})</button>
+        <button data-filter="資料" class="filter-btn px-2.5 py-1 rounded-md font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-1"><span class="w-2 h-2 rounded-full ${colorDataDot}"></span>${colorDataName} (${counts.data})</button>
+        <button data-filter="範例" class="filter-btn px-2.5 py-1 rounded-md font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-400"></span>紅標 (${counts.example})</button>
+        <button data-filter="工具" class="filter-btn px-2.5 py-1 rounded-md font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-sky-400"></span>藍標 (${counts.tool})</button>
+        <button data-filter="實作" class="filter-btn px-2.5 py-1 rounded-md font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>綠標 (${counts.practice})</button>
+      `;
+
+      colorFiltersMobile.innerHTML = `
+        <div class="flex items-center gap-1.5 flex-none">
+          <button data-filter="all" class="filter-btn active px-2 py-0.5 rounded-md bg-white/20 text-white">全部 (${counts.all})</button>
+          <button data-filter="資料" class="filter-btn px-2 py-0.5 rounded-md text-slate-300">${colorDataName} (${counts.data})</button>
+          <button data-filter="範例" class="filter-btn px-2 py-0.5 rounded-md text-slate-300">紅標 (${counts.example})</button>
+          <button data-filter="工具" class="filter-btn px-2 py-0.5 rounded-md text-slate-300">藍標 (${counts.tool})</button>
+          <button data-filter="實作" class="filter-btn px-2 py-0.5 rounded-md text-slate-300">綠標 (${counts.practice})</button>
+        </div>
+      `;
+
+      // Attach filter click handlers
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(b => {
+            b.classList.remove('active', 'bg-white/20', 'text-white');
+            b.classList.add('text-slate-300');
+          });
+          btn.classList.add('active', 'bg-white/20', 'text-white');
+          btn.classList.remove('text-slate-300');
+
+          currentFilter = btn.dataset.filter;
+          refreshView();
+        });
+      });
+    }
+
+    // Render Column Jump
+    function renderColumnJump() {
+      const b = getActiveBoard();
+      columnJumpSelect.innerHTML = `<option value="">跳轉分欄 (${b.sections.length})...</option>`;
+      b.sections.forEach(s => {
         const opt = document.createElement('option');
         opt.value = s.id;
         opt.textContent = `${s.title} (${s.cards_count})`;
@@ -582,16 +568,13 @@
       });
     }
 
-    // Filter Logic
+    // Match Filter
     function matchesFilter(card) {
       if (currentFilter === 'all') return true;
-      if (currentFilter === 'purple') return card.color === 'purple' || card.color === 'plum';
-      if (currentFilter === 'red') return card.color === 'red' || card.color === 'orange' || card.color === 'coral';
-      if (currentFilter === 'blue') return card.color === 'blue' || card.color === 'oceanic';
-      if (currentFilter === 'green') return card.color === 'green' || card.color === 'lime';
-      return true;
+      return card.color_label === currentFilter;
     }
 
+    // Match Search
     function matchesSearch(card) {
       if (!searchQuery) return true;
       const q = searchQuery.toLowerCase();
@@ -634,28 +617,28 @@
       });
     }
 
-    // Render Card Element
+    // Create Card Element
     function createCardElement(card, index) {
       const cardEl = document.createElement('div');
       cardEl.className = 'card-transition bg-slate-900/85 dark:bg-slate-900/90 border border-white/10 hover:border-indigo-400/50 rounded-xl p-3.5 shadow-md flex flex-col gap-2.5 cursor-pointer backdrop-blur-sm';
       cardEl.dataset.id = card.id;
 
       // Color badge
-      let badgeColor = 'bg-slate-800 text-slate-300 border-slate-700';
-      if (card.color === 'purple' || card.color === 'plum') badgeColor = 'bg-purple-900/40 text-purple-300 border-purple-500/30';
-      else if (card.color === 'red' || card.color === 'orange' || card.color === 'coral') badgeColor = 'bg-rose-900/40 text-rose-300 border-rose-500/30';
-      else if (card.color === 'blue' || card.color === 'oceanic') badgeColor = 'bg-sky-900/40 text-sky-300 border-sky-500/30';
-      else if (card.color === 'green' || card.color === 'lime') badgeColor = 'bg-emerald-900/40 text-emerald-300 border-emerald-500/30';
+      let badgeClass = card.badge_class || 'bg-slate-800 text-slate-300 border-slate-700';
 
       // Header row
       const headerRow = `
         <div class="flex items-center justify-between gap-2">
-          <span class="px-2 py-0.5 rounded text-[11px] font-semibold border ${badgeColor}">
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold border ${badgeClass}">
             ${card.color_label || '一般'}
           </span>
-          ${card.is_video ? '<span class="px-1.5 py-0.5 rounded text-[10px] bg-red-500/20 text-red-300 border border-red-500/30 font-medium flex items-center gap-1"><i data-lucide="video" class="w-3 h-3"></i> 影片</span>' : ''}
-          ${card.is_pdf ? '<span class="px-1.5 py-0.5 rounded text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 font-medium flex items-center gap-1"><i data-lucide="file-text" class="w-3 h-3"></i> PDF</span>' : ''}
-          ${card.link_type === 'gem' ? '<span class="px-1.5 py-0.5 rounded text-[10px] bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-medium flex items-center gap-1"><i data-lucide="bot" class="w-3 h-3"></i> Gem</span>' : ''}
+          <div class="flex items-center gap-1">
+            ${card.is_video ? '<span class="px-1.5 py-0.5 rounded text-[10px] bg-red-500/20 text-red-300 border border-red-500/30 font-medium flex items-center gap-1"><i data-lucide="video" class="w-3 h-3"></i> 影片</span>' : ''}
+            ${card.is_pdf ? '<span class="px-1.5 py-0.5 rounded text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 font-medium flex items-center gap-1"><i data-lucide="file-text" class="w-3 h-3"></i> PDF</span>' : ''}
+            ${card.is_pptx ? '<span class="px-1.5 py-0.5 rounded text-[10px] bg-orange-500/20 text-orange-300 border border-orange-500/30 font-medium flex items-center gap-1"><i data-lucide="presentation" class="w-3 h-3"></i> PPTX</span>' : ''}
+            ${card.link_type === 'gem' ? '<span class="px-1.5 py-0.5 rounded text-[10px] bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-medium flex items-center gap-1"><i data-lucide="bot" class="w-3 h-3"></i> Gem</span>' : ''}
+            ${card.link_type === 'notebook' ? '<span class="px-1.5 py-0.5 rounded text-[10px] bg-sky-500/20 text-sky-300 border border-sky-500/30 font-medium flex items-center gap-1"><i data-lucide="book-open" class="w-3 h-3"></i> NBLM</span>' : ''}
+          </div>
         </div>
       `;
 
@@ -686,7 +669,7 @@
         bodySnippet = `<p class="text-xs text-slate-300 line-clamp-4 leading-relaxed">${highlightText(card.body)}</p>`;
       }
 
-      // Comments / Prompts badge
+      // Comments badge
       let commentsBadge = '';
       if (card.comments && card.comments.length > 0) {
         commentsBadge = `
@@ -709,16 +692,15 @@
     // Render Board View (Shelves)
     function renderBoardView() {
       boardView.innerHTML = '';
+      const b = getActiveBoard();
       
-      sections.forEach(sec => {
+      b.sections.forEach(sec => {
         const secCards = sec.cards.filter(c => matchesFilter(c) && matchesSearch(c));
         
-        // Shelf Column
         const shelf = document.createElement('div');
         shelf.id = sec.id;
         shelf.className = 'w-72 sm:w-80 flex-none flex flex-col bg-slate-950/70 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-md max-h-full shadow-xl';
 
-        // Shelf Header
         const header = document.createElement('div');
         header.className = 'p-3.5 border-b border-white/10 bg-slate-900/80 flex items-center justify-between sticky top-0 z-10';
         header.innerHTML = `
@@ -729,7 +711,6 @@
         `;
         shelf.appendChild(header);
 
-        // Cards Scroll Area
         const cardsList = document.createElement('div');
         cardsList.className = 'p-3 overflow-y-auto flex-1 space-y-3';
 
@@ -750,7 +731,8 @@
     // Render Grid View
     function renderGridView() {
       gridCardsContainer.innerHTML = '';
-      const filtered = cards.filter(c => matchesFilter(c) && matchesSearch(c));
+      const b = getActiveBoard();
+      const filtered = b.cards.filter(c => matchesFilter(c) && matchesSearch(c));
       if (filtered.length === 0) {
         gridCardsContainer.innerHTML = `<div class="col-span-full py-12 text-center text-slate-400 text-sm">無符合搜尋或篩選條件的卡片</div>`;
         return;
@@ -764,7 +746,8 @@
     // Render List View
     function renderListView() {
       listCardsContainer.innerHTML = '';
-      const filtered = cards.filter(c => matchesFilter(c) && matchesSearch(c));
+      const b = getActiveBoard();
+      const filtered = b.cards.filter(c => matchesFilter(c) && matchesSearch(c));
       if (filtered.length === 0) {
         listCardsContainer.innerHTML = `<div class="py-12 text-center text-slate-400 text-sm">無符合條件項目</div>`;
         return;
@@ -774,15 +757,11 @@
         const row = document.createElement('div');
         row.className = 'card-transition p-3.5 bg-slate-900/80 border border-white/10 rounded-xl hover:border-indigo-400/50 flex items-center justify-between gap-4 cursor-pointer backdrop-blur-sm';
         
-        let badgeColor = 'bg-slate-800 text-slate-300 border-slate-700';
-        if (c.color === 'purple' || c.color === 'plum') badgeColor = 'bg-purple-900/40 text-purple-300 border-purple-500/30';
-        else if (c.color === 'red' || c.color === 'orange' || c.color === 'coral') badgeColor = 'bg-rose-900/40 text-rose-300 border-rose-500/30';
-        else if (c.color === 'blue' || c.color === 'oceanic') badgeColor = 'bg-sky-900/40 text-sky-300 border-sky-500/30';
-        else if (c.color === 'green' || c.color === 'lime') badgeColor = 'bg-emerald-900/40 text-emerald-300 border-emerald-500/30';
+        let badgeClass = c.badge_class || 'bg-slate-800 text-slate-300 border-slate-700';
 
         row.innerHTML = `
           <div class="flex items-center gap-3 min-w-0">
-            <span class="px-2 py-0.5 rounded text-[10px] font-bold border flex-none ${badgeColor}">${c.color_label || '一般'}</span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold border flex-none ${badgeClass}">${c.color_label || '一般'}</span>
             <div class="min-w-0">
               <h4 class="text-sm font-bold text-white truncate">${highlightText(c.title)}</h4>
               <p class="text-xs text-slate-400 truncate">${highlightText(c.section_title)}</p>
@@ -799,15 +778,14 @@
       lucide.createIcons();
     }
 
-    // Refresh Current View
     function refreshView() {
-      visibleCards = cards.filter(c => matchesFilter(c) && matchesSearch(c));
+      const b = getActiveBoard();
+      visibleCards = b.cards.filter(c => matchesFilter(c) && matchesSearch(c));
       if (currentView === 'board') renderBoardView();
       else if (currentView === 'grid') renderGridView();
       else if (currentView === 'list') renderListView();
     }
 
-    // Switch View
     function setView(view) {
       currentView = view;
       boardView.classList.toggle('hidden', view !== 'board');
@@ -829,20 +807,14 @@
       refreshView();
     }
 
-    // Open Card Detail Modal
+    // Open Modal
     function openModal(card) {
       currentModalCardIndex = visibleCards.findIndex(c => c.id === card.id);
       if (currentModalCardIndex === -1) currentModalCardIndex = 0;
 
       modalSectionName.textContent = card.section_title;
       modalColorBadge.textContent = card.color_label || '一般';
-      
-      let badgeColor = 'bg-slate-800 text-slate-300 border-slate-700';
-      if (card.color === 'purple' || card.color === 'plum') badgeColor = 'bg-purple-900/40 text-purple-300 border-purple-500/30';
-      else if (card.color === 'red' || card.color === 'orange' || card.color === 'coral') badgeColor = 'bg-rose-900/40 text-rose-300 border-rose-500/30';
-      else if (card.color === 'blue' || card.color === 'oceanic') badgeColor = 'bg-sky-900/40 text-sky-300 border-sky-500/30';
-      else if (card.color === 'green' || card.color === 'lime') badgeColor = 'bg-emerald-900/40 text-emerald-300 border-emerald-500/30';
-      modalColorBadge.className = `px-2.5 py-0.5 rounded-md text-xs font-semibold border ${badgeColor}`;
+      modalColorBadge.className = `px-2.5 py-0.5 rounded-md text-xs font-semibold border ${card.badge_class || 'bg-slate-800 text-slate-300 border-slate-700'}`;
 
       if (card.link_type && card.link_label) {
         modalLinkTypeBadge.textContent = card.link_label;
@@ -939,7 +911,6 @@
       }, 200);
     }
 
-    // Modal navigation
     modalPrevBtn.addEventListener('click', () => {
       if (visibleCards.length === 0) return;
       currentModalCardIndex = (currentModalCardIndex - 1 + visibleCards.length) % visibleCards.length;
@@ -960,8 +931,9 @@
     // Downloads Modal
     function openDownloads() {
       downloadsListContainer.innerHTML = '';
-      const filesWithCards = cards.filter(c => c.local_file);
-      document.getElementById('downloadsCount').textContent = filesWithCards.length;
+      const b = getActiveBoard();
+      const filesWithCards = b.cards.filter(c => c.local_file);
+      downloadsCount.textContent = filesWithCards.length;
 
       filesWithCards.forEach(c => {
         const item = document.createElement('div');
@@ -1008,12 +980,13 @@
       showToast('🎲 已隨機為您抽出一張卡片！');
     });
 
-    // CSV Export (Excel Compatible with UTF-8 BOM)
+    // CSV Export
     exportCsvBtn.addEventListener('click', () => {
+      const b = getActiveBoard();
       let csv = '\uFEFF'; // UTF-8 BOM
       csv += '卡片編號,分欄主題,顏色分類,標題,主要內容,提示詞指引,附件連結,本機檔案\n';
       
-      cards.forEach((c, idx) => {
+      b.cards.forEach((c, idx) => {
         const row = [
           idx + 1,
           `"${(c.section_title || '').replace(/"/g, '""')}"`,
@@ -1031,25 +1004,10 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `Gemini就是神奇_全量資料匯出_${new Date().toISOString().slice(0, 10)}.csv`;
+      a.download = `${b.title}_資料匯出_${new Date().toISOString().slice(0, 10)}.csv`;
       a.click();
       URL.revokeObjectURL(url);
       showToast('📊 已成功匯出 Excel 相容 CSV 報表！');
-    });
-
-    // Filter Buttons Click
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => {
-          b.classList.remove('active', 'bg-white/20', 'text-white');
-          b.classList.add('text-slate-300');
-        });
-        btn.classList.add('active', 'bg-white/20', 'text-white');
-        btn.classList.remove('text-slate-300');
-
-        currentFilter = btn.dataset.filter;
-        refreshView();
-      });
     });
 
     // Search Input
@@ -1090,6 +1048,7 @@
     themeToggleBtn.addEventListener('click', () => {
       document.documentElement.classList.toggle('dark');
       localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+      switchBoard(activeBoardKey);
     });
 
     // Keyboard Shortcuts
@@ -1106,8 +1065,15 @@
       }
     });
 
-    // Initial Load
-    initStats();
+    // Tab Button Click Listeners
+    tabBtnGemini.addEventListener('click', () => switchBoard('gemini'));
+    tabBtnGM.addEventListener('click', () => switchBoard('gm'));
+
+    // Initialize
+    tabCountGemini.textContent = boards.gemini.cards.length;
+    tabCountGM.textContent = boards.gm.cards.length;
+
+    switchBoard('gemini');
     setView('board');
   </script>
 </body>
