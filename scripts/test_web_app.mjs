@@ -5,8 +5,8 @@ import path from 'path';
 const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const htmlPath = path.resolve('c:/antigravity/1151025Gemini就是神奇/index.html');
 const targetUrl = 'file:///' + htmlPath.replace(/\\/g, '/');
-const port = 9380;
-const userDataDir = 'C:\\Users\\Administrator\\.gemini\\antigravity\\chrome_temp_test_gemini_magic';
+const port = 9382;
+const userDataDir = 'C:\\Users\\Administrator\\.gemini\\antigravity\\chrome_temp_test_gemini_magic2';
 
 const chromeProc = spawn(chromePath, [
   `--remote-debugging-port=${port}`,
@@ -66,7 +66,7 @@ async function main() {
   }
 
   await new Promise(r => ws.onopen = r);
-  await sleep(4000);
+  await sleep(3000);
 
   // Check DOM
   const checkRes = await send('Runtime.evaluate', {
@@ -75,7 +75,9 @@ async function main() {
         title: document.title,
         shelvesCount: document.querySelectorAll('#boardView > div').length,
         cardsCount: document.querySelectorAll('.card-transition').length,
-        boardTitleText: document.getElementById('boardTitle')?.innerText
+        hasTopNavTab1: !!document.getElementById('navTabGemini'),
+        hasTopNavTab2: !!document.getElementById('navTabNotebook'),
+        notebookIframeSrc: document.getElementById('notebookIframe')?.src
       };
     })()`,
     returnByValue: true

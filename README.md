@@ -1,27 +1,29 @@
-# Gemini就是神奇 · 協作看板與完整提示詞庫 (2026年最新版)
+# Gemini就是神奇 × 國中-Gemini Notebook · 雙看板整合平台 (2026年最新版)
 
-> **原始來源**：[Padlet 看板 (Gemini就是神奇)](https://padlet.com/inforissuescounseling/gemini-jlkd6q3f4kuet6gh)  
+> **原始來源**：
+> 1. [Padlet 看板 1：Gemini就是神奇](https://padlet.com/inforissuescounseling/gemini-jlkd6q3f4kuet6gh)  
+> 2. [Padlet 看板 2：國中-Gemini Notebook](https://padlet.com/inforissuescounseling/gemini-notebook-5oeo73b93q2co043)  
 > **作者**：臺中市資訊教育議題分團輔導員 (moodlela)  
 > **核心分類規則**：**紫標是資料 (24)、紅標有範例 (21)、藍標歸工具 (26)、綠標要實作 (11)**  
-> **專案定位**：100% 本機離線鏡像、獨立資料集 (`data.js` / JSON)、全互動分欄看板、瀑布網格與清單三視圖，免外網即可直通全套提示詞、教材手冊 PDF 與示範影片！
+> **專案定位**：雙看板合一架構，在最上方配置一鍵標籤切換，結合 100% 離線鏡像資料集 (`data.js`) 與即時連動視窗，免外網即可直通全套提示詞、教材手冊 PDF 與示範影片！
 
 ---
 
-## 🌟 亮點功能與本機離線規格 (100% Offline Ready)
+## 🌟 雙看板頂部導覽切換 (Top Tabs Navigation)
 
-本專案已透過官方 API 與深度爬蟲技術，將原始 Padlet 看板的所有 19 個分欄、85 張卡片、專家留言提示詞、**全部 71 張高解析度預覽圖片**（包含 2816×1536 高清主題壁紙）以及 **56 份下載附件庫**（包含示範 MP4 影片、PDF 教材手冊、TXT 結構化提示詞庫）完全保存至本機，不依賴任何外部防盜鏈伺服器與過期 Token！
+在網頁最頂部內建 **雙看板一鍵無縫切換標籤**：
 
-### 📦 本機多媒體與檔案素材庫
-- **高清壁紙**：`assets/images/wallpaper.png`（2816×1536 Gemini Generated Image 主題壁紙）
-- **70 張卡片預覽圖**：`assets/images/img_*.png` / `*.jpg`
-- **56 份本機下載附件**（包含但不限於）：
-  1. 🎬 **示範影片 (MP4)**：可以直接在卡片內或放大彈窗中直接播放（例如 `9a9b22be_662c_4789_8e68_7283a649d695.mp4`、`A_character_walks_202510282322.mp4` 等）。
-  2. 📄 **教材手冊 (PDF)**：中小學生成式 AI 使用手冊、測驗解析等。
-  3. 📝 **結構化提示詞 (TXT)**：繪本生成、簡報生成、引導式教學等結構化 Prompt。
+1. **🌟 Gemini就是神奇 (85 張卡片全量離線)**：
+   - 包含 19 個主題分欄、85 張卡片、71 張高解析度預覽縮圖與 56 份下載素材庫。
+   - 支援分欄看板 (Shelves)、瀑布網格 (Grid)、清單條列 (List) 三種檢視視圖。
+   - 具備關鍵字即時搜尋 (`/` 快捷鍵)、顏色標籤篩選、隨機抽籤、Excel 相容 CSV 報表匯出功能。
+2. **📘 國中-Gemini Notebook (最新連動看板)**：
+   - 整合由臺中市資訊教育議題分團輔導員規劃之「國中-Gemini Notebook」專題看板。
+   - 內嵌高畫質自適應互動視窗，並附帶在新分頁開啟、重新載入與存取說明面板。
 
 ---
 
-## 📋 19 個分欄主題
+## 📋 19 個分欄主題 (Gemini就是神奇)
 
 1. **說在前面** (6 張)：自我介紹、Google AI 雙刀流、Gemini 全方位介紹、Gemini 3.0 Pro 功能解析、中小學使用指南、同意書
 2. **Google三兄弟** (3 張)：Gemini、NotebookLM、AI Studio
@@ -45,23 +47,14 @@
 
 ---
 
-## ⚡ 核心功能與互動體驗
+## 📦 本機素材與下載庫規格 (100% Offline Ready)
 
-1. **三種檢視視圖**：
-   - **分欄看板 (Shelves)**：還原 Padlet 最原汁原味的多欄橫向捲動佈局。
-   - **瀑布網格 (Grid)**：大螢幕多欄垂直自適應瀑布流。
-   - **清單條列 (List)**：緊湊資訊行，便於快速搜尋與批次查找。
-2. **多維即時篩選**：
-   - 依「紫標：資料 (24)」、「紅標：範例 (21)」、「藍標：工具 (26)」、「綠標：實作 (11)」即時篩選。
-   - 即時關鍵字搜尋：按鍵盤 `/` 鍵即可快速定位搜尋列，關鍵字自動高亮。
-3. **一鍵複製提示詞**：
-   - 點擊「複製本文內容」或各條留言旁的「複製此段指令」，即刻複製至剪貼簿並顯示綠色 Toast 提示。
-4. **隨機抽籤 (🎲)**：
-   - 點擊頂部「🎲 隨機抽籤」，自動抽取一張卡片跳出互動彈窗，適合課堂互動或備課尋找靈感。
-5. **匯出 CSV 報表 (Excel 相容)**：
-   - 支援一鍵將目前卡片清單匯出為 UTF-8 with BOM 的 CSV，可直接以 Microsoft Excel 開啟且絕不亂碼。
-6. **深色 / 淺色模式切換**：
-   - 內建優雅深色系與明亮清新雙色主題。
+- **高清壁紙**：`assets/images/wallpaper.png`（2816×1536 Gemini Generated Image 主題壁紙）
+- **70 張卡片預覽圖**：`assets/images/img_*.png` / `*.jpg`
+- **56 份本機下載附件**：
+  - 🎬 **示範影片 (MP4)**：直接於卡片與彈窗內建播放器播放。
+  - 📄 **教材手冊 (PDF)**：中小學生成式 AI 使用手冊、測驗解析。
+  - 📝 **結構化提示詞 (TXT)**：繪本生成、簡報生成、引導式教學等結構化 Prompt。
 
 ---
 
@@ -83,5 +76,5 @@
 1. 本專案已推播至 GitHub 倉庫：`https://github.com/yaoshuchin/padlet-gemini-magic`
 2. 進入倉庫 **Settings** -> **Pages**
 3. **Build and deployment** 來源選擇 **Deploy from a branch**
-4. Branch 選擇 `master`（或 `main`），目錄選擇 `/ (root)`，點擊 **Save**。
-5. 發布後即可於 `https://yaoshuchin.github.io/padlet-gemini-magic/` 線上瀏覽。
+4. Branch 選擇 `master`，目錄選擇 `/ (root)`，點擊 **Save**。
+5. 線上瀏覽網址：[**https://yaoshuchin.github.io/padlet-gemini-magic/**](https://yaoshuchin.github.io/padlet-gemini-magic/)
